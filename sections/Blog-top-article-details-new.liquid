@@ -1,0 +1,274 @@
+{%- if section.settings.main_article_selected != blank or section.blocks.size > 0 -%}
+  <div class="Blog_top_article_details_main_new" style="background: {{ section.settings.main_background_color }};">
+    <div class="page-width">
+      <div class="Blog_top_article_details_inner_new" data-aos="fade-in">
+        {%- if section.settings.main_details_text != blank or section.settings.main_heading_text != blank or blog.title != blank -%}
+          <div class="Blog_top_article_details_mainboth_new">
+            <div class="Blog_top_article_details_innerboth_new">
+              {%- if section.settings.main_details_text != blank -%}
+                <div class="Blog_top_article_details_innerboth_maintexts_new">
+                  <div class="Blog_top_article_details_innerboth_innertexts_new">
+                    <h1>{{ section.settings.main_details_text }}</h1>
+                  </div>
+                </div>
+              {%- else -%}
+                <div class="Blog_top_article_details_innerboth_maintexts_new">
+                  <div class="Blog_top_article_details_innerboth_innertexts_new">
+                    <h1>{{ blog.title | split: '|' | last }}</h1>
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if section.settings.main_heading_text != blank -%}
+                <div class="Blog_top_article_details_innerboth_maintitle_new">
+                  <div class="Common_title_new Blog_top_article_details_innerboth_innertitle_new">
+                    <h2>{{ section.settings.main_heading_text }}</h2>
+                  </div>
+                </div>
+              {%- else -%}
+                <div class="Blog_top_article_details_innerboth_maintitle_new">
+                  <div class="Common_title_new Blog_top_article_details_innerboth_innertitle_new">
+                    <h2>{{ blog.title | split: '|' | first }}</h2>
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.main_article_selected != blank or section.blocks.size > 0 -%}
+          <div class="Blog_top_article_details_mainside_new">
+            <div class="Blog_top_article_details_innerside_new">
+              {%- if section.settings.main_article_selected != blank -%}
+                {%- assign article = section.settings.main_article_selected -%}
+                {%- if article.image != blank or article.title != blank or article.excerpt.size > 0 or article.content.size > 0 or article.tags.size > 0 -%}
+                  <div class="Blog_top_article_details_innerside_mainleft_new">
+                    <a href="{{ article.url }}">
+                      <div class="Blog_top_article_details_innerside_innerleft_new">
+                        {%- if article.image != blank -%}
+                          <div class="Blog_top_article_details_innerside_innerleft_mainimage_new">
+                            <div class="Blog_top_article_details_innerside_innerleft_innerimage_new">
+                              {{
+                                article.image | 
+                                image_url: width: img.width | 
+                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                fetchpriority: 'auto', 
+                                class:'Article_image_new'
+                              }}
+                            </div>
+                            {%- if section.settings.main_custom_tag_text != blank -%}
+                              <div class="Blog_top_article_details_innerside_innerleft_innerboths_innertexts_alltag_new mobile_only">
+                                <div class="Blog_top_article_details_innerside_innerleft_innerboths_innertexts_alltag_alllist_new">
+                                  {{ section.settings.main_custom_tag_text }}
+                                </div>
+                              </div>
+                            {%- elsif article.tags.size > 0 -%}
+                              <div class="Blog_top_article_details_innerside_innerleft_innerboths_innertexts_alltag_new mobile_only">
+                                {%- for tag in article.tags limit: 1 -%}
+                                  <div class="Blog_top_article_details_innerside_innerleft_innerboths_innertexts_alltag_alllist_new">
+                                    {{ tag }}
+                                  </div>
+                                {%- endfor -%}
+                              </div>
+                            {%- endif -%}
+                          </div>
+                        {%- endif -%}
+                        {%- if article.title != blank or article.excerpt.size > 0 or article.content.size > 0 or article.tags.size > 0 -%}
+                          <div class="Blog_top_article_details_innerside_innerleft_mainboths_new">
+                            <div class="Blog_top_article_details_innerside_innerleft_innerboths_new">
+                              {%- if article.title != blank or article.excerpt.size > 0 or article.content.size > 0 or article.tags.size > 0 -%}
+                                <div class="Blog_top_article_details_innerside_innerleft_innerboths_maintexts_new">
+                                  <div class="Blog_top_article_details_innerside_innerleft_innerboths_innertexts_new">
+                                    {%- if section.settings.main_custom_tag_text != blank -%}
+                                      <div class="Blog_top_article_details_innerside_innerleft_innerboths_innertexts_alltag_new desktop_only">
+                                        <div class="Blog_top_article_details_innerside_innerleft_innerboths_innertexts_alltag_alllist_new">
+                                          {{ section.settings.main_custom_tag_text }}
+                                        </div>
+                                      </div>
+                                    {%- elsif article.tags.size > 0 -%}
+                                      <div class="Blog_top_article_details_innerside_innerleft_innerboths_innertexts_alltag_new desktop_only">
+                                        {%- for tag in article.tags limit: 1 -%}
+                                          <div class="Blog_top_article_details_innerside_innerleft_innerboths_innertexts_alltag_alllist_new">
+                                            {{ tag }}
+                                          </div>
+                                        {%- endfor -%}
+                                      </div>
+                                    {%- endif -%}
+                                    {%- if article.title != blank -%}
+                                      <div class="Blog_top_article_details_innerside_innerleft_innerboths_innertexts_title_new">
+                                        <h2>{{ article.title }}</h2>
+                                      </div>
+                                    {%- endif -%}
+                                    {%- if article.excerpt.size > 0 or article.content.size > 0 -%}
+                                      <div class="Blog_top_article_details_innerside_innerleft_innerboths_innertexts_infos_new">
+                                        {%- if article.excerpt.size > 0 -%}
+                                          {{ article.excerpt | strip_html | truncatewords: 30 }}
+                                        {%- else -%}
+                                          {{ article.content | strip_html | truncatewords: 30 }}
+                                        {%- endif -%}
+                                      </div>
+                                    {%- endif -%}
+                                  </div>
+                                </div>
+                              {%- endif -%}
+                              <div class="Blog_top_article_details_innerside_innerleft_innerboths_mainbutton_new">
+                                <div class="button Blog_top_article_details_innerside_innerleft_innerboths_innerbutton_new">
+                                  Read Post
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        {%- endif -%}  
+                      </div>
+                    </a>
+                  </div>
+                {%- endif -%}
+              {%- endif -%}
+              {%- if section.blocks.size > 0 -%}
+                <div class="Blog_top_article_details_innerside_mainright_new">
+                  <div class="Blog_top_article_details_innerside_innerright_new">
+                    {%- if section.settings.main_information_text != blank -%}
+                      <div class="Blog_top_article_details_innerside_innerright_maintitle_new">
+                        <div class="Blog_top_article_details_innerside_innerright_innertitle_new">
+                          <h2>{{ section.settings.main_information_text }}</h2>
+                        </div>
+                      </div>
+                    {%- endif -%}
+                    {%- if section.blocks.size > 0 -%}
+                      <div class="Blog_top_article_details_innerside_innerright_mainloops_new">
+                        <div class="Blog_top_article_details_innerside_innerright_innerloops_new">
+                          {%- for block in section.blocks -%}
+                            {%- if block.settings.main_article_selected != blank -%}
+                              {%- assign Main_article_selected = block.settings.main_article_selected -%}
+                              {%- if Main_article_selected.image != blank and Main_article_selected.title != blank -%}
+                                <div class="Blog_top_article_details_innerside_innerright_innerloops_mainboxs_new">
+                                  <a href="{{ Main_article_selected.url }}">
+                                    <div class="Blog_top_article_details_innerside_innerright_innerloops_innerboxs_new">
+                                      {%- if Main_article_selected.image != blank -%}
+                                        <div class="Blog_top_article_details_innerside_innerright_innerloops_innerboxs_mainimage_new">
+                                          <div class="Blog_top_article_details_innerside_innerright_innerloops_innerboxs_innerimage_new">
+                                            {{
+                                              Main_article_selected.image | 
+                                              image_url: width: img.width | 
+                                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                              fetchpriority: 'auto', 
+                                              class:'Article_image_new'
+                                            }}
+                                          </div>
+                                        </div>
+                                      {%- endif -%}
+                                      {%- if Main_article_selected.title != blank -%}
+                                        <div class="Blog_top_article_details_innerside_innerright_innerloops_innerboxs_mainboths_new">
+                                          <div class="Blog_top_article_details_innerside_innerright_innerloops_innerboxs_innerboths_new">
+                                            {%- if Main_article_selected.title != blank -%}
+                                              <div class="Blog_top_article_details_innerside_innerright_innerloops_innerboxs_innerboths_title_new">
+                                                <h3>{{ Main_article_selected.title }}</h3>
+                                              </div>
+                                            {%- endif -%}
+                                            {%- if Main_article_selected.url != blank -%}
+                                              <div class="Blog_top_article_details_innerside_innerright_innerloops_innerboxs_innerboths_links_new">
+                                                Read Post
+                                              </div>
+                                            {%- endif -%}
+                                          </div>
+                                        </div>
+                                      {%- endif -%}
+                                    </div>
+                                  </a>
+                                </div>
+                              {%- endif -%}
+                            {%- endif -%}  
+                          {%- endfor -%}
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}  
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>  
+  </div>
+{%- endif -%}  
+
+{% schema %}
+  {
+    "name": "Blog Top Article Details",
+    "class": "Blog_top_article_details_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "textarea",
+        "id": "main_details_text",
+        "label": "Add Main Details Text"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text"
+      },
+      {
+        "type": "header",
+        "content": "==== Left Side Detail ===="
+      },
+      {
+        "type": "article",
+        "id": "main_article_selected",
+        "label": "Add Main Article Selected"
+      },
+      {
+        "type": "text",
+        "id": "main_custom_tag_text",
+        "label": "Add Main Custom Tag Text"
+      },
+      {
+        "type": "header",
+        "content": "==== Right Side Detail ===="
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "Popular Articles"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "information",
+        "name": "Information",
+        "limit": 4,
+        "settings": [
+          {
+            "type": "article",
+            "id": "main_article_selected",
+            "label": "Add Main Article Selected"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Blog Top Article Details",
+        "blocks": [
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

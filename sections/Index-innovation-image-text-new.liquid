@@ -1,0 +1,160 @@
+{% if section.settings.main_background_color != blank or section.settings.main_image != blank or section.settings.main_heading_text != blank or section.settings.main_sub_title != blank or section.settings.main_button_link != blank or section.settings.main_button_text %}
+<div class="Index_innovation_image_text_main_new" style="background-color: {{ section.settings.main_background_color }}">
+  <div class="page-width">
+    <div class="Index_innovation_image_text_inner_new">
+      <div class="Index_innovation_image_text_sides_new">
+        {% if section.settings.main_image != blank %}
+          <div class="Index_innovation_image_text_sides_mainleft_new">
+             <div class="Index_innovation_image_text_sides_innerleft_new">
+               <div class="Index_innovation_image_new">
+                 {{
+                    section.settings.main_image | 
+                    image_url: width: img.width | 
+                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                    fetchpriority: 'auto', 
+                    class:'desktop_image_new'
+                 }}
+               </div>
+             </div>
+          </div>
+        {% endif %}
+        {% if section.settings.main_heading_text != blank or section.settings.main_sub_title != blank or section.settings.main_button_link != blank or section.settings.main_button_text %}
+        <div class="Index_innovation_image_text_sides_mainright_new">
+          <div class="Index_innovation_image_text_sides_innerright_new">
+            {% if section.settings.main_sub_title %}
+              <div class="Index_innovation_image_text_subtitle Common_subtitle_new">
+                <span>
+                  {{ section.settings.main_sub_title }}
+                 </span>
+              </div>
+            {% endif %}
+            {% if section.settings.main_heading_text %}
+              <div class="Index_innovation_image_text_heading_text Common_title_new">
+                <h2>
+                  {{ section.settings.main_heading_text }}
+                 </h2>
+              </div>
+            {% endif %}
+            {%- if section.blocks.size > 0 -%}
+              <div class="Index_innovation_design_frame_main">
+                {%- for block in section.blocks -%}
+                  {% if block.type == "design-frame" %}
+                    {% if block.settings.frame_image != blank or block.settings.frame_heading_text != blank or block.settings.frame_information_text %}
+                      <div class="Index_innovation_design_frame_card">
+                        {% if block.settings.frame_image != blank %}
+                          <div class="Index_innovation_design_frame_main_image">
+                            {{
+                                block.settings.frame_image  | 
+                                image_url: width: img.width | 
+                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                fetchpriority: 'auto', 
+                                class:'frame_image_new'
+                             }}
+                          </div>
+                        {% endif %}
+                        {% if block.settings.frame_heading_text != blank or block.settings.frame_information_text %}
+                          <div class="Index_innovation_design_frame_information_main">
+                            {% if block.settings.frame_heading_text != blank %}
+                              <div class="Index_innovation_design_frame_heading_text Index_tab_text_with_image_innerdesktop_innerleft_2_loops_innerboxs_innertext_title_new">
+                                  {{ block.settings.frame_heading_text }}                               
+                              </div>
+                            {% endif %}
+                            {% if block.settings.frame_information_text != blank %}
+                              <div class="Index_innovation_design_frame_information_text Index_meet_image_all_text_sides_innerright_infos_new">
+                                {{ block.settings.frame_information_text }}
+                              </div>
+                            {% endif %}
+                          </div>
+                        {% endif %}
+                      </div>
+                    {% endif  %}
+                  {% endif %}
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+            {%- if section.settings.main_button_text != blank -%}
+              <div class="Index_innovation_image_text_button">
+                {%- render 'frame-button', class: "button", requestType: "index", frameType: "build-frame", enableLoading: true, btnLabel: section.settings.main_button_text -%}
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+  
+{% schema %}
+  {
+    "name": "Index Innovation Img Text",
+    "class": "Index_Innovation_image_text_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_image",
+        "label": "Add Main Image"
+      },
+      {
+        "type": "text",
+        "id": "main_sub_title",
+        "label": "Add Main Sub title",
+        "default": "Our Innovation"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Made With Patented Design"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "Build my frame"
+      }
+    ],
+    "blocks":[
+      {
+        "type": "design-frame",
+        "name": "Design Frame",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "frame_image",
+            "label": "Add Design Frame Image"
+          },
+          {
+            "type": "textarea",
+            "id": "frame_heading_text",
+            "label": "Add Frame Heading Text",
+            "default": "Conceals mirror clips"
+          },
+          {
+            "type": "richtext",
+            "id": "frame_information_text",
+            "label": "Add frame Information Text",
+            "default": "<p>We’re the only one on the market with a patented design that allows your frames to sit snugly over metal clips commonly attached to builder grade mirrors.</p>"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "index Innovation Image Text",
+        "blocks": [
+          {
+            "type": "design-frame"
+          }
+        ]
+      } 
+    ]
+  }
+{% endschema %}

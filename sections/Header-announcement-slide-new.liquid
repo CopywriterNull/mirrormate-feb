@@ -1,0 +1,159 @@
+
+  <div class="Header_announcement_slide_main_new {% unless section.blocks.size > 0 %} Header_announcement_slide_hide_mobile_new {% endunless %}" style="background: {{ section.settings.main_background_color }}; color: {{ section.settings.main_information_color }};">
+    <div class="page-width">
+      <div class="Header_announcement_slide_inner_new">
+        <div class="Header_announcement_slide_detail_new">
+          {%- if section.blocks.size > 0 -%}
+            {% if customer %}
+              <div class="Header_announcement_slide_detail_mainloop_new">
+                <div class="Header_announcement_slide_detail_innerloop_new">
+                  <div class="swiper">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide Header_announcement_bar_allloop_mainboxs_new">
+                        <div class="Header_announcement_bar_allloop_innerboxs_new">
+                          {% if customer.first_name != blank %}
+                            {% capture first_name %}{{ customer.first_name }}{% endcapture %} 
+                              <a href="/account">
+                                Welcome {{first_name}}
+                                
+                                {% if customer.metafields.SAGE.ARDivisionNo == '20' %}
+                                 - Dealer/Trade account
+                                {% elsif customer.metafields.SAGE.ARDivisionNo == '22' %}
+                                 - Multifamily account
+                                {% elsif customer.metafields.SAGE.ARDivisionNo == '23' %}
+                                 - Builders account
+                                {% elsif customer.metafields.SAGE.ARDivisionNo == '30' %}
+                                 - Hotels account
+                                {% elsif customer.metafields.SAGE.ARDivisionNo == '31' %}
+                                 - Supply Companies account
+                                {% else %}
+                      
+                                {% endif %}
+                            	</a>
+                          {% else %}
+                            <a href="/account">Welcome {{first_name}}</a>
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% else %}
+              {%- if section.blocks.size > 0 -%}
+                <div class="Header_announcement_slide_detail_mainloop_new">
+                  <div class="Header_announcement_slide_detail_innerloop_new">
+                    <div class="swiper {% if section.blocks.size > 1 %} Index_announcement_slider{% endif %}">
+                      <div class="swiper-wrapper">
+                        {%- for block in section.blocks -%}
+                          {%- if block.settings.title != blank -%}
+                            <div class="swiper-slide Header_announcement_bar_allloop_mainboxs_new">
+                              <div class="Header_announcement_bar_allloop_innerboxs_new">
+                                {{ block.settings.title }}
+                              </div>
+                            </div>  
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {%- endif -%}
+            {% endif %}
+          {% endif %}  
+          <div class="Header_announcement_slide_detail_mainlist_new">
+            <div class="Header_announcement_slide_detail_innerlist_new">
+              <ul>
+                <li>
+                  {% if customer %}
+                    <a href="/account/logout">Logout</a>
+                  {% else %}
+                    <a href="/account/login">Business Login</a>
+                  {% endif %}
+                </li>
+                {%- if section.settings.phone_number != blank or section.settings.phone_number_text != blank -%}
+                  <li>
+                    <a href="tel:{{ section.settings.phone_number }}">{{ section.settings.phone_number_text }}</a>
+                  </li>
+                {%- endif -%}
+              </ul>
+            </div>
+          </div>  
+
+          {%- unless customer -%}        
+            <div class="header-nav-login-dropdown">
+              <div class="customSubMenuWrap">
+                <div class="custBusinessButton">
+                  Are you a business? <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 4L6.375 7.375L9.75 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="customButtonItem">
+                  <a href="/pages/dealer">DEALER / TRADE</a>
+                  <a href="/pages/hotels">HOTEL / SUPPLY</a>
+                  <a href="/pages/multi-family-mirror-kits">MULTIFAMILY</a>
+                </div>
+              </div>
+            </div>
+          {%- endunless -%}
+        
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% schema %}
+  {
+    "name": "Header Announcement Slide",
+    "class": "Header_announcement_slide_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#2D4256"
+      },
+      {
+        "type": "color",
+        "id": "main_information_color",
+        "label": "Add Main Information Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "text",
+        "id": "phone_number_text",
+        "label": "Add Phone Number Text",
+        "default": "Need Help? (866) 304-6283"
+      },
+      {
+        "type": "text",
+        "id": "phone_number",
+        "label": "Add Phone Number",
+        "default": "(866) 304-6283"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "information",
+        "name": "Information",
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "title",
+            "label": "Add Main Information Text",
+            "default": "<p>Free Shipping On Orders Of 2+ Frames</p>"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Header Announcement Slide",
+        "blocks": [
+          {
+            "type": "information"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

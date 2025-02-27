@@ -1,0 +1,392 @@
+{%- if section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.blocks.size > 0 or section.settings.main_button_link != blank or section.settings.main_detail_text != blank -%}
+  <div class="Index_tab_text_with_image_main_new" style="background: {{ section.settings.main_background_color }};">
+    <div class="page-width">
+      <div class="Index_tab_text_with_image_inner_new">
+        {%- if section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.blocks.size > 0 or section.settings.main_button_link != blank or section.settings.main_detail_text != blank -%}
+          <div class="Index_tab_text_with_image_maindesktop_new">
+            <div class="Index_tab_text_with_image_innerdesktop_new">
+              {%- if section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.blocks.size > 0 or section.settings.main_button_link != blank or section.settings.main_detail_text != blank -%}
+                <div class="Index_tab_text_with_image_innerdesktop_mainleft_new">
+                  <div class="Index_tab_text_with_image_innerdesktop_innerleft_new">
+                    {%- if section.settings.main_heading_text != blank or section.settings.main_information_text != blank -%}
+                      <div class="Index_tab_text_with_image_innerdesktop_innerleft_1_new" data-aos="fade-up">
+                        <div class="Index_tab_text_with_image_innerdesktop_innerleft_1_boths_new">
+                          {%- if section.settings.main_heading_text != blank -%}
+                            <div class="Index_tab_text_with_image_innerdesktop_innerleft_1_boths_maintitle_new">
+                              <div class="Common_title_new Index_tab_text_with_image_innerdesktop_innerleft_1_boths_innertitle_new">
+                                <h3>{{ section.settings.main_heading_text }}</h3>
+                              </div>
+                            </div>
+                          {%- endif -%}
+                          {%- if section.settings.main_information_text != blank -%}
+                            <div class="Index_tab_text_with_image_innerdesktop_innerleft_1_boths_maininfos_new">
+                              <div class="Index_tab_text_with_image_innerdesktop_innerleft_1_boths_innerinfos_new">
+                                {{ section.settings.main_information_text }}
+                              </div>
+                            </div>
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    {%- endif -%}
+                    <div data-aos="fade-up">
+                      {%- if section.blocks.size > 0 -%}
+                        <div class="Index_tab_text_with_image_innerdesktop_innerleft_2_new">
+                          <div class="Index_tab_text_with_image_innerdesktop_innerleft_2_loops_new">
+                            <div thumbsSlider class="swiper Index_howitworks_thumb_slider">
+                              <div class="swiper-wrapper">
+                                {%- for block in section.blocks -%}
+                                  {%- if block.settings.inner_desktop_logo != blank or block.settings.title != blank or block.settings.inner_information_text != blank -%}
+                                    <div class="swiper-slide Index_tab_text_with_image_innerdesktop_innerleft_2_loops_mainboxs_new">
+                                      <div class="Index_tab_text_with_image_innerdesktop_innerleft_2_loops_innerboxs_new">
+                                        {%- if block.settings.inner_desktop_logo != blank -%}
+                                          <div class="Index_tab_text_with_image_innerdesktop_innerleft_2_loops_innerboxs_mainlogo_new">
+                                            <div class="Index_tab_text_with_image_innerdesktop_innerleft_2_loops_innerboxs_innerlogo_new">
+                                              {{
+                                                block.settings.inner_desktop_logo | 
+                                                image_url: width: img.width | 
+                                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                fetchpriority: 'auto', 
+                                                class:'Logo_image_new'
+                                              }}
+                                            </div>
+                                          </div>
+                                        {%- endif -%}
+                                        {%- if block.settings.title != blank or block.settings.inner_information_text != blank -%}
+                                          <div class="Index_tab_text_with_image_innerdesktop_innerleft_2_loops_innerboxs_maintext_new">
+                                            <div class="Index_tab_text_with_image_innerdesktop_innerleft_2_loops_innerboxs_innertext_new">
+                                              {%- if block.settings.title != blank -%}
+                                                <div class="Index_tab_text_with_image_innerdesktop_innerleft_2_loops_innerboxs_innertext_title_new">
+                                                  {{ block.settings.title }}
+                                                </div>
+                                              {%- endif -%}
+                                              {%- if block.settings.inner_information_text != blank -%}
+                                                <div class="Index_tab_text_with_image_innerdesktop_innerleft_2_loops_innerboxs_innertext_infos_new">
+                                                  {{ block.settings.inner_information_text }}
+                                                </div>
+                                              {%- endif -%}
+                                            </div>
+                                          </div>
+                                        {%- endif -%}
+                                      </div>
+                                    </div>  
+                                  {%- endif -%}
+                                {%- endfor -%}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      {%- endif -%}
+                      {%- if section.settings.main_button_link != blank or section.settings.main_detail_text != blank -%}
+                        <div class="Index_tab_text_with_image_innerdesktop_innerleft_3_new">
+                          <div class="Index_tab_text_with_image_innerdesktop_innerleft_3_boths_new">
+                            {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                              <div class="Index_tab_text_with_image_innerdesktop_innerleft_3_boths_mainbutton_new">
+                                <div class="Index_tab_text_with_image_innerdesktop_innerleft_3_boths_innerbutton_new">
+                                 {%- render 'frame-button', class: "button", requestType: "index", frameType: "build-frame", enableLoading: true, btnLabel: section.settings.main_button_text -%}
+                                </div>
+                              </div>
+                            {%- endif -%}
+                            {%- if section.settings.main_detail_text != blank -%}
+                              <div class="Index_tab_text_with_image_innerdesktop_innerleft_3_boths_maininfos_new">
+                                <div class="Index_tab_text_with_image_innerdesktop_innerleft_3_boths_innerinfos_new">
+                                  {% assign days = 7 | times: 86400 %}
+                                  <p>{{ section.settings.main_detail_text }} <strong>{{ "now" | date: "%s" | plus: days | date: "%b %d" }}</strong></p>
+                                </div>
+                              </div>
+                            {%- endif -%}
+                          </div>
+                        </div>
+                      {%- endif -%}  
+                    </div>
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if section.blocks.size > 0 -%}
+                <div class="Index_tab_text_with_image_innerdesktop_mainright_new" data-aos="fade-left">
+                  <div class="Index_tab_text_with_image_innerdesktop_innerright_new">
+                    <div class="swiper Index_howitworks_slider">
+                      <div class="swiper-wrapper">
+                        {%- for block in section.blocks -%}
+                          {%- if block.settings.inner_mp4_video != blank or block.settings.inner_desktop_image != blank -%}
+                            <div class="swiper-slide Index_tab_text_with_image_innerdesktop_innerright_mainboxs_new">
+                              <div class="Index_tab_text_with_image_innerdesktop_innerright_innerboxs_new">
+                                {%- if block.settings.inner_mp4_video != blank -%}
+                                  <div class="Index_tab_text_with_image_innerdesktop_innerright_innerboxs_videoimage_new">
+                                    {{ block.settings.inner_mp4_video | video_tag: 
+                                      class: 'Full_video_new lazyload', 
+                                      image_size: 'master',
+                                      controls: false,
+                                      autoplay: true,
+                                      loop: true,
+                                      preload: "none",
+                                      playsinline: true,
+                                      muted: true,
+                                      loading: "lazy"
+                                    }}
+                                  </div>
+                                {% else %}  
+                                  {%- if block.settings.inner_desktop_image != blank -%}
+                                    <div class="Index_tab_text_with_image_innerdesktop_innerright_innerboxs_videoimage_new">
+                                      {{
+                                        block.settings.inner_desktop_image | 
+                                        image_url: width: img.width | 
+                                        image_tag: 
+                                          widths: '375, 550, 750, 1100, 1500, 2200, 3000',
+                                          loading: 'lazy',
+                                          sizes: '(min-width: 1200px) 1100px, (min-width: 750px) 750px, calc(100vw - 30px)',
+                                          fetchpriority: 'low',
+                                          class: 'Full_image_new lazyload'
+                                      }}
+                                    </div>
+                                  {%- endif -%}
+                                {%- endif -%}
+                              </div>  
+                            </div>  
+                          {%- endif -%}  
+                        {%- endfor -%}
+                      </div>
+                      <div class="swiper-pagination"></div>
+                    </div>
+                  </div>
+                </div>
+              {%- endif -%}  
+            </div>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.main_heading_text != blank or section.settings.main_information_mobile_text != blank or section.blocks.size > 0 or section.settings.main_button_link != blank or section.settings.main_detail_text != blank -%}
+          <div class="Index_tab_text_with_image_mainmobile_new" data-aos="fade-in">
+            <div class="Index_tab_text_with_image_innermobile_new">
+              {%- if section.settings.main_heading_text != blank or section.settings.main_information_mobile_text != blank -%}
+                <div class="Index_tab_text_with_image_innerdesktop_innerleft_1_new">
+                  <div class="Index_tab_text_with_image_innerdesktop_innerleft_1_boths_new">
+                    {%- if section.settings.main_heading_text != blank -%}
+                      <div class="Index_tab_text_with_image_innerdesktop_innerleft_1_boths_maintitle_new">
+                        <div class="Common_title_new Index_tab_text_with_image_innerdesktop_innerleft_1_boths_innertitle_new">
+                          <h3>{{ section.settings.main_heading_text }}</h3>
+                        </div>
+                      </div>
+                    {%- endif -%}
+                    {%- if section.settings.main_information_mobile_text != blank -%}
+                      <div class="Index_tab_text_with_image_innerdesktop_innerleft_1_boths_maininfos_new">
+                        <div class="Index_tab_text_with_image_innerdesktop_innerleft_1_boths_innerinfos_new">
+                          {{ section.settings.main_information_mobile_text }}
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if section.blocks.size > 0 -%}
+                <div class="Index_tab_text_with_image_innermobile_2_new">
+                  <div class="Index_tab_text_with_image_innermobile_2_loops_new">
+                    <div class="swiper Index_howitworks_mobile_slider">
+                      <div class="swiper-wrapper">
+                        {%- for block in section.blocks -%}
+                          {%- if block.settings.inner_mp4_video != blank or block.settings.inner_mobile_image != blank or block.settings.inner_mobile_logo != blank or block.settings.title != blank or block.settings.inner_information_text != blank -%}
+                            <div class="swiper-slide Index_tab_text_with_image_innermobile_2_loops_mainboxs_new">
+                              <div class="Index_tab_text_with_image_innermobile_2_loops_innerboxs_new">
+                                {%- if block.settings.inner_mp4_video != blank or block.settings.inner_mobile_image != blank or block.settings.inner_mobile_logo != blank -%}
+                                  <div class="Index_tab_text_with_image_innermobile_2_loops_innerboxs_1_new">
+                                    <div class="Index_tab_text_with_image_innermobile_2_loops_innerboxs_1_boths_new">
+                                      {%- if block.settings.inner_mp4_video != blank or block.settings.inner_mobile_image != blank -%}
+                                        <div class="Index_tab_text_with_image_innermobile_2_loops_innerboxs_1_boths_parts_new">
+                                          {%- if block.settings.inner_mp4_video != blank -%}
+                                            <div class="Index_tab_text_with_image_innermobile_2_loops_innerboxs_1_boths_parts_videoimage_new">
+                                              {{ block.settings.inner_mp4_video | video_tag: class: 'Full_video_new lazyload', image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                            </div>
+                                          {% else %}  
+                                            {%- if block.settings.inner_mobile_image != blank -%}
+                                              <div class="Index_tab_text_with_image_innermobile_2_loops_innerboxs_1_boths_parts_videoimage_new">
+                                                {{
+                                                  block.settings.inner_mobile_image | 
+                                                  image_url: width: img.width | 
+                                                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                  fetchpriority: 'auto', 
+                                                  class:'Full_image_new lazyload'
+                                                }}
+                                              </div>
+                                            {%- endif -%}
+                                          {%- endif -%}
+                                        </div>
+                                      {%- endif -%}
+                                      {%- if block.settings.inner_mobile_logo != blank -%}
+                                        <div class="Index_tab_text_with_image_innermobile_2_loops_innerboxs_1_boths_logos_new">
+                                          {{
+                                            block.settings.inner_mobile_logo | 
+                                            image_url: width: img.width | 
+                                            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                            fetchpriority: 'auto', 
+                                            class:'Logo_image_new'
+                                          }}
+                                        </div>
+                                      {%- endif -%}
+                                    </div>
+                                  </div>
+                                {%- endif -%}
+                                {%- if block.settings.title != blank or block.settings.inner_information_text != blank -%}
+                                  <div class="Index_tab_text_with_image_innermobile_2_loops_innerboxs_2_new">
+                                    <div class="Index_tab_text_with_image_innermobile_2_loops_innerboxs_2_boths_new">
+                                      {%- if block.settings.title != blank -%}
+                                        <div class="Index_tab_text_with_image_innermobile_2_loops_innerboxs_2_boths_title_new">
+                                          {{ block.settings.title }}
+                                        </div>
+                                      {%- endif -%}
+                                      {%- if block.settings.inner_information_text != blank -%}
+                                        <div class="Index_tab_text_with_image_innermobile_2_loops_innerboxs_2_boths_infos_new">
+                                          {{ block.settings.inner_information_text }}
+                                        </div>
+                                      {%- endif -%}
+                                    </div>
+                                  </div>
+                                {%- endif -%}
+                              </div>
+                            </div>
+                          {%- endif -%}  
+                        {%- endfor -%}
+                      </div>
+                      <div class="swiper-scrollbar"></div>
+                    </div>
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if section.settings.main_button_link != blank or section.settings.main_detail_text != blank -%}
+                <div class="Index_tab_text_with_image_innermobile_3_new">
+                  <div class="Index_tab_text_with_image_innermobile_3_boths_new">
+                    {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                      <div class="Index_tab_text_with_image_innermobile_3_boths_mainbutton_new">
+                        <div class="Index_tab_text_with_image_innermobile_3_boths_innerbutton_new">
+                          {%- render 'frame-button', class: "button", requestType: "index", frameType: "build-frame", enableLoading: true, btnLabel: section.settings.main_button_text -%}
+                        </div>
+                      </div>
+                    {%- endif -%}
+                    {%- if section.settings.main_detail_text != blank -%}
+                      <div class="Index_tab_text_with_image_innermobile_3_boths_maininfos_new">
+                        <div class="Index_tab_text_with_image_innermobile_3_boths_innerinfos_new">
+                          {% assign days = 7 | times: 86400 %}
+                          <p>{{ section.settings.main_detail_text }} <strong>{{ "now" | date: "%s" | plus: days | date: "%b %d" }}</strong></p>
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Index Tab Text With Image",
+    "class": "Index_tab_text_with_image_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "How it Works"
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "Our frames <span><b>easily adhere to your existing mirror,</b></span> so no extra room is needed. Whether your mirror sits on a backsplash, has clips, or runs into a wall, our frames are designed to fit."
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_mobile_text",
+        "label": "Add Main Information Mobile Text",
+        "default": "Our frames <span><b>easily adhere</b></span> to your existing mirror, so no extra room is needed. Whether your mirror sits on a backsplash, has clips, or runs into a wall, our frames are designed to fit."
+      },
+      
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "Build My Frame Kit"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      },
+      {
+        "type": "textarea",
+        "id": "main_detail_text",
+        "label": "Add Main Detail Text",
+        "default": "Order today, ships from the U.S. by"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "information",
+        "name": "Information",
+        "settings": [
+          {
+            "type": "video",
+            "id": "inner_mp4_video",
+            "label": "Add Inner MP4 Video"
+          },
+          {
+            "type": "image_picker",
+            "id": "inner_desktop_image",
+            "label": "Add Inner Desktop Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "inner_mobile_image",
+            "label": "Add Inner Mobile Image"
+          },
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Add Inner Heading Text",
+            "default": "0. Heading"
+          },
+          {
+            "type": "richtext",
+            "id": "inner_information_text",
+            "label": "Add Inner Information Text",
+            "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>"
+          },
+          {
+            "type": "image_picker",
+            "id": "inner_desktop_logo",
+            "label": "Add Inner Desktop Logo"
+          },
+          {
+            "type": "image_picker",
+            "id": "inner_mobile_logo",
+            "label": "Add Inner Mobile Logo"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Index Tab Text With Image",
+        "blocks": [
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,135 @@
+{%- if section.settings.main_heading_text != blank or section.settings.main_button_link != blank or section.blocks.size > 0 -%}
+  <div class="Article_related_blogs_main_new Page_featured_blogs_main_new" style="background: {{ section.settings.main_background_color }};">
+    <div class="page-width">
+      <div class="Article_related_blogs_inner_new">
+        {%- if section.settings.main_heading_text != blank or section.settings.main_button_link != blank -%}
+          <div class="Article_related_blogs_mainboth_new">
+            <div class="Article_related_blogs_innerboth_new">
+              {%- if section.settings.main_heading_text != blank -%}
+                <div class="Article_related_blogs_innerboth_maintitle_new">
+                  <div class="Common_title_new Article_related_blogs_innerboth_innertitle_new">
+                    <h3>{{ section.settings.main_heading_text }}</h3>
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                <div class="Article_related_blogs_innerboth_mainbutton_new desktop_only">
+                  <div class="Article_related_blogs_innerboth_innerbutton_new">
+                    <a href="{{ section.settings.main_button_link }}" class="button">
+                      {{ section.settings.main_button_text }}
+                    </a>
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+        {%- if section.blocks.size > 0 -%}
+          <div class="Article_related_blogs_mainloop_new">
+            <div class="Article_related_blogs_innerloop_new">
+              <div class="swiper Article_related_blogs_slider">
+                <div class="swiper-wrapper">
+                  {%- for block in section.blocks -%}
+                    {%- if block.settings.main_article_selected != blank -%}
+                      {%- assign article = block.settings.main_article_selected -%}
+                      {%- if article.image != blank or article.title != blank or article.excerpt.size > 0 or article.content.size > 0 or article.tags.size > 0 -%}
+                        <div class="swiper-slide Article_related_blogs_innerloop_mainboxs_new">
+                          {%- render 'Blog-article-grid-item-new', article: article -%}
+                        </div>
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- endfor -%}  
+                </div>
+                <div class="swiper-button-prev">
+                  <svg width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 18.5L1 9.89115L9 1.5" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="swiper-button-next">
+                  <svg width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1.5L9 10.1089L1 18.5" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="swiper-scrollbar"></div>
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+          <div class="Article_related_blogs_innerboth_mainbutton_new mobile_only">
+            <div class="Article_related_blogs_innerboth_innerbutton_new">
+              <a href="{{ section.settings.main_button_link }}" class="button">
+                {{ section.settings.main_button_text }}
+              </a>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Page Featured Blogs New",
+    "class": "Page_featured_blogs_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Common Design Questions"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "view our blog"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "information",
+        "name": "Information",
+        "settings": [
+          {
+            "type": "article",
+            "id": "main_article_selected",
+            "label": "Add Main Article Selected"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Page Featured Blogs New",
+        "blocks": [
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

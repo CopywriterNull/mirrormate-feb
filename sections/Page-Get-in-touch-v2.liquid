@@ -1,0 +1,307 @@
+{{ "page-get-in-touch.css" | asset_url | stylesheet_tag }}
+
+{% if section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.right_heading_1 != blank or section.settings.right_heading_2 != blank or section.settings.main_button_link_1 != blank or section.settings.main_button_text_1 != blank or section.settings.main_button_link_2 != blank or section.settings.main_button_text_2 != blank or section.blocks.size > 0 %}
+  <div class="Page_get_in_touch_main Page_get_in_touch_v2_main Page_get_in_touch_main_{{ section.id }}" style="background-color: {{ section.settings.main_background_color }}">
+    <div class="page-width">
+      <div class="Page_get_in_touch_inner">
+        <div class="Page_get_in_touch_sides">
+          {% if section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.blocks.size > 0 %}
+            <div class="Page_get_in_touch_leftmain">
+              <div classs="Page_get_in_touch_leftinner">
+                {% if section.settings.main_heading_text != blank or section.settings.main_information_text != blank %}
+                  <div class="Page_get_in_touch_left_main_heading_part">
+                    {% if section.settings.main_heading_text != blank %}
+                      <div class="Page_get_in_touch_left_main_heading_text">
+                        <h4>
+                          {{ section.settings.main_heading_text }}
+                        </h4>
+                      </div>
+                    {% endif %}
+                    {% if section.settings.main_information_text != blank %}
+                      <div class="Page_get_in_touch_left_main_information_text">
+                        {{ section.settings.main_information_text }}
+                      </div>
+                    {% endif %}
+                  </div>
+                {% endif %}
+                {% if section.blocks.size > 0 %}
+                  <div class="Page_get_in_touch_left_main_contact_parent">
+                    {% for block in section.blocks %}
+                      {% if block.type == "contact" %}
+                        {% if block.settings.contact_text != blank or block.settings.contact_link != blank %}
+                          <div class="Page_get_in_touch_left_main_contact">
+                            {% if block.settings.contact_icon %}
+                              <div class="Page_get_in_touch_left_main_contact_icon_parent">
+                                {{
+                                  block.settings.contact_icon | 
+                                  image_url: width: img.width | 
+                                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                  fetchpriority: 'auto', 
+                                  class:'contact_icon'
+                                }}
+                              </div>
+                            {% endif %}
+                            <div class="Page_get_in_touch_left_main_contact_link">
+                              <a href="{{ block.settings.contact_link }}">
+                                {{ block.settings.contact_text }}
+                              </a>
+                            </div>
+                          </div>
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+          {% if section.settings.right_heading_1 != blank or section.settings.right_heading_2 != blank or section.settings.main_button_link_1 != blank or section.settings.main_button_text_1 != blank or section.settings.main_button_link_2 != blank or section.settings.main_button_text_2 != blank or section.blocks.size > 0 %}
+            <div class="Page_get_in_touch_rightmain">
+              <div class="Page_get_in_touch_rightinner">
+                {% if section.settings.right_heading_1 != blank or section.blocks.size > 0 %}
+                  <div class="Page_get_in_touch_right_resource_main">
+                    {% if section.settings.right_heading_1 != blank %}
+                      <div class="Page_get_in_touch_right_resource_main_heading right_heading">
+                        <h6>
+                          {{ section.settings.right_heading_1 }}
+                        </h6>
+                      </div>
+                    {% endif %}
+                    {% if section.blocks.size > 0  %}
+                      <div class="Page_get_in_touch_right_resources_list">
+                        {% for block in section.blocks %}
+                          {% if block.type == "resource-block" %}
+                            {% if block.settings.resource_link_text != blank or block.settings.resource_link != blank %}
+                              <div class="Page_get_in_touch_right_resource">
+                                <a href="{{ block.settings.resource_link }}">
+                                  {{ block.settings.resource_link_text }}
+                                </a>
+                              </div>
+                            {% endif %}
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                  </div>
+                {% endif %}
+                {% if section.settings.right_heading_2 != blank or section.settings.main_button_link_1 != blank or section.settings.main_button_text_1 != blank or section.settings.main_button_link_2 != blank or section.settings.main_button_text_2 != blank %}
+                  <div class="Page_get_in_touch_right_video_main">
+                    {% if section.settings.right_heading_2 != blank %}
+                      <div class="Page_get_in_touch_right_video_main_heading right_heading">
+                        <h6>
+                          {{ section.settings.right_heading_2 }}
+                        </h6>
+                      </div>
+                    {% endif %}
+                    {% if section.settings.main_button_link_1 != blank or section.settings.main_button_text_1 != blank or section.settings.main_button_link_2 != blank or section.settings.main_button_text_2 != blank %}
+                      <div class="Page_get_in_touch_right_video_button_parent">
+                        {% if section.settings.main_button_link_1 != blank or section.settings.main_button_text_1 != blank %}
+                          <div class="Page_get_in_touch_right_video_button_1_parent">
+                            <a href="{{ section.settings.main_button_link_1 }}" class="Page_get_in_touch_right_video_button_1">
+                              <span>
+                                <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M6.98755 3.62641C6.89409 3.55381 6.78412 3.51068 6.66969 3.50174C6.55525 3.4928 6.44077 3.51839 6.33878 3.57571C6.23679 3.63303 6.15123 3.71987 6.09147 3.82671C6.03172 3.93356 6.00007 4.05628 6 4.18144V17.8186C6.00007 17.9437 6.03172 18.0664 6.09147 18.1733C6.15123 18.2801 6.23679 18.367 6.33878 18.4243C6.44077 18.4816 6.55525 18.5072 6.66969 18.4983C6.78412 18.4893 6.89409 18.4462 6.98755 18.3736L15.738 11.555C15.819 11.492 15.8851 11.4087 15.9307 11.3121C15.9762 11.2156 16 11.1086 16 11C16 10.8914 15.9762 10.7844 15.9307 10.6879C15.8851 10.5913 15.819 10.508 15.738 10.445L6.98755 3.62641Z" fill="white"></path>
+                                </svg>
+                              </span>
+                              <span>
+                                {{ section.settings.main_button_text_1 }}
+                              </span>
+                            </a>
+                          </div>
+                        {% endif %}
+                        {% if section.settings.main_button_link_2 != blank or section.settings.main_button_text_2 != blank %}
+                          <div class="Page_get_in_touch_right_video_button_2_parent">
+                            <a href="{{ section.settings.main_button_link_2 }}" class="Page_get_in_touch_right_video_button_2">
+                              <span>
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M7.48755 3.62641C7.39409 3.55381 7.28412 3.51068 7.16969 3.50174C7.05525 3.4928 6.94077 3.51839 6.83878 3.57571C6.73679 3.63303 6.65123 3.71987 6.59147 3.82671C6.53172 3.93356 6.50007 4.05628 6.5 4.18144V17.8186C6.50007 17.9437 6.53172 18.0664 6.59147 18.1733C6.65123 18.2801 6.73679 18.367 6.83878 18.4243C6.94077 18.4816 7.05525 18.5072 7.16969 18.4983C7.28412 18.4893 7.39409 18.4462 7.48755 18.3736L16.238 11.555C16.319 11.492 16.3851 11.4087 16.4307 11.3121C16.4762 11.2156 16.5 11.1086 16.5 11C16.5 10.8914 16.4762 10.7844 16.4307 10.6879C16.3851 10.5913 16.319 10.508 16.238 10.445L7.48755 3.62641Z" fill="#2D4256"></path>
+                                </svg>
+                              </span>
+                              <span>
+                                {{ section.settings.main_button_text_2 }}
+                              </span>
+                            </a>
+                          </div>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+<style>
+  .Page_get_in_touch_v2_main .Page_get_in_touch_rightmain { max-width: 487px; }
+  .Page_get_in_touch_v2_main .Page_get_in_touch_sides { align-items: start; }
+  .Page_get_in_touch_v2_main .Page_get_in_touch_rightinner { display: flex; gap: 64px; text-align: left;  }
+  .Page_get_in_touch_v2_main .right_heading h6 { font-size: 16px; font-weight: 600; line-height: 135%; color: #2D4256; letter-spacing: 0.32px; margin: 0; text-transform: uppercase; font-family: var(--font-body-family); }
+  .Page_get_in_touch_v2_main .Page_get_in_touch_right_resource:not(:first-child) { padding-top: 12px; }
+  .Page_get_in_touch_v2_main .Page_get_in_touch_right_resource { line-height: 0; }
+  .Page_get_in_touch_v2_main .Page_get_in_touch_right_resource a { text-decoration: none; color: #2d4256; font-size: 16px; font-weight: 400; line-height: 135%;  margin: 0; font-family: var(--font-body-family); }
+  .Page_get_in_touch_v2_main .Page_get_in_touch_right_video_button_parent, .Page_get_in_touch_v2_main .Page_get_in_touch_right_resources_list { padding-top: 16px; }
+  .Page_get_in_touch_v2_main .Page_get_in_touch_right_video_button_2_parent { padding-top: 12px; }
+  .Page_get_in_touch_v2_main .Page_get_in_touch_right_video_button_parent a { min-width: 249px; width: 100%; display: flex; gap: 8px; justify-content: center; align-items: center; border-radius: 32px; padding: 11.5px; font-size: 14px; font-weight: 700; text-transform: uppercase; margin: 0; letter-spacing: 0.28px; line-height: 135%; text-decoration: none; }
+  .Page_get_in_touch_v2_main .Page_get_in_touch_right_video_button_parent a svg { width: 21px; height: 21px; display: block; }
+  .Page_get_in_touch_v2_main .Page_get_in_touch_right_video_button_1 { background-color: #2D4256; border: 2px solid #FFFFFF; color: #FFFFFF; } 
+  .Page_get_in_touch_v2_main .Page_get_in_touch_right_video_button_2 { background-color: #FFFFFF; border: 2px solid #2D4256; color: #2D4256; } 
+
+  @media (max-width: 1180px){
+    .Page_get_in_touch_v2_main .Page_get_in_touch_rightinner { gap: 35px; }
+  }
+
+  @media (max-width: 991px){
+    /* .Page_get_in_touch_v2_main .Page_get_in_touch_left_main_heading_part { text-align: left; }
+    .Page_get_in_touch_v2_main .Page_get_in_touch_left_main_contact_parent { flex-direction: row; } */
+    .Page_get_in_touch_v2_main .Page_get_in_touch_sides { gap: 32px; }
+    .Page_get_in_touch_v2_main .Page_get_in_touch_rightmain { max-width: 100%; display: block !important; }
+    .Page_get_in_touch_v2_main .Page_get_in_touch_rightinner { text-align: center; flex-direction: column-reverse; align-items: center; justify-content: center; }
+  }
+
+  @media (max-width: 749px){
+    .Page_get_in_touch_v2_main .Page_get_in_touch_left_main_heading_part { text-align: center; }
+    .Page_get_in_touch_v2_main .Page_get_in_touch_left_main_contact_parent { align-items: center; }
+  }
+
+  @media (max-width: 480px){
+    .Page_get_in_touch_v2_main .Page_get_in_touch_left_main_heading_part { text-align: left; }
+    .Page_get_in_touch_v2_main .Page_get_in_touch_left_main_contact_parent { align-items: start; gap: 12px; }
+    .Page_get_in_touch_v2_main .Page_get_in_touch_left_main_information_text p { line-height: 125%; }
+    .Page_get_in_touch_v2_main .Page_get_in_touch_rightinner { align-items: start; text-align: left; width: 100%; gap: 32px;  }
+    .Page_get_in_touch_v2_main .right_heading h6 { font-size: 14px; }
+    .Page_get_in_touch_v2_main .Page_get_in_touch_right_video_main { width: 100%; }
+    .Page_get_in_touch_v2_main .Page_get_in_touch_right_video_button_2_parent { padding-top: 8px; }
+    .Page_get_in_touch_v2_main .Page_get_in_touch_right_video_button_parent a { border-width: 1.5px; font-size: 14px; padding: 12px; }
+    .Page_get_in_touch_v2_main .Page_get_in_touch_right_resources_list { display: flex; gap: 12px 40px; flex-wrap: wrap; }
+    .Page_get_in_touch_v2_main .Page_get_in_touch_right_resource:not(:first-child) { padding-top: 0; }
+    .Page_get_in_touch_v2_main .Page_get_in_touch_right_resource { width: calc(50% - 20px); }
+    .Page_get_in_touch_v2_main .Page_get_in_touch_right_resource:nth-child(4) { order: 3;}
+    .Page_get_in_touch_v2_main .Page_get_in_touch_right_resource:nth-child(3) { order: 1;}
+    .Page_get_in_touch_v2_main .Page_get_in_touch_right_resource:nth-child(2) { order: 2;}
+    
+  }
+  
+</style>
+  
+{% schema %}
+  {
+    "name": "Page Get In Touch V2",
+    "class": "Page_get_in_touch_v2",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Get in touch"
+      },
+      {
+        "type": "richtext",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "<p>Have a question about frames, mirrors, or something else?</p>"
+      },
+      {
+        "type": "text",
+        "id": "right_heading_1",
+        "label": "Add Right Side Heading 1",
+        "default": "Helpful resources",
+        "info": "This is Resource Block heading"
+      },
+      {
+        "type": "text",
+        "id": "right_heading_2",
+        "label": "Add Right Side Heading 2",
+        "default": "Video tutorials",
+      },
+      {
+        "type": "text",
+        "id": "main_button_text_1",
+        "label": "Add Main Button Text 1",
+        "default": "How To Measure"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link_1",
+        "label": "Add Main Button Link_1",
+        "default": "/"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text_2",
+        "label": "Add Main Button Text 2",
+        "default": "how to install"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link_2",
+        "label": "Add Main Button Link_2",
+        "default": "/"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "contact",
+        "name": "Contact Block",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "contact_icon",
+            "label": "Add Contact Icon"
+          },
+          {
+            "type": "text",
+            "id": "contact_text",
+            "label": "Add Contact text",
+            "default": "info@cabinetmate.com"
+          },
+          {
+            "type": "url",
+            "id": "contact_link",
+            "label": "Add Contact Link"
+          },
+        ]
+      },
+      {
+        "type": "resource-block",
+        "name": "Resource Block",
+        "settings": [
+          {
+            "type": "text",
+            "id": "resource_link_text",
+            "label": "Add Resource Link Text",
+            "default": "Order form"
+          },
+          {
+            "type": "url",
+            "id": "resource_link",
+            "label": "Add Resource Link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Page Get In Touch V2",
+        "blocks": [
+          {
+            "type": "contact",
+          },
+          {
+            "type": "resource-block",
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

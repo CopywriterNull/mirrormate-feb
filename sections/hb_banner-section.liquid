@@ -1,0 +1,28 @@
+{{  'hb_banner-section.css' | asset_url | stylesheet_tag }}  
+ 
+<div class="hb_banner">
+    <div class="hb_banner--wrapper"> 
+        {% if section.settings.image != blank %}
+            <div class="hb_banner__image">
+                <img src="{{ section.settings.image | image_url: width: '3000x' }}" alt="">      
+            </div>
+        {% endif %}
+    </div>
+</div> 
+{% schema %} 
+{
+    "name": "Hb Banner Section",     
+    "settings": [
+         {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Banner Image"
+         }
+        ],
+        "presets": [
+            {
+                "name": "Hb Banner Section"     
+            }
+        ]
+}
+{% endschema %}

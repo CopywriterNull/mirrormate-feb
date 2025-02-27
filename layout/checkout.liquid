@@ -1,0 +1,2642 @@
+<html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
+  <head>
+    <style>
+      .async-hide {
+        opacity: 0 !important;
+      }
+    </style>
+    <script>
+      (function (a, s, y, n, c, h, i, d, e) {
+        s.className += ' ' + y;
+        h.start = 1 * new Date();
+        h.end = i = function () {
+          s.className = s.className.replace(RegExp(' ?' + y), '');
+        };
+        (a[n] = a[n] || []).hide = h;
+        setTimeout(function () {
+          i();
+          h.end = null;
+        }, c);
+        h.timeout = c;
+      })(window, document.documentElement, 'async-hide', 'dataLayer', 6000, { 'OPT-PG3GS7F': true });
+    </script>
+    <script sync src="https://www.googleoptimize.com/optimize.js?id=OPT-PG3GS7F"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0"
+    >
+    <meta name="referrer" content="origin">
+
+    <title>{{ page_title }}</title>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js" type="text/javascript"></script>
+
+    {{ content_for_header }}
+
+    {{ checkout_stylesheets }}
+
+    {{ checkout_scripts }}
+
+    
+    {% comment %} Input maker {% endcomment %}
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/inputmask.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- ADDRESS VALIDATOR -->
+    <script type="text/javascript">
+      window.__lo_site_id = 220275;
+
+      (function () {
+        var wa = document.createElement('script');
+        wa.type = 'text/javascript';
+        wa.async = true;
+        wa.src = 'https://d10lpsik1i8c69.cloudfront.net/w.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wa, s);
+      })();
+    </script>
+
+    <style>
+
+      .print-content{
+        display: none;
+      }
+      /* HIDE THE CONFIRMAITON EMAIL */
+      .section--contact-information .section__content[data-section='customer-information'] .fieldset:nth-child(2) {
+        display: none;
+      }
+      .product__description__property.order-summary__small-text {
+        display: none;
+      }
+      .sidebar .product-table th,
+      .sidebar .product-table td {
+        padding-bottom: 10px;
+      }
+      .sidebar .order-summary__small-text {
+        margin-bottom: 6px;
+      }
+      .btn {
+        text-transform: uppercase;
+        text-transform: uppercase;
+        padding: 12px 32px;
+        border-radius: 50px;
+      }
+      .order-summary__section.order-summary__section--handy p {
+        font-size: 20px;
+      }
+      .map {
+        display: none;
+      }
+      .quation {
+        display: none;
+        padding: 2px 7px;
+        border-radius: 50px;
+        background: #4b9eae;
+        color: #fff;
+        font-size: 11px;
+        line-height: 12px;
+        cursor: pointer;
+        margin-left: 6px;
+      }
+      #shippingMethodHelp,
+      #firstCase,
+      #secondCase,
+      #thirdCase {
+        max-height: 100%;
+      }
+      .product__description__variant_chk .mpa-box.mbpa1 {
+        width: 100%;
+        padding: 0px;
+        border: 1px solid #ddd;
+        margin: 0px 10px;
+        max-width: 330px;
+        display: inline-block;
+        vertical-align: top;
+      }
+      .product__description__variant_chk .mpa-box.mbpa1 .mpa-box {
+        border: 1px solid #ddd;
+      }
+      .product__description__variant_chk .mpa-box.mbpa1 .mpa-panel b {
+        font-weight: bold !important;
+        color: #000;
+        font-size: 14px;
+      }
+      .product__description__variant_chk .mpa-box.mbpa1 .mpa-panel {
+        padding: 6px 10px;
+        border-bottom: 1px solid #ddd;
+      }
+      .product__description__variant_chk .mpa-box table {
+        font-size: 14px;
+        width: 100%;
+      }
+      .product__description__variant_chk .mpa-box table tr {
+        background: #fff;
+      }
+      .product__description__variant_chk .mpa-box table tr td {
+        padding: 0.5em 0.7em;
+        border-top: 1px solid #efefef;
+      }
+      .product__description__variant_chk .mpa-box table tr:hover {
+        background: #efefef;
+      }
+      .mpa-box span.br {
+        display: block;
+      }
+      [data-variant-id~='31308161974410'] {
+        display: none;
+      }
+
+      /* model popup css */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+        visibility: visible;
+        max-width: 100%;
+        margin: 0;
+      }
+      .modal-backdrop .modal {
+        display: block;
+        margin: 4em auto 5%;
+        max-width: 60em;
+        background: #fff;
+        position: initial;
+      }
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 0px;
+        border: 1px solid #888;
+        max-width: 560px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+      .close {
+        color: #000;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        line-height: normal;
+        position: relative;
+        top: -6px;
+        opacity: 0.2;
+      }
+      .close:hover,
+      .close:focus {
+        opacity: 0.3;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .modal-header {
+        padding: 9px 15px;
+        border-bottom: 1px solid #ddd;
+      }
+      .modal-header h2 {
+        margin: 0;
+        font-size: 19px;
+        color: #000;
+        font-weight: bold;
+      }
+      .modal-body {
+        padding: 15px;
+      }
+      .modal-body p {
+        line-height: normal;
+        margin-bottom: 10px;
+      }
+      .faqpage div.container {
+        padding: 0;
+        margin: 0;
+      }
+      .faqpage div.container {
+        max-width: 100%;
+        padding: 5px 0;
+      }
+      .faqpage div.content {
+        background: #fff;
+        margin: 0;
+        padding: 10px;
+        font-size: 0.9em;
+        line-height: 1.5em;
+      }
+      .faqpage div.content ul {
+        padding: 0;
+        margin: 0;
+        padding: 3px;
+      }
+      .faqpage div.content p {
+        padding: 0;
+        margin: 3px 0 10px;
+        padding: 3px;
+      }
+      .faqpage div.content ul li {
+        line-height: 25px;
+        padding-left: 0px;
+        list-style-position: unset;
+        margin-left: 25px;
+      }
+      .faqpage div.content::after {
+        clear: both;
+        content: '';
+        display: table;
+      }
+      .product-table .fq {
+        margin-bottom: 3px;
+        border: 1px solid #eee;
+        width: 100%;
+      }
+      .product-table .accordion b {
+        display: block;
+        padding: 6px 10px;
+        font-weight: bold;
+        background: #eee;
+        cursor: pointer;
+      }
+      .product-table .faqpage div.content {
+        background: transparent !important;
+        display: block;
+      }
+      .fq.od > .accordion {
+        background: #eee;
+        position: relative;
+      }
+      .fq.od > .accordion > b {
+        width: calc(100% - 52px);
+        display: inline-block;
+      }
+      .fq.od > .accordion > span {
+        float: right;
+        position: relative;
+        width: 24px;
+        height: 19px;
+        display: inline-block;
+        vertical-align: top;
+        padding: 4px;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+      }
+      .fq.od > .accordion > span::before {
+        content: '';
+        position: absolute;
+        background: url(https://cdn.shopify.com/s/files/1/0090/5183/2386/files/arrow-down-angle.png?27748);
+        width: 15px;
+        height: 15px;
+        background-size: contain;
+        background-position: center center;
+        margin: 4px;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+      }
+      .fq.od > .accordion.accordion-open > span::before {
+        transform: rotate(90deg);
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+      }
+      .os-step__title,
+      .content-box__row h2,
+      .section__content__column h3 {
+        text-transform: capitalize;
+      }
+      .bill-phone {
+        padding: 0px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+      }
+      .verify-add {
+        padding: 20px 0;
+        text-align: center;
+      }
+      .verify-add p {
+        text-decoration: bold;
+      }
+      .content-check .main-check .step__sections .section__header {
+        display: flex;
+        position: relative;
+        margin-bottom: 10px;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+
+      .content-check .main-check [data-step='thank_you'] .step__sections .section__header {
+        flex-direction: row;
+      }
+
+      .content-check .main-check .step__sections .section__header svg {
+        position: unset;
+        transform: unset;
+      }
+      .content-check .step__footer__info a {
+        text-decoration: underline;
+        font-weight: 600;
+      }
+      @media (min-width: 1000px) {
+        .wrap.wrap-check {
+          padding: 0 0%;
+          width: 100%;
+          max-width: 100%;
+        }
+        .main.main-check {
+          width: 480px;
+          padding-left: 4%;
+        }
+        .sidebar.sidebar-check {
+          width: calc(100% - 480px);
+          padding-right: 4%;
+        }
+      }
+      @media (max-width: 1600px) {
+        .product__description__variant_chk .mpa-box.mbpa1 {
+          width: 41.333%;
+        }
+      }
+      @media (max-width: 1439px) {
+        .product__description__variant_chk .mpa-box.mbpa1 {
+          width: 100%;
+          margin: 10px auto 20px;
+          max-width: 273px;
+        }
+      }
+      @media (max-width: 1400px) {
+        .main.main-check {
+          width: 360px;
+          padding-left: 30px;
+          padding-right: 30px;
+          margin: auto;
+        }
+      }
+      @media (max-width: 999px) {
+        .wrap {
+          max-width: 100%;
+        }
+        .product__description__variant_chk .mpa-box.mbpa1 {
+          width: 100%;
+          margin: 10px 10px 20px;
+          max-width: 270px;
+        }
+      }
+      @media (max-width: 767px) {
+        .main.main-check {
+          width: 100%;
+          max-width: unset;
+          padding-left: 10px;
+          padding-right: 10px;
+          margin: auto;
+        }
+        .product > td {
+          display: block;
+          margin-bottom: 10px;
+          text-align: center;
+        }
+        .product__description__variant_chk .mpa-box.mbpa1 {
+          width: 100%;
+          margin: 0px 10px 0px;
+          max-width: 260px;
+        }
+      }
+      @media (max-width: 695px) {
+        .product__description__variant_chk .mpa-box.mbpa1 {
+          width: 100%;
+          margin: 0px 10px 0px;
+          max-width: 270px;
+        }
+      }
+      @media print {
+        body,
+        html,
+        .main__content {
+          margin-top: 0%;
+          width: 100%;
+          display: block;
+          height: 100% !important;
+          page-break-inside: auto;
+        }
+        .content.content-check {
+          display: inline-block;
+        }
+      }
+      @media (max-width: 999px) {
+        .main.main-check {
+          max-width: 560px;
+          width: 100%;
+        }
+      }
+      @media (max-width: 600px) {
+        .main.main-check {
+          max-width: 400px;
+          width: 100%;
+        }
+      }
+      @media (max-width: 479px) {
+        .main.main-check {
+          max-width: 300px;
+          width: 100%;
+        }
+      }
+      .field--required:first-child .field__input-wrapper--select label {
+        display: none;
+      }
+      .section--payment-method .section__header {
+        width: 70%;
+        position: relative;
+      }
+      .product-handy-text {
+        padding: 20px 20px;
+        border: 2px solid #36e7f9;
+        max-width: 420px;
+        margin: 70px auto 0;
+        text-align: center;
+        display: flex;
+        align-items: center;
+      }
+      .product-handy-text img {
+        width: 100px;
+      }
+      .product-handy-text p span {
+        color: #36e7f9;
+        font-weight: bold;
+      }
+      .product-handy-text p {
+        padding-left: 5px;
+        font-size: 1.1428571429em;
+      }
+      .section--shipping-method .radio__label__primary span:nth-child(2),
+      .section--shipping-method .radio__label__primary br:first-child {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+
+  
+    {{ skip_to_content_link }}
+
+    {% assign shipping_method = 'Ground Shipping' %}
+    {% assign customerardivisionno = '20' %}
+    {% assign noOfDaysToAdd = '' %}
+    {% if shipping_method == 'Ground Shipping' or shipping_method == 'USPS' or shipping_method == 'Pickup' %}
+      {% if customerardivisionno == '10' or customerardivisionno == '' %}
+        {% assign noOfDaysToAdd = '7' %}
+      {% else %}
+        {% assign noOfDaysToAdd = '5' %}
+      {% endif %}
+    {% else %}
+      {% assign noOfDaysToAdd = '2' %}
+    {% endif %}
+
+    <div class="banner" data-header>
+      <div class="wrap">
+        {{ content_for_logo }}
+      </div>
+    </div>
+    <textarea name="extraNote" id="extraNote" style="display:none;">{{order.note | newline_to_br }}</textarea>
+
+    {{ order_summary_toggle }}
+
+    <div class="content content-check" data-content>
+      <div class="wrap wrap-check">
+        <div class="main main-check" role="main">
+          <div class="main__header">
+            {{ content_for_logo }}
+            {{ breadcrumb }}
+            {{ alternative_payment_methods }}
+          </div>
+          <div class="main__content">
+            {{ content_for_layout }}
+          </div>
+          <div class="main__footer">
+            {{ content_for_footer }}
+          </div>
+        </div>
+        <div class="sidebar sidebar-check" role="complementary">
+          <div class="sidebar__header">
+            {{ content_for_logo }}
+          </div>
+          <div class="sidebar__content">
+            <div><h1>Order Detail</h1></div>
+            <div class="cart-help-text">
+                <p>Questions? We're here to help! Email us at <a href="mailto:info@mirrormate.com">info@mirrormate.com</a></p>
+                </div>
+                <style>
+                .cart-help-text a{
+                color: #3e5569;
+                font-weight: 700;
+                }
+                </style>
+            {{ content_for_order_summary }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="firstCase" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close" onclick="fnClosePopUp('firstCase')">&times;</span>
+          <h2>Alert</h2>
+        </div>
+        <div class="modal-body">
+          <p>You have a business account, please log in to receive your correct pricing.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="secondCase" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close" onclick="fnClosePopUp('secondCase')">&times;</span>
+          <h2>Alert</h2>
+        </div>
+        <div class="modal-body">
+          <p>
+            Oops. It looks like your account is no longer active. Please call us at 866-304-6283 so we can get you
+            re-instated
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="thirdCase" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close" onclick="fnClosePopUp('thirdCase')">&times;</span>
+          <h2>Alert</h2>
+        </div>
+        <div class="modal-body">
+          <p>
+            Oops. It looks like your account is disabled. Please call us at 866-304-6283 so we can get you re-instated
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!--<div id="shippingMethodHelp" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close" onclick="fnClosePopUp('shippingMethodHelp')">&times;</span>
+          <h2>About Shipping</h2>
+        </div>
+        <div class="modal-body">
+          <p>Shipping costs refect actual FedEx charges - no more, and sometimes even less.</p>
+        </div>
+      </div>
+    </div>-->
+    <div class="print-html"></div>
+    <input type="hidden" id="formPostChk" value="1">
+    {% if customer %}
+      <input type="hidden" id="userLoginStatus" value="1">
+    {% else %}
+      <input type="hidden" id="userLoginStatus" value="0">
+    {% endif %}
+    {{ tracking_code }}
+
+    <script>
+
+       /**
+        * =======================================================================
+        * LIBRARY FUNCTIONS
+        * =======================================================================
+        **/
+
+        // Get Url Param
+        function getUrlParam(name) {
+          var results = new RegExp("[?&]" + name + "=([^&#]*)").exec(window.location.href);
+          if (results === null) {
+              return null;
+          }
+          return decodeURI(results[1]) || 0;
+      }
+
+      /**
+      * Update Input value
+      * @param {ID Selector} selector
+      * @param {String} key
+      * @param {String, Boolean, Int} value
+      **/
+      function fnUpdateInputValue(selector, key, value) {
+          var element = document.querySelector(selector);
+          if (element) {
+              element[key] = value;
+          }
+      }
+
+      /**
+      * Update Input value
+      * @param {ID Selector} selector
+      * @param {String} key
+      * @param {String, Boolean, Int} value
+      **/
+      function fnUpdateInputValueAll(selector, attribute, value) {
+          var elements = document.querySelectorAll(selector);
+          elements.forEach(function(el) {
+              if (attribute == 'innerHTML') {
+                  el.innerHTML = value;
+              } else if (attribute == 'placeholder') {
+                  el.setAttribute('placeholder', value);
+              } else if (attribute == 'readonly') {
+                  el.readOnly = value === 'true';
+              } else if (attribute == 'checked') {
+                  el.checked = value == 'checked';
+              } else if (attribute == 'value') {
+                  el.value = value;
+              } else if (attribute == 'disabled') {
+                  el.disabled = value == 'true';
+              }else{
+                  el[attribute] = value;
+              }
+          });
+      }
+
+      // Get Value
+      function fnGetValueBySelector(selector, key) {
+          var element = document.querySelector(selector);
+          if (element) {
+              return element[key];
+          } else {
+              return null;
+          }
+      }
+
+      // Toggle Visiblitity of element
+      function fnToggleVisiblity(selector, value) {
+          var element = document.querySelector(selector);
+          if (element) {
+              element.style.display = value;
+          }
+      }
+
+      // Get Cookie
+      function getCookie(cname) {
+          var name = cname + "=";
+          var decodedCookie = decodeURIComponent(document.cookie);
+          var ca = decodedCookie.split(";");
+          for (var i = 0; i < ca.length; i++) {
+              var c = ca[i];
+              while (c.charAt(0) == " ") {
+                  c = c.substring(1);
+              }
+              if (c.indexOf(name) == 0) {
+                  return c.substring(name.length, c.length);
+              }
+          }
+          return "";
+      }
+
+      function setCookie(cname, cvalue, exdays) {
+          var d = new Date();
+          d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+          var expires = "expires=" + d.toGMTString();
+          document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+      }
+
+      // Add class
+      function addClass(selector, cls) {
+          var element = document.querySelector(selector);
+          if (element) {
+              if (typeof cls == "string") {
+                  element.classList.add(cls);
+              } else if (typeof cls == "object") {
+                  cls.forEach(function (cl) {
+                      element.classList.add(cl);
+                  });
+              }
+          }
+      }
+
+      // Remove class
+      function removeClass(selector, cls) {
+          var element = document.querySelector(selector);
+          if (element) {
+              if (typeof cls == "string") {
+                  element.classList.remove(cls);
+              } else if (typeof cls == "object") {
+                  cls.forEach(function (cl) {
+                      element.classList.remove(cl);
+                  });
+              }
+          }
+      }
+
+      // Close PopUp
+      function fnClosePopUp(id) {
+          fnToggleVisiblity("#" + id, "none");
+
+          {% comment %} if (id == "secondCase" || id == "firstCase") {
+              window.location.href = "/account/login";
+          } {% endcomment %}
+      }
+
+
+      // Update cart note
+      function fnUpdateCartNote(id) {
+          var PoNumber = document.querySelector('#' + id).value;
+          if (id == 'ponumber') {
+              setCookie("ponumber", PoNumber, 1);
+          }
+          if (id == 'invoicenumber') {
+              setCookie("invoiceNumber", PoNumber, 1);
+          }
+          if (id == 'checkout_phone_clone') {
+              setCookie("checkout_phone_clone", PoNumber, 1);
+          }
+      }
+
+       // Define the function fnPrintOrder1
+          function fnPrintOrder1() {
+              document.querySelectorAll('.content-check, .order-summary-toggle--show, .banner').forEach(function(el) {
+                  el.style.display = 'none';
+              });
+          }
+      // Print Order
+      function fnPrintOrder() {
+          document.querySelectorAll('.sidebar.sidebar-check').forEach(function(el) {
+              el.style.display = 'none';
+          });
+          document.querySelectorAll('.main__content table').forEach(function(el) {
+              el.style.display = 'block';
+          });
+
+          document.querySelectorAll('.section__content, .section__header, .thank-you__additional-content, .visually-hidden').forEach(function(el) {
+              el.style.display = 'none';
+          });
+          document.querySelector('.main__header h1').style.display = 'block';
+
+          var orderElement = document.querySelector('.os-order-number');
+          var order = orderElement ? orderElement.textContent.trim() : '';
+          var tempOrderName = order.replace('Order', '');
+
+          document.querySelector(".section__content__column--half:last-child").style.display = 'none';
+          document.querySelectorAll('.address h3').forEach(function(el) {
+              el.style.display = 'none';
+          });
+          var firstColumn = document.querySelector('.section__content__column--half:first-child');
+          if (firstColumn) {
+              firstColumn.querySelectorAll('h3')[2].style.display = 'none';
+              firstColumn.querySelectorAll('p')[1].style.display = 'none';
+          }
+
+          var divContents = document.querySelector(".main__header").innerHTML;
+          document.querySelector('.step__footer').style.display = 'none';
+
+          divContents += '<p class="order-details">Order #' + tempOrderName + ' </p><br />';
+          document.querySelectorAll('.step').forEach(function(el) {
+              el.style.display = 'none';
+          });
+          document.querySelectorAll('.main__content').forEach(function(el) {
+              divContents += el.innerHTML;
+          });
+
+          var printWindow = window.open('', '_blank', 'height=400,width=800');
+          printWindow.document.write('<html><head><title></title></head><body>' + divContents + '</body></html>');
+          printWindow.document.close();
+          printWindow.print();
+          setTimeout(function() {
+              printWindow.close();
+          }, 1000);
+
+          // Resetting the display of elements post-printing
+          document.querySelectorAll('.main__content table').forEach(function(el) {
+              el.style.display = 'none';
+          });
+          document.querySelectorAll('.step, .sidebar.sidebar-check, .section__content, .section__header, .thank-you__additional-content').forEach(function(el) {
+              el.style.display = 'block';
+          });
+          document.querySelector(".section__content__column--half:last-child").style.display = 'block';
+          document.querySelectorAll('.address h3').forEach(function(el) {
+              el.style.display = 'block';
+          });
+          if (firstColumn) {
+              firstColumn.querySelectorAll('h3')[2].style.display = 'block';
+              firstColumn.querySelectorAll('p')[1].style.display = 'block';
+          }
+
+          fnToggleVisiblity('.step__footer', 'block')
+      }
+
+      // Print order 1
+      function fnPrintOrder1() {
+          document.querySelectorAll('.content-check, .order-summary-toggle--show, .banner').forEach(function(el) {
+              el.style.display = 'none';
+          });
+
+          // Show print main div
+          fnToggleVisiblity('.print-maindiv', 'block')
+
+          document.body.style.display = 'block';
+
+          var orderElement = document.querySelector('.os-order-number');
+          var order = orderElement ? orderElement.textContent.trim() : '';
+          var tempOrderName = order.replace('Order', '');
+
+          var divContents = "<div class='print-maindiv'>" + (document.querySelector(".main__header") ? document.querySelector(".main__header").innerHTML : "");
+          divContents += '<p class="order-details">Order #' + tempOrderName + ' </p><br />';
+          divContents += document.querySelector('.print-content') ? document.querySelector('.print-content').innerHTML : '';
+          divContents += '</div>';
+
+
+          fnToggleVisiblity('.print-content', 'block')
+
+          var printHtmlElement = document.querySelector('.print-html');
+          if (printHtmlElement) {
+              printHtmlElement.innerHTML = '';
+              printHtmlElement.innerHTML = divContents;
+          }
+
+
+          window.print();
+
+          setTimeout(function() {
+
+              fnToggleVisiblity('.print-maindiv', 'none')
+              document.querySelectorAll('.content-check')?.forEach(function(el) {
+                  el.style.display = 'block';
+              });
+              document.body.style.display = 'flex';
+              fnToggleVisiblity('.print-content', 'none')
+          }, 1000);
+      }
+
+
+       /**
+        * =======================================================================
+        * Set print order data
+        * =======================================================================
+        **/
+
+        var takenPoNumber = getCookie('ponumber');
+
+        // Update Payment method
+        setTimeout(function(){
+            var attributeLast = '';
+            {% if order.attributes %}
+                {% for attribute in order.attributes %}
+                    var attributeFirst = '{{attribute | first}}';
+                    if(attributeFirst == 'Purchase Order Number'){
+                        var attributeLast = '{{ attribute | last }}';
+                    }
+                {% endfor %}
+            {% endif %}
+            var paymentMethod = fnGetValueBySelector('.payment-method-list__item__info', 'innerHTML');
+            if(paymentMethod == 'Cash on Delivery (COD)'){
+                fnUpdateInputValueAll('.payment-method-list__item__info', 'innerHTML' ,'Invoice')
+
+                var paymentMethodList = document.querySelector('.payment-method-list');
+                if(paymentMethodList){
+                    if (takenPoNumber != "") {
+                        var listItem = '<li class="payment-method-list__item"><span class="payment-method-list__item__info">PO Number : '+takenPoNumber +'</span></li>';
+                        paymentMethodList.insertAdjacentHTML('beforeend', listItem);
+                    } else {
+                        var listItem = '<li class="payment-method-list__item"><span class="payment-method-list__item__info">PO Number : '+attributeLast +'</span></li>'
+                        paymentMethodList.insertAdjacentHTML('beforeend', listItem);
+                    }
+                }
+
+            }
+        }, 1000);
+
+        var invoiceNumber = '';
+        var ponumber = '';
+        var orderId = '{{order.id}}';
+        if(getCookie('invoiceNumber') != ''){
+            var invoiceNumber = getCookie('invoiceNumber');
+        }
+
+        setCookie("invoiceNumber", "", 1);
+        if(getCookie('ponumber') != ''){
+            var ponumber = getCookie('ponumber');
+        }
+
+        //setCookie("ponumber", "", 1);  - Commended By Sachin to Fix PONumber value to come over - 03042024
+        if(getCookie('checkout_phone_clone') != ''){
+            var checkout_phone_clone = getCookie('checkout_phone_clone');
+        }
+        setCookie("checkout_phone_clone", "", 1);
+
+        var email = '{{checkout.email}}';
+        var endDate = "", noOfDaysToAdd = 7, count = 0;
+        var shipping_method = '{{ checkout.shipping_method.title }}';
+        var customerardivisionno = '{{ customer.metafields.SAGE.ARDivisionNo }}';
+
+        var sampleCounter = 0;
+        {% assign totalCartCounter = 0 %}
+        {% assign totalSampleCounter = 0 %}
+        {% for item in checkout.line_items %}
+              {% assign tempSku = item.sku | slice: 0 %}
+              {% if tempSku == 'S' %}
+                {% assign totalSampleCounter = totalSampleCounter | plus: 1 %}
+              {% endif %}
+              {% assign totalCartCounter = totalCartCounter | plus: 1 %}
+        {% endfor %}
+        var totalSampleCounter = '{{totalSampleCounter}}';
+        var totalCartCounter = '{{totalCartCounter}}';
+
+
+        // Calculating expected ship date
+        if(totalSampleCounter == totalCartCounter){
+          noOfDaysToAdd = 1;
+        }
+        else{
+          if(shipping_method == 'Ground Shipping' || shipping_method == 'USPS' || shipping_method == 'Pickup (Charlotte, NC)'){
+              if(customerardivisionno == '10' || customerardivisionno == '' || customerardivisionno == '-'){
+                  noOfDaysToAdd = 7;
+              }
+              else{
+                  noOfDaysToAdd = 5;
+              }
+          }
+          else{
+              if(shipping_method == 'Second Day Air'){
+                  noOfDaysToAdd = 2;
+              }
+          }
+        }
+
+        var orderDate = '{{ order.created_at | date: "%Y-%m-%-d" }}';
+        orderDate = new Date(orderDate.replace(/-/g, "/"));
+
+        while(count < noOfDaysToAdd){
+            endDate = new Date(orderDate.setDate(orderDate.getDate() + 1));
+            if(customerardivisionno != '10' || customerardivisionno != ''){
+                if(endDate.getDay() != 0 && endDate.getDay() != 6){
+                   count++;
+                }
+           }else{
+            count++;
+           }
+        }
+
+        // CODE FOR FEDERAL HOLIDAY
+        var holidayDates = ["1/15/2024", "2/19/2024", "5/27/2024", "6/19/2024", "7/4/2024", "9/2/2024", "10/9/2023", "11/28/2024", "11/29/2024","12/24/2024", "12/25/2024", "1/1/2025"];
+
+        var formattedDate = new Date(endDate);
+        var d = formattedDate.getDate();
+        var m = formattedDate.getMonth();
+        m += 1; // JavaScript months are 0-11
+        var y = formattedDate.getFullYear();
+        var shippingDate = m + "/" + d + "/" + y;
+
+
+        // New shipdate
+        function newShipDATE() {
+            for (i = 0; i <= holidayDates.length; i++) {
+                if (shippingDate == holidayDates[i]) {
+                    var new_Date = new Date(shippingDate);
+                    var da = new_Date.getDate() + 1;
+                    shippingDate = m + "/" + da + "/" + y;
+                }
+            }
+        }
+        newShipDATE();
+
+        function getDayName(dateStr, locale) {
+            var date = new Date(dateStr);
+            return date.toLocaleDateString(locale, {
+                weekday: 'long'
+            });
+        }
+        var dateStr = shippingDate;
+        var day = getDayName(dateStr, "en-US");
+
+        if (holidayDates.includes(shippingDate)) {
+            var newDay = new Date(shippingDate);
+            if (day == "Friday") {
+                var da = newDay.getDate() + 3;
+            }
+            if (day == "Saturday") {
+                var da = newDay.getDate() + 2;
+            }
+            if (day == "Sunday") {
+                var da = newDay.getDate() + 1;
+            } else {
+                var da = newDay.getDate();
+            }
+            shippingDate = m + "/" + da + "/" + y;
+
+        } else {
+            var newDay = new Date(shippingDate);
+            if (day == "Saturday") {
+                var da = newDay.getDate() + 2;
+            } else if (day == "Sunday") {
+                var da = newDay.getDate() + 1;
+            } else {
+                var da = newDay.getDate();
+            }
+            shippingDate = m + "/" + da + "/" + y;
+        }
+        newShipDATE();
+
+
+        // Creating a new User – call from AWS Server
+        var xhr = new XMLHttpRequest();
+        var url = 'https://script.mirrormate.com/mm/createUser1.php';
+        var params = 'email=' + encodeURIComponent(email) +
+                    '&invoiceNumber=' + encodeURIComponent(invoiceNumber) +
+                    '&orderId=' + encodeURIComponent(orderId) +
+                    '&ponumber=' + encodeURIComponent(ponumber) +
+                    '&newPhone=' + encodeURIComponent(checkout_phone_clone) +
+                    '&shippingDate=' + encodeURIComponent(shippingDate);
+
+        xhr.open('POST', url, true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+            }
+        };
+        xhr.send(params);
+
+
+
+        var mainPhone = '{{customer.phone}}';
+        var mainPhone1 = '{{billing_address.phone}}';
+        var mainPhone2 = '{{shipping_address.phone}}';
+        var finalPhone = '';
+        if(mainPhone2 != ''){
+            finalPhone = mainPhone2;
+        }
+        if(mainPhone1 != ''){
+            finalPhone = mainPhone1;
+        }
+        if(mainPhone != ''){
+            finalPhone = finalPhone;
+        }
+        var orderNoteNew = fnGetValueBySelector('#extraNote', 'value');
+
+        setTimeout(function(){
+            var str = '';
+            str += '<div class="print-content" style="display: none;"><style>b, strong {font-weight: bold;} .print-content .logo > img{max-width:250px;margin:10px 10px 0 0} .order-details{font-family: Open Sans, sans-serif !important;font-weight:bold;font-size:22px;}</style>';
+            str += '<table style="width:100% !important;border-collapse: collapse; font-family: Open Sans, sans-serif !important;border-top:1px solid #ddd;border-bottom:1px solid #ddd;margin-bottom:30px;max-width:1000px;">';
+            str+='<tr>';
+            str+='<td style="padding:10px;"><b>ORDER CONTACT</b></td>';
+            str+='<td style="padding:10px;"><b>BILL TO ACCOUNT</b></td>';
+            str+='<td style="padding:10px;"><b>SHIPPING INFORMATION</b></td>';
+            str+='</tr>';
+            str+='<tr>';
+            str+='<td style="padding:10px;"><b>{{customer.first_name}}{{customer.last_name}}</b><br>';
+            str+='Phone:'+finalPhone+'<br>';
+            str+='Email:{{customer.email}}';
+            str+='</td>';
+            str+='<td style="padding:10px;"><b>{{billing_address.name }}</b><br>';
+            str+='{{billing_address.address1}}<br>';
+            str+='{{billing_address.address2}}<br>';
+            str+='{{billing_address.city}} {{ billing_address.province_code }} {{billing_address.zip}}<br>';
+            str+='{{billing_address.country_code}}<br>';
+            str+='{{billing_address.phone}}';
+            str+='</td>';
+            str+='<td style="padding:10px;"><b>{{shipping_address.name }}</b><br>';
+            str+='{{shipping_address.address1}}<br>';
+            str+='{{shipping_address.address2}}<br>';
+            str+='{{shipping_address.city}}  {{ shipping_address.province_code }} {{shipping_address.zip}}<br>';
+            str+='{{shipping_address.country_code}}<br>';
+            str+='{{shipping_address.phone}}';
+            str+='</td>';
+            str+='</tr>';
+            str+='</table>';
+
+            str += '<table style="width:100% !important;border-collapse: collapse; font-family: Open Sans, sans-serif !important;margin-bottom:30px;display:;max-width:1000px;">';
+            str+='<tr>';
+            str+='<td style="padding:10px;"><b>Order Details</b></td>';
+            str+='<td style="padding:10px;"><b>Comments</b></td>';
+            str+='</tr>';
+            str+='<tr>';
+            str+='<td style="padding:10px;">Payment Method :'+fnGetValueBySelector('.payment-method-list__item__info', 'innerHTML')+'<br>';
+            if(fnGetValueBySelector('.payment-method-list__item__info', 'innerHTML') == 'Invoice'){
+                {% if order.attributes %}
+                    {% for attribute in order.attributes %}
+                        var attributeFirst = '{{attribute | first}}';
+                        if(attributeFirst == 'Purchase Order Number'){
+                            str+='PO Number : {{ attribute | last }}<br>';
+                        }
+                    {% endfor %}
+                {% endif %}
+            }
+            str+='Shipping  Method : {{shipping_method.title }}<br>(Expected Ship Date:'+shippingDate+')<br>';
+            str+='</td>';
+            str+='<td style="padding:10px;">';
+            str+=orderNoteNew;
+            str+='</td>';
+            str+='</tr>';
+            str+='</table>';
+
+            str += '<table style="width:100% !important;border-collapse: collapse; font-family: Open Sans, sans-serif !important;margin-bottom:30px;display:;">';
+            str+='<tr>';
+                str+='<td style="border:1px solid #ddd;padding:10px;"><b>DESCRIPTION</b></td>';
+                str+='<td style="border:1px solid #ddd;padding:10px;"><b>UNIT PRICE</b></td>';
+                str+='<td style="border:1px solid #ddd;padding:10px;"><b>QTY</b></td>';
+                str+='<td style="border:1px solid #ddd;padding:10px;"><b>PRICE</b></td>';
+                str+='</tr>';
+            {% for item in checkout.line_items %}
+                {% assign tempSku = item.sku | slice: 0 %}
+                {% assign subtotal = 0 %}
+                {% if item.sku != 'free-pro' %}
+                   str += '<tr style="border:1px solid #ddd !important;"><td class="mytd" style="border:1px solid #ddd;padding:10px;border-top:2px solid #277488;">';
+                   str += 'SKU:{{item.sku}}';
+                   str += '<br><b>{{item.title}}</b>';
+                   {% if item.properties.mirror_Name != '' %}
+                   str += '<b><br>Mirror Name: {{item.properties.mirror_Name}}</b>';
+                   {% endif %}
+                   str += '</td>';
+                   str += '<td style="border:1px solid #ddd;padding:10px;border-top:2px solid #277488;" class="mytd">{{item.final_price | money}}</td>';
+                   str += '<td style="border:1px solid #ddd;padding:10px;border-top:2px solid #277488;" class="mytd">{{item.quantity}}</td>';
+                   str += '<td style="border:1px solid #ddd;padding:10px;border-top:2px solid #277488;" class="mytd">{{item.final_line_price | money}}</td>';
+                   {% assign subtotal = subtotal | plus: item.final_line_price %}
+                   str += '</tr>';
+                   {% if tempSku != 'S' and tempSku != 'Z' and tempSku != 'X' and item.sku != 'free-pro' and tempSku != 'G' %}
+                   str += '<tr><td colspan="4" style=" font-family: Open Sans, sans-serif !important;">';
+                   str += '<div class="vart-mpa-line" id="15814971686978-lists" style="margin-top:25px !important;">';
+                   str += '<div class="grid-row cart-mpa">';
+                   str += '<div class="gr-col-4" style="margin-bottom:20px !important;">';
+                   str += '<div class="mpa-box mbpa1">';
+                   str += '<div class="mpa-panel" style="padding:10px !important; border:1px solid #ddd !important;font-family: Open Sans, sans-serif !important;text-align: left !important;">';
+                   str += '<b>Measurements</b>';
+                   str += '</div>';
+                   str += '<table style="border-collapse: collapse;width:100% !important; font-family: Open Sans, sans-serif !important;">';
+                   str += '<tbody>';
+                   str += '<tr>';
+                   str += '<td style="border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;"><span>Mirror Size:</span></td>';
+                   str += '<td style="border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;">';
+                   str += '<div class="tablesaw-cell-content">';
+                   str += '<span class="br">Width <span>{{item.properties.width}} {{item.properties.width_fraction}}</span>"</span>';
+                   str += '<span class="br"><br>Height <span>{{item.properties.height}} {{item.properties.height_fraction}}</span>"</span>';
+                   str += '</div>';
+                   str += '</td>';
+                   str += '</tr>';
+                   str += '<tr>';
+                   str += '<td style="width: 300px !important;border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;"><span>Frame Size:</span></td>';
+                   str += '<td style="border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;">';
+                   str += '<div class="tablesaw-cell-content">';
+                   str += '<span class="br">Width <span>{{item.properties.frame_Width}} {{item.properties.frame_WidthFraction}}</span>"</span>';
+                   str += '<span class="br"><br>Height <span>{{item.properties.frame_Height}} {{item.properties.frame_HeightFraction}}</span>"</span>';
+                   str += '</div>';
+                   str += '</td>';
+                   str += '</tr>';
+                   str += '<tr>';
+                   str += '<td colspan="2" style="border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;"><b>Frame size may be larger than mirror size to hide mirror edges.</b></td>';
+                   str += '</tr>';
+                   str += '</tbody>';
+                   str += '</table>';
+                   str += '</div>';
+                   str += '</div>';
+                   str += '<div class="gr-col-4" style="margin-bottom:15px !important;">';
+                   str += '<div class="mpa-box mbpa2">';
+                   str += '<div class="mpa-panel" style="padding:10px !important; border:1px solid #ddd !important;font-family: Open Sans, sans-serif !important;text-align: left !important;">';
+                   str += '<b>Placement</b>';
+                   str += '</div>';
+                   str += '<table style="border-collapse: collapse; width:100% !important;font-family: Open Sans, sans-serif !important;">';
+                   str += '<tbody style="border-collapse: collapse;">';
+                   str += '<tr>';
+                   str += '<td style="width: 300px !important;border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;"><span>Clearance Top:</span></td>';
+                   str += '<td style="width: 300px !important;border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;">';
+                   str += '<div class="tablesaw-cell-content">';
+                   str += '<span>{{item.properties.clearance_top}}</span>';
+                   str += '</div>';
+                   str += '</td>';
+                   str += '</tr>';
+                   str += '<tr>';
+                   str += '<td style="width: 300px !important;border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;"><span>Clearance Left:</span></td>';
+                   str += '<td style="width: 300px !important;border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;">';
+                   str += '<div class="tablesaw-cell-content">';
+                   str += '<span>{{item.properties.clearance_left}}</span>';
+                   str += '</div>';
+                   str += '</td>';
+                   str += '</tr>';
+                   str += '<tr>';
+                   str += '<td style="width: 300px !important;border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;"><span>Clearance Right:</span></td>';
+                   str += '<td style="width: 300px !important;border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;">';
+                   str += '<div class="tablesaw-cell-content">';
+                   str += '<span>{{item.properties.clearance_right}}</span>';
+                   str += '</div>';
+                   str += '</td>';
+                   str += '</tr>';
+                   str += '<tr>';
+                   str += '<td style="width: 300px !important;border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;"><span>Clearance Bottom:</span></td>';
+                   str += '<td style="width: 300px !important;border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;">';
+                   str += '<div class="tablesaw-cell-content">';
+                   str += '<span>{{item.properties.clearance_bottom}}</span>';
+                   str += '</div>';
+                   str += '</td>';
+                   str += '</tr>';
+                   str += '</tbody>';
+                   str += '</table>';
+                   str += '</div>';
+                   str += '</div>';
+                   str += '<div class="gr-col-4" style="margin-bottom:15px !important;">';
+                   str += '<div class="mpa-box mbpa3">';
+                   str += '<div class="mpa-panel" style="padding:10px !important; border:1px solid #ddd !important;font-family: Open Sans, sans-serif !important;text-align: left !important;">';
+                   str += '<b>Attachment</b>';
+                   str += '</div>';
+                   str += '<table style="border-collapse: collapse;width:100% !important;font-family: Open Sans, sans-serif !important;">';
+                   str += '<tbody>';
+                   str += '<tr>';
+                   str += '<td style="width: 300px !important;border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;"><span>Clips/Channels Top:</span></td>';
+                   str += '<td style="width: 300px !important;border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;">';
+                   str += '<div class="tablesaw-cell-content">';
+                   str += '<span>{{item.properties.clips_channels_top}}</span>';
+                   str += '</div>';
+                   str += '</td>';
+                   str += '</tr>';
+                   str += '<tr>';
+                   str += '<td style="width: 300px !important;border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;"><span>Clips/Channels Left:</span></td>';
+                   str += '<td style="width: 300px !important;border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;">';
+                   str += '<div class="tablesaw-cell-content">';
+                   str += '<span>{{item.properties.clips_channels_left}}</span>';
+                   str += '</div>';
+                   str += '</td>';
+                   str += '</tr>';
+                   str += '<tr>';
+                   str += '<td style="width: 300px !important;border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;"><span>Clips/Channels Right:</span></td>';
+                   str += '<td style="width: 300px !important;border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;">';
+                   str += '<div class="tablesaw-cell-content">';
+                   str += '<span>{{item.properties.clips_channels_right}}</span>';
+                   str += '</div>';
+                   str += '</td>';
+                   str += '</tr>';
+                   str += '<tr>';
+                   str += '<td style="width: 300px !important;border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;"><span>Clips/Channels Bottom:</span></td>';
+                   str += '<td style="width: 300px !important;border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;">';
+                   str += '<div class="tablesaw-cell-content">';
+                   str += '<span>{{item.properties.clips_channels_bottom}}</span>';
+                   str += '</div>';
+                   str += '</td>';
+                   str += '</tr>';
+                   str += '<tr>';
+                   str += '<td style="width: 300px !important;border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;"><span>Replacement Clips:</span></td>';
+                   str += '<td style="width: 300px !important;border-bottom:1px solid #ddd !important;padding:10px !important;font-family: Open Sans, sans-serif !important;">';
+                   str += '<div class="tablesaw-cell-content">';
+                   str += '<span>{{item.properties.replacement_clips}}</span>';
+                   str += '</div>';
+                   str += '</td>';
+                   str += '</tr>';
+                   str += '</tbody>';
+                   str += '</table>';
+                   str += '</div>';
+                   str += '</div>';
+                   str += '</div>';
+                   str += '</div>';
+                   str += '</td></tr>';
+                   {% endif %}
+                {% endif %}
+            {% endfor %}
+            str += '</table>';
+            str += '<table style="width:100% !important;border-collapse: collapse; font-family: Open Sans, sans-serif !important;display:;max-width:400px;">';
+            str+='<tr>';
+            str+='<td style="padding:7.5px;"><b>Order Totals</b></td>';
+            str+='<td style="padding:7.5px;"></td>';
+            str+='</tr>';
+            str+='<tr>';
+            str+='<td style="padding:7.5px;">Sub Total :</td>';
+            str+='<td style="padding:7.5px;">{{order.subtotal_price | money}}</td>';
+            str+='</tr>';
+            str+='<tr>';
+            str+='<td style="padding:7.5px;">Shipping  Total :</td>';
+            str+='<td style="padding:7.5px;">{{order.shipping_price | money }}</td>';
+            str+='</td>';
+            str+='</tr>';
+            str+='<tr>';
+            str+='<td style="padding:7.5px;">Tax Total :</td>';
+            str+='<td style="padding:7.5px;">{{order.tax_price | money }}</td>';
+            str+='</td>';
+            str+='</tr>';
+            str+='<tr>';
+            str+='<td style="padding:7.5px;"><b>Grand  Total :</b></td>';
+            str+='<td style="padding:7.5px;"><b>{{order.total_price | money }}</b></td>';
+            str+='</tr>';
+            str+='</table></div>';
+
+            var mainContentElm = document.querySelector('.main__content');
+            if(mainContentElm){
+                mainContentElm.insertAdjacentHTML('beforeend', str)
+            }
+        }, 1000);
+
+        var expectedShoppingDate = '<br>Expected Ship Date : '+shippingDate;
+        setTimeout(function(){
+            var lastElm = document.querySelector('.content-box:last-child .content-box__row:last-child .section__content .section__content__column:first-child p:last-child');
+            if(lastElm){
+                lastElm.insertAdjacentHTML('beforeend', expectedShoppingDate)
+            }
+        }, 1000);
+
+        var extraNote = '<h3>Special Instructions</h3><p>'+orderNoteNew+'</p>';
+        setTimeout(function(){
+            var lastElmTwo = document.querySelector('.content-box:last-child .content-box__row:last-child .section__content .section__content__column:nth-child(2)');
+            if(lastElmTwo){
+                lastElmTwo.insertAdjacentHTML('beforeend', extraNote)
+            }
+        }, 1000);
+
+
+
+        /**
+        * =======================================================================
+        * Other scripts
+        * =======================================================================
+        **/
+
+
+          document.addEventListener('DOMContentLoaded', function () {
+              // SHIPPING METHODS TEXT - START
+              function timeout() {
+                  var interval1 = setInterval(function () {
+                      var elements = document.querySelectorAll(".content-box__row label.radio__label span.radio__label__primary");
+                      Array.prototype.forEach.call(elements, function (element) {
+                          var shippingmethods = element.getAttribute("data-shipping-method-label-title");
+                          if (shippingmethods == 'Ground Shipping') {
+                              var spanElement = element.querySelector("span.small-text:nth-of-type(2)");
+                              spanElement.innerHTML = "Est. 6 to 10 business days (production + shipping)";
+                          } else if (shippingmethods == 'Second Day Air') {
+                              var spanElement = element.querySelector("span.small-text:nth-of-type(2)");
+                              spanElement.innerHTML = "Est. 5 business days (production + shipping)";
+                          }
+                      });
+                      clearInterval(interval1);
+                  }, 1000);
+              }
+
+              var contentBoxRows = document.querySelectorAll(".content-box__row");
+              Array.prototype.forEach.call(contentBoxRows, function (row) {
+                  var shippingTitleElement = row.querySelector("label span.radio__label__primary");
+                  var shipping_title = shippingTitleElement?.getAttribute("data-shipping-method-label-title");
+                  if (shipping_title == "USPS") {
+                      var inputElement = row.querySelector(".radio__input input");
+                      inputElement.setAttribute("checked", "checked");
+                  }
+              });
+
+              var setiimeout = setInterval(function () {
+                  if (document.querySelectorAll(".content-box__row:nth-of-type(2) span.radio__label__primary").length > 0) {
+                      timeout();
+                  }
+                  clearInterval(setiimeout);
+              }, 2000);
+
+              // SHIPPING METHODS TEXT - END
+
+              setTimeout(function () {
+                  var shippingMethodHeader = document.querySelector('.section--shipping-method .section__header .section__title');
+                  if(shippingMethodHeader){
+                    shippingMethodHeader.innerHTML = 'Shipping method <span class="quation" onclick="document.getElementById(\'shippingMethodHelp\').style.display = \'block\';">?</span>';
+                  }
+              }, 1000);
+
+              setTimeout(function () {
+                  var shippingLineName = document.querySelector('.total-line--shipping .total-line__name span');
+                  if(shippingLineName){
+                    shippingLineName.innerHTML = 'Shipping <span class="quation" onclick="document.getElementById(\'shippingMethodHelp\').style.display = \'block\';">?</span>';
+                  }
+              }, 3000);
+          });
+
+
+          // Hide print content
+          var printContents = document.querySelector('.print-content');
+          if(printContents){
+            printContents.style.display = 'none';
+          }
+
+
+          document.addEventListener('DOMContentLoaded', function () {
+
+              {% if customer %}
+                  var reviewBlockLinks = document.querySelectorAll('.content-box__row--tight-spacing-vertical .review-block:nth-child(1) .review-block__link');
+                  Array.prototype.forEach.call(reviewBlockLinks, function (link) {
+                      link.style.display = 'none';
+                  });
+              {% endif %}
+
+              var checkboxLabels = document.querySelectorAll('.section--half-spacing-top .checkbox__label');
+              Array.prototype.forEach.call(checkboxLabels, function (label) {
+                  label.innerHTML = 'Click here to set up an account to save your information for next time. You will receive an account invite email';
+              });
+
+              // Hide print content
+              var printContents = document.querySelector('.print-content');
+              if(printContents){
+                  printContents.style.display = 'none';
+              }
+
+
+              setTimeout(function () {
+                  var printContents = document.querySelectorAll('.print-content');
+                  Array.prototype.forEach.call(printContents, function (content) {
+                      content.style.display = 'none';
+                  });
+              }, 1000);
+
+              var contactInfoLabels = document.querySelectorAll('.section--contact-information .section__content .fieldset-description .checkbox__label');
+              Array.prototype.forEach.call(contactInfoLabels, function (label) {
+                  label.innerHTML = 'Yes, keep me up to date on sales & new styles via email';
+              });
+
+
+              var shopifySecureImg = '<div class="shopify-secure-logo" style="width: 32%;float: right;">' +
+                  '<img src="https://cdn.shopify.com/s/files/1/0090/5183/2386/files/shopify.png?v=1594276461">' +
+                  '</div>';
+
+              var shopifySecureImg1 = '<div class="shopify-secure-logo" style="position: absolute;top: 40px;right: 0;">' +
+                  '<img src="https://cdn.shopify.com/s/files/1/0090/5183/2386/files/shopify.png?v=1594276461">' +
+                  '</div>';
+
+              var paymentMethodSection = document.querySelector('.section--payment-method .section__header');
+              if(paymentMethodSection){
+                paymentMethodSection.insertAdjacentHTML('afterend', shopifySecureImg1);
+              }
+
+              var shippingMethodStep = document.querySelector('.step[data-step="shipping_method"]');
+              if(shippingMethodStep){
+                shippingMethodStep.insertAdjacentHTML('beforeend', shopifySecureImg);
+              }
+
+
+
+              var str = '<div class="fieldset"><div data-shopify-pay-email-flow="false" class="field field--required field--show-floating-label">';
+              str += '<div class="field__input-wrapper"><label class="field__label field__label--visible" for="checkout_email">Confirm Email</label>';
+              str += '<input placeholder="Email" autocapitalize="off" spellcheck="false" autocomplete="shipping Confirm email" data-trekkie-id="email_field" data-autofocus="true" data-backup="customer_email" aria-describedby="checkout-context-step-one" aria-required="true" class="field__input" size="30" type="email" value="" name="checkout[Confirmemail]" id="checkout_confirm_email" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">';
+              str += '</div></div></div>';
+
+              var fieldsetDescription = document.querySelector('.fieldset-description');
+              if (fieldsetDescription) {
+                  fieldsetDescription.insertAdjacentHTML('beforebegin', str);
+              }
+
+
+
+              var cc1 = 1;
+              var cc2 = 1;
+              var cc3 = 1;
+              var cc = 0;
+              var productDescriptions = document.querySelectorAll(".product__description");
+
+              Array.prototype.forEach.call(productDescriptions, function (productDescription, index) {
+                  var tempArr = {};
+                  var pName = productDescription.querySelector('.product__description__name').textContent;
+                  productDescription.querySelectorAll('.order-summary__small-text').forEach(function (str){
+                    tempstr = str.textContent.split('\n');
+                    for (var i = 0; i < tempstr.length; i++) {
+                        var tempStr1 = tempstr[i].trim();
+                        var tempArr1 = tempStr1.split(':');
+                        if (tempArr1.length == 2) {
+                            tempArr[tempArr1[0].trim()] = tempArr1[1].trim();
+                        }
+                    }
+                  })
+
+
+
+
+                  var tempVal = productDescription.querySelector('.order-summary__small-text').textContent;
+
+                  var miName = '';
+                  if (tempArr['mirror_Name'] != undefined) {
+                      miName = '<div class="mirror-name"><b>Mirror Name:</b> ' + tempArr['mirror_Name'] + '</div>';
+                  }
+
+                  var tableStr = '';
+                  if (pName != 'Gift Card' && pName != 'eGift Card' && tempVal != 'Sample / Sample' && tempVal != '' && tempArr != '') {
+                      tableStr = miName;
+                      tableStr += '<div class="product__description__variant_chk">';
+                      tableStr += '<div class="faqpage bg-faq hidden">';
+                      tableStr += '<div class="fq od">';
+                      tableStr += '<div class="accordion" id="Measurements' + cc1 + '"><b>Measurements</b><span></span></div>';
+                      tableStr += '<div class="container" style="display:none;">';
+                      tableStr += '<div class="content acfq">';
+                      tableStr += '<div class="mpa-box mbpa1">';
+                      //tableStr += '<div class="mpa-panel"><b>Measurements</b></div>';
+                      tableStr += '<table>';
+                      tableStr += '<tbody>';
+                      tableStr += '<tr>';
+                      tableStr += '<td><span>Mirror Size:</span></td>';
+                      tableStr += '<td>';
+                      tableStr += '<div class="tablesaw-cell-content">';
+                      tableStr += '<span class="br">Width <span>' + tempArr['width'] + ' ' + tempArr['width_fraction'] + '</span>"</span>';
+                      tableStr += '<span class="br">Height <span>' + tempArr['height'] + ' ' + tempArr['height_fraction'] + '</span>"</span>';
+                      tableStr += '</div>';
+                      tableStr += '</td>';
+                      tableStr += '</tr>';
+                      tableStr += '</tbody>';
+                      tableStr += '</table>';
+                      tableStr += '</div>';
+                      tableStr += '<div class="mpa-box mbpa1">';
+                      tableStr += '<table>';
+                      tableStr += '<tbody>';
+                      tableStr += '<tr>';
+                      tableStr += '<td><span>Frame Size:</span></td>';
+                      tableStr += '<td>';
+                      tableStr += '<div class="tablesaw-cell-content">';
+                      tableStr += '<span class="br">Width <span>' + tempArr['frame_Width'] + ' ' + tempArr['frame_WidthFraction'] + '</span>"</span>';
+                      tableStr += '<span class="br">Height <span>' + tempArr['frame_Height'] + ' ' + tempArr['frame_HeightFraction'] + '</span>"</span>';
+                      tableStr += '</div>';
+                      tableStr += '</td>';
+                      tableStr += '</tr>';
+                      tableStr += '</tbody>';
+                      tableStr += '</table>';
+                      tableStr += '</div>';
+                      tableStr += '</div>';
+                      tableStr += '</div>';
+                      tableStr += '</div>';
+                      tableStr += '<div class="fq od">';
+                      tableStr += '<div class="accordion" id="Placement' + cc1 + '"><b>Placement</b><span></span></div>';
+                      tableStr += '<div class="container" style="display:none;">';
+                      tableStr += '<div class="content acfq">';
+                      tableStr += '<div class="mpa-box mbpa1">';
+                      //tableStr += '<div class="mpa-panel"><b>Placement</b></div>';
+                      tableStr += '<table>';
+                      tableStr += '<tbody>';
+                      tableStr += '<tr>';
+                      tableStr += '<td><span>Clearance Top:</span></td>';
+                      tableStr += '<td>';
+                      tableStr += '<div class="tablesaw-cell-content">';
+                      tableStr += '<span>' + tempArr['clearance_top'] + '</span>';
+                      tableStr += '</div>';
+                      tableStr += '</td>';
+                      tableStr += '</tr>';
+                      tableStr += '<tr>';
+                      tableStr += '<td><span>Clearance Left:</span></td>';
+                      tableStr += '<td>';
+                      tableStr += '<div class="tablesaw-cell-content">';
+                      tableStr += '<span>' + tempArr['clearance_left'] + '</span>';
+                      tableStr += '</div>';
+                      tableStr += '</td>';
+                      tableStr += '</tr>';
+                      tableStr += '</tbody>';
+                      tableStr += '</table>';
+                      tableStr += '</div>';
+                      tableStr += '<div class="mpa-box mbpa1">';
+                      tableStr += '<table>';
+                      tableStr += '<tbody>';
+                      tableStr += '<tr>';
+                      tableStr += '<td><span>Clearance Right:</span></td>';
+                      tableStr += '<td>';
+                      tableStr += '<div class="tablesaw-cell-content">';
+                      tableStr += '<span>' + tempArr['clearance_right'] + '</span>';
+                      tableStr += '</div>';
+                      tableStr += '</td>';
+                      tableStr += '</tr>';
+                      tableStr += '<tr>';
+                      tableStr += '<td><span>Clearance Bottom:</span></td>';
+                      tableStr += '<td>';
+                      tableStr += '<div class="tablesaw-cell-content">';
+                      tableStr += '<span>' + tempArr['clearance_bottom'] + '</span>';
+                      tableStr += '</div>';
+                      tableStr += '</td>';
+                      tableStr += '</tr>';
+                      tableStr += '</tbody>';
+                      tableStr += '</table>';
+                      tableStr += '</div>';
+                      tableStr += '</div>';
+                      tableStr += '</div>';
+                      tableStr += '</div>';
+                      tableStr += '<div class="fq od">';
+                      tableStr += '<div class="accordion" id="Attachment' + cc3 + '"><b>Attachment</b><span></span></div>';
+                      tableStr += '<div class="container" style="display:none;">';
+                      tableStr += '<div class="content acfq">';
+                      tableStr += '<div class="mpa-box mbpa1">';
+                      //tableStr += '<div class="mpa-panel"><b>Attachment</b></div>';
+                      tableStr += '<table>';
+                      tableStr += '<tbody>';
+                      tableStr += '<tr>';
+                      tableStr += '<td><span>Clips/Channels Top:</span></td>';
+                      tableStr += '<td>';
+                      tableStr += '<div class="tablesaw-cell-content">';
+                      tableStr += '<span>' + tempArr['clips_channels_top'] + '</span>';
+                      tableStr += '</div>';
+                      tableStr += '</td>';
+                      tableStr += '</tr>';
+                      tableStr += '<tr>';
+                      tableStr += '<td><span>Clips/Channels Left:</span></td>';
+                      tableStr += '<td>';
+                      tableStr += '<div class="tablesaw-cell-content">';
+                      tableStr += '<span>' + tempArr['clips_channels_left'] + '</span>';
+                      tableStr += '</div>';
+                      tableStr += '</td>';
+                      tableStr += '</tr>';
+                      tableStr += '<tr>';
+                      tableStr += '<td><span>Clips/Channels Right:</span></td>';
+                      tableStr += '<td>';
+                      tableStr += '<div class="tablesaw-clips_channels_bottom-content">';
+                      tableStr += '<span>' + tempArr['clips_channels_right'] + '</span>';
+                      tableStr += '</div>';
+                      tableStr += '</td>';
+                      tableStr += '</tr>';
+                      tableStr += '</tbody>';
+                      tableStr += '</table>';
+                      tableStr += '</div>';
+                      tableStr += '<div class="mpa-box mbpa1">';
+                      tableStr += '<table>';
+                      tableStr += '<tbody>';
+                      tableStr += '<tr>';
+                      tableStr += '<td><span>Clips/Channels Bottom:</span></td>';
+                      tableStr += '<td>';
+                      tableStr += '<div class="tablesaw-cell-content">';
+                      tableStr += '<span>' + tempArr['clips_channels_bottom'] + '</span>';
+                      tableStr += '</div>';
+                      tableStr += '</td>';
+                      tableStr += '</tr>';
+                      tableStr += '<tr>';
+                      tableStr += '<td><span>Replacement Clips:</span></td>';
+                      tableStr += '<td>';
+                      tableStr += '<div class="tablesaw-cell-content">';
+                      tableStr += '<span>' + tempArr['replacement_clips'] + '</span>';
+                      tableStr += '</div>';
+                      tableStr += '</td>';
+                      tableStr += '</tr>';
+                      tableStr += '</tbody>';
+                      tableStr += '</table>';
+                      tableStr += '</div>';
+                      tableStr += '</div>';
+                      tableStr += '</div>';
+                      tableStr += '</div>';
+                      tableStr += '</div>';
+                      tableStr += '</div>';
+                      cc1++;
+                      cc2++;
+                      cc3++;
+                  } else {
+                      tableStr = '<div class="product__description__variant_chk"></div>';
+                  }
+
+                  setTimeout(function () {
+                      var targetElement = document.querySelectorAll('.product__description')[index];
+                      if (targetElement) {
+                          targetElement.insertAdjacentHTML('beforeend', tableStr);
+                      }
+                  }, 500);
+              });
+
+
+              // Accordion initialized
+              setTimeout(function () {
+                  var accordionToggles = document.querySelectorAll('.accordion');
+
+                  Array.prototype.forEach.call(accordionToggles, function (accordionToggle) {
+                      accordionToggle.addEventListener('click', function () {
+                          var isOpen = this.classList.contains('accordion-open');
+                          var contentContainer = this.nextElementSibling;
+
+                          // Toggle accordion state classes
+                          if (isOpen) {
+                              this.classList.remove('accordion-open');
+                              this.classList.add('accordion-close');
+                              contentContainer.style.display = "none";
+                          } else {
+                              this.classList.add('accordion-open');
+                              this.classList.remove('accordion-close');
+                              contentContainer.style.display = "block";
+                          }
+                      });
+                  });
+              }, 2000);
+
+
+
+
+              var url = '{{shop.secure_url}}';
+              var urlParam = '';
+              var url1 = '';
+              var ardivisionNO = '{{customer.metafields.SAGE.ARDivisionNo}}';
+              if (ardivisionNO == '22') {
+                  url1 = '/pages/multifamily';
+                  urlParam = '?usertype=multifamily';
+              }
+              else if (ardivisionNO == '20') {
+                  url1 = '/pages/dealer';
+                  urlParam = '?usertype=dealer';
+              }
+              else if (ardivisionNO == '23') {
+                  url1 = '/pages/homebuilder';
+                  urlParam = '?usertype=homebuilder';
+              }
+              else if (ardivisionNO == '30') {
+                  url1 = '/pages/hotel';
+                  urlParam = '?usertype=hotel';
+              }
+              else {
+                  usertype = "";
+              }
+
+              var logoLinks = document.querySelectorAll('.logo--left');
+              Array.prototype.forEach.call(logoLinks, function (logoLink) {
+                  logoLink.setAttribute('href', url + url1 + urlParam);
+              });
+
+
+              // History push state
+              if (history.pushState) {
+                  var currentUrl = window.location.href;
+                  var priceUrl = '';
+                  var ordertype = '';
+
+                  if (currentUrl.indexOf('?') != -1) {
+                      var querySign = '&';
+                  }
+                  else {
+                      var querySign = '?';
+                  }
+
+                  if (currentUrl.indexOf('usertype=') != -1) {
+
+                  }
+                  else {
+                      var arDivisionNo = '{{customer.metafields.SAGE.ARDivisionNo}}';
+                      if (arDivisionNo == '22') {
+                          var usertype = "usertype=multifamily";
+                      }
+                      else if (arDivisionNo == '20') {
+                          var usertype = "usertype=dealer";
+                      }
+                      else if (arDivisionNo == '23') {
+                          var usertype = "usertype=builder";
+                      }
+                      else if (arDivisionNo == '30') {
+                          var usertype = "usertype=hotel";
+                      }
+                      else {
+                          var usertype = "";
+                      }
+                  }
+
+                  if (currentUrl.indexOf('orderamt=') != -1) {
+
+                  }
+                  else {
+                      var priceTotal = document.querySelector('.payment-due__price').innerHTML;
+                      if (priceTotal != '') {
+                          priceUrl = 'orderamt=' + priceTotal.trim();
+                      }
+                  }
+
+                  var tempOrderType = '';
+                  var fTypeFlag = '';
+                  var sTypeFlag = '';
+                  {% for item in checkout.line_items %}
+                  {% assign tempSku = item.sku | slice: 0 %}
+                  {% if tempSku != 'S' and tempSku != 'Z' and tempSku != 'X' %}
+                  fTypeFlag = 1;
+                  {% else %}
+                  sTypeFlag = 1;
+                  {% endif %}
+                  {% endfor %}
+                  if (fTypeFlag == 1 && sTypeFlag == 1) {
+                      tempOrderType = 'sf';
+                  }
+                  else if (sTypeFlag == 1) {
+                      tempOrderType = 's';
+                  }
+                  else if (fTypeFlag == 1) {
+                      tempOrderType = 'f';
+                  }
+                  if (currentUrl.indexOf('ordertype=') != -1) {
+
+                  }
+                  else {
+                      ordertype = 'ordertype=' + tempOrderType;
+                  }
+
+                  if (Shopify.Checkout.step == "shipping_method" || Shopify.Checkout.step == "contact_information" || Shopify.Checkout.step == "payment_method") {
+                      var newurl = currentUrl + querySign + usertype;
+                  }
+                  else {
+                      if (usertype != '') {
+                          var newurl = currentUrl + querySign + usertype;
+                          if (priceUrl != '') {
+                              newurl += '&' + priceUrl;
+                          }
+                          if (ordertype != '') {
+                              newurl += '&' + ordertype;
+                          }
+                      }
+                      else {
+                          var newurl = currentUrl;
+                          if (priceUrl != '') {
+                              newurl += querySign + priceUrl;
+                          }
+                          if (ordertype != '') {
+                              newurl += '&' + ordertype;
+                          }
+                      }
+                  }
+                  window.history.pushState({ path: newurl }, '', newurl);
+              }
+
+
+              // Order number
+              var orderElements = document.querySelectorAll('.os-order-number');
+              Array.prototype.forEach.call(orderElements, function (orderElement) {
+                  var orderVal = orderElement.textContent.trim();
+
+                  if (orderVal !== '') {
+                      var tempOrderName1 = orderVal.trim();
+                      var tempOrderName = tempOrderName1.replace('Order ', '');
+
+                      // The use of 'eval' is generally discouraged due to security risks, especially if the content is not controlled.
+                      // Ensure that 'tempOrderName' is sanitized or from a trusted source.
+                      var newOrderName = eval(tempOrderName);
+
+                      orderElement.textContent = 'Order ' + newOrderName;
+                  }
+              });
+
+
+          })
+
+
+
+          /**
+          *
+          * Checkout Steps
+          *
+          */
+
+          function updateFieldOptions(){
+              // Update cart
+              var xhr = new XMLHttpRequest();
+              xhr.open('POST', '/cart/update.js');
+              xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
+              xhr.send(new URLSearchParams({
+              'updates[31308161974410]': '0'
+              }));
+          }
+
+          function createUser1(newTempStr, newPhone){
+              var xhr = new XMLHttpRequest();
+              xhr.open("POST", "https://script.mirrormate.com/mm/createUser1.php", true);
+              xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+              xhr.onload = function () {
+              if (xhr.status === 200) {
+
+              }
+              };
+              xhr.send(new URLSearchParams({
+              'email': newTempStr,
+              'newPhone': newPhone
+              }));
+          }
+
+
+          // 1:- Shipping step
+          if (Shopify.Checkout.step == "shipping_method") {
+              // Event handler for radio button change
+              document.addEventListener('change', function(event) {
+                  if (event.target.matches('.content-box__row .radio-wrapper .radio__input .input-radio')) {
+                      var shippingLineNameElements = document.querySelectorAll('.total-line--shipping .total-line__name span');
+                      Array.prototype.forEach.call(shippingLineNameElements, function(element) {
+                          element.innerHTML = 'Shipping  <span class="quation" onclick="document.getElementById(\'shippingMethodHelp\').style.display = \'block\';">?</span>';
+                      });
+                  }
+              });
+
+              // Interval to check a condition and update HTML
+              var quesInterval = setInterval(function () {
+                  var contentBoxElements = document.querySelectorAll('.content-box.blank-slate');
+                  if (contentBoxElements.length === 0) {
+                      setTimeout(function () {
+                          var shippingLineNameElements = document.querySelectorAll('.total-line--shipping .total-line__name span');
+                          Array.prototype.forEach.call(shippingLineNameElements, function(element) {
+                              element.innerHTML = 'Shipping  <span class="quation" onclick="document.getElementById(\'shippingMethodHelp\').style.display = \'block\';">?</span>';
+                          });
+                      }, 1000);
+                      clearInterval(quesInterval);
+                  }
+              }, 1000);
+
+              // Hide elements with class 'emphasis'
+              var emphasisElements = document.querySelectorAll('.emphasis');
+              Array.prototype.forEach.call(emphasisElements, function(element) {
+                  element.style.display = 'none';
+              });
+
+
+              // Replacing HTML content
+              var reviewBlockContentElements = document.querySelectorAll('.review-block__content');
+              // If there are multiple, you'll need to loop through them
+              if (reviewBlockContentElements.length > 0) {
+                  var tempStr = reviewBlockContentElements[0].innerHTML.replace('<bdo dir="ltr">', '');
+                  var newTempStr = tempStr.replace('</bdo>', '');
+              }
+              // Getting the cookie value
+              var newPhone = getCookie('checkout_phone_clone');
+              createUser1(newTempStr, newPhone);
+
+              updateFieldOptions();
+          }
+
+
+          // 2:- Contact Information step
+          if (Shopify.Checkout.step == "contact_information") {
+
+              var links = document.querySelectorAll('.logged-in-customer-information__paragraph a');
+              Array.prototype.forEach.call(links, function(link) {
+                  link.style.display = 'none';
+              });
+
+              var newTempStr = '';
+              var emailInput = document.getElementById('checkout_email');
+              if (emailInput) {
+                  newTempStr = emailInput.value;
+              }
+
+              {% if customer %}
+                  var shippingAddressSection = document.querySelector('.section--shipping-address');
+                  if (shippingAddressSection) {
+                      var newDiv = document.createElement('div');
+                      newDiv.className = 'verify-add';
+                      newDiv.innerHTML = '<p>Please verify your shipping address</p>';
+                      shippingAddressSection.parentNode.insertBefore(newDiv, shippingAddressSection.nextSibling);
+                  }
+
+                  var tempPhone = '{{customer.metafields.SAGE.billing_phone}}';
+                  var newTempPhone = tempPhone.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '');
+
+                  setTimeout(function () {
+                      var shippingFirstName = '{{customer.metafields.SAGE.billing_firstname}}';
+                      var shippingLastName = '{{customer.metafields.SAGE.billing_lastname}}';
+
+                      if (shippingFirstName != '-') {
+                          fnUpdateInputValueAll('#checkout_shipping_address_first_name', "value", "{{customer.metafields.SAGE.billing_firstname}}")
+                      }
+                      else {
+                          fnUpdateInputValueAll('#checkout_shipping_address_first_name', "value", "")
+                      }
+                      if (shippingLastName != '-') {
+                          fnUpdateInputValueAll('#checkout_shipping_address_last_name', "value","{{customer.metafields.SAGE.billing_lastname}}")
+                      }
+                      else {
+                          fnUpdateInputValueAll('#checkout_shipping_address_last_name', "value", "")
+                      }
+
+                      fnUpdateInputValueAll('#checkout_shipping_address_company', "value", "{{customer.metafields.SAGE.billing_company}}")
+                      fnUpdateInputValueAll('#checkout_shipping_address_address2', "value", "{{customer.metafields.SAGE.billing_address2}}")
+                      fnUpdateInputValueAll('#checkout_shipping_address_address1', "value", "{{customer.metafields.SAGE.billing_address1}}")
+                      fnUpdateInputValueAll('#checkout_shipping_address_city', "value", "{{customer.metafields.SAGE.billing_city}}")
+                      fnUpdateInputValueAll('#checkout_shipping_address_zip', "value", "{{customer.metafields.SAGE.billing_zip}}")
+                      fnUpdateInputValueAll('#checkout_shipping_address_phone', "value", newTempPhone)
+
+                      var tempCou = "{{customer.metafields.SAGE.billing_country}}";
+                      if (tempCou == 'US') {
+                      fnUpdateInputValueAll('#checkout_shipping_address_country', "value", 'United States')
+                      }
+                      else if (tempCou == 'CA') {
+                          fnUpdateInputValueAll('#checkout_shipping_address_country', "value", 'Canada')
+                      }
+                      else {
+                          fnUpdateInputValueAll('#checkout_shipping_address_country', "value", "{{customer.metafields.SAGE.billing_country}}")
+                      }
+                      fnUpdateInputValueAll('#checkout_shipping_address_province', "value", "{{customer.metafields.SAGE.billing_state}}")
+
+                  }, 1000);
+              {% endif %}
+
+
+              document.addEventListener('DOMContentLoaded', function () {
+                  var companyInput = document.getElementById('checkout_shipping_address_company');
+                  if (companyInput) {
+                      companyInput.setAttribute('placeholder', "Company");
+                  }
+
+                  var fieldsetCompanyLabels = document.querySelectorAll('.fieldset [data-address-field="company"] label');
+                  fieldsetCompanyLabels.forEach(function(label) {
+                      label.innerHTML = 'Company';
+                  });
+
+                  // Cloning and modifying the phone field
+                  var phoneField = document.querySelector('[data-address-field="phone"]');
+                  if (phoneField) {
+                      var phone_field = phoneField.cloneNode(true);
+                      phone_field.classList.add('bill-phone');
+                      var phone = phone_field.querySelector('#checkout_shipping_address_phone');
+
+                      if (phone) {
+                          phone.id = 'checkout_phone_clone';
+                          phone.name = 'checkout_phone_clone';
+                          phone.type = 'tel';
+                          phone.size = '10';
+                          phone.maxLength = '15';
+                          phone.placeholder = 'Billing Phone';
+                          phone.setAttribute('data-phone-formatter', false);
+                          phone.setAttribute('data-phone-formatter-country-select', '');
+                          phone.setAttribute('data-phone-formatter-country-code', '');
+                          phone.onblur = function() { fnUpdateCartNote("checkout_phone_clone"); };
+                      }
+
+                      phone_field.querySelector('label').innerHTML = 'Billing Phone';
+                      phone_field.querySelector('label').setAttribute('for', 'checkout_phone_clone');
+                      phone_field.classList.add("clear_both");
+
+
+
+                      {% if customer %}
+                          var loggedInCustomerInfo = document.querySelector('.logged-in-customer-information');
+                          if (loggedInCustomerInfo && phone_field) {
+                              loggedInCustomerInfo.parentNode.insertBefore(phone_field, loggedInCustomerInfo.nextSibling);
+                          }
+                      {% else %}
+                          var fieldsetDescription = document.querySelector('.fieldset-description');
+                          if (fieldsetDescription && phone_field) {
+                              fieldsetDescription.parentNode.insertBefore(phone_field, fieldsetDescription);
+                          }
+                      {% endif %}
+
+                  }
+
+
+                  {% if customer %}
+                      var cphone = "{{customer.phone}}";
+                      var cnewphone = cphone.substr(cphone.length - 10);
+                      fnUpdateInputValueAll('#checkout_phone_clone', "value", cnewphone);
+                  {% endif %}
+
+
+
+                  var shippingPhoneLabel = document.querySelector('.fieldset [data-address-field="phone"] label');
+                  if (shippingPhoneLabel) {
+                      shippingPhoneLabel.innerHTML = 'Shipping Phone';
+                  }
+
+                  var shippingPhoneInput = document.querySelector('.fieldset [data-address-field="phone"] #checkout_shipping_address_phone');
+                  if (shippingPhoneInput) {
+                      shippingPhoneInput.setAttribute('placeholder', 'Shipping Phone');
+                  }
+
+
+                  // Verify account
+                  var emailElement = document.getElementById('checkout_email');
+                  if (emailElement) {
+                      emailElement.addEventListener('blur', function(e) {
+                          var emailValue = e.target.value;
+
+                          if (emailValue != '') {
+                             emailValue = emailValue.toLowerCase();
+                              // Perform the AJAX request
+                              var xhr = new XMLHttpRequest();
+                              xhr.open('POST', 'https://script.mirrormate.com/mm/checkUserType.php', true);
+                              xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                              xhr.onreadystatechange = function() {
+                                  if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                                      var data = JSON.parse(this.responseText);
+
+                                      var priceValue = data.priceValue;
+                                      var UDF_WSP_WEB_ENABLED = data.UDF_WSP_WEB_ENABLED;
+                                      var CustomerStatus = data.CustomerStatus;
+                                      var UDF_CUSTOMER_TYPE = data.UDF_CUSTOMER_TYPE;
+                                      var ARDivisionNo = data.ARDivisionNo;
+
+                                      if (['20', '22', '23', '30', '31'].includes(ARDivisionNo)) {
+                                          if (CustomerStatus === 'I') {
+                                              document.getElementById('secondCase').style.display = 'block';
+                                              document.getElementById('formPostChk').value = 1;
+                                          } else {
+                                              if (UDF_WSP_WEB_ENABLED === 'N' && CustomerStatus === 'A') {
+                                                  document.getElementById('thirdCase').style.display = 'block';
+                                                  document.getElementById('formPostChk').value = 0;
+                                              } else {
+                                                  document.getElementById('firstCase').style.display = 'block';
+                                                  document.getElementById('formPostChk').value = 1;
+                                              }
+                                          }
+                                      }
+                                  }
+                              };
+                              xhr.send('serchTerm=' + encodeURIComponent(emailValue));
+                          }
+                      });
+                  }
+
+                  // Submit edit checkout form
+                  var checkEnaFlag = false;
+                  var editCheckoutForm = document.querySelector('form.edit_checkout');
+
+                  if (editCheckoutForm) {
+                      editCheckoutForm.addEventListener('submit', function(e) {
+                          var firstName = document.getElementById('checkout_shipping_address_first_name').value;
+                          var lastName = document.getElementById('checkout_shipping_address_last_name').value;
+                          var company = document.getElementById('checkout_shipping_address_company').value;
+                          var confirmEmail = document.getElementById('checkout_confirm_email').value;
+                          var email = document.getElementById('checkout_email').value;
+                          var newPhone = getCookie('checkout_phone_clone'); // Assuming getCookie is defined elsewhere
+
+                          // Perform AJAX request
+                          createUser1(email, newPhone)
+
+                          // Validation and error handling
+                          var errorForPhone = document.getElementById('error-for-phone');
+                          if (errorForPhone) {
+                              errorForPhone.parentNode.removeChild(errorForPhone);
+                          }
+                          var confirmEmailField = document.getElementById('checkout_confirm_email').closest('.field');
+                          if (typeof confirmEmail == "undefined") {
+                              // Handle undefined confirm email
+                          } else {
+                              if (confirmEmail != '' || email != '') {
+                                  if (confirmEmailField) {
+                                      confirmEmailField.classList.remove('field--error');
+                                  }
+                                  if (confirmEmail == '') {
+                                      // Prevent form submission
+                                      // e.preventDefault();
+                                      if (confirmEmailField) {
+                                          confirmEmailField.classList.add('field--error');
+                                          var errorMsg = document.createElement('p');
+                                          errorMsg.className = 'field__message field__message--error';
+                                          errorMsg.id = 'error-for-phone';
+                                          errorMsg.textContent = 'Please enter confirm email address.';
+                                          confirmEmailField.appendChild(errorMsg);
+                                      }
+                                  } else if (confirmEmail !== email) {
+                                      e.preventDefault();
+                                      if (confirmEmailField) {
+                                          confirmEmailField.classList.add('field--error');
+                                          var errorMsg = document.createElement('p');
+                                          errorMsg.className = 'field__message field__message--error';
+                                          errorMsg.id = 'error-for-phone';
+                                          errorMsg.textContent = 'Email and Confirm email must match.';
+                                          confirmEmailField.appendChild(errorMsg);
+                                      }
+                                  } else {
+                                      var formPostChk = document.getElementById('formPostChk');
+                                      if (formPostChk && formPostChk.value == '0') {
+                                          e.preventDefault();
+                                      }
+                                  }
+                              }
+                          }
+                      });
+                  }
+
+
+                  var arDivisionNo = '{{customer.metafields.SAGE.ARDivisionNo}}';
+                  if (arDivisionNo != '10' && arDivisionNo !== '') {
+                      var mainHeader = document.getElementById('main-header');
+                      if (mainHeader) {
+                          mainHeader.innerHTML = 'Account Information';
+                      }
+                  }
+
+              });
+
+              var addressInput = document.getElementById('checkout_shipping_address_address1');
+
+              if (addressInput) {
+                  addressInput.addEventListener('keyup', function(e) {
+                      if (this.value.length > 30) {
+                          alert("Please enter only 30 characters");
+                          this.value = this.value.substring(0, 30);
+                          e.preventDefault();
+                      }
+                  });
+              }
+
+          }
+
+
+          // 3:- Payment method step
+          if (Shopify.Checkout.step == "payment_method") {
+              // INVOICE CODE START
+              function PONumber() {
+                  var arDivisionNo = '{{customer.metafields.SAGE.ARDivisionNo}}';
+                  var TermsCode = '{{customer.metafields.SAGE.TermsCode}}';
+                  fnUpdateInputValueAll('.section--billing-address .section__header .section__title', "innerHTML", 'Credit Card Billing Address')
+
+
+
+                  var invoiceInterval = setInterval(function () {
+                      if ((arDivisionNo != '' && arDivisionNo >= '1')) {
+                          fnUpdateInputValueAll('#checkout_billing_address_company', 'placeholder', "Company / Name");
+                          fnUpdateInputValueAll('.fieldset [data-address-field="company"] label', "innerHTML", 'Company / Name');
+
+                          if (TermsCode != '01' && TermsCode != '02' && TermsCode != '05' && TermsCode != '06' && TermsCode != '45') {
+                              fnToggleVisiblity(".section--payment-method .content-box .content-box__row:nth-child(7)", "none")
+                          }
+                          fnUpdateInputValueAll('#checkout_billing_address_id', 'disabled', false);
+                          fnUpdateInputValueAll('#checkout_billing_address_first_name', 'disabled', false);
+                          fnUpdateInputValueAll('#checkout_billing_address_last_name', 'disabled', false);
+                          fnUpdateInputValueAll('#checkout_billing_address_company', 'disabled', false);
+                          fnUpdateInputValueAll('#checkout_billing_address_address2', 'disabled', false);
+                          fnUpdateInputValueAll('#checkout_billing_address_address1', 'disabled', false);
+                          fnUpdateInputValueAll('#checkout_billing_address_city', 'disabled', false);
+                          fnUpdateInputValueAll('#checkout_billing_address_zip', 'disabled', false);
+                          fnUpdateInputValueAll('#checkout_billing_address_phone', 'disabled', false);
+                          fnUpdateInputValueAll('#checkout_billing_address_province', 'disabled', false);
+                          fnUpdateInputValueAll('#checkout_billing_address_country', 'disabled', false);
+
+
+                          var paymentMethodClickTargets = document.querySelectorAll('.section--payment-method .content-box .content-box__row:nth-child(7) .radio__label__primary.content-box__emphasis, .section--payment-method .content-box .content-box__row:nth-child(7) .input-radio');
+
+                          Array.prototype.forEach.call(paymentMethodClickTargets, function(target) {
+                              target.addEventListener('click', function() {
+                                  // Remove existing elements with class 'invoicenumber-dic'
+                                  var existingElements = document.querySelectorAll('.invoicenumber-dic');
+                                  Array.prototype.forEach.call(existingElements, function(el) {
+                                      el.parentNode.removeChild(el);
+                                  });
+
+                                  // Adding new HTML content
+                                  var postr = '';
+                                  postr += '<div class="invoicenumber-dic radio-wrapper content-box__row content-box__row--secondary card-fields-container card-fields-container--loaded card-fields-container--transitioned" id="invoice_dv"><div class="fieldset" dir="ltr"><div data-credit-card-name="true" class="field field--required"><div class="field__input-wrapper"><label class="field__label field__label--visible">Purchase Order Number (Optional)</label><div class="field__input field__input--iframe-container" data-card-fields="ponumber"><input class="poInput" onkeyup="poInputCheck(this)" id="ponumber" name="attributes[ponumber]" type="text" placeholder="Purchase Order Number" style="padding:0.94em 0.8em;" onblur="fnUpdateCartNote(\'ponumber\')"></div></div></div></div></div>';
+
+
+                                  var contentBox = document.querySelector('.section--payment-method .section__content .content-box');
+                                  if (contentBox) {
+                                      var newDiv = document.createElement('div');
+                                      newDiv.innerHTML = postr;
+                                      contentBox.appendChild(newDiv);
+                                  }
+
+                                  // Assuming fnUpdateInputValueAll is a function defined elsewhere
+                                  fnUpdateInputValueAll('.section--billing-address .section__header .section__title', "innerHTML", 'To change your account information, please <a href="/pages/contact-us/" target="_blank">contact us.</a>');
+
+
+                                  // Updating various input fields
+                                  var fieldsToUpdate = [
+                                      '#checkout_billing_address_id',
+                                      '#checkout_billing_address_first_name',
+                                      '#checkout_billing_address_last_name',
+                                      '#checkout_billing_address_company',
+                                      '#checkout_billing_address_address2',
+                                      '#checkout_billing_address_address1',
+                                      '#checkout_billing_address_city',
+                                      '#checkout_billing_address_zip',
+                                      '#checkout_billing_address_phone',
+                                      '#checkout_billing_address_province',
+                                      '#checkout_billing_address_country'
+                                  ];
+
+                                  fieldsToUpdate.forEach(function(fieldId) {
+                                      var field = document.querySelector(fieldId);
+                                      if (field) {
+                                          field.disabled = false;
+                                      }
+                                  });
+                              });
+                          });
+
+                          var paymentMethodClickTargets = document.querySelectorAll('.section--payment-method .content-box .content-box__row:nth-child(5) .radio__label__primary.content-box__emphasis, .section--payment-method .content-box .content-box__row:nth-child(5) .input-radio');
+                          Array.prototype.forEach.call(paymentMethodClickTargets, function(target) {
+                              target.addEventListener('click', function() {
+                                  var invoiceNumbers = document.querySelectorAll('.invoicenumber-dic');
+                                  Array.prototype.forEach.call(invoiceNumbers, function(el) {
+                                      el.parentNode.removeChild(el);
+                                  });
+                              });
+                          });
+
+                          var billingAddressClickTargets = document.querySelectorAll('.section--payment-method .content-box .content-box__row:nth-child(2) .radio__label__primary.content-box__emphasis, .section--payment-method .content-box .content-box__row:nth-child(2) .input-radio');
+                          Array.prototype.forEach.call(billingAddressClickTargets, function(target) {
+                              target.addEventListener('click', function() {
+                                  var invoiceNumbers = document.querySelectorAll('.invoicenumber-dic');
+                                  Array.prototype.forEach.call(invoiceNumbers, function(el) {
+                                      el.parentNode.removeChild(el);
+                                  });
+
+                                  var billingAddressTitle = document.querySelector('.section--billing-address .section__header .section__title');
+                                  if (billingAddressTitle) {
+                                      billingAddressTitle.innerHTML = 'Credit Card Billing Address';
+                                  }
+                              });
+                          });
+
+
+
+                          var hideElementsSelectors = [
+                              '.section--billing-address .section__content .content-box .content-box__row:nth-child(2)',
+                              '.section--billing-address .section__content .content-box .content-box__row:nth-child(3)',
+                              '#section--billing-address__different .fieldset .field--half'
+                          ];
+
+                          hideElementsSelectors.forEach(function(selector) {
+                              var elements = document.querySelectorAll(selector);
+                              Array.prototype.forEach.call(elements, function(el) {
+                                  el.style.display = 'none';
+                              });
+                          });
+
+                          var checkbox = document.getElementById('checkout_different_billing_address_true');
+                          if (checkbox) {
+                              checkbox.checked = true;
+                          }
+
+                          var billingAddressDifferent = document.getElementById('section--billing-address__different');
+                          if (billingAddressDifferent) {
+                              billingAddressDifferent.classList.remove('hidden');
+                          }
+
+
+                          var billingAddressId = document.getElementById('checkout_billing_address_id');
+                          if (billingAddressId) {
+                              billingAddressId.addEventListener('change', function() {
+                                  var fields = document.querySelectorAll('#section--billing-address__different .fieldset .field--half');
+                                  if (this.value === '') {
+                                      Array.prototype.forEach.call(fields, function(field) {
+                                          field.style.display = 'block';
+                                      });
+                                  }
+                              });
+                          }
+
+                      }
+                      else {
+                          var paymentMethodRows = document.querySelectorAll(".section--payment-method .content-box .content-box__row:nth-child(7)");
+                          Array.prototype.forEach.call(paymentMethodRows, function(row) {
+                              row.parentNode.removeChild(row);
+                          });
+
+                          var billingAddressClickTargets1 = document.querySelectorAll('.section--billing-address .content-box .content-box__row:nth-child(2) .radio__label.content-box__emphasis, .section--billing-address .content-box .content-box__row:nth-child(2) .input-radio');
+                          Array.prototype.forEach.call(billingAddressClickTargets1, function(target) {
+                              target.addEventListener('click', function() {
+                                  var phoneInput = document.getElementById('checkout_billing_address_phone');
+                                  if (phoneInput) {
+                                      phoneInput.readOnly = false;
+                                  }
+                              });
+                          });
+
+                          var billingAddressClickTargets2 = document.querySelectorAll('.section--billing-address .content-box .content-box__row:nth-child(3) .radio__label.content-box__emphasis, .section--billing-address .content-box .content-box__row:nth-child(3) .input-radio');
+                          Array.prototype.forEach.call(billingAddressClickTargets2, function(target) {
+                              target.addEventListener('click', function() {
+                                  setTimeout(function() {
+                                      var phoneInput = document.getElementById('checkout_billing_address_phone');
+                                      if (phoneInput) {
+                                          phoneInput.value = getCookie('checkout_phone_clone'); // Assuming getCookie function is defined
+                                          /* phoneInput.readOnly = true; */
+                                      }
+                                  }, 1000);
+                              });
+                          });
+                      }
+                      clearInterval(invoiceInterval)
+                  }, 3000);
+              }
+              PONumber();
+
+
+              var checkoutSubmitButton = document.getElementById('checkout_submit');
+
+              if (checkoutSubmitButton) {
+                  checkoutSubmitButton.addEventListener('click', function() {
+                      var invoiceIntervalss = setInterval(function() {
+                          if (document.querySelectorAll(".total-line.total-line--reduction").length > 0) {
+                              PONumber(); // Assuming PONumber is a function defined elsewhere
+                          }
+                          clearInterval(invoiceIntervalss);
+                      }, 3000);
+                  });
+              }
+
+
+              var ltrElements = document.querySelectorAll('[dir="ltr"]');
+
+              if (ltrElements.length > 0) {
+                  var reviewBlockContent = document.querySelector('.review-block__content');
+                  if (reviewBlockContent) {
+                      var tempStr = reviewBlockContent.innerHTML.replace('<bdo dir="ltr">', '');
+                      var newTempStr = tempStr.replace('</bdo>', '');
+                  }
+              }
+
+              // Update cart
+              updateFieldOptions();
+
+
+              var reviewBlockContentElement = document.querySelector('.review-block__content');
+              var tempStr = reviewBlockContentElement ? reviewBlockContentElement.innerHTML.replace('<bdo dir="ltr">', '') : '';
+              var newTempStr = tempStr.replace('</bdo>', '');
+              var newPhone = getCookie('checkout_phone_clone');
+              createUser1(newTempStr, newPhone);
+
+              var tempPhone = '{{customer.metafields.SAGE.billing_phone}}';
+              var newTempPhone = tempPhone.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '');
+
+              setTimeout(function () {
+                  fnUpdateInputValueAll('#checkout_billing_address_first_name', "value", "{{customer.metafields.SAGE.billing_firstname}}");
+                  fnUpdateInputValueAll('#checkout_billing_address_last_name', "value", "{{customer.metafields.SAGE.billing_lastname}}");
+                  fnUpdateInputValueAll('#checkout_billing_address_company', "value", "{{customer.metafields.SAGE.billing_company}}");
+                  fnUpdateInputValueAll('#checkout_billing_address_address2', "value", "{{customer.metafields.SAGE.billing_address2}}");
+                  fnUpdateInputValueAll('#checkout_billing_address_address1', "value", "{{customer.metafields.SAGE.billing_address1}}");
+                  fnUpdateInputValueAll('#checkout_billing_address_city', "value", "{{customer.metafields.SAGE.billing_city}}");
+                  fnUpdateInputValueAll('#checkout_billing_address_zip', "value", "{{customer.metafields.SAGE.billing_zip}}");
+                  fnUpdateInputValueAll('#checkout_billing_address_phone', "value", newTempPhone);
+                  fnUpdateInputValueAll('#checkout_billing_address_province', "value", "{{customer.metafields.SAGE.billing_state}}");
+              }, 1000);
+
+          }
+
+
+      // Button and tag click
+      document.addEventListener('DOMContentLoaded', function () {
+          document.body.addEventListener('click', function(event) {
+              if (event.target.matches('[name="button"], .tag__button')) {
+                  setTimeout(function() {
+                      var arDivisionNo = '{{customer.metafields.SAGE.ARDivisionNo}}'; // Shopify template value
+                      var TermsCode = '{{customer.metafields.SAGE.TermsCode}}'; // Shopify template value
+
+                      // Update innerHTML of billing address title
+                      var billingAddressTitle = document.querySelector('.section--billing-address .section__header .section__title');
+                      if (billingAddressTitle) {
+                          billingAddressTitle.innerHTML = 'Credit Card Billing Address';
+                      }
+
+                      if (arDivisionNo !== '' && parseInt(arDivisionNo, 10) >= 1) {
+                          // Updating placeholder and innerHTML for company name
+                          var companyInput = document.querySelector('#checkout_billing_address_company');
+                          if (companyInput) {
+                              companyInput.setAttribute('placeholder', "Company / Name");
+                          }
+                          var companyLabel = document.querySelector('.fieldset [data-address-field="company"] label');
+                          if (companyLabel) {
+                              companyLabel.innerHTML = 'Company / Name';
+                          }
+
+                          // Conditionally hide payment method based on TermsCode
+                          if (!['01', '02', '05', '06', '45'].includes(TermsCode)) {
+                              var paymentMethodRows = document.querySelectorAll(".section--payment-method .content-box .content-box__row:nth-child(7)");
+                              paymentMethodRows.forEach(function(row) {
+                                  row.style.display = 'none';
+                              });
+                          }
+
+                          // Add event listener for payment method click
+                          document.querySelectorAll('.section--payment-method .content-box .content-box__row:nth-child(7) .radio__label__primary.content-box__emphasis, .section--payment-method .content-box .content-box__row:nth-child(7) .input-radio').forEach(function(el) {
+                              el.addEventListener('click', function() {
+                                  document.querySelectorAll('.invoicenumber-dic').forEach(function(invoiceEl) {
+                                      invoiceEl.parentNode.removeChild(invoiceEl);
+                                  });
+
+                                  // Append new content
+                                  var postr = ''; // Define the HTML content for postr
+                                  var paymentMethodContent = document.querySelector('.section--payment-method .section__content .content-box');
+                                  if (paymentMethodContent) {
+                                      var newDiv = document.createElement('div');
+                                      newDiv.innerHTML = postr;
+                                      paymentMethodContent.appendChild(newDiv);
+                                  }
+
+                                  // Update billing address title upon click
+                                  if (billingAddressTitle) {
+                                      billingAddressTitle.innerHTML = 'To change your account information, please <a href="/pages/contact-us/" target="_blank">contact us.</a>';
+                                  }
+
+                                  // Set readonly attributes
+                                  var billingInputs = ['#checkout_billing_address_first_name', '#checkout_billing_address_last_name', '#checkout_billing_address_company', '#checkout_billing_address_address2', '#checkout_billing_address_address1', '#checkout_billing_address_city', '#checkout_billing_address_zip', '#checkout_billing_address_phone'];
+                                  billingInputs.forEach(function(selector) {
+                                      var input = document.querySelector(selector);
+                                      if (input) {
+                                          input.readOnly = true;
+                                      }
+                                  });
+
+                                  setTimeout(function() {
+                                      var billingAddressDifferentFields = document.querySelectorAll('#section--billing-address__different .field--show-floating-label:nth-child(1), #checkout_billing_address_id, .field__caret');
+                                      billingAddressDifferentFields.forEach(function(field) {
+                                          field.style.display = 'none';
+                                      });
+
+                                      var disabledInputs = ['#checkout_billing_address_id', '#checkout_billing_address_province', '#checkout_billing_address_country'];
+                                      disabledInputs.forEach(function(selector) {
+                                          var input = document.querySelector(selector);
+                                          if (input) {
+                                              input.setAttribute('disabled', 'true');
+                                          }
+                                      });
+                                  }, 1000);
+                              });
+                          });
+
+                          // Handling click events for the 5th row
+                          document.querySelectorAll('.section--payment-method .content-box .content-box__row:nth-child(5) .radio__label__primary.content-box__emphasis, .section--payment-method .content-box .content-box__row:nth-child(5) .input-radio').forEach(function(el) {
+                              el.addEventListener('click', function() {
+                                  document.querySelectorAll('.invoicenumber-dic').forEach(function(invoiceEl) {
+                                      invoiceEl.parentNode.removeChild(invoiceEl);
+                                  });
+                              });
+                          });
+
+                          // Handling click events for the 2nd row
+                          document.querySelectorAll('.section--payment-method .content-box .content-box__row:nth-child(2) .radio__label__primary.content-box__emphasis, .section--payment-method .content-box .content-box__row:nth-child(2) .input-radio').forEach(function(el) {
+                              el.addEventListener('click', function() {
+                                  document.querySelectorAll('.invoicenumber-dic').forEach(function(invoiceEl) {
+                                      invoiceEl.parentNode.removeChild(invoiceEl);
+                                  });
+
+                                  if (billingAddressTitle) {
+                                      billingAddressTitle.innerHTML = 'Credit Card Billing Address';
+                                  }
+
+                                  // Clearing and enabling inputs
+                                  var billingInputsToClear = ['#checkout_billing_address_first_name', '#checkout_billing_address_last_name', '#checkout_billing_address_company', '#checkout_billing_address_address2', '#checkout_billing_address_address1', '#checkout_billing_address_city', '#checkout_billing_address_zip', '#checkout_billing_address_phone'];
+                                  billingInputsToClear.forEach(function(selector) {
+                                      var input = document.querySelector(selector);
+                                      if (input) {
+                                          input.value = '';
+                                          input.readOnly = false;
+                                      }
+                                  });
+
+                                  setTimeout(function() {
+                                      var billingAddressID = document.querySelector('#checkout_billing_address_id');
+                                      if (billingAddressID) {
+                                          billingAddressID.style.display = 'block';
+                                          billingAddressID.removeAttribute('disabled');
+                                      }
+
+                                      var billingCaret = document.querySelector('.field__caret');
+                                      if (billingCaret) {
+                                          billingCaret.style.display = 'block';
+                                      }
+
+                                      var billingProvince = document.querySelector('#checkout_billing_address_province');
+                                      var billingCountry = document.querySelector('#checkout_billing_address_country');
+                                      if (billingProvince) {
+                                          billingProvince.removeAttribute('disabled');
+                                      }
+                                      if (billingCountry) {
+                                          billingCountry.removeAttribute('disabled');
+                                      }
+                                  }, 1000);
+                              });
+                          });
+
+                          // Additional logic for billing address row hiding and other attributes
+                          document.querySelectorAll('.section--billing-address .section__content .content-box .content-box__row:nth-child(2), .section--billing-address .section__content .content-box .content-box__row:nth-child(3)').forEach(function(row) {
+                              row.style.display = 'none';
+                          });
+
+                          // Handling the billing address change event
+                          var billingAddressID = document.querySelector('#checkout_billing_address_id');
+                          if (billingAddressID) {
+                              billingAddressID.addEventListener('change', function() {
+                                  if (this.value == '') {
+                                      document.querySelectorAll('#section--billing-address__different .fieldset .field--half').forEach(function(field) {
+                                          field.style.display = 'block';
+                                      });
+                                  }
+                              });
+                          }
+
+                      } else {
+                          // Remove specific payment method rows if conditions are not met
+                          var paymentMethodRowsToRemove = document.querySelectorAll(".section--payment-method .content-box .content-box__row:nth-child(7)");
+                          paymentMethodRowsToRemove.forEach(function(row) {
+                              row.parentNode.removeChild(row);
+                          });
+
+                          // Add click event listeners for specific rows in the billing address section
+                          document.querySelectorAll('.section--billing-address .content-box .content-box__row:nth-child(2) .radio__label.content-box__emphasis, .section--billing-address .content-box .content-box__row:nth-child(2) .input-radio').forEach(function(el) {
+                              el.addEventListener('click', function() {
+                                  var billingPhone = document.querySelector('#checkout_billing_address_phone');
+                                  if (billingPhone) {
+                                      billingPhone.readOnly = false;
+                                  }
+                              });
+                          });
+
+                          document.querySelectorAll('.section--billing-address .content-box .content-box__row:nth-child(3) .radio__label.content-box__emphasis, .section--billing-address .content-box .content-box__row:nth-child(3) .input-radio').forEach(function(el) {
+                              el.addEventListener('click', function() {
+                                  setTimeout(function() {
+                                      var billingPhone = document.querySelector('#checkout_billing_address_phone');
+                                      if (billingPhone) {
+                                          var phoneValue = getCookie('checkout_phone_clone'); // Assuming getCookie is defined
+                                          billingPhone.value = phoneValue;
+                                          billingPhone.readOnly = true;
+                                      }
+                                  }, 1000);
+                              });
+                          });
+                      }
+                  }, 3000);
+              }
+          });
+
+
+
+          // Input masking
+          var checkoutPhoneClone = document.getElementById('checkout_phone_clone');
+          var checkoutShippingAddressPhone = document.getElementById('checkout_shipping_address_phone');
+          var checkoutBillingAddressPhone = document.getElementById('checkout_billing_address_phone');
+
+          var phoneMaskOptions = {
+              mask: "999-999-9999",
+              placeholder: "___-___-____"
+          };
+
+          if (checkoutPhoneClone) {
+              {% comment %} Inputmask(phoneMaskOptions).mask(checkoutPhoneClone); {% endcomment %}
+          }
+          if (checkoutShippingAddressPhone) {
+              Inputmask(phoneMaskOptions).mask(checkoutShippingAddressPhone);
+          }
+          if (checkoutBillingAddressPhone) {
+              Inputmask(phoneMaskOptions).mask(checkoutBillingAddressPhone);
+          }
+
+      })
+    </script>
+  </body>
+</html>

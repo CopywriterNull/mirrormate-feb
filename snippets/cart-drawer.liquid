@@ -1,0 +1,882 @@
+{% comment %}
+  Renders cart drawer
+
+  Usage:
+  {% render 'cart-drawer' %}
+{% endcomment %}
+
+{{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'cart-drawer.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+
+<script src="{{ 'cart-json.js' | asset_url }}" defer="defer"></script>
+
+<style>
+  .drawer {
+    visibility: hidden;
+  }
+</style>
+
+{% assign user_type = customer.metafields.SAGE.PriceLevel | downcase %}
+
+{% if user_type == '' or user_type == '-' or user_type == 'none' %}
+    {% assign user_type = "r" %}
+{% endif %}
+
+<cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}">
+  <div id="CartDrawer" class="cart-drawer">
+    <div id="CartDrawer-Overlay" class="cart-drawer__overlay"></div>
+    <div
+      class="drawer__inner gradient color-{{ settings.cart_color_scheme }}"
+      role="dialog"
+      aria-modal="true"
+      aria-label="{{ 'sections.cart.title' | t }}"
+      tabindex="-1"
+    >
+
+      <div class="drawer__header">
+        <div class="header__grid">
+          <div class="bag-icon drawer__icon">
+            <svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.5 24.25C22.5 24.5261 22.2761 24.75 22 24.75H5C4.72386 24.75 4.5 24.5261 4.5 24.25V7.25C4.5 6.97386 4.72386 6.75 5 6.75H22C22.2761 6.75 22.5 6.97386 22.5 7.25V24.25Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              <path d="M9.28125 10.4062V5.34375C9.28125 3.01416 11.1704 1.125 13.5 1.125C15.8296 1.125 17.7188 3.01416 17.7188 5.34375V10.4062" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h2 class="drawer__heading">{{ 'sections.cart.title' | t }} ({{ cart.item_count }})</h2>
+        </div>
+        <button
+          class="drawer__close drawer__icon"
+          type="button"
+          onclick="this.closest('cart-drawer').close()"
+          aria-label="{{ 'accessibility.close' | t }}"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_2782_47722)">
+            <path d="M19.0703 4.9292L4.92818 19.0713" stroke="white" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+            <path d="M19.0718 19.0713L4.92969 4.9292" stroke="white" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+            </g>
+            <defs>
+            <clipPath id="clip0_2782_47722">
+            <rect width="24" height="24" fill="white"/>
+            </clipPath>
+            </defs>
+          </svg>        
+        </button>
+      </div>
+      {% if settings.cart_announcement_text != blank %}
+        <div class="cart-announcement-bar">
+          <div class="cart-announcement-grid">
+            <div class="heart-icon drawer__icon">
+              <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5846 15.4583L10.5013 15.5417L10.4096 15.4583C6.4513 11.8667 3.83464 9.49167 3.83464 7.08333C3.83464 5.41667 5.08464 4.16667 6.7513 4.16667C8.03464 4.16667 9.28464 5 9.7263 6.13333H11.2763C11.718 5 12.968 4.16667 14.2513 4.16667C15.918 4.16667 17.168 5.41667 17.168 7.08333C17.168 9.49167 14.5513 11.8667 10.5846 15.4583ZM14.2513 2.5C12.8013 2.5 11.4096 3.175 10.5013 4.23333C9.59297 3.175 8.2013 2.5 6.7513 2.5C4.18464 2.5 2.16797 4.50833 2.16797 7.08333C2.16797 10.225 5.0013 12.8 9.29297 16.6917L10.5013 17.7917L11.7096 16.6917C16.0013 12.8 18.8346 10.225 18.8346 7.08333C18.8346 4.50833 16.818 2.5 14.2513 2.5Z" fill="#2D4256"/>
+              </svg>
+            </div>
+            <p class="cart-announcement-text">{{ settings.cart_announcement_text }}</p>
+          </div>
+        </div>
+      {% endif %}
+      {% render "cart-progress-bar" %}
+
+      {%- if cart == empty -%}
+        <div class="drawer__inner-empty">
+          <div class="cart-drawer__warnings center{% if settings.cart_drawer_collection != blank %} cart-drawer__warnings--has-collection{% endif %}">
+            <div class="cart-drawer__empty-content">
+              {% if settings.cart_img != blank %}
+                <div class="cart-img">
+                  <img src="{{ settings.cart_img | image_url: width: '500x' }}" alt="{{ settings.cart_img.alt }}">
+                </div>
+              {% endif %}
+              <h2 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h2>
+              <a href="{{ routes.all_products_collection_url }}" class="button hide-mobile">
+                {{ 'general.continue_shopping' | t }}
+              </a>
+
+              {% if settings.quote != blank %}
+                <div class="cart-qoute">
+                  <div class="stars-grid">
+                    {% for i in (1..5) %}
+                      <div class="star-icon drawer__icon">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6.87082 10.767C6.95026 10.719 7.04974 10.719 7.12918 10.767L10.8188 12.9938C11.0081 13.1081 11.2416 12.9384 11.1914 12.723L10.2123 8.52595C10.1912 8.43558 10.2219 8.34096 10.2921 8.2802L13.5522 5.45597C13.7193 5.31117 13.6299 5.0366 13.4096 5.01791L9.11722 4.65374C9.02482 4.64591 8.94436 4.58757 8.90817 4.5022L7.23018 0.543092C7.14403 0.339835 6.85597 0.339835 6.76982 0.543092L5.09183 4.5022C5.05564 4.58757 4.97518 4.64591 4.88278 4.65374L0.590407 5.01791C0.37005 5.0366 0.280699 5.31117 0.447848 5.45597L3.70795 8.2802C3.77809 8.34096 3.8088 8.43558 3.78772 8.52595L2.8086 12.723C2.75836 12.9384 2.99192 13.1081 3.18125 12.9938L6.87082 10.767Z" fill="#2D4256"/>
+                        </svg>
+                      </div>
+                    {% endfor %}
+                  </div>
+                  <p class="qoute">{{ settings.quote }}</p>
+                  {% if settings.name != blank %}
+                    <span class="name">{{ settings.name }}</span>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+          {% if settings.cart_upsell_empty != blank %}
+            {% if customer.metafields.SAGE.ARDivisionNo == '22' %}  
+            
+            {% elsif customer.metafields.SAGE.ARDivisionNo == '20' %}  
+              
+            {% elsif customer.metafields.SAGE.ARDivisionNo == '23' %}  
+              
+            {% elsif customer.metafields.SAGE.ARDivisionNo == '30' %}  
+  
+            {% else %}
+              {% render 'cart-upsell', title: settings.upsell_title_empty, upsellCollection: settings.cart_upsell_empty %}
+            {% endif %}
+            
+          {% endif %}
+        </div>
+      {%- endif -%}
+
+      <cart-drawer-items
+        {% if cart == empty %}
+          class=" is-empty"
+        {% endif %}
+      >
+        <form
+          action="{{ routes.cart_url }}"
+          id="CartDrawer-Form"
+          class="cart__contents cart-drawer__form"
+          method="post"
+        >
+          <div id="CartDrawer-CartItems" class="drawer__contents js-contents">
+            {%- if cart != empty -%}
+              <div class="drawer__cart-items-wrapper">
+                <table class="cart-items" role="table">
+                  <tbody role="rowgroup">
+                    {%- for item in cart.items -%}
+                      {% assign isOversizedProduct = false %}
+                      {% assign product__title = item.product.title | downcase %}
+                      {% if product__title contains "oversize" %}
+                        {% assign isOversizedProduct = true %}
+                      {% endif %}
+
+                      <tr id="CartDrawer-Item-{{ item.index | plus: 1 }}" class="cart-item{% if isOversizedProduct %} is-oversized{% endif %}" role="row" js-cart-item>
+                        <td class="cart-item__media drawer__icon" role="cell" headers="CartDrawer-ColumnProductImage">
+                          {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
+                          <a href="{{ item.url }}" class="cart-item__link" tabindex="-1" aria-hidden="true"> </a>
+                          {% if item.image %}
+                            <img
+                              class="cart-item__image"
+                              src="{{ item.image | image_url: width: 300 }}"
+                              alt="{{ item.image.alt | escape }}"
+                              loading="lazy"
+                              width="150"
+                              height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}"
+                            >
+                          {% else %}
+                            {{ 'image' | placeholder_svg_tag }}
+                          {% endif %}
+                        </td>
+
+                        <td class="cart-item__details" role="cell" headers="CartDrawer-ColumnProduct">
+                          {%- if settings.show_vendor -%}
+                            <p class="caption-with-letter-spacing light">{{ item.product.vendor }}</p>
+                          {%- endif -%}
+
+                          <a href="{{ item.url }}" class="cart-item__name h4 break">
+                            {{- item.product.title | escape -}}
+                          </a>
+
+                          {%- if item.product.has_only_default_variant == false -%}
+                            <div class="product-option">
+                              {%- for option in item.options_with_values -%}
+                                {% if option.name == "Size" %}
+                                  {% assign size_value = option.value %}
+                                {% endif %}
+
+                                <span>{{- option.value -}}</span>
+                                {%- unless forloop.last %}•{% endunless %}
+                              {%- endfor -%}
+                            </div>
+                          {%- endif -%}
+                          {%- if item.properties.size != 0 -%}
+                            <div class="product-option">
+                              {% assign property_measurement = item.properties.Measurements %}
+                              {% if property_measurement != blank %}
+                                <span>Measurements : {{ property_measurement }}</span>
+                              {% endif %}
+                            </div>
+                          {%- endif -%}
+
+                          <ul
+                            class="discounts list-unstyled"
+                            role="list"
+                            aria-label="{{ 'customer.order.discount' | t }}"
+                          >
+                            {%- for discount in item.line_level_discount_allocations -%}
+                              <li class="discounts__discount">
+                                {%- render 'icon-discount' -%}
+                                {{ discount.discount_application.title }}
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+
+                          {% if item.properties.size != 0 and isOversizedProduct == false and item.properties._width != blank %}
+                            <cart-view-details class="view-details">view details</cart-view-details>
+                          {% endif %}
+                        </td>
+
+                        <td class="cart-item__totals right" role="cell" headers="CartDrawer-ColumnTotal">
+                          {%- render 'loading-spinner' -%}
+                          <div class="cart-item__price-wrapper">
+                            {%- if item.original_line_price != item.final_line_price -%}
+                              <div class="cart-item__discounted-prices">
+                                <span class="visually-hidden">
+                                  {{ 'products.product.price.sale_price' | t }}
+                                </span>
+                                <span class="price price--end">
+                                  {{ item.final_line_price | money | remove: '.00' }}
+                                </span>
+                                <span class="visually-hidden">
+                                  {{ 'products.product.price.regular_price' | t }}
+                                </span>
+                                <s class="cart-item__old-price price price--end">
+                                  {{ item.original_line_price | money | remove: '.00' }}
+                                </s>
+                              </div>
+                            {%- else -%}
+                              <span class="price price--end">
+                                {{ item.original_line_price | money | remove: '.00' }}
+                              </span>
+                            {%- endif -%}
+
+                            {%- if item.variant.available and item.unit_price_measurement -%}
+                              <div class="unit-price caption">
+                                <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
+                                {{ item.unit_price | money }}
+                                <span aria-hidden="true">/</span>
+                                <span class="visually-hidden"
+                                  >&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span
+                                >
+                                {%- if item.unit_price_measurement.reference_value != 1 -%}
+                                  {{- item.unit_price_measurement.reference_value -}}
+                                {%- endif -%}
+                                {{ item.unit_price_measurement.reference_unit }}
+                              </div>
+                            {%- endif -%}
+                          </div>
+                        </td>
+                        {%- liquid
+                          assign has_qty_rules = false
+                          if item.variant.quantity_rule.increment > 1 or item.variant.quantity_rule.min > 1 or item.variant.quantity_rule.max != null
+                            assign has_qty_rules = true
+                          endif
+
+                          assign has_vol_pricing = false
+                          if item.variant.quantity_price_breaks.size > 0
+                            assign has_vol_pricing = true
+                          endif
+                        -%}
+                        <td
+                          class="cart-item__quantity {% if has_qty_rules or has_vol_pricing %} cart-item__quantity--info{% endif %}"
+                          role="cell"
+                          headers="CartDrawer-ColumnQuantity"
+                        >
+                          <quantity-popover>
+                            <div class="cart-item__quantity-wrapper quantity-popover-wrapper">
+                              <div class="quantity-popover-container{% if has_qty_rules or has_vol_pricing %} quantity-popover-container--hover{% endif %}">
+                                {% if isOversizedProduct %}
+                                  <div class="quantity cart-quantity">
+                                {% else %}
+                                  <quantity-input class="quantity cart-quantity">
+                                {% endif %}
+                                  {% unless isOversizedProduct %}
+                                    <button class="quantity__button" name="minus" type="button">
+                                      <span class="visually-hidden">
+                                        {{-
+                                          'products.product.quantity.decrease'
+                                          | t: product: item.product.title
+                                          | escape
+                                        -}}
+                                      </span>
+                                      <div class="quantity-icon drawer__icon">
+                                        <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M9.71231 6.12491H2.28769" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                      </div>
+                                    </button>
+                                  {% endunless %}
+
+                                  {% assign hasOversized = false %}
+                                  {% assign width = item.properties._width | times: 1 %}
+                                  {% assign height = item.properties._height | times: 1 %}
+                                  {% if width >= 90 or height >= 90 %}
+                                    {% assign hasOversized = true %}
+                                  {% endif %}
+
+                                  {% for line_item in cart.items %}
+                                    {% assign product__title = line_item.product.title | downcase %}
+                                    {% if product__title contains "oversize" %}
+                                      {% assign oversizedLineKey = line_item.key %}
+                                      {% assign oversizedLineQuantity = line_item.quantity %}
+                                      {% break %}
+                                    {% endif %}
+                                  {% endfor %}
+
+                                  <input
+                                    class="quantity__input"
+                                    type="number"
+                                    data-quantity-variant-id="{{ item.variant.id }}"
+                                    name="updates[]"
+                                    value="{{ item.quantity }}"
+                                    {% # theme-check-disable %}
+                                    data-cart-quantity="{{ cart | item_count_for_variant: item.variant.id }}"
+                                    data-line-quantity="{{ item.quantity }}"
+                                    min="1"
+                                    data-min="{{ item.variant.quantity_rule.min }}"
+                                    {% if item.variant.quantity_rule.max != null %}
+                                      max="{{ item.variant.quantity_rule.max }}"
+                                    {% endif %}
+                                    step="{{ item.variant.quantity_rule.increment }}"
+                                    {% # theme-check-enable %}
+                                    aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+                                    id="Drawer-quantity-{{ item.index | plus: 1 }}"
+                                    data-index="{{ item.index | plus: 1 }}"
+                                    {% if isOversizedProduct %}
+                                      readonly
+                                    {% endif %}
+                                    {% if hasOversized %}
+                                      data-behaviour="oversized"
+                                      data-variant-available="{{ item.variant.available }}"
+                                      data-line-item-key="{{ item.key }}"
+                                      data-oversized-line-item-key="{{ oversizedLineKey }}"
+                                      data-oversized-line-item-quantity="{{ oversizedLineQuantity }}"
+                                    {% endif %}
+                                  >
+                                  {% unless isOversizedProduct %}
+                                    <button class="quantity__button" name="plus" type="button">
+                                      <span class="visually-hidden">
+                                        {{-
+                                          'products.product.quantity.increase'
+                                          | t: product: item.product.title
+                                          | escape
+                                        -}}
+                                      </span>
+                                      <div class="quantity-icon drawer__icon">
+                                        <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M9.71231 6.12491H2.28769" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                          <path d="M6 2.4126V9.83722" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>                                      
+                                      </div>
+                                    </button>
+                                  {% endunless %}
+                             
+                                {% if isOversizedProduct %}
+                                  </div>
+                                {% else %}
+                                  </quantity-input>
+                                {% endif %}
+                              </div>
+                              {% unless isOversizedProduct %}
+                                <cart-remove-button
+                                  id="CartDrawer-Remove-{{ item.index | plus: 1 }}"
+                                  data-index="{{ item.index | plus: 1 }}"
+                                >
+                                  <button
+                                    type="button"
+                                    class="button button--tertiary cart-remove-button drawer__icon"
+                                    aria-label="{{ 'sections.cart.remove_title' | t: title: item.title | escape }}"
+                                    data-variant-id="{{ item.variant.id }}"
+                                  >
+                                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M14 11.5V17.5M10 11.5V17.5M6 7.5V19.5C6 20.0304 6.21071 20.5391 6.58579 20.9142C6.96086 21.2893 7.46957 21.5 8 21.5H16C16.5304 21.5 17.0391 21.2893 17.4142 20.9142C17.7893 20.5391 18 20.0304 18 19.5V7.5M4 7.5H20M7 7.5L9 3.5H15L17 7.5" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>                                
+                                  </button>
+                                </cart-remove-button>
+                              {% endunless %}
+                            </div>
+                            {%- if has_qty_rules or has_vol_pricing -%}
+                              <button
+                                type="button"
+                                class="quantity-popover__info-button quantity-popover__info-button--icon-with-label button button--tertiary"
+                                aria-expanded="false"
+                              >
+                                {% render 'icon-info' %}
+                                <span>
+                                  {%- if has_vol_pricing -%}
+                                    {{ 'products.product.volume_pricing.note' | t }}
+                                  {%- elsif has_qty_rules -%}
+                                    {{ 'products.product.quantity.note' | t }}
+                                  {%- endif -%}
+                                </span>
+                              </button>
+                            {%- endif -%}
+                            {%- if has_vol_pricing or has_qty_rules -%}
+                              <div
+                                class="cart-items__info global-settings-popup quantity-popover__info"
+                                tabindex="-1"
+                                hidden
+                              >
+                                {%- if has_qty_rules == false -%}
+                                  <span class="volume-pricing-label caption">
+                                    {{- 'products.product.volume_pricing.title' | t -}}
+                                  </span>
+                                {%- endif -%}
+                                <div class="quantity__rules caption">
+                                  {%- if item.variant.quantity_rule.increment > 1 -%}
+                                    <span class="divider">
+                                      {{-
+                                        'products.product.quantity.multiples_of'
+                                        | t: quantity: item.variant.quantity_rule.increment
+                                      -}}
+                                    </span>
+                                  {%- endif -%}
+                                  {%- if item.variant.quantity_rule.min > 1 -%}
+                                    <span class="divider">
+                                      {{-
+                                        'products.product.quantity.min_of'
+                                        | t: quantity: item.variant.quantity_rule.min
+                                      -}}
+                                    </span>
+                                  {%- endif -%}
+                                  {%- if item.variant.quantity_rule.max != null -%}
+                                    <span class="divider">
+                                      {{-
+                                        'products.product.quantity.max_of'
+                                        | t: quantity: item.variant.quantity_rule.max
+                                      -}}
+                                    </span>
+                                  {%- endif -%}
+                                </div>
+                                <button
+                                  class="button-close button button--tertiary"
+                                  type="button"
+                                  aria-label="{{ 'accessibility.close' | t }}"
+                                >
+                                  {%- render 'icon-close' -%}
+                                </button>
+                                {%- if item.variant.quantity_price_breaks.size > 0 -%}
+                                  <volume-pricing class="parent-display">
+                                    <ul class="list-unstyled">
+                                      <li>
+                                        <span>{{ item.variant.quantity_rule.min }}+</span>
+                                        <span>{{ item.variant.price | money_with_currency }}/ea</span>
+                                      </li>
+                                      {%- for price_break in item.variant.quantity_price_breaks -%}
+                                        <li>
+                                          <span>
+                                            {{- price_break.minimum_quantity -}}
+                                            <span aria-hidden="true">+</span></span
+                                          >
+                                          <span>{{ price_break.price | money_with_currency }}/ea</span>
+                                        </li>
+                                      {%- endfor -%}
+                                    </ul>
+                                  </volume-pricing>
+                                {%- endif -%}
+                              </div>
+                            {%- endif -%}
+                            <div
+                              id="CartDrawer-LineItemError-{{ item.index | plus: 1 }}"
+                              class="cart-item__error"
+                              role="alert"
+                            >
+                              <small class="cart-item__error-text"></small>
+                              <svg
+                                aria-hidden="true"
+                                focusable="false"
+                                class="icon icon-error"
+                                viewBox="0 0 13 13"
+                              >
+                                <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+                                <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+                                <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+                                <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+                              </svg>
+                            </div>
+                          </quantity-popover>
+                        </td>
+                        {% assign item_properties = item.properties %}
+                        {%- if item_properties.size != 0 -%}
+                          <td
+                            class="cart-item__option-details"
+                            role="cell"
+                          >
+                            
+                            {% assign width = item_properties._width | times: 1 %}
+                            {% if item_properties._width_fraction == "0" %}
+                              {% assign width_fraction = item_properties._width_fraction | times: 1 %}
+                            {% else %}
+                              {% assign width_fraction = item_properties._width_fraction | split: "/" %}
+                              {% assign w_fraction_1 = width_fraction | first | times: 1 %}
+                              {% assign w_fraction_2 = width_fraction | last | append: '.0' | times: 1 %}
+                              {% assign width_fraction = w_fraction_1 | divided_by: w_fraction_2 %}
+                            {% endif %}
+                            
+                            {% if item_properties._width_fraction == "0" %}
+                              {% assign width_dimension = width %}
+                            {% else %}
+                              {% assign width_dimension = width | append: ' ' | append: item_properties._width_fraction %}
+                            {% endif %}
+
+                            {% assign height = item_properties._height | times: 1 %}
+                            {% if item_properties._height_fraction == "0" %}
+                              {% assign height_fraction = item_properties._height_fraction | times: 1 %}
+                            {% else %}
+                              {% assign height_fraction = item_properties._height_fraction | split: "/" %}
+                              {% assign h_fraction_1 = height_fraction | first | times: 1 %}
+                              {% assign h_fraction_2 = height_fraction | last | append: '.0' | times: 1 %}
+                              {% assign height_fraction = h_fraction_1 | divided_by: h_fraction_2 %}
+                            {% endif %}
+                           
+                            {% if item_properties._height_fraction == "0" %}
+                              {% assign height_dimension = height %}
+                            {% else %}
+                              {% assign height_dimension = height | append: ' ' | append: item_properties._height_fraction %}
+                            {% endif %}
+
+                            {% assign space_top = item_properties._clearance_top %}
+                            {% assign space_bottom = item_properties._clearance_bottom %}
+                            {% assign space_right = item_properties._clearance_right %}
+                            {% assign space_left = item_properties._clearance_left %}
+
+                            {% if item_properties._clearance_top == "0" %}
+                              {% assign clearance_top_fraction = item_properties._clearance_top | times: 1 %}
+                            {% else %}
+                              {% assign clearance_top_fraction = item_properties._clearance_top | split: "/" %}
+                              {% assign clearance_top_fraction_1 = clearance_top_fraction | first | times: 1 %}
+                              {% assign clearance_top_fraction_2 = clearance_top_fraction | last | append: '.0' | times: 1 %}
+                              {% assign clearance_top_fraction = clearance_top_fraction_1 | divided_by: clearance_top_fraction_2 %}
+                            {% endif %}
+
+                            {% if item_properties._clearance_bottom == "0" %}
+                              {% assign clearance_bottom_fraction = item_properties._clearance_bottom | times: 1 %}
+                            {% else %}
+                              {% assign clearance_bottom_fraction = item_properties._clearance_bottom | split: "/" %}
+                              {% assign clearance_bottom_fraction_1 = clearance_bottom_fraction | first | times: 1 %}
+                              {% assign clearance_bottom_fraction_2 = clearance_bottom_fraction | last | append: '.0' | times: 1 %}
+                              {% assign clearance_bottom_fraction = clearance_bottom_fraction_1 | divided_by: clearance_bottom_fraction_2 %}
+                            {% endif %}
+
+                            {% if item_properties._clearance_right == "0" %}
+                              {% assign clearance_right_fraction = item_properties._clearance_right | times: 1 %}
+                            {% else %}
+                              {% assign clearance_right_fraction = item_properties._clearance_right | split: "/" %}
+                              {% assign clearance_right_fraction_1 = clearance_right_fraction | first | times: 1 %}
+                              {% assign clearance_right_fraction_2 = clearance_right_fraction | last | append: '.0' | times: 1 %}
+                              {% assign clearance_right_fraction = clearance_right_fraction_1 | divided_by: clearance_right_fraction_2 %}
+                            {% endif %}
+
+                            {% if item_properties._clearance_left == "0" %}
+                              {% assign clearance_left_fraction = item_properties._clearance_left | times: 1 %}
+                            {% else %}
+                              {% assign clearance_left_fraction = item_properties._clearance_left | split: "/" %}
+                              {% assign clearance_left_fraction_1 = clearance_left_fraction | first | times: 1 %}
+                              {% assign clearance_left_fraction_2 = clearance_left_fraction | last | append: '.0' | times: 1 %}
+                              {% assign clearance_left_fraction = clearance_left_fraction_1 | divided_by: clearance_left_fraction_2 %}
+                            {% endif %}
+
+                            {% assign clips_top = "" %}
+                            {% assign clips_bottom = "" %}
+                            {% assign clips_right = "" %}
+                            {% assign clips_left = "" %}
+
+                            {% if item_properties._clips_channels_top == "Yes" %}
+                              {% assign clips_top = "Top" | append: " " %}
+                            {% endif %}
+                            {% if item_properties._clips_channels_bottom == "Yes" %}
+                              {% assign clips_bottom = "Bottom" | append: " " %}
+                            {% endif %}
+                            {% if item_properties._clips_channels_right == "Yes" %}
+                              {% assign clips_right = "Right" | append: " " %}
+                            {% endif %}
+                            {% if item_properties._clips_channels_left == "Yes" %}
+                              {% assign clips_left = "Left" %}
+                            {% endif %}
+                            
+                            {% capture frame_width %}
+                              {{ width | plus: width_fraction | plus: clearance_left_fraction | plus: clearance_right_fraction }}
+                            {% endcapture %}
+
+                            {% capture frame_height %}
+                              {{ height | plus: height_fraction | plus: clearance_top_fraction | plus: clearance_bottom_fraction }}
+                            {% endcapture %}
+
+                            {% assign mirrorSizeArr = "1/8,1/4,3/8,1/2,5/8,3/4,7/8" | split: ',' %}
+                            {% assign mirrorValueArr = "125,25,375,5,625,75,875" | split: ',' %}
+
+                            {% assign frame_width_fraction = frame_width | split: "." | last %}
+                            {% assign frame_height_fraction = frame_height | split: "." | last %}
+
+                            {% assign width_decimal_index = 0 %}
+                            {% assign height_decimal_index = 0 %}
+
+                            {% for decimalNo in mirrorValueArr %}
+
+                              {% capture decimalNo %}{{ decimalNo | strip }}{% endcapture %}
+                              {% capture frame_width_fraction %}{{ frame_width_fraction | strip }}{% endcapture %}
+                              {% capture frame_height_fraction %}{{ frame_height_fraction | strip }}{% endcapture %}
+
+                              {% if decimalNo == frame_width_fraction %}
+                                {% assign width_decimal_index = forloop.index0 %}
+                              {% endif %}
+                              {% if decimalNo == frame_height_fraction %}
+                                {% assign height_decimal_index = forloop.index0 %}
+                              {% endif %}
+                            {% endfor %}
+
+                            {% if frame_width contains "." %}
+                              {% assign frame_width_fraction = mirrorSizeArr[width_decimal_index] %}
+                            {% else %}
+                              {% assign frame_width_fraction = "" %}
+                            {% endif %}
+
+                            {% if frame_width contains ".0" %}
+                              {% assign frame_width_fraction = "" %}
+                            {% endif %}
+
+                            {% if frame_height contains "." %}
+                              {% assign frame_height_fraction = mirrorSizeArr[height_decimal_index] %}
+                            {% else %}
+                              {% assign frame_height_fraction = "" %}
+                            {% endif %}
+
+                            {% if frame_height contains ".0" %}
+                              {% assign frame_height_fraction = "" %}
+                            {% endif %}
+
+                            {% capture frame_size %}{{ frame_width | split: "." | first | append: " " | append: frame_width_fraction | strip }}" x {{ frame_height | split: "." | first | append: " " | append: frame_height_fraction | strip }}"{% endcapture %}
+                            {% capture mirror_size %}{{ width_dimension }}" x {{ height_dimension }}"{% endcapture %}
+                            {% capture space_around %}Top: {{ space_top }}", Bottom: {{ space_bottom }}", Right: {{ space_right }}", Left: {{ space_left }}"{% endcapture %}
+                            {% capture clips_channels %}{{ clips_top }} {{ clips_bottom }} {{ clips_right  }} {{ clips_left }}{% endcapture %}
+
+                            {% assign align_with_vanity = item_properties._edges_align %}
+
+                            {% capture editIcon %}
+                              <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g>
+                                <path d="M16.0336 3.51517C16.572 2.97657 17.2952 2.66293 18.0564 2.63786C18.8176 2.61279 19.5598 2.87817 20.1326 3.38017L20.2766 3.51517L20.9836 4.22217C21.5219 4.76059 21.8353 5.48355 21.8604 6.24451C21.8855 7.00547 21.6203 7.74749 21.1186 8.32017L20.9836 8.46417L9.77155 19.6772C9.61303 19.8357 9.42099 19.9567 9.20955 20.0312L9.04755 20.0782L4.59355 21.1062C4.43752 21.1422 4.27511 21.1403 4.11996 21.1006C3.96482 21.0609 3.82147 20.9845 3.70194 20.8779C3.58242 20.7714 3.49022 20.6376 3.43308 20.488C3.37593 20.3384 3.35552 20.1773 3.37355 20.0182L3.39355 19.9052L4.42055 15.4502C4.47129 15.2317 4.57039 15.0273 4.71055 14.8522L4.82155 14.7272L16.0336 3.51517ZM15.3266 7.05017L6.33655 16.0402L5.70055 18.7982L8.45855 18.1612L17.4486 9.17117L15.3266 7.05017ZM18.8626 4.92917C18.6904 4.75699 18.4613 4.65356 18.2182 4.63828C17.9752 4.623 17.735 4.69692 17.5426 4.84617L17.4486 4.92917L16.7406 5.63617L18.8626 7.75717L19.5696 7.05017C19.7417 6.87798 19.8452 6.64888 19.8604 6.40585C19.8757 6.16283 19.8018 5.92257 19.6526 5.73017L19.5696 5.63617L18.8626 4.92917Z" fill="#2D4256"/>
+                                </g>
+                                <defs>
+                                <clipPath id="clip0_2782_48166">
+                                <rect width="24" height="24" fill="white" transform="translate(0 0.5)"/>
+                                </clipPath>
+                                </defs>
+                              </svg>
+                            {% endcapture %}
+                            
+                            <div class="properties__grid">
+                              {% if item_properties._PO != blank %}
+                                <div class="product__option">
+                                  <div class="option__alpha">
+                                    <span class="option__label">PO #</span>
+                                    <div class="option__value">
+                                      <span>{{ item_properties._PO }}</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              {% endif %}
+                              {% if item_properties._unit != blank %}
+                                <div class="product__option">
+                                  <div class="option__alpha">
+                                    <span class="option__label">Room/Unit #</span>
+                                    <div class="option__value">
+                                      <span>{{ item_properties._unit }}</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              {% endif %}
+                              <div class="product__option">
+                                <div class="option__alpha">
+                                  <span class="option__label">mirror size</span>
+                                  <div class="option__value">
+                                    <span>{{ mirror_size }}</span>
+                                  </div>
+                                </div>
+
+                                {% if user_type == "r" %}
+                                  {% capture mirror_size_attribute %}data-trigger-step="3" data-mode="update" data-line-index="{{ item.index | plus: 1 }}" data-line-quantity="{{ item.quantity }}" data-has-oversized="{{ hasOversized }}" data-oversized-line-item-quantity="{{ oversizedLineQuantity }}" data-line-size-value="{{ size_value }}"{% endcapture %}
+                                    {%- render 'frame-button', class: "option__beta drawer__icon" requestType: "index", frameType: "regular", enableLoading: true, btnLabel: editIcon, product: item.product, attribute: mirror_size_attribute -%}
+                                  {% endif %}
+                              </div>
+                              <div class="product__option">
+                                <div class="option__alpha">
+                                  <span class="option__label">Frame size</span>
+                                  <div class="option__value">
+                                    <span>{{ frame_size }}</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="product__option">
+                                <div class="option__alpha">
+                                  <span class="option__label">space around</span>
+                                  <div class="option__value">
+                                    <span>{{ space_around }}</span>
+                                  </div>
+                                </div>
+
+                                {% if user_type == "r" %}
+                                  {% capture size_around_attribute %}data-trigger-step="4" data-mode="update" data-line-index="{{ item.index | plus: 1 }}" data-line-quantity="{{ item.quantity }}" data-has-oversized="{{ hasOversized }}" data-oversized-line-item-quantity="{{ oversizedLineQuantity }}" data-line-size-value="{{ size_value }}"{% endcapture %}
+                                    {%- render 'frame-button', class: "option__beta drawer__icon" requestType: "index", frameType: "regular", enableLoading: true, btnLabel: editIcon, product: item.product, attribute: size_around_attribute -%}
+                                {% endif %}
+                              </div>
+                              <div class="product__option">
+                                <div class="option__alpha">
+                                  <span class="option__label">clips on channels</span>
+                                  <div class="option__value">
+                                    {% if clips_channels != blank %}
+                                      <span>{{ clips_channels | split: ' ' | join: ', ' }}</span>
+                                    {% else %}
+                                      <span>N/A</span>
+                                    {% endif %}
+                                  </div>
+                                </div>
+
+                                {% if user_type == "r" %}
+                                  {% if space_top != "5/8" or space_bottom != "5/8" or space_left != "5/8" or space_right != "5/8" %}
+                                    {% capture clips_channels_attribute %}data-trigger-step="5" data-mode="update" data-line-index="{{ item.index | plus: 1 }}" data-line-quantity="{{ item.quantity }}" data-has-oversized="{{ hasOversized }}" data-oversized-line-item-quantity="{{ oversizedLineQuantity }}" data-line-size-value="{{ size_value }}"{% endcapture %}
+                                    {%- render 'frame-button', class: "option__beta drawer__icon" requestType: "index", frameType: "regular", enableLoading: true, btnLabel: editIcon, product: item.product, attribute: clips_channels_attribute -%}
+                                  {% endif %}
+                                  {% endif %}
+                              </div>
+                              {% if align_with_vanity != blank %}
+                                <div class="product__option">
+                                  <div class="option__alpha">
+                                    <span class="option__label">aligned with vanity</span>
+                                    <div class="option__value">
+                                      <span>{{ align_with_vanity }}</span>
+                                    </div>
+                                  </div>
+
+                                  {% if user_type == "r" and space_bottom == "0" %}
+                                    {% capture align_with_vanity_attribute %}data-trigger-step="6" data-mode="update" data-line-index="{{ item.index | plus: 1 }}" data-line-quantity="{{ item.quantity }}" data-has-oversized="{{ hasOversized }}" data-oversized-line-item-quantity="{{ oversizedLineQuantity }}" data-line-size-value="{{ size_value }}"{% endcapture %}
+                                    {%- render 'frame-button', class: "option__beta drawer__icon" requestType: "index", frameType: "regular", enableLoading: true, btnLabel: editIcon, product: item.product, attribute: align_with_vanity_attribute -%}
+                                  {% endif %}
+                                </div>
+                              {% endif %}
+                              {% if item_properties._clips-larger-than-1-inch != blank %}
+                                <div class="product__option">
+                                  <div class="option__alpha">
+                                    <span class="option__label">Are your clips larger than 1 inch?</span>
+                                    <div class="option__value">
+                                      <span>{{ item_properties._clips-larger-than-1-inch }}</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              {% endif %}
+                            </div>
+                            <script type="application/json" js-properties-json>
+                              {
+                                {% for properties in item.properties %}
+                                  "{{ properties.first }}": "{{ properties.last }}"
+                                  {% unless forloop.last %},{% endunless %}
+                                {% endfor %}
+                              }
+                            </script>
+                          </td>
+                        {%- endif -%}
+                      </tr>
+                    {%- endfor -%}
+                  </tbody>
+                </table>
+              </div>
+            {%- endif -%}
+            <p id="CartDrawer-LiveRegionText" class="visually-hidden" role="status"></p>
+            <p id="CartDrawer-LineItemStatus" class="visually-hidden" aria-hidden="true" role="status">
+              {{ 'accessibility.loading' | t }}
+            </p>
+          </div>
+          <div id="CartDrawer-CartErrors" role="alert"></div>
+        </form>
+        {% if settings.cart_upsell != blank %}
+          
+          {% if customer.metafields.SAGE.ARDivisionNo == '22' %}  
+            
+          {% elsif customer.metafields.SAGE.ARDivisionNo == '20' %}  
+            
+          {% elsif customer.metafields.SAGE.ARDivisionNo == '23' %}  
+            
+          {% elsif customer.metafields.SAGE.ARDivisionNo == '30' %}  
+
+          {% else %}
+            {% render 'cart-upsell', title: settings.upsell_title, upsellCollection: settings.cart_upsell %}  
+          {% endif %}
+          
+        {% endif %}
+      </cart-drawer-items>
+      <cart-json class="cart-json">{{ cart | json }}</cart-json>
+      {% unless cart.empty? %}
+        <div class="drawer__footer">
+          {%- if settings.show_cart_note -%}
+            <details id="Details-CartDrawer" open>
+              <summary>
+                <span class="summary__title">
+                  {{ 'sections.cart.note' | t }}
+                  {% render 'icon-caret' %}
+                </span>
+              </summary>
+              <cart-note class="cart__note field">
+                <label class="visually-hidden" for="CartDrawer-Note">{{ 'sections.cart.note' | t }}</label>
+                <textarea
+                  id="CartDrawer-Note"
+                  class="text-area text-area--resize-vertical field__input"
+                  name="note"
+                  placeholder="{{ 'sections.cart.note' | t }}"
+                >{{ cart.note }}</textarea>
+              </cart-note>
+            </details>
+          {%- endif -%}
+
+          <!-- CTAs -->
+
+          <div class="cart__ctas" {{ block.shopify_attributes }}>
+            <button
+              type="submit"
+              id="CartDrawer-Checkout"
+              class="cart__checkout-button button"
+              name="checkout"
+              form="CartDrawer-Form"
+              {% if cart == empty %}
+                disabled
+              {% endif %}
+            >
+              continue to checkout
+              <span class="cart__total">- {{ cart.total_price | money | replace: ".00" }}</span>
+            </button>
+          </div>
+          <div id="paypal-main" class="cart_drawer_paypal_new"
+                   data-pp-message
+                   data-pp-style-layout="text"
+                   data-pp-style-logo-type="inline"
+                   data-pp-style-text-color="#2d4256"
+                   data-pp-style-text-align="center"
+                   data-pp-amount="{{ cart.total_price | money | replace : '$','' }}"
+                   style="text-align:center;">
+          </div>
+          <small class="tax-note">Shipping and taxes calculated at checkout</small>
+        </div>
+      {% endunless %}
+      <div class="loading-tail">
+        <svg width="200px" height="200px"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style="background: none;">
+          <circle cx="75" cy="50" fill="#363a3c" r="6.39718">
+              <animate attributeName="r" values="4.8;4.8;8;4.8;4.8" times="0;0.1;0.2;0.3;1" dur="1s" repeatCount="indefinite" begin="-0.875s"></animate>
+          </circle>
+          <circle cx="67.678" cy="67.678" fill="#363a3c" r="4.8">
+              <animate attributeName="r" values="4.8;4.8;8;4.8;4.8" times="0;0.1;0.2;0.3;1" dur="1s" repeatCount="indefinite" begin="-0.75s"></animate>
+          </circle>
+          <circle cx="50" cy="75" fill="#363a3c" r="4.8">
+              <animate attributeName="r" values="4.8;4.8;8;4.8;4.8" times="0;0.1;0.2;0.3;1" dur="1s" repeatCount="indefinite" begin="-0.625s"></animate>
+          </circle>
+          <circle cx="32.322" cy="67.678" fill="#363a3c" r="4.8">
+              <animate attributeName="r" values="4.8;4.8;8;4.8;4.8" times="0;0.1;0.2;0.3;1" dur="1s" repeatCount="indefinite" begin="-0.5s"></animate>
+          </circle>
+          <circle cx="25" cy="50" fill="#363a3c" r="4.8">
+              <animate attributeName="r" values="4.8;4.8;8;4.8;4.8" times="0;0.1;0.2;0.3;1" dur="1s" repeatCount="indefinite" begin="-0.375s"></animate>
+          </circle>
+          <circle cx="32.322" cy="32.322" fill="#363a3c" r="4.80282">
+              <animate attributeName="r" values="4.8;4.8;8;4.8;4.8" times="0;0.1;0.2;0.3;1" dur="1s" repeatCount="indefinite" begin="-0.25s"></animate>
+          </circle>
+          <circle cx="50" cy="25" fill="#363a3c" r="6.40282">
+              <animate attributeName="r" values="4.8;4.8;8;4.8;4.8" times="0;0.1;0.2;0.3;1" dur="1s" repeatCount="indefinite" begin="-0.125s"></animate>
+          </circle>
+          <circle cx="67.678" cy="32.322" fill="#363a3c" r="7.99718">
+              <animate attributeName="r" values="4.8;4.8;8;4.8;4.8" times="0;0.1;0.2;0.3;1" dur="1s" repeatCount="indefinite" begin="0s"></animate>
+          </circle>
+        </svg>
+      </div>
+    </div>
+  </div>
+</cart-drawer>

@@ -1,0 +1,33 @@
+<div class="info-drawer frame-drawer" id="Info-Drawer">
+    <div class="frame-overlay" js-overlay></div>
+    <div class="info-main-drawer frame-drawer-main">
+        <div class="drawer-scroll">
+            {% if meta.image != blank %}
+                <div class="img__wrap">
+                    <img src="{{ meta.image | image_url: width: '600x' }}" alt="{{ meta.image.alt }}">
+                </div>
+            {% endif %}
+            <div class="drawer-close-btn" js-trigger-close>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_2782_57739)">
+                    <path d="M19.0703 4.92896L4.92818 19.0711" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                    <path d="M19.0718 19.0711L4.92969 4.92896" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_2782_57739">
+                    <rect width="24" height="24" fill="white"/>
+                    </clipPath>
+                    </defs>
+                </svg>
+            </div>
+            <div class="drawer-rte">
+                {% if meta.title != blank %}
+                    <h3 class="drawer-title">{{ meta.title }}</h3>
+                {% endif %}
+                {% if meta.text != blank %}
+                    <div class="drawer-text">{{ meta.text | metafield_tag }}</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

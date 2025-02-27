@@ -1,0 +1,456 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: 12px;
+    padding-bottom: 56px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+
+
+<!------------------- Start frame model---------------------->
+
+{%- assign lineitemKey = '' -%}
+{%- assign lineitemNumber = '' -%}
+
+{%- assign page_url = content_for_header | split:'"pageurl":"' | last | split:'"' | first | split: request.host | last | replace:'\/','/' | replace:'%20',' ' | replace:'\u0026','&'  -%}
+{% assign param = blank %}
+
+{%- for i in (1..1) -%}
+  {%- unless page_url contains "?" -%}{% break %}{%- endunless -%}
+  {%- assign query_string = page_url | split:'?' | last -%}
+  {%- assign qry_parts= query_string | split:'&' -%}
+
+  {%- for part in qry_parts -%}
+    {%- assign key_and_value = part | split:'=' -%}
+    {%- if key_and_value.size > 1 -%}
+      
+      {% if key_and_value[0] == 'lineitemKey' %}
+       {%- assign lineitemKey = key_and_value[1] | strip -%}
+      {% endif %}
+
+      {% if key_and_value[0] == 'number' %}
+       {%- assign lineitemNumber = key_and_value[1] | strip -%}
+      {% endif %}
+      
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+
+
+{{ 'frame-model-order.css' | asset_url | stylesheet_tag }}
+{%- if lineitemKey != blank -%}
+  
+  {{ 'frame-model.css' | asset_url | stylesheet_tag }}
+
+   {%- render "frame-model-order", 
+     state: "is-open", 
+     blocks: section.blocks, 
+     sectionId: section.id, 
+     formId: 'order_form_basin', 
+     lineitemKey: lineitemKey,
+     order: order,
+     lineitemNumber: lineitemNumber
+   -%}
+  
+<script src="{{ 'frame-model-order.js' | asset_url }}" defer="defer"></script>
+
+{%- endif -%}
+
+<!------------------- End frame model------------------------>
+
+<div class="customer order section-{{ section.id }}-padding">
+  
+  <div class="order-heading">
+     <a class="return-account-link" href="{{ routes.account_url }}">
+      <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 1L1 5L5 9" stroke="#2D4256" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+       <span>{{ 'customer.account.return' | t }}</span>
+     </a>
+    <h1 class="customer__title">{{ 'customer.order.heading' | t }}</h1>
+   
+  </div>
+
+
+
+   
+         
+    
+          
+          
+  <div class="order-details">
+    
+    <div class="order-details-content">
+
+      <div class="info">{{ 'customer.order.title' | t }}: {{ order.name }}</div>
+      <div class="info">{{ 'customer.order.date_html' | t }}: {{ order.created_at | date: '%m/%d/%y' }}</div>
+      <div class="info">{{ 'customer.order.payment_status' | t }}: {{ order.financial_status }}</div>
+      <div class="info">{{ 'customer.order.fulfillment_status' | t }}: {{ order.fulfillment_status }}</div>
+      <div class="info">{{ 'customer.order.total' | t }}: {{ order.total_price | money_without_trailing_zeros }}</div>
+
+
+      {%- assign available_for_reorder = false -%}
+      <form js-reorder-form="{{ order.id }}" method="post" class="hidden" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" novalidate="novalidate">
+         {%- assign temp_index = 0 -%}  
+         {%- for line_item in order.line_items -%}
+               {%- if line_item.variant.available -%}
+
+                   {%- assign available_for_reorder = true -%}
+                   {%- assign line_item_quantity = line_item.quantity -%}
+                   {%- if line_item.variant.inventory_policy == 'deny' -%}
+                       {%- if line_item.quantity > line_item.variant.inventory_quantity -%}
+                          {%- assign line_item_quantity = line_item.variant.inventory_quantity -%}
+                       {%- endif -%}
+                   {%- endif -%}  
+                   
+                  <input type="hidden" name="items[{{ temp_index }}][id]"  value="{{ line_item.variant_id }}" />
+                  <input type="hidden" name="items[{{ temp_index }}][quantity]"  value="{{ line_item_quantity }}" />
+                  {%- for properties in line_item.properties -%}
+                      <input type="hidden" name="items[{{ temp_index }}][properties][{{ properties.first }}]"  value="{{ properties.last }}" />
+                  {%- endfor -%}
+                  {%- assign temp_index = temp_index | plus: 1 -%}  
+
+               {%- endif -%}
+           {%- endfor -%}
+      </form>
+
+      {%- if available_for_reorder -%}
+      <a href="javascript:void(0)" js-reorder-btn="{{ order.id }}" class="button">
+        <span>{{ 'customer.order.reorder' | t }}</span>
+        <div class="loading__spinner">
+          <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+          </svg>
+        </div>
+      </a>
+      <div js-reorder-error class="reorder-error-message hidden"></div>
+   {%- endif -%}
+      
+      {% comment %}
+      <h2>{{ 'customer.order.title' | t: name: order.name }}</h2>
+      {%- assign order_date = order.created_at | time_tag: format: 'date_at_time' -%}
+      <p>{{ 'customer.order.date_html' | t: date: order_date }}</p>
+      {%- if order.cancelled -%}
+        {%- assign cancelled_at = order.cancelled_at | time_tag: format: 'date_at_time' -%}
+        <p>{{ 'customer.order.cancelled_html' | t: date: cancelled_at }}</p>
+        <p>{{ 'customer.order.cancelled_reason' | t: reason: order.cancel_reason_label }}</p>
+      {%- endif -%}
+       {% endcomment %}
+      
+    </div>
+
+    <div class="order-items">
+
+       {%- assign item_count = 0 -%}
+       {%- for line_item in order.line_items -%}
+          {%- assign dimension_properties = false -%}
+          {%- assign line_quantity = line_item.quantity -%}
+          {%- if line_item.properties['_measurements'] == 'required' -%}
+            {%- assign dimension_properties = true -%}
+          {%- endif -%}
+         {%- if dimension_properties -%}
+            {%- assign item_count = item_count | plus: line_quantity -%}
+         {%- else -%} 
+             {%- assign item_count = item_count | plus: 1 -%}
+         {%- endif -%}  
+       {%- endfor -%} 
+        <div class="order-items-count">{{ item_count }}&nbsp;{%- if item_count == 1 -%}{{ 'customer.order.items' | t | replace: 's', '' }}{%- else -%}{{ 'customer.order.items' | t }}{%- endif -%}</div>
+
+      {% comment %}
+          {%- assign dimension_properties = false -%}
+          {%- assign order_tags = order.tags | downcase -%}
+          {%- if order_tags contains 'dimensionrequired' -%}
+                {%- assign dimension_properties = true -%}
+          {%- endif -%}
+      {% endcomment %}
+
+          {%- assign forloop_first = true -%}
+          {%- for line_item in order.line_items -%}
+              {%- assign line_quantity = line_item.quantity -%}
+
+                {%- assign dimension_properties = false -%}
+                {%- if line_item.properties['_measurements'] == 'required' -%}
+                  {%- assign dimension_properties = true -%}
+                {%- endif -%}
+            
+            
+              {%- if dimension_properties -%}
+                  {%- for i in (1..line_quantity) -%}
+                    {%- render 'order-item-new-dimension', line_item: line_item, i: i, forloop_first: forloop_first -%}
+                      {%- assign forloop_first = false -%}
+                  {%- endfor -%} 
+              {%- else -%}
+                    {%- render 'order-item-new', line_item: line_item, forloop_first: forloop_first -%}    
+                    {%- assign forloop_first = false -%}
+              {%- endif -%}
+          {%- endfor -%}
+          
+       
+    </div>
+    
+    {% comment %}
+      <table role="table" class="order-details">
+        <caption class="visually-hidden">
+          {{ 'customer.order.title' | t: name: order.name }}
+        </caption>
+        <thead role="rowgroup">
+          <tr role="row">
+            <th id="ColumnProduct" scope="col" role="columnheader">{{ 'customer.order.product' | t }}</th>
+            <th id="ColumnSku" scope="col" role="columnheader">{{ 'customer.order.sku' | t }}</th>
+            <th id="ColumnPrice" scope="col" role="columnheader">{{ 'customer.order.price' | t }}</th>
+            <th id="ColumnQuantity" scope="col" role="columnheader">{{ 'customer.order.quantity' | t }}</th>
+            <th id="ColumnTotal" scope="col" role="columnheader">{{ 'customer.order.total' | t }}</th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          
+          {%- assign dimension_properties = false -%}
+          {%- assign order_tags = order.tags | downcase -%}
+          {%- if order_tags contains 'dimensionrequired' -%}
+                {%- assign dimension_properties = true -%}
+          {%- endif -%}
+          
+          {%- for line_item in order.line_items -%}
+              {%- assign line_quantity = line_item.quantity -%}
+              {%- if dimension_properties -%}
+                  {%- for i in (1..line_quantity) -%}
+                    {%- render 'order-item-dimension', line_item: line_item, i: i -%}
+                  {%- endfor -%} 
+              {%- else -%}
+                    {%- render 'order-item', line_item: line_item -%}
+              {%- endif -%}
+          {%- endfor -%}
+          
+        </tbody>
+        <tfoot role="rowgroup">
+          <tr role="row">
+            <td id="RowSubtotal" role="rowheader" scope="row" colspan="4">
+              {{ 'customer.order.subtotal' | t }}
+            </td>
+            <td headers="RowSubtotal" role="cell" data-label="{{ 'customer.order.subtotal' | t }}">
+              {{ order.line_items_subtotal_price | money }}
+            </td>
+          </tr>
+          {%- if order.cart_level_discount_applications != blank -%}
+            <tr role="row">
+              {%- for discount_application in order.cart_level_discount_applications -%}
+                <td id="RowDiscount" role="rowheader" scope="row" colspan="4">
+                  {{ 'customer.order.discount' | t }}
+                  <span class="cart-discount">
+                    <svg aria-hidden="true" focusable="false" viewBox="0 0 12 12">
+                      <use href="#icon-discount" />
+                    </svg>
+                    {{- discount_application.title | escape -}}
+                  </span>
+                </td>
+                <td headers="RowDiscount" role="cell" data-label="{{ 'customer.order.discount' | t }}">
+                  <div>
+                    <span>-{{ discount_application.total_allocated_amount | money }}</span>
+                    <span class="cart-discount">
+                      <svg aria-hidden="true" focusable="false" viewBox="0 0 12 12">
+                        <use href="#icon-discount" />
+                      </svg>
+                      {{- discount_application.title | escape -}}
+                    </span>
+                  </div>
+                </td>
+              {%- endfor -%}
+            </tr>
+          {%- endif -%}
+          {%- for shipping_method in order.shipping_methods -%}
+            <tr role="row">
+              <td id="RowShipping" role="rowheader" scope="row" colspan="4">
+                {{ 'customer.order.shipping' | t }} ({{ shipping_method.title | escape }})
+              </td>
+              <td
+                headers="RowShipping"
+                role="cell"
+                data-label="{{ 'customer.order.shipping' | t }} ({{ shipping_method.title | escape }})"
+              >
+                {{ shipping_method.price | money }}
+              </td>
+            </tr>
+          {%- endfor -%}
+          {%- for tax_line in order.tax_lines -%}
+            <tr role="row">
+              <td id="RowTax" role="rowheader" scope="row" colspan="4">
+                {{ 'customer.order.tax' | t }} ({{ tax_line.title | escape }}
+                {{ tax_line.rate | times: 100 }}%)
+              </td>
+              <td
+                headers="RowTax"
+                role="cell"
+                data-label="{{ 'customer.order.tax' | t }} ({{ tax_line.title | escape }} {{ tax_line.rate | times: 100 }}%)"
+              >
+                {{ tax_line.price | money }}
+              </td>
+            </tr>
+          {%- endfor -%}
+          {%- if order.total_duties -%}
+            <tr role="row">
+              <td id="RowDuties" role="rowheader" scope="row" colspan="4">{{ 'customer.order.total_duties' | t }}</td>
+              <td headers="RowDuties" role="cell" data-label="{{ 'customer.order.total_duties' | t }}">
+                {{ order.total_duties | money }}
+              </td>
+            </tr>
+          {%- endif -%}
+          {%- if order.total_refunded_amount > 0 -%}
+            <tr role="row">
+              <td id="RowTotalRefund" role="rowheader" scope="row" colspan="3">
+                {{ 'customer.order.total_refunded' | t }}
+              </td>
+              <td
+                headers="RowTotalRefund"
+                role="cell"
+                colspan="2"
+                data-label="{{ 'customer.order.total_refunded' | t }}"
+              >
+                -{{ order.total_refunded_amount | money_with_currency }}
+              </td>
+            </tr>
+          {%- endif -%}
+          <tr role="row">
+            <td id="RowTotal" role="rowheader" scope="row" colspan="3">{{ 'customer.order.total' | t }}</td>
+            <td headers="RowTotal" role="cell" colspan="2" data-label="{{ 'customer.order.total' | t }}">
+              {{ order.total_net_amount | money_with_currency }}
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    {% endcomment %}
+
+  {% comment %}
+    <div>
+      <div>
+        <h2>{{ 'customer.order.billing_address' | t }}</h2>
+        <p>
+          <strong>{{ 'customer.order.payment_status' | t }}:</strong>
+          {{ order.financial_status_label }}
+        </p>
+        {{ order.billing_address | format_address }}
+      </div>
+      <div>
+        <h2>{{ 'customer.order.shipping_address' | t }}</h2>
+        <p>
+          <strong>{{ 'customer.order.fulfillment_status' | t }}:</strong>
+          {{ order.fulfillment_status_label }}
+        </p>
+        {{ order.shipping_address | format_address }}
+      </div>
+    </div>
+     {% endcomment %}
+  </div>
+</div>
+
+{%- if lineitemKey == blank -%}
+  <script>
+    const measurementActions = document.querySelectorAll('[js-measurements-action]');
+    measurementActions.forEach((item)=> {
+    const itemKey = item.getAttribute('js-measurements-action');
+    const url = `https://usebasin.com/api/v1/submissions?filter_by=all&form_id=667197967fdf1ee7a22e549b21e6b2af&page=1&query=${itemKey}&api_token=667197967fdf1ee7a22e549b21e6b2af`;
+    fetch(url, {
+      method: "GET",
+    })
+    .then(resp => resp.json())
+    .then(function(data) {
+        //console.log('data', data.submissions.length);
+        if(data.submissions.length > 0) {
+         // if(document.querySelector(`[js-measurements-result="${itemKey}"]`)) document.querySelector(`[js-measurements-result="${itemKey}"]`).classList.remove('hidden');
+            if(document.querySelector(`[js-view-more="${itemKey}"]`)) document.querySelector(`[js-view-more="${itemKey}"]`).classList.remove('hidden');
+            if(document.querySelector(`[js-view-content="${itemKey}"]`)) document.querySelector(`[js-view-content="${itemKey}"]`).classList.remove('hidden');
+
+            const dimensionData = data.submissions[0].payload_params;
+
+            const mirrorSize = `Width: ${dimensionData._width} ${dimensionData._width_fraction}”, Height: ${dimensionData._height} ${dimensionData._height_fraction}” `;
+            const spaceAround = `Top: ${dimensionData._clearance_top}”,  Bottom: ${dimensionData._clearance_bottom}”, Right: ${dimensionData._clearance_right}”,  Left: ${dimensionData._clearance_left}”`;
+
+            const clipsArray = [];
+            if(dimensionData._clips_channels_top == 'Yes') {
+              clipsArray.push('Top');
+            }
+           if(dimensionData._clips_channels_left == 'Yes') {
+              clipsArray.push('Left');
+            }
+           if(dimensionData._clips_channels_right == 'Yes') {
+              clipsArray.push('Right');
+            }
+            if(dimensionData._clips_channels_bottom == 'Yes') {
+              clipsArray.push('Bottom');
+            }
+            const clipsChannels = clipsArray.length>0?clipsArray.join(', '): 'No';
+            const edgesAlign = dimensionData._edges_align;
+
+            const frame_WidthFraction = dimensionData._frame_WidthFraction? dimensionData._frame_WidthFraction: '';
+            const frame_HeightFraction = dimensionData._frame_HeightFraction? dimensionData._frame_HeightFraction: '';
+            const frameSize = `Width: ${dimensionData._frame_Width} ${frame_WidthFraction}”, Height: ${dimensionData._frame_Height} ${frame_HeightFraction}” `;
+
+            document.querySelector(`[js-mirror-size="${itemKey}"]`).innerHTML = mirrorSize;
+            document.querySelector(`[js-space-around="${itemKey}"]`).innerHTML = spaceAround;
+            document.querySelector(`[js-clips-channels="${itemKey}"]`).innerHTML = clipsChannels;
+            document.querySelector(`[js-aligned-vanity="${itemKey}"]`).innerHTML = edgesAlign;
+
+             if(dimensionData._frame_Width != null && dimensionData._frame_Width != undefined) {
+                document.querySelector(`[js-frame-size="${itemKey}"]`).innerHTML = frameSize;
+             }
+             else {
+                document.querySelector(`[js-frame-size-content="${itemKey}"]`).classList.add('hidden');
+             }
+
+             
+        }
+        else {
+         item.classList.remove('hidden');
+        }
+    })
+    .catch(function(error) {
+    console.log(error);
+    });
+  });
+
+
+  
+    
+  </script>
+  <script src="{{ 'account.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+                          
+{% schema %}
+{
+  "name": "t:sections.main-order.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 96
+    }
+  ]
+}
+{% endschema %}

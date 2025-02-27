@@ -1,0 +1,940 @@
+{% comment %}
+  Renders a header drawer menu for mobile and desktop.
+
+  Usage:
+  {% render 'header-drawer' %}
+{% endcomment %}
+
+<header-drawer data-breakpoint="{% if section.settings.menu_type_desktop == 'drawer' %}desktop{% else %}tablet{% endif %}">
+  <details id="Details-menu-drawer-container" class="menu-drawer-container">
+    <summary
+      class="header__icon header__icon--menu header__icon--summary link focus-inset"
+      aria-label="{{ 'sections.header.menu' | t }}"
+    >
+      <span>
+        {% render 'icon-hamburger' %}
+        {% render 'icon-close' %}
+      </span>
+    </summary>
+    <div id="menu-drawer" class="gradient menu-drawer motion-reduce color-{{ section.settings.menu_color_scheme }}">
+      <div class="menu-drawer__inner-container">
+        <div class="menu-drawer__navigation-container">
+          <nav class="menu-drawer__navigation">
+            <ul class="menu-drawer__menu has-submenu list-menu" role="list">
+              {%- for link in section.settings.mobile_main_menu.links -%}
+                {% assign custom_megamenu_mobile = false  %}
+                {% assign custom_inner_megamenu_mobile = false  %}
+          
+                {% assign megamenu_selection = shop.metaobjects.megamenu_selection.values %}
+                {% paginate shop.metaobjects.megamenu_selection.values by 1000 %}
+                  {% for megamenu_selection in megamenu_selection %}
+          
+                    {% assign link_title = link.title | handleize %}
+                    {% assign main_menu_title = megamenu_selection.main_menu_title.value | handleize %}
+                    
+                    {% if main_menu_title == link_title %}
+                      
+                      {% if megamenu_selection.inner_menu_title.value != blank %}
+                        {%- for childlink in link.links -%}  
+                          {% assign childlink_title = childlink.title | handleize %}
+                          {% assign inner_menu_title = megamenu_selection.inner_menu_title.value | handleize %}
+                          
+                          {% if inner_menu_title == childlink_title %}
+                            {%- assign custom_megamenu_mobile = true -%}
+                          {% endif %}
+                        {% endfor %}
+                      {% else %}
+                        {%- assign custom_megamenu_mobile = true -%}
+                        {%- assign custom_inner_megamenu_mobile = true -%}
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                {% endpaginate %}
+                <li>
+                  {%- if link.links != blank or custom_megamenu_mobile -%}
+                    <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
+                      <summary
+                        id="HeaderDrawer-{{ link.handle }}"
+                        class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}"
+                      >
+                        {{ link.title | escape }}
+                        {% render 'icon-arrow' %}
+                        {% render 'icon-caret' %}
+                      </summary>
+                      <div
+                        id="link-{{ link.handle | escape }}"
+                        class="menu-drawer__submenu has-submenu gradient motion-reduce"
+                        tabindex="-1"
+                      >
+                        <div class="menu-drawer__inner-submenu">
+                          <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                            <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <g clip-path="url(#clip0_6_2055)">
+                              <path d="M11.3337 1.83325L4.66699 8.49992L11.3337 15.1666" stroke="#2D4256" stroke-width="2" stroke-linecap="round"/>
+                              </g>
+                              <defs>
+                              <clipPath id="clip0_6_2055">
+                              <rect width="16" height="16" fill="white" transform="translate(0 0.5)"/>
+                              </clipPath>
+                              </defs>
+                            </svg>
+                            {{ link.title }}
+                          </button>
+
+                          
+                          <!-- if inner menu available -->
+                          {%- if link.links != blank or custom_megamenu -%}
+                            <ul class="menu-drawer__menu menu-drawer__menu_second_level_new list-menu" role="list" tabindex="-1">
+                              {%- for childlink in link.links -%}
+                                <li>
+                                    {% assign custom_megamenu_mobile = false  %}
+                                    {% assign custom_inner_megamenu_mobile = false  %}
+                              
+                                    {% assign megamenu_selection = shop.metaobjects.megamenu_selection.values %}
+                                    {% paginate shop.metaobjects.megamenu_selection.values by 1000 %}
+                                      {% for megamenu_selection in megamenu_selection %}
+                              
+                                        {% assign link_title = link.title | handleize %}
+                                        {% assign main_menu_title = megamenu_selection.main_menu_title.value | handleize %}
+                                        
+                                        {% if main_menu_title == link_title %}
+                                          
+                                          {% if megamenu_selection.inner_menu_title.value != blank %}
+                                            
+                                              {% assign childlink_title = childlink.title | handleize %}
+                                              {% assign inner_menu_title = megamenu_selection.inner_menu_title.value | handleize %}
+                                              
+                                              {% if inner_menu_title == childlink_title %}
+                                                {%- assign custom_megamenu_mobile = true -%}
+                                              {% endif %}
+                                            
+                                          {% else %}
+                                            {%- assign custom_megamenu_mobile = true -%}
+                                            {%- assign custom_inner_megamenu_mobile = true -%}
+                                          {% endif %}
+                                        {% endif %}
+                                      {% endfor %}
+                                    {% endpaginate %}
+                                    {% if custom_megamenu_mobile == true and custom_inner_megamenu_mobile == false %}
+                                      {% if childlink.url != "#" %}
+                                        <a
+                                          id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
+                                          href="{{ childlink.url }}"
+                                          class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
+                                          {% if childlink.current %}
+                                            aria-current="page"
+                                          {% endif %}
+                                        >
+                                          {{ childlink.title }}
+                                        </a>
+                                      {% else %}
+                                        <details id="Details-menu-drawer-{{ link.handle }}-{{ childlink.handle }}">
+                                          <summary
+                                            id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
+                                            class="menu-drawer__menu-item link link--text list-menu__item focus-inset"
+                                            href="{{ childlink.url }}"
+                                          >
+                                            
+                                            {{ childlink.title }}
+                                            {% render 'icon-arrow' %}
+                                            {% render 'icon-caret' %}
+                                          </summary>
+                                          <div
+                                            id="childlink-{{ childlink.handle | escape }}"
+                                            class="menu-drawer__submenu has-submenu menu-drawer__menu_third_level_new gradient motion-reduce"
+                                          >
+                                            <button
+                                              class="menu-drawer__close-button link link--text focus-inset"
+                                              aria-expanded="true"
+                                            >
+                                              <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_6_2055)">
+                                                <path d="M11.3337 1.83325L4.66699 8.49992L11.3337 15.1666" stroke="#2D4256" stroke-width="2" stroke-linecap="round"/>
+                                                </g>
+                                                <defs>
+                                                <clipPath id="clip0_6_2055">
+                                                <rect width="16" height="16" fill="white" transform="translate(0 0.5)"/>
+                                                </clipPath>
+                                                </defs>
+                                              </svg>
+                                              {{ childlink.title }}
+                                            </button>
+                                            {% assign megamenu_selection = shop.metaobjects.megamenu_selection.values %}
+                                              {% paginate shop.metaobjects.megamenu_selection.values by 1000 %}
+                                                {% for megamenu_selection in megamenu_selection %}
+                  
+                                                  
+                                                  {% assign childlink_title = childlink.title | handleize %}
+                                                  {% assign inner_menu_title = megamenu_selection.inner_menu_title.value | handleize %}
+                                                  
+                                                  {% if inner_menu_title == childlink_title %}
+              
+                                                   <div class="Header_megamenu_inner_mainbox_mobile_new {{ megamenu_selection.custom_class.value }}">
+                                                      <div class="Header_megamenu_inner_innerbox_mobile_new">
+                                                        <!-- 1 -->
+                                                        {%- for megamenu_banner in megamenu_selection.megamenu_banner_with_text_selection.value -%}
+                                                          {%- if megamenu_banner.image_or_video.value != blank and megamenu_banner.title.value != blank -%}
+                                                            <div class="Megamenu_detail_1_new {{ megamenu_banner.custom_class.value }}">
+                                                              <div class="Megamenu_detail_1_mainbox_new">
+                                                                {%- if megamenu_banner.url.value != blank -%}
+                                                                  <a href="{{ megamenu_banner.url.value }}">
+                                                                {%- endif -%}
+                                                                    <div class="Megamenu_detail_1_innerbox_new">
+                                                                      <div class="Megamenu_detail_1_innerbox_boths_new">
+                                                                        {%- if megamenu_banner.image_or_video_mobile.value != blank -%}
+                                                                          {%- if megamenu_banner.image_or_video_mobile.value contains "files" -%}
+                                                                            <div class="Megamenu_detail_2_innerbox_boths_videoimage_new">
+                                                                              {{
+                                                                                megamenu_banner.image_or_video_mobile.value | 
+                                                                                image_url: width: img.width | 
+                                                                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                                                fetchpriority: 'auto'
+                                                                              }}
+                                                                            </div>
+                                                                          {%- else -%}
+                                                                            <div class="Megamenu_detail_2_innerbox_boths_videoimage_new">
+                                                                              {{ megamenu_banner.image_or_video_mobile.value | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                                                            </div>
+                                                                          {%- endif -%}
+                                                                        {% else %}
+                                                                          {%- if megamenu_banner.image_or_video.value contains "files" -%}
+                                                                            <div class="Megamenu_detail_2_innerbox_boths_videoimage_new">
+                                                                              {{
+                                                                                megamenu_banner.image_or_video.value | 
+                                                                                image_url: width: img.width | 
+                                                                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                                                fetchpriority: 'auto'
+                                                                              }}
+                                                                            </div>
+                                                                          {%- else -%}
+                                                                            <div class="Megamenu_detail_2_innerbox_boths_videoimage_new">
+                                                                              {{ megamenu_banner.image_or_video.value | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                                                            </div>
+                                                                          {%- endif -%}
+                                                                        {% endif %}
+                                                                      </div>
+                                                                      {%- if megamenu_banner.title.value != blank -%}
+                                                                        <div class="Megamenu_detail_1_innerbox_title_new">
+                                                                          {{ megamenu_banner.title.value }}
+                                                                        </div>
+                                                                      {%- endif -%}
+                                                                    </div>
+                                                                {%- if megamenu_banner.url.value != blank -%}
+                                                                  </a>
+                                                                {%- endif -%}
+                                                              </div>
+                                                            </div>
+                                                          {%- endif -%}
+                                                        {%- endfor -%}
+                                                        
+                                                        <!-- 2 -->
+                                                        {%- for megamenu_items in megamenu_selection.megamenu_item_selection.value -%}
+                                                          {%- if megamenu_items.image_or_video.value != blank and megamenu_items.title.value != blank -%}
+                                                            <div class="Megamenu_detail_2_new {{ megamenu_banner.custom_class.value }}">
+                                                              <div class="Megamenu_detail_2_mainbox_new">
+                                                                {%- if megamenu_items.url.value != blank -%}
+                                                                  <a href="{{ megamenu_items.url.value }}">
+                                                                {%- endif -%}
+                                                                    <div class="Megamenu_detail_2_innerbox_new">
+                                                                      <div class="Megamenu_detail_2_innerbox_boths_new">
+                                                                        {%- if megamenu_items.image_or_video_mobile.value != blank -%}
+                                                                          {%- if megamenu_items.image_or_video_mobile.value contains "files" -%}
+                                                                            <div class="Megamenu_detail_2_innerbox_boths_videoimage_new">
+                                                                              {{
+                                                                                megamenu_items.image_or_video_mobile.value | 
+                                                                                image_url: width: img.width | 
+                                                                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                                                fetchpriority: 'auto'
+                                                                              }}
+                                                                            </div>
+                                                                          {%- else -%}
+                                                                            <div class="Megamenu_detail_2_innerbox_boths_videoimage_new">
+                                                                              {{ megamenu_items.image_or_video_mobile.value | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                                                            </div>
+                                                                          {%- endif -%}
+                                                                        {% else %}
+                                                                          {%- if megamenu_items.image_or_video.value contains "files" -%}
+                                                                            <div class="Megamenu_detail_2_innerbox_boths_videoimage_new">
+                                                                              {{
+                                                                                megamenu_items.image_or_video.value | 
+                                                                                image_url: width: img.width | 
+                                                                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                                                fetchpriority: 'auto'
+                                                                              }}
+                                                                            </div>
+                                                                          {%- else -%}
+                                                                            <div class="Megamenu_detail_2_innerbox_boths_videoimage_new">
+                                                                              {{ megamenu_items.image_or_video.value | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                                                            </div>
+                                                                          {%- endif -%}
+                                                                        {% endif %}
+                                                                      </div>
+                                                                      {%- if megamenu_items.title.value != blank -%}
+                                                                        <div class="Megamenu_detail_2_innerbox_title_new">
+                                                                          {{ megamenu_items.title.value }}
+                                                                        </div>
+                                                                      {%- endif -%}
+                                                                    </div>
+                                                                {%- if megamenu_items.url.value != blank -%}
+                                                                  </a>
+                                                                {%- endif -%}
+                                                              </div>
+                                                            </div>
+                                                          {%- endif -%}
+                                                        {%- endfor -%}
+              
+                                                        <!-- 3 -->
+                                                        {%- for megamenu_product in megamenu_selection.megamenu_product_selection.value -%}
+                                                          {%- if megamenu_product.title != blank -%}
+                                                            <div class="Megamenu_detail_3_new">
+                                                              <div class="Megamenu_detail_3_mainbox_new">
+                                                                <div class="Megamenu_detail_3_innerbox_new">
+                                                                  {% render 'card-product',
+                                                                    card_product: megamenu_product,
+                                                                    media_aspect_ratio: section.settings.image_ratio,
+                                                                    image_shape: section.settings.image_shape,
+                                                                    show_secondary_image: section.settings.show_secondary_image,
+                                                                    show_vendor: section.settings.show_vendor,
+                                                                    show_rating: section.settings.show_rating,
+                                                                    section_id: section.id,
+                                                                    quick_add: section.settings.quick_add
+                                                                  %}
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          {%- endif -%}
+                                                        {%- endfor -%}
+              
+                                                        <!-- 4 -->
+                                                        {%- if megamenu_selection.megamenu_box_redirect_text.value != blank and megamenu_selection.megamenu_box_redirect_link.value != blank -%}
+                                                          <div class="Megamenu_detail_4_new">
+                                                            <div class="Megamenu_detail_4_mainbox_new">
+                                                              {%- if megamenu_selection.megamenu_box_redirect_link.value != blank -%}
+                                                                <a href="{{ megamenu_selection.megamenu_box_redirect_link.value }}">
+                                                              {%- endif -%}
+                                                                  <div class="Megamenu_detail_4_innerbox_new">
+                                                                    {{ megamenu_selection.megamenu_box_redirect_text.value }}
+                                                                  </div>
+                                                              {%- if megamenu_selection.megamenu_box_redirect_link.value != blank -%}
+                                                                </a>
+                                                              {%- endif -%}
+                                                            </div>
+                                                          </div>
+                                                        {%- endif -%}  
+  
+                                                        <!-- 5 --> 
+                                                        {%- if megamenu_selection.mobile_inner_menu_logo_image.value != blank or megamenu_selection.mobile_inner_menu_heading_text.value != blank or megamenu_selection.mobile_inner_menu_detail_text.value != blank -%}
+                                                          <div class="Header_drawer_mobile_mainfaqs_new">
+                                                            <div class="Header_drawer_mobile_innerfaqs_new">
+                                                              {%- if megamenu_selection.mobile_inner_menu_logo_image.value != blank -%}
+                                                                <div class="Header_drawer_mobile_innerfaqs_mainboths_new">
+                                                                  <div class="Header_drawer_mobile_innerfaqs_innerboths_new">
+                                                                    {%- if megamenu_selection.mobile_inner_menu_logo_image.value contains "files" -%}
+                                                                      <div class="Header_drawer_mobile_innerfaqs_innerboths_imagevideo_new">
+                                                                        {{
+                                                                          megamenu_selection.mobile_inner_menu_logo_image.value | 
+                                                                          image_url: width: img.width | 
+                                                                          image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                                          fetchpriority: 'auto', 
+                                                                          class:'Static_image_new'
+                                                                        }}
+                                                                      </div>
+                                                                    {%- endif -%}
+                                                                  </div>
+                                                                </div>
+                                                              {%- endif -%}
+                                                              {%- if megamenu_selection.mobile_inner_menu_heading_text.value != blank -%}
+                                                                <div class="Header_drawer_mobile_innerfaqs_maintitle_new">
+                                                                  <div class="Header_drawer_mobile_innerfaqs_innertitle_new">
+                                                                    <h3>{{ megamenu_selection.mobile_inner_menu_heading_text.value }}</h3>
+                                                                  </div>
+                                                                </div>
+                                                              {%- endif -%}
+                                                              {%- if megamenu_selection.mobile_inner_menu_detail_text.value != blank -%}
+                                                                <div class="Header_drawer_mobile_innerfaqs_maininfos_new">
+                                                                  <div class="Header_drawer_mobile_innerfaqs_innerinfos_new">
+                                                                    {{ megamenu_selection.mobile_inner_menu_detail_text | metafield_tag }}
+                                                                  </div>
+                                                                </div>
+                                                              {%- endif -%}
+                                                            </div>  
+                                                          </div>
+                                                        {%- endif -%}  
+              
+                                                        <!-- 6 --> 
+                                                        {%- if megamenu_selection.mobile_inner_menu_information_list.value != blank -%}
+                                                          <div class="Header_drawer_mobile_mainlists_new">
+                                                            <div class="Header_drawer_mobile_innerlists_new">
+                                                              {{ megamenu_selection.mobile_inner_menu_information_list | metafield_tag }}
+                                                            </div>
+                                                          </div>
+                                                        {%- endif -%}
+                                                        
+                                                      </div>
+                                                    </div>
+                                                  {% endif %}
+                                                    
+                                                  
+                                                {% endfor %}
+                                              {% endpaginate %}
+                                          </div>
+                                        </details>
+                                      {% endif %}
+                                    {%- else -%}
+                                      {%- if childlink.links == blank -%}
+                                        <a
+                                          id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
+                                          href="{{ childlink.url }}"
+                                          class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
+                                          {% if childlink.current %}
+                                            aria-current="page"
+                                          {% endif %}
+                                        >
+                                          {{ childlink.title }}
+                                        </a>  
+                                      {%- endif -%}
+                                    {%- endif -%}
+                                </li>
+                              {%- endfor -%}
+                            </ul>
+                            
+                          {% else %}
+                            
+                            <!-- inner menu not available -->
+                            {% if custom_megamenu_mobile == true and custom_inner_megamenu_mobile == true %}
+                              
+                                {% assign megamenu_selection = shop.metaobjects.megamenu_selection.values %}
+                                {% paginate shop.metaobjects.megamenu_selection.values by 1000 %}
+                                  {% for megamenu_selection in megamenu_selection %}
+            
+                                    {% assign link_title = link.title | handleize %}
+                                    {% assign main_menu_title = megamenu_selection.main_menu_title.value | handleize %}
+                                    
+                                    {% if main_menu_title == link_title %}
+                                      <div class="Header_megamenu_inner_mainbox_mobile_new {{ megamenu_selection.custom_class.value }}">
+                                        <div class="Header_megamenu_inner_innerbox_mobile_new">
+                                          <!-- 1 -->
+                                          {%- for megamenu_banner in megamenu_selection.megamenu_banner_with_text_selection.value -%}
+                                            {%- if megamenu_banner.image_or_video.value != blank and megamenu_banner.title.value != blank -%}
+                                              <div class="Megamenu_detail_1_new {{ megamenu_banner.custom_class.value }}">
+                                                <div class="Megamenu_detail_1_mainbox_new">
+                                                  {%- if megamenu_banner.url.value != blank -%}
+                                                    <a href="{{ megamenu_banner.url.value }}">
+                                                  {%- endif -%}
+                                                      <div class="Megamenu_detail_1_innerbox_new">
+                                                        <div class="Megamenu_detail_1_innerbox_boths_new">
+                                                          {%- if megamenu_banner.image_or_video_mobile.value != blank -%}
+                                                            {%- if megamenu_banner.image_or_video_mobile.value contains "files" -%}
+                                                              <div class="Megamenu_detail_2_innerbox_boths_videoimage_new">
+                                                                {{
+                                                                  megamenu_banner.image_or_video_mobile.value | 
+                                                                  image_url: width: img.width | 
+                                                                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                                  fetchpriority: 'auto'
+                                                                }}
+                                                              </div>
+                                                            {%- else -%}
+                                                              <div class="Megamenu_detail_2_innerbox_boths_videoimage_new">
+                                                                {{ megamenu_banner.image_or_video_mobile.value | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                                              </div>
+                                                            {%- endif -%}
+                                                          {% else %}
+                                                            {%- if megamenu_banner.image_or_video.value contains "files" -%}
+                                                              <div class="Megamenu_detail_2_innerbox_boths_videoimage_new">
+                                                                {{
+                                                                  megamenu_banner.image_or_video.value | 
+                                                                  image_url: width: img.width | 
+                                                                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                                  fetchpriority: 'auto'
+                                                                }}
+                                                              </div>
+                                                            {%- else -%}
+                                                              <div class="Megamenu_detail_2_innerbox_boths_videoimage_new">
+                                                                {{ megamenu_banner.image_or_video.value | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                                              </div>
+                                                            {%- endif -%}
+                                                          {% endif %}
+                                                        </div>
+                                                        {%- if megamenu_banner.title.value != blank -%}
+                                                          <div class="Megamenu_detail_1_innerbox_title_new">
+                                                            {{ megamenu_banner.title.value }}
+                                                          </div>
+                                                        {%- endif -%}
+                                                      </div>
+                                                  {%- if megamenu_banner.url.value != blank -%}
+                                                    </a>
+                                                  {%- endif -%}
+                                                </div>
+                                              </div>
+                                            {%- endif -%}
+                                          {%- endfor -%}
+                                          
+                                          <!-- 2 -->
+                                          {%- for megamenu_items in megamenu_selection.megamenu_item_selection.value -%}
+                                            {%- if megamenu_items.image_or_video.value != blank and megamenu_items.title.value != blank -%}
+                                              <div class="Megamenu_detail_2_new {{ megamenu_items.custom_class.value }}">
+                                                <div class="Megamenu_detail_2_mainbox_new">
+                                                  {%- if megamenu_items.url.value != blank -%}
+                                                    <a href="{{ megamenu_items.url.value }}">
+                                                  {%- endif -%}
+                                                      <div class="Megamenu_detail_2_innerbox_new">
+                                                        <div class="Megamenu_detail_2_innerbox_boths_new">
+                                                          {%- if megamenu_items.image_or_video_mobile.value != blank -%}
+                                                            {%- if megamenu_items.image_or_video_mobile.value contains "files" -%}
+                                                              <div class="Megamenu_detail_2_innerbox_boths_videoimage_new">
+                                                                {{
+                                                                  megamenu_items.image_or_video_mobile.value | 
+                                                                  image_url: width: img.width | 
+                                                                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                                  fetchpriority: 'auto'
+                                                                }}
+                                                              </div>
+                                                            {%- else -%}
+                                                              <div class="Megamenu_detail_2_innerbox_boths_videoimage_new">
+                                                                {{ megamenu_items.image_or_video_mobile.value | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                                              </div>
+                                                            {%- endif -%}
+                                                          {% else %}
+                                                            {%- if megamenu_items.image_or_video.value contains "files" -%}
+                                                              <div class="Megamenu_detail_2_innerbox_boths_videoimage_new">
+                                                                {{
+                                                                  megamenu_items.image_or_video.value | 
+                                                                  image_url: width: img.width | 
+                                                                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                                  fetchpriority: 'auto'
+                                                                }}
+                                                              </div>
+                                                            {%- else -%}
+                                                              <div class="Megamenu_detail_2_innerbox_boths_videoimage_new">
+                                                                {{ megamenu_items.image_or_video.value | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                                              </div>
+                                                            {%- endif -%}
+                                                          {% endif %}
+                                                        </div>
+                                                        {%- if megamenu_items.title.value != blank -%}
+                                                          <div class="Megamenu_detail_2_innerbox_title_new">
+                                                            {{ megamenu_items.title.value }}
+                                                          </div>
+                                                        {%- endif -%}
+                                                      </div>
+                                                  {%- if megamenu_items.url.value != blank -%}
+                                                    </a>
+                                                  {%- endif -%}
+                                                </div>
+                                              </div>
+                                            {%- endif -%}
+                                          {%- endfor -%}
+              
+                                          <!-- 3 -->
+                                          {%- for megamenu_product in megamenu_selection.megamenu_product_selection.value -%}
+                                            {%- if megamenu_product.title != blank -%}
+                                              <div class="Megamenu_detail_3_new">
+                                                <div class="Megamenu_detail_3_mainbox_new">
+                                                  <div class="Megamenu_detail_3_innerbox_new">
+                                                    {% render 'card-product',
+                                                      card_product: megamenu_product,
+                                                      media_aspect_ratio: section.settings.image_ratio,
+                                                      image_shape: section.settings.image_shape,
+                                                      show_secondary_image: section.settings.show_secondary_image,
+                                                      show_vendor: section.settings.show_vendor,
+                                                      show_rating: section.settings.show_rating,
+                                                      section_id: section.id,
+                                                      quick_add: section.settings.quick_add
+                                                    %}
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            {%- endif -%}
+                                          {%- endfor -%}
+              
+                                          <!-- 4 -->
+                                          {%- if megamenu_selection.megamenu_box_redirect_text.value != blank and megamenu_selection.megamenu_box_redirect_link.value != blank -%}
+                                            <div class="Megamenu_detail_4_new">
+                                              <div class="Megamenu_detail_4_mainbox_new">
+                                                {%- if megamenu_selection.megamenu_box_redirect_link.value != blank -%}
+                                                  <a href="{{ megamenu_selection.megamenu_box_redirect_link.value }}">
+                                                {%- endif -%}
+                                                    <div class="Megamenu_detail_4_innerbox_new">
+                                                      {{ megamenu_selection.megamenu_box_redirect_text.value }}
+                                                    </div>
+                                                {%- if megamenu_selection.megamenu_box_redirect_link.value != blank -%}
+                                                  </a>
+                                                {%- endif -%}
+                                              </div>
+                                            </div>
+                                          {%- endif -%} 
+  
+                                          <!-- 5 --> 
+                                          {%- if megamenu_selection.mobile_inner_menu_logo_image.value != blank or megamenu_selection.mobile_inner_menu_heading_text.value != blank or megamenu_selection.mobile_inner_menu_detail_text.value != blank -%}
+                                            <div class="Header_drawer_mobile_mainfaqs_new">
+                                              <div class="Header_drawer_mobile_innerfaqs_new">
+                                                {%- if megamenu_selection.mobile_inner_menu_logo_image.value != blank -%}
+                                                  <div class="Header_drawer_mobile_innerfaqs_mainboths_new">
+                                                    <div class="Header_drawer_mobile_innerfaqs_innerboths_new">
+                                                      {%- if megamenu_selection.mobile_inner_menu_logo_image.value contains "files" -%}
+                                                        <div class="Header_drawer_mobile_innerfaqs_innerboths_imagevideo_new">
+                                                          {{
+                                                            megamenu_selection.mobile_inner_menu_logo_image.value | 
+                                                            image_url: width: img.width | 
+                                                            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                            fetchpriority: 'auto', 
+                                                            class:'Static_image_new'
+                                                          }}
+                                                        </div>
+                                                      {%- endif -%}
+                                                    </div>
+                                                  </div>
+                                                {%- endif -%}
+                                                {%- if megamenu_selection.mobile_inner_menu_heading_text.value != blank -%}
+                                                  <div class="Header_drawer_mobile_innerfaqs_maintitle_new">
+                                                    <div class="Header_drawer_mobile_innerfaqs_innertitle_new">
+                                                      <h3>{{ megamenu_selection.mobile_inner_menu_heading_text.value }}</h3>
+                                                    </div>
+                                                  </div>
+                                                {%- endif -%}
+                                                {%- if megamenu_selection.mobile_inner_menu_detail_text.value != blank -%}
+                                                  <div class="Header_drawer_mobile_innerfaqs_maininfos_new">
+                                                    <div class="Header_drawer_mobile_innerfaqs_innerinfos_new">
+                                                      {{ megamenu_selection.mobile_inner_menu_detail_text | metafield_tag }}
+                                                    </div>
+                                                  </div>
+                                                {%- endif -%}
+                                              </div>  
+                                            </div>
+                                          {%- endif -%}  
+
+                                          <!-- 6 --> 
+                                          {%- if megamenu_selection.mobile_inner_menu_information_list.value != blank -%}
+                                            <div class="Header_drawer_mobile_mainlists_new">
+                                              <div class="Header_drawer_mobile_innerlists_new">
+                                                {{ megamenu_selection.mobile_inner_menu_information_list | metafield_tag }}
+                                              </div>
+                                            </div>
+                                          {%- endif -%}
+                                          
+                                        </div>
+                                      </div>
+                                    {% endif %}
+                                  {% endfor %}
+                                {% endpaginate %}
+                              
+                            {% endif %}
+
+                          {% endif %}
+
+                          <!-- inner screen with inner menu -->
+                          {% assign megamenu_selection = shop.metaobjects.megamenu_selection.values %}
+                          {% paginate shop.metaobjects.megamenu_selection.values by 1000 %}
+                            {% for megamenu_selection in megamenu_selection %}
+                    
+                              {% assign link_title = link.title | handleize %}
+                              {% assign main_menu_title = megamenu_selection.main_menu_title.value | handleize %}
+                              {% if main_menu_title == link_title and megamenu_selection.mobile_inner_menu_button_image_display.value == true %}
+                                
+                                  {%- if megamenu_selection.mobile_inner_menu_button_link.value != blank or megamenu_selection.mobile_inner_menu_image_or_video.value != blank -%}
+                                    <div class="Header_drawer_mobile_maindetail_new">
+                                      <div class="Header_drawer_mobile_innerdetail_new">
+                                        {%- if megamenu_selection.mobile_inner_menu_button_text.value != blank and megamenu_selection.mobile_inner_menu_button_link.value != blank -%}
+                                          <div class="Header_drawer_mobile_innerdetail_mainbutton_new">
+                                            <div class="Header_drawer_mobile_innerdetail_innerbutton_new">
+                                              <a href="{{ megamenu_selection.mobile_inner_menu_button_link.value }}" class="button">
+                                                {{ megamenu_selection.mobile_inner_menu_button_text.value }}  
+                                              </a>
+                                            </div>
+                                          </div>
+                                        {%- endif -%}
+                                        {%- if megamenu_selection.mobile_inner_menu_image_or_video.value != blank -%}
+                                          <div class="Header_drawer_mobile_innerdetail_mainboths_new">
+                                            <div class="Header_drawer_mobile_innerdetail_innerboths_new">
+                                              {%- if megamenu_selection.mobile_inner_menu_image_or_video.value contains "files" -%}
+                                                <div class="Header_drawer_mobile_innerdetail_innerboths_imagevideo_new">
+                                                  {{
+                                                    megamenu_selection.mobile_inner_menu_image_or_video.value | 
+                                                    image_url: width: img.width | 
+                                                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                    fetchpriority: 'auto', 
+                                                    class:'Static_image_new'
+                                                  }}
+                                                </div>
+                                              {%- else -%}
+                                                <div class="Header_drawer_mobile_innerdetail_innerboths_imagevideo_new">
+                                                  {{ megamenu_selection.mobile_inner_menu_image_or_video.value | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                                </div>
+                                              {%- endif -%}
+                                            </div>
+                                          </div>
+                                        {%- endif -%}
+                                      </div>
+                                    </div>
+                                  {%- endif -%}
+                                
+                              {% endif %}
+                            {% endfor %}
+                          {% endpaginate %}
+                        </div>
+                      </div>
+                    </details>
+                  {%- else -%}
+                    <a
+                      id="HeaderDrawer-{{ link.handle }}"
+                      href="{{ link.url }}"
+                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
+                      {% if link.current %}
+                        aria-current="page"
+                      {% endif %}
+                    >
+                      {{ link.title }}
+                    </a>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+
+            {%- if section.settings.main_mobile_bottom_menu != blank or section.settings.main_mobile_button_link != blank -%}
+              <div class="Header_drawer_mobile_mainboth_new">
+                <div class="Header_drawer_mobile_innerboth_new">
+                  {% if customer  %}
+                    {% if customer.metafields.SAGE.ARDivisionNo == '20' %}
+                      {%- if section.settings.main_mobile_button_text_dealer != blank and section.settings.main_mobile_button_link_dealer != blank -%}
+                        <div class="Header_drawer_mobile_innerboth_buttons_new">
+                          <a href="{{ section.settings.main_mobile_button_link_dealer }}" class="button">
+                            {{ section.settings.main_mobile_button_text_dealer }}  
+                          </a>
+                        </div>
+                      {%- endif -%}
+                    {% elsif customer.metafields.SAGE.ARDivisionNo == '30' %}
+                      {%- if section.settings.main_mobile_button_text_hotel != blank and section.settings.main_mobile_button_link_hotel != blank -%}
+                        <div class="Header_drawer_mobile_innerboth_buttons_new">
+                          <a href="{{ section.settings.main_mobile_button_link_hotel }}" class="button">
+                            {{ section.settings.main_mobile_button_text_hotel }}  
+                          </a>
+                        </div>
+                      {%- endif -%}
+                    {% elsif customer.metafields.SAGE.ARDivisionNo == '23' %}
+                      {%- if section.settings.main_mobile_button_text_hotel != blank and section.settings.main_mobile_button_link_hotel != blank -%}
+                        <div class="Header_drawer_mobile_innerboth_buttons_new">
+                          <a href="{{ section.settings.main_mobile_button_link_hotel }}" class="button">
+                            {{ section.settings.main_mobile_button_text_hotel }}  
+                          </a>
+                        </div>
+                      {%- endif -%}
+                    {% elsif customer.metafields.SAGE.ARDivisionNo == '22' %}
+                      {%- if section.settings.main_mobile_button_text_multi_family != blank and section.settings.main_mobile_button_link_multi_family != blank -%}
+                        <div class="Header_drawer_mobile_innerboth_buttons_new">
+                          <a href="{{ section.settings.main_mobile_button_link_multi_family }}" class="button">
+                            {{ section.settings.main_mobile_button_text_multi_family }}  
+                          </a>
+                        </div>
+                      {%- endif -%}
+                    {% endif %}
+                  {% else %}
+                    {%- if section.settings.main_mobile_button_text != blank -%}
+                      <div class="Header_drawer_mobile_innerboth_buttons_new">
+                        {%- render 'frame-button', class: "button", requestType: "index", frameType: "build-frame", enableLoading: true, btnLabel: section.settings.main_mobile_button_text -%}
+                      </div>
+                    {%- endif -%}
+                  {%- endif -%}
+                  {%- if section.settings.main_mobile_bottom_menu != blank -%}
+                    <div class="Header_drawer_mobile_innerboth_menulist_new">
+                      <ul class="menu">
+                        {% if customer %}
+                          <li class="mobile_customer_login_new"> 
+                            <div class="mobile_customer_login_left_new">
+                              {% if customer.first_name != blank %}
+                                {% capture first_name %}{{ customer.first_name }}{% endcapture %} 
+                                <a href="/account{{urlParam}}">
+                                  <span>My account</span>
+                                  <span class="account_inner_info_new">
+                                    Welcome, {{first_name}}
+                                    
+                                    {% if customer.metafields.SAGE.ARDivisionNo == '20' %}
+                                     - Dealer/Trade account
+                                    {% elsif customer.metafields.SAGE.ARDivisionNo == '22' %}
+                                     - Multifamily account
+                                    {% elsif customer.metafields.SAGE.ARDivisionNo == '23' %}
+                                     - Builders account
+                                    {% elsif customer.metafields.SAGE.ARDivisionNo == '30' %}
+                                     - Hotels account
+                                    {% elsif customer.metafields.SAGE.ARDivisionNo == '31' %}
+                                     - Supply Companies account
+                                    {% else %}
+                          
+                                    {% endif %}
+                                  </span>
+                                </a>
+                              {% else %}
+                                <a href="/account{{urlParam}}">
+                                  <span>My account</span>
+                                  <span class="account_inner_info_new">
+                                    Welcome, {{first_name}}
+                                  </span>
+                                </a>
+                              {% endif %}
+                            </div>
+                      
+                            <div class="mobile_customer_login_right_new"> 
+                              <a href="/account/logout">Logout</a>
+                            </div>
+                          </li>
+                        {% endif %}
+                        {%- for link in section.settings.main_mobile_bottom_menu.links -%}
+                          <li class="menu-link">
+                            <a href="{{ link.url }}">{{ link.title }}</a>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    </div>
+                  {%- endif -%}
+                </div>  
+              </div>
+            {%- endif -%}
+          </nav>
+          <div class="menu-drawer__utility-links">
+            {%- if section.settings.main_mobile_contact_text != blank and section.settings.main_mobile_contact_link != blank -%}
+              <div class="Header_drawer_mobile_maincontact_new">
+                <div class="Header_drawer_mobile_innercontact_new">
+                  <a href="{{ section.settings.main_mobile_contact_link }}">
+                    {{ section.settings.main_mobile_contact_text }}  
+                  </a>
+                </div>  
+              </div>
+            {%- endif -%}  
+            
+            {% comment %}
+              {%- if shop.customer_accounts_enabled -%}
+                <a
+                  href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+                  class="menu-drawer__account link focus-inset h5 medium-hide large-up-hide"
+                >
+                  {%- if section.settings.enable_customer_avatar -%}
+                    <account-icon>
+                      {%- if customer and customer.has_avatar? -%}
+                        {{ customer | avatar }}
+                      {%- else -%}
+                        {% render 'icon-account' %}
+                      {%- endif -%}
+                    </account-icon>
+                  {%- else -%}
+                    {% render 'icon-account' %}
+                  {%- endif -%}
+                  {%- liquid
+                    if customer
+                      echo 'customer.account_fallback' | t
+                    else
+                      echo 'customer.log_in' | t
+                    endif
+                  -%}
+                </a>
+              {%- endif -%}
+            {% endcomment %}
+            {%- if localization.available_countries or localization.available_languages -%}
+              <div class="menu-drawer__localization header-localization">
+                {%- if localization.available_countries and localization.available_countries.size > 1 -%}
+                  <localization-form>
+                    {%- form 'localization', id: 'HeaderCountryMobileForm', class: 'localization-form' -%}
+                      <div>
+                        <h2 class="visually-hidden" id="HeaderCountryMobileLabel">
+                          {{ 'localization.country_label' | t }}
+                        </h2>
+                        {%- render 'country-localization', localPosition: 'HeaderCountryMobile' -%}
+                      </div>
+                    {%- endform -%}
+                  </localization-form>
+                {% endif %}
+
+                {%- if localization.available_languages and localization.available_languages.size > 1 -%}
+                  <localization-form>
+                    {%- form 'localization', id: 'HeaderLanguageMobileForm', class: 'localization-form' -%}
+                      <div>
+                        <h2 class="visually-hidden" id="HeaderLanguageMobileLabel">
+                          {{ 'localization.language_label' | t }}
+                        </h2>
+                        {%- render 'language-localization', localPosition: 'HeaderLanguageMobile' -%}
+                      </div>
+                    {%- endform -%}
+                  </localization-form>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+            {% comment %}
+              <ul class="list list-social list-unstyled" role="list">
+                {%- if settings.social_twitter_link != blank -%}
+                  <li class="list-social__item">
+                    <a href="{{ settings.social_twitter_link }}" class="list-social__link link">
+                      {%- render 'icon-twitter' -%}
+                      <span class="visually-hidden">{{ 'general.social.links.twitter' | t }}</span>
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_facebook_link != blank -%}
+                  <li class="list-social__item">
+                    <a href="{{ settings.social_facebook_link }}" class="list-social__link link">
+                      {%- render 'icon-facebook' -%}
+                      <span class="visually-hidden">{{ 'general.social.links.facebook' | t }}</span>
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_pinterest_link != blank -%}
+                  <li class="list-social__item">
+                    <a href="{{ settings.social_pinterest_link }}" class="list-social__link link">
+                      {%- render 'icon-pinterest' -%}
+                      <span class="visually-hidden">{{ 'general.social.links.pinterest' | t }}</span>
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_instagram_link != blank -%}
+                  <li class="list-social__item">
+                    <a href="{{ settings.social_instagram_link }}" class="list-social__link link">
+                      {%- render 'icon-instagram' -%}
+                      <span class="visually-hidden">{{ 'general.social.links.instagram' | t }}</span>
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_tiktok_link != blank -%}
+                  <li class="list-social__item">
+                    <a href="{{ settings.social_tiktok_link }}" class="list-social__link link">
+                      {%- render 'icon-tiktok' -%}
+                      <span class="visually-hidden">{{ 'general.social.links.tiktok' | t }}</span>
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_tumblr_link != blank -%}
+                  <li class="list-social__item">
+                    <a href="{{ settings.social_tumblr_link }}" class="list-social__link link">
+                      {%- render 'icon-tumblr' -%}
+                      <span class="visually-hidden">{{ 'general.social.links.tumblr' | t }}</span>
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_snapchat_link != blank -%}
+                  <li class="list-social__item">
+                    <a href="{{ settings.social_snapchat_link }}" class="list-social__link link">
+                      {%- render 'icon-snapchat' -%}
+                      <span class="visually-hidden">{{ 'general.social.links.snapchat' | t }}</span>
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_youtube_link != blank -%}
+                  <li class="list-social__item">
+                    <a href="{{ settings.social_youtube_link }}" class="list-social__link link">
+                      {%- render 'icon-youtube' -%}
+                      <span class="visually-hidden">{{ 'general.social.links.youtube' | t }}</span>
+                    </a>
+                  </li>
+                {%- endif -%}
+                {%- if settings.social_vimeo_link != blank -%}
+                  <li class="list-social__item">
+                    <a href="{{ settings.social_vimeo_link }}" class="list-social__link link">
+                      {%- render 'icon-vimeo' -%}
+                      <span class="visually-hidden">{{ 'general.social.links.vimeo' | t }}</span>
+                    </a>
+                  </li>
+                {%- endif -%}
+              </ul>
+            {% endcomment %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </details>
+</header-drawer>

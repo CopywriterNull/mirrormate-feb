@@ -1,0 +1,228 @@
+{{ "Page-cabinetMate-banner.css" | asset_url | stylesheet_tag }}
+
+{% if section.settings.main_custom_review_image != blank or section.settings.main_custom_review_text != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_link != blank or section.settings.main_button_text != blank or section.settings.bottom_box_content != blank or section.settings.bottom_box_image != blank or section.blocks.size > 0 %}
+  <div class="page_cabinatemate_banner_main page_cabinatemate_banner_main_{{ section.id }}" style="background-color: {{ section.settings.main_background_color }}">
+    <div class="page_cabinatemate_banner_inner">
+      <div class="page_cabinatemate_banner_sides">
+        {% if section.settings.main_custom_review_image != blank or section.settings.main_custom_review_text != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_link != blank or section.settings.main_button_text != blank or section.settings.bottom_box_content != blank or section.settings.bottom_box_image != blank %}
+          <div class="page_cabinatemate_banner_leftmain">
+            <div class="page_cabinatemate_banner_leftinner">
+              {% if section.settings.main_custom_review_image != blank or section.settings.main_custom_review_text != blank %}
+                <div class="page_cabinatemate_banner_left_review_part">
+                  {% if section.settings.main_custom_review_image != blank %}
+                    <div class="page_cabinatemate_banner_left_review_img">
+                      {{
+                        section.settings.main_custom_review_image | 
+                        image_url: width: img.width | 
+                        image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                        fetchpriority: 'auto', 
+                        class:'Icon_image_1_new'
+                      }}
+                    </div>
+                  {% endif %}
+                  {% if section.settings.main_custom_review_text != blank %}
+                    <div class="page_cabinatemate_banner_left_review_text">
+                      <p>{{ section.settings.main_custom_review_text  }}</p>
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
+              {% if section.settings.main_heading_text != blank or section.settings.main_information_text != blank %}
+                <div class="page_cabinatemate_banner_left_main_heading_part">
+                  {% if section.settings.main_heading_text != blank %}
+                    <div class="page_cabinatemate_banner_left_main_heading_text Common_title_new">
+                      <h2>
+                        {{ section.settings.main_heading_text }}
+                      </h2>
+                    </div>
+                  {% endif %}
+                  {% if section.settings.main_information_text != blank %}
+                    <div class="page_cabinatemate_banner_left_main_information_text">
+                      {{ section.settings.main_information_text }}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
+              {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                <div class="page_cabinatemate_banner_left_main_button">
+                  <a href="{{ section.settings.main_button_link }}" class="button">
+                    {{ section.settings.main_button_text }}  
+                  </a>
+                </div>
+              {%- endif -%}
+              {% if section.settings.bottom_box_content != blank or section.settings.bottom_box_image != blank %}
+                <div class="page_cabinatemate_banner_left_bottom_box_main" style="background-color: {{ section.settings.bottom_box_background_color }}">
+                  <div class="page_cabinatemate_banner_left_bottom_box_inner">
+                    {% if section.settings.bottom_box_image != blank %}
+                      <div class="page_cabinatemate_banner_left_bottom_box_image">
+                        {{
+                          section.settings.bottom_box_image | 
+                          image_url: width: img.width | 
+                          image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                          fetchpriority: 'auto', 
+                          class:'box_image'
+                        }}
+                      </div>
+                    {% endif %}
+                    {% if section.settings.bottom_box_content != blank %}
+                      <div class="page_cabinatemate_banner_left_bottom_box_content">
+                        {{ section.settings.bottom_box_content }}
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+        {% if section.blocks.size > 0 %}
+          <div class="page_cabinatemate_banner_rightmain">
+            <div class=page_cabinatemate_banner_rightinner>
+              <div class="page_cabinatemate_banner_right_images_container">
+                {% for block in section.blocks %}
+                  {% if block.type == "right-image" %}
+                    {% if block.settings.right_image != blank %}
+                      <div class="page_cabinatemate_banner_right_image">
+                        {{
+                            block.settings.right_image | 
+                            image_url: width: img.width | 
+                            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                            fetchpriority: 'auto', 
+                            class:'right_image'
+                          }}
+                      </div>
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+<script>
+  
+  document.addEventListener("DOMContentLoaded", function() {
+    var smallImages = document.querySelectorAll('.page_cabinatemate_banner_right_image');
+    var currentIndex = 0;
+
+    // Hide all images initially
+    smallImages.forEach(function(image) {
+        image.style.display = 'none';
+    });
+    
+    // Show the first image
+    smallImages[currentIndex].style.display = 'block';
+
+    function changeImage() {
+        // Hide the current image
+        smallImages[currentIndex].style.display = 'none';
+        // Update the index to the next image
+        currentIndex = (currentIndex + 1) % smallImages.length; // Wrap around
+        // Show the next image
+        smallImages[currentIndex].style.display = 'block';
+    }
+
+    setInterval(changeImage, 1000); // Change image every second
+});
+  
+</script>
+
+
+{% schema %}
+  {
+    "name": "Page CabinetMate Banner",
+    "class": "page_cabinatemate_banner",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_custom_review_image",
+        "label": "Add Main Custom Review Image"
+      },
+      {
+        "type": "richtext",
+        "id": "main_custom_review_text",
+        "label": "Add Main Custom Review Text",
+        "default": "<p>Over 100,000+ Units Renovated</p>"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Meet Our Team"
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "<p>20 years ago, MirrorMate was invented as a DIY frame kit that helps homeowners easily and affordably add a frame to their existing, wall-mounted mirror.</p><p><span>Crafted with pride in Charlotte, North Carolina,</span> each frame is made to order, ensuring unparalleled quality and a personal touch. As pioneers and leaders in the mirror framing industry, we are excited to enhance your space with a beautifully crafted frame that you'll absolutely love.</p>"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "Contact us"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      },
+      {
+        "type": "header",
+        "content": "Bottom Box"
+      },
+      {
+        "type": "color",
+        "id": "bottom_box_background_color",
+        "label": "Add Bottom Box Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "image_picker",
+        "id": "bottom_box_image",
+        "label": "Add Bottom Box Image"
+      },
+      {
+        "type": "richtext",
+        "id": "bottom_box_content",
+        "label": "Add Bottom Box Content"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "right-image",
+        "name": "Right Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "right_image",
+            "label": "Add Right side Image",
+            "info": "These images will change every second."
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Page CabinetMate Banner",
+        "blocks": [
+          {
+            "type": "right-image"
+          }
+        ]
+      }
+    ]
+    
+  }
+{% endschema %}

@@ -1,0 +1,199 @@
+{% assign user_type = customer.metafields.SAGE.PriceLevel | downcase %}
+
+{% if user_type == '' or user_type == '-' or user_type == 'none' %}
+    {% assign user_type = "r" %}
+{% endif %}
+
+
+{%- assign line_item = ''  -%}
+{%- for item in order.line_items -%}
+  {%- assign itemKey = 'key_' | append: item.key -%}
+  {%- if itemKey == lineitemKey -%}
+     {%- assign line_item = item -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign product = line_item.product -%}
+
+
+{%- assign size_variant = '' -%}
+ {%- unless line_item.product.has_only_default_variant -%}
+    {%- for option in line_item.options_with_values -%}
+      {%- assign option_name = option.name | downcase -%}
+         {%- if option_name == 'size' -%}
+           {%- assign size_variant = option.value | downcase -%}
+         {%- endif -%}
+      {%- endfor -%}
+ {%- endunless -%}
+ 
+
+<frame-model-order data-size-variant="{{ size_variant }}" href="{{ order.customer_url }}" data-key="{{ order.id }}{{ line_item.key }}{{ lineitemNumber }}" class="frame-model{% if state != blank %} {{ state }}{% endif %}" data-form-id="{{ formId }}" {% if template.name == "product" %}data-type="product"{% endif %} data-user-type="{{ user_type }}" data-currency-symbol="{{ cart.currency.symbol }}">
+    {% assign metaProductDrawer = shop.metaobjects.product_meta_drawer.values | first %}
+    {% assign measurement_model = shop.metaobjects.measurement_model.values | first %}
+    {% assign measurement_faqs = shop.metaobjects.measurement_faqs.values %}
+    {% assign supports_meta = shop.metaobjects.need_help_supports.values | first %}
+
+    {% assign hasProductMetaDrawer = false %}
+    {% assign hasMeasurementModel = false %}
+
+    {% if shop.metaobjects.product_meta_drawer.values_count > 0 %}
+        {% assign hasProductMetaDrawer = true %}
+    {% endif %}
+    {% if shop.metaobjects.measurement_model.values_count > 0 %}
+        {% assign hasMeasurementModel = true %}
+    {% endif %}
+
+ {%- for option in product.options_with_values -%}
+   {%- assign option_name = option.name | downcase -%}
+  {% if option_name == "size" %}
+        <script type="application/json" id="SizeRangeJson">
+                                [
+                                    {% for value in option.values %}
+                                        {% assign cr_variant = value.variant %}
+                                      
+                                        {% if cr_variant.metafields.custom.width_range != blank %}
+                                            {% assign widthRange = cr_variant.metafields.custom.width_range %}
+                                        {% else %}
+                                            {% if shop.metaobjects.size_threshold.values_count > 0 %}
+                                                {% for threshold in shop.metaobjects.size_threshold.values %}
+                                                    {% assign sizeHandle = threshold.variant_name | strip | handleize %}
+                                                    {% assign valueHandle = value.name | strip | handleize %}
+                                                    {% if sizeHandle == valueHandle %}
+                                                        {% assign widthRange = threshold.range %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        {% endif %}
+
+
+                                      {% comment %}
+                                      {%- assign variant_name = value | downcase -%}
+                                       {%- if variant_name == 'powder room'-%}
+                                             {%- assign widthRange = '10 - 24' -%}  
+                                       {%- elsif variant_name == 'single vanity' -%}
+                                            {%- assign widthRange = '25 - 48' -%}  
+                                       {%- elsif variant_name == 'double vanity' -%}
+                                            {%- assign widthRange = '49 - 74' -%}  
+                                       {%- elsif variant_name == 'xl vanity' -%}
+                                            {%- assign widthRange = '75 - 150' -%}  
+                                       {%- endif -%}
+                                     {% endcomment %}
+                                      
+                                        {
+                                            "name": "{{ value.name }}",
+                                            "range": "{{ widthRange }}",
+                                            "id": "{{ value.id }}",
+                                            "price": "{{ value.variant.price | money_without_trailing_zeros }}"
+                                        }
+                                        {% unless forloop.last %},{% endunless %}
+                                     
+                                    {% endfor %}
+                                ]
+                            </script>
+  {% endif %}
+{% endfor %}
+  
+    <div class="announcement__bar">
+        <p class="announcement__bar-text">FREE SHIPPING ON ORDERS OF 2+ FRAMES</p>
+    </div>
+    <div class="steps-header">
+        <div class="page-width">
+            <div class="steps-header-main">
+                <div class="steps-header-grid">
+                    <div class="back-btn disabled" js-back-btn>
+                        <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.375 1L1.625 7.75L8.375 14.5" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                    
+                    </div>
+                    <div class="steps-grid">
+                        <span class="steps-label">step</span>
+                        <span class="steps-counter" js-steps-counter data-total-steps="5">1/5</span>
+                    </div>
+                    <div class="close-btn" js-close-btn data-trigger-id="Close-Model">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19.0703 4.9292L4.92818 19.0713" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                            <path d="M19.0718 19.0713L4.92969 4.9292" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                        </svg>                                      
+                    </div>
+                </div>
+                {% if shop.metaobjects.need_help_supports.values_count > 0 %}
+                    {% render "need-help", meta: supports_meta %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="steps-progress-bar">
+            <span class="steps-progress-meter" js-steps-progress-meter data-default-progress="20"></span>
+        </div>
+    </div>
+    <div class="frame-steps" data-scrollable>
+      
+      {% comment %}
+        {% render "build-my-frame", user_type: user_type %}
+        {% if user_type == "r" %}
+            {% render "frame-step-1", sectionId: sectionId, user_type: user_type %}
+            {% render "frame-step-2" %}
+        {% endif %}
+      {% endcomment %}
+      
+    
+
+      
+        {% render "frame-step-3-order", 
+            formId: formId, 
+            sectionId: sectionId, 
+            measurement_faqs: measurement_faqs, 
+            hasMeasurementModel: hasMeasurementModel,
+            user_type: user_type,
+            product: product,
+            line_item: line_item,
+            order: order,
+            lineitemNumber: lineitemNumber
+        %}
+        {% render "frame-step-4-order", 
+            hasProductMetaDrawer: hasProductMetaDrawer, 
+            formId: formId, 
+            measurement_faqs: measurement_faqs,
+            hasMeasurementModel: hasMeasurementModel,
+            user_type: user_type,
+            product: product,
+            line_item: line_item,
+            order: order,
+            lineitemNumber: lineitemNumber
+        %}
+        {% render "frame-step-5-order", 
+            hasProductMetaDrawer: hasProductMetaDrawer, 
+            formId: formId,
+            user_type: user_type,
+            product: product,
+            line_item: line_item,
+            order: order,
+            lineitemNumber: lineitemNumber
+        %}
+        {% render "frame-step-6-order", 
+            hasProductMetaDrawer: hasProductMetaDrawer, 
+            formId: formId,
+            user_type: user_type,
+            product: product,
+            line_item: line_item,
+            order: order,
+            lineitemNumber: lineitemNumber
+        %}
+        {% render "frame-step-7-order",
+            formId: formId, 
+            sectionId: sectionId,
+            user_type: user_type,
+            product: product,
+            line_item: line_item,
+            order: order,
+           lineitemNumber: lineitemNumber
+        %}
+    </div>
+
+    {% if hasProductMetaDrawer %}
+        {% render "product-meta-drawer", meta: metaProductDrawer %}
+    {% endif %}
+    {% if hasMeasurementModel %}
+        {% render "measurement-model", meta: measurement_model %}
+    {% endif %}
+    {% render "product-info-drawer", sectionId: sectionId %}
+    {% render "close-model", order: order %}
+</frame-model-order>

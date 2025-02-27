@@ -1,0 +1,55 @@
+<div class="product_review_main_new" js-product-reviews data-section="{{ section.id }}" style="background: {{ section.settings.main_background_color }};">
+  <div class="page-width">
+    <div class="product_review_inner_new" data-aos="fade-in" data-aos-delay="200" >
+      {%- if section.settings.main_heading_text != blank or section.settings.main_information_text != blank -%}
+        <div class="product_review_title_main_new">
+          {%- if section.settings.main_information_text != blank -%}
+            <div class="product_review_subtitle_new">
+              {{ section.settings.main_information_text }}
+            </div>
+          {%- endif -%}
+          {%- if section.settings.main_heading_text != blank -%}
+            <div class="Common_title_new product_review_title_new">
+              <h2>{{ section.settings.main_heading_text }}</h2>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+      <div class="product_review_widget_new">
+        {% render 'okendo-reviews-widget', product: product %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Product Review",
+    "class": "product_review_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Hear From Our <br>Happy Customers"
+      },
+      {
+        "type": "richtext",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "<p>Reviews</p>"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Product Review"
+      }
+    ]
+  }
+{% endschema %}

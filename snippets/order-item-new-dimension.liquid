@@ -1,0 +1,105 @@
+ <div class="item-line">
+             <div class="item-line-inner">
+                <div class="image">
+               {%- if line_item.image != blank -%}
+                    <a href="{{ line_item.url }}">{{
+                      line_item.image | 
+                      image_url: width: img.width | 
+                      image_tag: widths: '50, 60, 71, 80, 100', 
+                      fetchpriority: 'auto', 
+                      class:''
+                    }}</a>
+                {%- endif -%}
+                  </div>
+             <div class="text">
+                 <a href="{{ line_item.url }}" class="title">
+                    {%- if line_item.product -%}
+                     {{ line_item.product.title | escape }}
+                   {%- else -%}
+                     {{ line_item.title | split: ' - ' | first | escape }}
+                   {%- endif -%}
+                   (x1)
+                 </a>
+                
+                 <div class="item-properties">
+                   
+                   <!-- Slim (2 ¼” in) -->
+
+                  {% comment %}
+                    {%- if line_item.product.has_only_default_variant == false -%}
+                              {%- for option in line_item.options_with_values -%}
+                                <span>{{- option.value -}}</span>
+                                {%- unless forloop.last %}•{% endunless %}
+                              {%- endfor -%}
+                    {%- endif -%}
+                  {% endcomment %}
+                   
+                   {%- if line_item.properties['_unit'] != blank -%}
+                     Room/Unit #: {{ line_item.properties['_unit'] }}
+                   {%- endif -%}
+                   
+                   {%- if line_item.properties['_PO'] != blank -%}
+                      {%- if line_item.properties['_unit'] != blank -%}&nbsp;&nbsp;|&nbsp;&nbsp;{%- endif -%}
+                     PO #: {{ line_item.properties['_PO'] }}
+                   {%- endif -%}
+                   
+                 </div>
+
+      
+                  <div class="measurements-trigger">
+                      <a js-measurements-action="{{ order.id }}{{ line_item.key }}{{ i }}" class="measurements-action hidden" href="{{ order.customer.url }}?lineitemKey=key_{{ line_item.key }}&number={{ i }}">ADD MEASUREMENTS</a>
+                      
+                    <!-- <div js-measurements-result="{{ order.id }}{{ line_item.key }}{{ i }}" class="submitted-measurements hidden">Submitted measurements</div> 
+                  -->
+                  </div>
+               
+          
+                 <div js-view-more="{{ order.id }}{{ line_item.key }}{{ i }}" class="item-properties-details hidden{% if forloop_first %} active{% endif %}">
+                    <span class="view-details">{{ 'customer.order.view_details' | t }}</span>
+                    <span class="hide-details">{{ 'customer.order.hide_details' | t }}</span>
+                 </div>
+              
+              
+               </div>
+             </div>
+
+             
+              <div js-view-content="{{ order.id }}{{ line_item.key }}{{ i }}" class="item-properties-content hidden {% if forloop_first %} active{% endif %}">
+
+                
+                <div class="properties-line">
+                     <div class="name">MIRROR SIZE</div> 
+                     <div class="value" js-mirror-size="{{ order.id }}{{ line_item.key }}{{ i }}"></div>  
+                </div> 
+
+                 
+                <div class="properties-line" js-frame-size-content="{{ order.id }}{{ line_item.key }}{{ i }}">
+                       <div class="name">frame size</div> 
+                       <div class="value" js-frame-size="{{ order.id }}{{ line_item.key }}{{ i }}"></div>  
+                </div> 
+                  
+
+                <div class="properties-line">
+                     <div class="name">SPACE AROUND</div> 
+                     <div class="value" js-space-around="{{ order.id }}{{ line_item.key }}{{ i }}"></div>  
+                  </div> 
+
+                   
+                <div class="properties-line">
+                     <div class="name">CLips or channels</div> 
+                     <div class="value" js-clips-channels="{{ order.id }}{{ line_item.key }}{{ i }}"></div>  
+                </div> 
+
+                
+                <div class="properties-line">
+                         <div class="name">aligned with vanity</div> 
+                         <div class="value" js-aligned-vanity="{{ order.id }}{{ line_item.key }}{{ i }}"></div>  
+                     </div> 
+                 
+                  
+            </div>
+             
+           </div>
+
+
+           

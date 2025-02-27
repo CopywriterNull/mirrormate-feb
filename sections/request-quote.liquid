@@ -1,0 +1,266 @@
+
+ {{ 'account-registration.css' | asset_url | stylesheet_tag }}
+ <script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/inputmask.min.js" crossorigin="anonymous"></script>
+
+ 
+<div class="account-registration request-quote">
+  <div class="page-width">
+
+     <div class="account-registration-inner hidden" js-success-part>
+        <div class="image">
+        {%- if section.settings.image_success != blank -%}
+            {{
+              section.settings.image_success | 
+              image_url: width: img.width | 
+              image_tag: widths: '640, 650, 700, 750, 800, 900, 1000', 
+              fetchpriority: 'auto', 
+              class:'registration-image'
+            }}
+        {%- endif -%}
+        </div>
+        <div class="text">
+         <div class="registrstion-form registrstion-form-success">
+          
+           <div class="registration-success">
+
+
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.66663 18.3333V7.72217C6.66663 7.44603 6.89048 7.22217 7.16663 7.22217L17.7777 7.22219" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M74.4445 62.2223L74.4445 72.8334C74.4445 73.1095 74.2206 73.3334 73.9445 73.3334L63.3333 73.3333" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M57.6818 38.3091V40C57.6795 43.9207 56.4099 47.7357 54.0624 50.876C51.7148 54.0163 48.415 56.3136 44.6551 57.4252C40.8953 58.5369 36.8768 58.4034 33.199 57.0447C29.5212 55.6859 26.3811 53.1747 24.2471 49.8855C22.1131 46.5964 21.0996 42.7055 21.3575 38.7933C21.6155 34.881 23.1312 31.1569 25.6786 28.1765C28.226 25.196 31.6686 23.1188 35.493 22.2548C39.3174 21.3907 43.3186 21.786 46.8999 23.3818" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M59.5 23.6364L39.5 43.6364L34.0454 38.1818" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+
+             
+              {%- if section.settings.title_success != blank -%}
+                <h1>{{ section.settings.title_success | escape }}</h1>
+              {%- endif -%}
+             
+              {%- if section.settings.description_success != blank -%}
+                <div class="description">{{ section.settings.description_success }}</div>
+              {%- endif -%}
+
+             {%- if section.settings.btn_text != blank -%}
+                <a class="button" href="{{ section.settings.btn_url }}">{{ section.settings.btn_text | escape }}</a>
+              {%- endif -%}
+
+              {%- if section.settings.link_text != blank -%}
+                <a class="login-link" href="{{ section.settings.link_url }}">{{ section.settings.link_text | escape }}</a>
+              {%- endif -%}
+             
+           </div>
+
+             
+           
+
+          </div> 
+        </div>
+    </div>
+    
+    <div class="account-registration-inner" js-form-part>
+        <div class="image">
+        {%- if section.settings.image != blank -%}
+            {{
+              section.settings.image | 
+              image_url: width: img.width | 
+              image_tag: widths: '640, 650, 700, 750, 800, 900, 1000', 
+              fetchpriority: 'auto', 
+              class:'registration-image'
+            }}
+        {%- endif -%}
+        </div>
+        <div class="text">
+         <div class="registrstion-form">
+           
+           {%- if section.settings.title != blank -%}<h1 class="page-title">{{ section.settings.title }}</h1>{%- endif -%}
+           
+           {%- if section.settings.description != blank -%}
+              <div class="description">
+                  {{ section.settings.description }}
+              </div>
+           {%- endif -%}
+
+
+           
+           
+ <form id="account-registration" method="post" js-request-quote-form>
+             
+
+<div class="grid-row">
+  <div class="gr-col-4">
+      <div class="form-group">
+        <!-- <label>First Name<span class="required">*</span></label>  -->
+        <input type="text" required="true" name="firstname" id="firstname" placeholder="First Name*" class="form-control">
+      </div>
+  </div>
+  
+  <div class="gr-col-4">
+    <div class="form-group">
+      <!-- <label>Last Name<span class="required">*</span></label>  -->
+      <input type="text" placeholder="Last Name*" required="true" name="lastname" id="lastname" class="form-control">
+    </div>
+  </div>
+
+   <div class="gr-col-4">
+    <div class="form-group">
+      <!-- <label>Last Name<span class="required">*</span></label>  -->
+     <input type="text" placeholder="Company Name*" required="true" name="hotelname" id="hotelname" class="form-control">
+    </div>
+  </div>
+
+  <div class="gr-col-4">
+    <div class="form-group">
+      <!-- <label>Last Name<span class="required">*</span></label>  -->
+     <input type="email" placeholder="Email Address*" required="true" name="email" id="email" class="form-control">
+    </div>
+  </div>
+
+  <div class="gr-col-4">
+    <div class="form-group">
+      <!-- <label>Last Name<span class="required">*</span></label>  -->
+     <input type="tel"  placeholder="Phone Number*" required="true" name="phone" id="phone" class="form-control phonecls">
+    </div>
+  </div>
+
+   <div class="gr-col-4">
+    <div class="form-group">
+      <!-- <label>Last Name<span class="required">*</span></label>  -->
+     <input type="text" placeholder="Frame Styles*" required="true" name="frame_styles" id="frame_styles" class="form-control">
+    </div>
+  </div>
+
+  <h4 class="title title-frame">What products are you interested in?</h4>
+<div class="grid-row">
+   <div class="form-group-checkbox">
+     <label for="mirrors">
+       <input id="mirrors" name="mirror_frame_kit" value="yes" type="checkbox" />
+       
+      <div class="checkbox">
+          <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </div>
+       
+       Mirror Frame Kit
+     </label>
+      <label for="cabinets">
+       <input id="cabinets" name="cabinet_refacing_kits" value="yes" type="checkbox" />
+        
+       <div class="checkbox">
+            <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+        </div>
+        
+       Cabinet Refacing Kits
+     </label>
+   </div>
+</div>
+   
+<div class="form-actions">
+  <!-- <input name="userType" id="userType" value="" type="hidden">  -->
+  <!-- <input class="button form-submit-btn" value="Submit" name="Submit" type="submit"> 
+   -->
+  <button class="button form-submit-btn" value="Submit" name="Submit" type="submit">
+    <span>Submit</span>
+    <div class="loading__spinner">
+          <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+          </svg>
+        </div>
+  </button>
+  
+  <img style="display: none;" class="loader-img" src="https://cdn.shopify.com/s/files/1/0090/5183/2386/files/ajax-loader.gif?26876">
+</div>
+
+  {%- if section.settings.bottom_text != blank -%}
+     <div class="bottom-text">{{ section.settings.bottom_text }}</div>
+  {%- endif -%}
+
+   <div id="errorDiv" class="errorDiv"></div>
+<div id="successDiv" class="successDiv"></div>
+
+
+</div>
+ 
+   
+            </form>
+          </div> 
+        </div>
+    </div>
+  </div>
+</div>
+
+ <script src="{{ 'account-registration.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+  {
+    "name": "Request A Quote",
+    "settings": [
+      {
+        "type": "image_picker",
+         "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+         "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+         "id": "description",
+        "label": "Description"
+      },
+      {
+        "type": "text",
+         "id": "bottom_text",
+        "label": "Bottom text"
+       },
+      {
+        "type": "header",
+        "content": "SUCCESS PAGE"
+      },
+      {
+        "type": "image_picker",
+         "id": "image_success",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+         "id": "title_success",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+         "id": "description_success",
+        "label": "Description"
+      },
+      {
+        "type": "text",
+         "id": "btn_text",
+        "label": "Button text"
+      },
+      {
+        "type": "url",
+         "id": "btn_url",
+        "label": "Button link"
+      },
+      {
+        "type": "text",
+         "id": "link_text",
+        "label": "Link text"
+      },
+      {
+        "type": "url",
+         "id": "link_url",
+        "label": "Link link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Request A Quote",
+      }
+    ]
+  }
+{% endschema %}

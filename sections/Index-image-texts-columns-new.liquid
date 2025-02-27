@@ -1,0 +1,223 @@
+{%- if section.settings.main_heading_text != blank or section.settings.main_button_link != blank or section.blocks.size > 0 -%}
+  <div class="Index_image_texts_columns_main_new" style="background: {{ section.settings.main_background_color }};">
+    <div class="Index_image_texts_columns_inner_new" data-aos="fade-in">
+      {%- if section.settings.main_heading_text != blank or section.settings.main_button_link != blank -%}
+        <div class="page-width">
+          <div class="Index_image_texts_columns_mainside_new">
+            <div class="Index_image_texts_columns_innerside_new">
+              {%- if section.settings.main_heading_text != blank -%}
+                <div class="Index_image_texts_columns_innerside_mainleft_new">
+                  <div class="Common_title_new Index_image_texts_columns_innerside_innerleft_new">
+                    <h2>{{ section.settings.main_heading_text }}</h2>
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                <div class="Index_image_texts_columns_innerside_mainright_new">
+                  <div class="Index_image_texts_columns_innerside_innerright_new">
+                    <a href="{{ section.settings.main_button_link }}" class="button button_white_new">
+                      {{ section.settings.main_button_text }}  
+                    </a>
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+      {%- if section.blocks.size > 0 -%}
+        <div class="Index_image_texts_columns_mainloop_new">
+          <div class="Index_image_texts_columns_innerloop_new">
+            <div class="swiper Index_frame_slider">
+              <div class="swiper-wrapper">
+                {%- for block in section.blocks -%}
+                  {%- if block.settings.inner_mp4_video != blank or block.settings.inner_desktop_image != blank or block.settings.inner_mobile_image != blank or block.settings.inner_custom_logo != blank or block.settings.title != blank or block.settings.inner_information_text != blank -%}
+                    <div class="swiper-slide Index_image_texts_columns_innerloop_mainboxs_new">
+                      <div class="Index_image_texts_columns_innerloop_innerboxs_new">
+                        {%- if block.settings.inner_mp4_video != blank or block.settings.inner_desktop_image != blank or block.settings.inner_mobile_image != blank or block.settings.inner_custom_logo != blank -%}
+                          <div class="Index_image_texts_columns_innerloop_innerboxs_1_new">
+                            <div class="Index_image_texts_columns_innerloop_innerboxs_1_boths_new">
+                              {%- if block.settings.inner_mp4_video != blank or block.settings.inner_desktop_image != blank or block.settings.inner_mobile_image != blank -%}
+                                <div class="Index_image_texts_columns_innerloop_innerboxs_1_boths_mainpart_new">
+                                  <div class="Index_image_texts_columns_innerloop_innerboxs_1_boths_innerpart_new">
+                                    {%- if block.settings.inner_mp4_video != blank -%}
+                                      <div class="Index_image_texts_columns_innerloop_innerboxs_1_boths_innerpart_videoimage_new">
+                                        {{ block.settings.inner_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                      </div>
+                                    {% else %}  
+                                      {%- if block.settings.inner_desktop_image != blank and block.settings.inner_mobile_image != blank -%}
+                                        <div class="Index_image_texts_columns_innerloop_innerboxs_1_boths_innerpart_videoimage_new">
+                                          {%- if block.settings.inner_desktop_image != blank -%}
+                                            {{
+                                              block.settings.inner_desktop_image | 
+                                              image_url: width: img.width | 
+                                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                              fetchpriority: 'auto', 
+                                              class:'desktop_image_new'
+                                            }}
+                                          {%- endif -%}
+                                          {%- if block.settings.inner_mobile_image != blank -%}
+                                            {{
+                                              block.settings.inner_mobile_image | 
+                                              image_url: width: img.width | 
+                                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                              fetchpriority: 'auto', 
+                                              class:'mobile_image_new'
+                                            }}
+                                          {%- endif -%}
+                                        </div>
+                                      {%- endif -%}
+                                    {%- endif -%}
+                                  </div>
+                                </div>
+                              {%- endif -%}
+                              {%- if block.settings.inner_custom_logo != blank -%}
+                                <div class="Index_image_texts_columns_innerloop_innerboxs_1_boths_mainlogo_new">
+                                  <div class="Index_image_texts_columns_innerloop_innerboxs_1_boths_innerlogo_new">
+                                    {{
+                                      block.settings.inner_custom_logo | 
+                                      image_url: width: img.width | 
+                                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                      fetchpriority: 'auto', 
+                                      class:'Logo_image_new'
+                                    }}
+                                  </div>
+                                </div>
+                              {%- endif -%}
+                            </div>
+                          </div>
+                        {%- endif -%}
+                        {%- if block.settings.title != blank or block.settings.inner_information_text != blank -%}
+                          <div class="Index_image_texts_columns_innerloop_innerboxs_2_new">
+                            <div class="Index_image_texts_columns_innerloop_innerboxs_2_boths_new">
+                              {%- if block.settings.title != blank -%}
+                                <div class="Index_image_texts_columns_innerloop_innerboxs_2_boths_title_new">
+                                  {{ block.settings.title }}
+                                </div>
+                              {%- endif -%}
+                              {%- if block.settings.inner_information_text != blank -%}
+                                <div class="Index_image_texts_columns_innerloop_innerboxs_2_boths_infos_new">
+                                  {{ block.settings.inner_information_text }}
+                                </div>
+                              {%- endif -%}
+                            </div>
+                          </div>
+                        {%- endif -%}
+                      </div>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%} 
+              </div>
+              <div class="swiper-button-prev">
+                <svg width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18.5L1 9.89115L9 1.5" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="swiper-button-next">
+                <svg width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1.5L9 10.1089L1 18.5" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="swiper-scrollbar"></div>
+            </div>
+          </div>
+        </div>
+      {%- endif -%}  
+    </div>
+  </div>
+{%- endif -%}  
+
+{% schema %}
+  {
+    "name": "Index Image Texts Columns",
+    "class": "Index_image_texts_columns_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#2D4256"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Our Frames Are..."
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "Shop Now"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "information",
+        "name": "Information",
+        "settings": [
+          {
+            "type": "video",
+            "id": "inner_mp4_video",
+            "label": "Add Inner MP4 Video"
+          },
+          {
+            "type": "image_picker",
+            "id": "inner_desktop_image",
+            "label": "Add Inner Desktop Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "inner_mobile_image",
+            "label": "Add Inner Mobile Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "inner_custom_logo",
+            "label": "Add Inner Custom Logo"
+          },
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Add Inner Heading Text",
+            "default": "Heading"
+          },
+          {
+            "type": "richtext",
+            "id": "inner_information_text",
+            "label": "Add Inner Information Text",
+            "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Index Image Texts Columns",
+        "blocks": [
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

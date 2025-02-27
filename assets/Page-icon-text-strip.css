@@ -1,0 +1,13 @@
+.Page_icon_text_strip_main { padding: 40px 0; }
+.Page_icon_text_strip_inner { display: flex; gap: 32px; flex-wrap: wrap; justify-content: center; }
+.Page_icon_text_block { max-width: 112.17px; width: 100%; }
+.Page_icon_text_block .icon_image { max-width: 48px; aspect-ratio: 1; width: 100%; margin: 0 auto; }
+.Page_icon_text_block .icon_image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.Page_icon_text_block .icon_text { padding-top: 12px; }
+.Page_icon_text_block .icon_text p { font-size: 14px; margin: 0; letter-spacing: 0.28px; line-height: 135%; font-weight: 600; color: #FFF; text-transform: uppercase; text-align: center; }
+
+@media (max-width: 480px){
+  .Page_icon_text_strip_main { padding: 48px 0; }
+  .Page_icon_text_strip_inner { gap: 40px 12px; }
+  .Page_icon_text_block { max-width: 100%; width: calc(33.33% - 8px); }
+}

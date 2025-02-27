@@ -1,0 +1,61 @@
+<script>
+    //'Retail':10,'Wholesale_Trade_Dealers':20,'Multifamily':22,'Builders':23,'Hotels':30,'Supply_companies':31
+    var arDivisionNo = '{{customer.metafields.SAGE.ARDivisionNo}}';
+    
+    function setCookie1(cname,cvalue,exdays) {
+      var d = new Date();
+      d.setTime(d.getTime() + (exdays*24*60*60*1000));
+      var expires = "expires=" + d.toGMTString();
+      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+    setCookie1("setCartPriceLevel1", "", 30);
+  
+    
+    var PriceLevel = '{{customer.metafields.SAGE.PriceLevel | downcase }}';
+    var UDF_WSP_WEB_ENABLED = '{{customer.metafields.SAGE.UDF_WSP_WEB_ENABLED}}';
+    var CustomerStatus = '{{customer.metafields.SAGE.CustomerStatus}}';
+    var SAGEUDF_CUSTOMER_TYPEARDivisionNo = '{{customer.metafields.SAGE.UDF_CUSTOMER_TYPE}}';
+    
+    if(arDivisionNo == '22'){
+         window.location.href="{{ shop.secure_url }}/pages/multifamily";
+    }
+    else if(arDivisionNo == '20'){
+      window.location.href="{{ shop.secure_url }}/pages/dealer-trade-2";
+    }
+    else if(arDivisionNo == '23'){
+      window.location.href="{{ shop.secure_url }}/pages/homebuilders";
+    }
+    else if(arDivisionNo == '30'){
+      window.location.href="{{ shop.secure_url }}/pages/hotel-supply-2";
+    }	
+    else{
+      window.location.href="{{ shop.secure_url }}";
+    }
+      
+  </script>
+
+
+  <!-- /templates/page.liquid -->
+  <section class="page page-top">
+    <div class="wrapper">
+      <header class="content-util">
+      {% include 'breadcrumb' %}
+        {% comment %}
+          {% include 'social-icons' %}
+        {% endcomment %}
+      </header>
+      <header class="page-header">
+        <h1>Loading your profile</h1>
+      </header>
+    </div>
+  </section>
+  
+  <section class="page">
+    <div class="wrapper">
+      <div class="content-container narrow rte rte-new">
+        {{ page.content }}
+        
+      </div>
+    </div>
+  </section>
+  

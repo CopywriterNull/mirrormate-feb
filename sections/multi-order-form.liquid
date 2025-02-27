@@ -1,0 +1,188 @@
+{{ "multi-order-form.css" | asset_url | stylesheet_tag }}
+{{ "product-swatches.css" | asset_url | stylesheet_tag }}
+
+<script src="{{ "multi-order-form.js" | asset_url }}" defer></script>
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+{% assign formId = "product-form-bulk-order-section" %}
+{% assign oversized_product = all_products['oversize-fee-90-to-102'] %}
+
+{% assign product = section.settings.choose_collection.products | first %}
+
+{% assign user_type = customer.metafields.SAGE.PriceLevel | downcase %}
+
+{% if user_type == '' or user_type == '-' or user_type == 'none' %}
+    {% assign user_type = "r" %}
+{% endif %}
+
+{% if user_type == "r" %}
+    {% assign user_type = "Retail" %}
+{% elsif user_type == "g" %}
+    {% assign user_type = "Gold" %}
+{% elsif user_type == "s" %}
+    {% assign user_type = "Silver" %}
+{% elsif user_type == "v" %}
+    {% assign user_type = "Value" %}
+{% elsif user_type == "b" %}
+    {% assign user_type = "Base" %}
+{% endif %}
+
+{% if product.available %}
+    <multi-order-form class="multi-order-form is-initial" data-oversized-variant-id="{{ oversized_product.first_available_variant.id }}" data-form-id="{{ formId }}" data-oversized-variant-price="{{ oversized_product.first_available_variant.price | money | remove: '.00' | remove: cart.currency.symbol }}" data-currency-symbol="{{ cart.currency.symbol }}" data-user-type="{{ user_type }}">
+        {% unless user_type == "Retail" %}
+            <div class="wrapper" js-main-framing>
+                <div class="page-width">
+                    <div class="header__grid">
+                        {% if section.settings.title != blank %}
+                            <h1 class="header__title">{{ section.settings.title }}</h1>
+                        {% endif %}
+                        {% if section.settings.text != blank %}
+                            <div class="header__text">{{ section.settings.text }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="main__grid">
+                    <div class="page-width">
+                        <div class="clear-form">
+                            <div class="clear-form-btn" js-clear-form-btn>clear form data</div>
+                        </div>
+                        <div class="main__form" js-main-form>
+                            <div class="loading-spinner">
+                                <svg
+                                    aria-hidden="true"
+                                    focusable="false"
+                                    class="spinner"
+                                    viewBox="0 0 66 66"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="oversized" js-oversized></div>
+                        <div class="block__footer">
+                            <div class="add__btn" js-add-btn data-count="1">
+                                <div class="btn__icon block__icon">
+                                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_6111_3036)">
+                                        <path d="M8.5 2.14966V15.483" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M15.1663 8.81641H1.83301" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </g>
+                                        <defs>
+                                        <clipPath id="clip0_6111_3036">
+                                        <rect width="16" height="16" fill="white" transform="translate(0.5 0.816406)"/>
+                                        </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <span class="btn__label">Add another</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sticky-bar">
+                    <div class="page-width">
+                        <div class="btn__grid" js-btn-grid>
+                            <div class="btn btn-secondary disabled" js-save-later-btn>save for later</div>
+                            <div class="btn btn-primary disabled" js-review-order-btn>review order</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-order-main hidden" js-review-order>
+                <div class="page-width">
+                    <div class="header__grid">
+                        <div class="back__btn" js-back-btn>
+                            <span class="back__icon block__icon">
+                                <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M7 3L3 7L7 11" stroke="#2D4256" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </span>
+                            <span class="back__btn-label">Back</span>
+                        </div>
+                        <h1 class="header__title">Review Order</h1>
+                        <div class="header__text">Orders ship within <strong>5 business days</strong></div>
+                    </div>
+                </div>
+                <div class="main__grid">
+                    <div class="page-width">
+                        <div class="main__form" js-main-review-form></div>
+                    </div>
+                </div>
+                <div class="sticky-bar">
+                    <div class="page-width">
+                        <div class="btn__grid">
+                            <div class="btn btn-secondary" js-save-later-btn>save for later</div>
+                            <product-form is="multi-order-form">
+                                {%- form 'product',
+                                    product,
+                                    id: formId,
+                                    novalidate: 'novalidate',
+                                    js-product-form: ''
+                                -%}
+                                    <button type="submit" class="btn btn-primary" js-atc-btn>
+                                        {%- render 'loading-spinner' -%}
+                                        <span class="btn__label">
+                                            add to cart
+                                            <span class="atc__price" js-atc-btn-price>- $150</span>
+                                        </span>
+                                    </button>
+                                {% endform %}
+                            </product-form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            {% render "frame-style-model", section: section, product: product %}
+            <template js-form-template>
+                {% render "order-form", initial: false, formId: formId, product: product %}
+            </template>
+            <template js-review-form-template>
+                {% render "review-form" %}
+            </template>
+        {% else %}
+            <div class="page-width">
+                <div class="header__grid">
+                    <div class="header__grid">
+                        {% if section.settings.title != blank %}
+                            <h1 class="header__title">{{ section.settings.title }}</h1>
+                        {% endif %}
+                        <div class="header__text">
+                            <a href="{{ routes.account_login_url }}">Please sign into your business account to use the Multi Order Form</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endunless %}
+    </multi-order-form>
+{% endif %}
+
+
+{% schema %}
+{
+    "name": "Multi Order Form",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+        },
+        {
+            "type": "text",
+            "id": "model_title",
+            "label": "Model title"
+        },
+        {
+            "type": "collection",
+            "id": "choose_collection",
+            "label": "Choose collection"
+        }
+    ]
+}
+{% endschema %}

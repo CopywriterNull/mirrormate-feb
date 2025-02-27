@@ -1,0 +1,216 @@
+{{ 'before-after-image-columns.css' | asset_url | stylesheet_tag }}
+{{ "quick-install-kits.css" |  asset_url |  stylesheet_tag }}
+{% style %}
+  .section_{{ section.id }}_padding{
+    padding-top:{{ section.settings.padding_top }}px;
+    padding-bottom:{{ section.settings.padding_bottom }}px;
+  }
+  @media (max-width:750px){
+    .section_{{ section.id }}_padding{
+      padding-top:56px;
+      padding-bottom:56px;
+    }
+  }
+  {% endstyle %}
+<div class=" quick-install-kits before_after_image_column_main_wrapper section_{{ section.id }}_padding" style="background:{{ section.settings.bgcolor }}">
+  <div class="page-width">
+    <div class="before_after_image_column_section_header Common_title_new">
+      <h2>{{ section.settings.main-heading }}</h2>
+    </div>
+    <div class="before_after_image_column_grid">
+      <div class="before_after_image_column_grid_item ">
+           <div class="before_after_image_column_grid_wrap">
+             <div class="before_after_image_wrapper">
+                <div class="hb_image_container">
+                    <div class="hb_image left_image">
+                        {%- if section.settings.main_desktop_image_1 != blank -%}
+                            {{
+                              section.settings.main_desktop_image_1 | 
+                              image_url: width: img.width | 
+                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                              fetchpriority: 'auto', 
+                              class:'Full_image_1_new'
+                            }}
+                          {%- endif -%}
+                    </div>
+                    <div class="hb_image left_image">
+                        {%- if section.settings.main_desktop_image_2 != blank -%}
+                            {{
+                              section.settings.main_desktop_image_2 | 
+                              image_url: width: img.width | 
+                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                              fetchpriority: 'auto', 
+                              class:'Full_image_2_new'
+                            }}
+                          {%- endif -%} 
+                    </div>
+                </div>
+             </div>
+          <div class="before_after_content_wrapper">
+            <div class="before_after_content_sub_title"><h4>{{ section.settings.subtitle }}</h4></div>
+             <div class="before_after_content_title"><h3>{{ section.settings.title }}</h3></div>
+            <div class="before_after_content_description">{{ section.settings.description }}</div>
+            <div class="before_after_content_btnlink"><a href="{{ section.settings.btn_url }}">{{ section.settings.btn_label }}</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="before_after_image_column_grid_item">
+        <div class="before_after_image_column_grid_wrap">
+            <div class="before_after_image_wrapper">
+                <div class="hb_image_container">
+                    <div class="hb_image left_image">
+                        {%- if section.settings.main_desktop_image_12 != blank -%}
+                            {{
+                              section.settings.main_desktop_image_12 | 
+                              image_url: width: img.width | 
+                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                              fetchpriority: 'auto', 
+                              class:'Full_image_1_new'
+                            }}
+                          {%- endif -%}
+                    </div>
+                    <div class="hb_image left_image">
+                        {%- if section.settings.main_desktop_image_22 != blank -%}
+                            {{
+                             section.settings.main_desktop_image_22 | 
+                             image_url: width: img.width | 
+                             image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                             fetchpriority: 'auto', 
+                             class:'Full_image_2_new'
+                            }}
+                          {%- endif -%} 
+                    </div>
+                </div>
+            </div>
+            <div class="before_after_content_wrapper">
+                <div class="before_after_content_sub_title"><h4>{{ section.settings.subtitle2 }}</h4></div>
+                <div class="before_after_content_title"><h3>{{ section.settings.title2 }}</h3></div>
+                <div class="before_after_content_description">{{ section.settings.description2 }}</div>
+                <div class="before_after_content_btnlink"><a href="{{ section.settings.btn_url2 }}">{{ section.settings.btn_label2 }}</a></div>
+            </div>
+         </div>
+      </div> 
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Quick Install Kits",
+    "settings": [
+      {
+        "type": "color",
+        "id":"bgcolor",
+        "label": "Background Color",
+        "default":"#ffffff"
+      },
+      {
+        "type": "text",
+        "id": "main-heading",
+        "label": "Main Heading"
+      },
+      {
+        "type":"header",
+        "content": "Left Column Content"
+      },
+       {
+            "type": "image_picker",
+            "id": "main_desktop_image_1",
+            "label": "Desktop Before Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_desktop_image_2",
+            "label": "Desktop After Image"
+          },
+         {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Sub Title"
+          },
+         {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+         {
+            "type": "richtext",
+            "id": "description",
+            "label": "Description"
+          },
+         {
+            "type": "url",
+            "id": "btn_url",
+            "label": "Button URL"
+          },
+          {
+            "type": "text",
+            "id": "btn_label",
+            "label": "Button Label"
+          },
+      {
+        "type":"header",
+        "content": "Right Column Content"
+      },
+       {
+            "type": "image_picker",
+            "id": "main_desktop_image_12",
+            "label": "Desktop Before Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_desktop_image_22",
+            "label": "Desktop After Image"
+          },
+         {
+            "type": "text",
+            "id": "subtitle2",
+            "label": "Sub Title"
+          },
+         {
+            "type": "text",
+            "id": "title2",
+            "label": "Title"
+          },
+         {
+            "type": "richtext",
+            "id": "description2",
+            "label": "Description"
+          },
+         {
+            "type": "url",
+            "id": "btn_url2",
+            "label": "Button URL"
+          },
+          {
+            "type": "text",
+            "id": "btn_label2",
+            "label": "Button Label"
+          },
+      {
+        "type": "range",
+        "id":"padding_top",
+        "label": "Padding Top",
+        "default":96,
+        "unit": "px",
+        "max": 100,
+        "min": 0,
+        "step": 2
+      },
+      {
+        "type": "range",
+        "id":"padding_bottom",
+        "label": "Padding Bottom",
+        "default":96,
+        "unit": "px",
+        "max": 100,
+        "min": 0,
+        "step": 2
+      }
+    ],
+    "presets": [
+      {
+        "name": "Quick Install Kits"
+      }
+    ]
+  }
+{% endschema %}

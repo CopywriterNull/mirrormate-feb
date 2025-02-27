@@ -1,0 +1,73 @@
+{%- if section.settings.main_desktop_video != blank or section.settings.main_desktop_image != blank or section.settings.main_mobile_image != blank -%}
+  <div class="Page_customer_reviews_banner_main_new" style="background: {{ section.settings.main_background_color }};">
+    <div class="Page_customer_reviews_banner_inner_new">
+      <div class="Page_customer_reviews_banner_static_new">
+        {%- if section.settings.main_desktop_video != blank -%}
+          <div class="Page_customer_reviews_banner_static_videoimage_new">
+            {%- if section.settings.main_desktop_video != blank -%}
+              {{ section.settings.main_desktop_video | video_tag: class:'', image_size: 'master', controls: false, autoplay: true, loop: true }}
+            {%- endif -%}
+          </div>
+        {% else %}  
+          {%- if section.settings.main_desktop_image != blank and section.settings.main_mobile_image != blank -%}
+            <div class="Page_customer_reviews_banner_static_videoimage_new">
+              {%- if section.settings.main_desktop_image != blank -%}
+                {{
+                  section.settings.main_desktop_image | 
+                  image_url: width: img.width | 
+                  image_tag: widths: '1296, 1512, 1728, 1944, 2048', 
+                  fetchpriority: 'auto', 
+                  class:'desktop_image_new'
+                }}
+              {%- endif -%}
+              {%- if section.settings.main_mobile_image != blank -%}
+                {{
+                  section.settings.main_mobile_image | 
+                  image_url: width: img.width | 
+                  image_tag: widths: '1296, 1512, 1728, 1944, 2048', 
+                  fetchpriority: 'auto', 
+                  class:'mobile_image_new'
+                }}
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Customer Reviews Banner",
+    "class": "Page_customer_reviews_banner_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#EFEFEF"
+      },
+      {
+        "type": "video",
+        "id": "main_desktop_video",
+        "label": "Add Main Video"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_desktop_image",
+        "label": "Add Main Desktop Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_mobile_image",
+        "label": "Add Main Mobile Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Customer Reviews Banner"
+      }
+    ]
+  }
+{% endschema %}

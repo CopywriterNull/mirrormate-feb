@@ -1,0 +1,537 @@
+.account-registration .image {
+    width: 49%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+      position: sticky;
+        top: 5%;
+}
+.account-registration .image img {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100% !important;
+    width: 100%;
+    object-fit: cover;
+   border-radius: 12px;
+}
+.account-registration .account-registration-inner {
+    display: flex;
+    gap: 0;
+}
+.account-registration .account-registration-inner .text {
+    width: 51%;
+    display:flex;
+    justify-content:center;
+}
+.account-registration .registrstion-form {
+    width: 430px;
+    max-width:100%;
+    margin-left: 55px;
+}
+.account-registration {
+    margin: 24px 0 95px 0;
+}
+.account-registration .page-title {
+    font-size: 56px;
+    line-height: 59.36px;
+    text-align: center;
+    margin: 40px 0 14px 0;
+   letter-spacing:-1px;
+}
+
+.account-registration .description {
+    font-size: 16px;
+    line-height: 21.6px;
+    font-weight: 400;
+    text-align: center;
+     margin-bottom: 32px;
+}
+.account-registration .description a {
+    color: #2D4256;
+    text-decoration-thickness: 0.5px;
+    text-underline-offset: 3px;
+}
+.account-registration form .title {
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.2px;
+    margin: 0 0 16px 0;
+}
+.account-registration form label {
+    display: block;
+    font-size: 14px;
+    line-height: 18.9px;
+    margin-bottom: 4px;
+}
+.account-registration form input {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #3E556959;
+    padding: 14px 12px;
+   margin-bottom:12px;
+  color: rgba(var(--color-foreground));
+}
+
+/* .account-registration form input:-internal-autofill-selected {
+    color: rgba(var(--color-foreground)) !important;
+    background-color:transparent !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{ 
+  color: rgba(var(--color-foreground)) !important;
+    background-color:transparent !important;
+}
+input[data-autocompleted] {
+   color: rgba(var(--color-foreground)) !important;
+    background-color:transparent !important;
+} */
+
+
+.account-registration form input:-webkit-autofill,
+  .account-registration form input:-webkit-autofill:hover,
+  .account-registration form input:-webkit-autofill:focus,
+  .account-registration form input:-webkit-autofill:active  {
+     color: rgba(var(--color-foreground)) !important;
+    -webkit-text-fill-color: rgba(var(--color-foreground)) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+     background-color: transparent !important;
+  }
+
+.account-registration form input::-ms-input-placeholder { /* Edge 12-18 */
+  color: #2D4256;
+  font-size: 16px;
+  line-height: 21.6px;
+  opacity:0.6;
+}
+
+.account-registration form input::placeholder {
+  color: #2D4256;
+  font-size: 16px;
+  line-height: 21.6px;
+   opacity:0.6;
+}
+
+.account-registration form select {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #3E556959;
+    padding: 12.5px 12px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    line-height: 21.6px;
+   
+    color: #2D4256;
+    -webkit-appearance: none;
+  -moz-appearance: none;
+  /* background: transparent; */
+   background-repeat: no-repeat;
+    background-position-x: 97%;
+    background-position-y: 15px;
+  background-image: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.5 6.5L8 11L3.5 6.5" stroke="%232D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+  
+}
+.account-registration form .grid-row {
+  margin-bottom: 20px;
+}
+.account-registration form .password-note {
+    font-style: italic;
+    font-size: 12px;
+    line-height: 16.2px;
+    margin-top: -4px;
+    margin-bottom: 12px;
+}
+.account-registration form .form-group-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+.account-registration form .form-group-checkbox label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    line-height: 21.6px;
+    margin: 0;
+    cursor: pointer;
+}
+.account-registration form .form-group-checkbox label .checkbox {
+    border: 1.5px solid #2D425680;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border-radius: 4px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.account-registration form .form-group-checkbox input {
+   display:none;
+}
+
+
+.account-registration form .form-group-checkbox input:checked + .checkbox {
+  background-color: #2d4256;
+}
+
+.account-registration form .form-actions {
+  margin-top:32px;
+}
+.account-registration form .title-frame {
+  margin-bottom:12px;
+}
+
+.account-registration form .button {
+      border-radius: 100px;
+    margin: 0;
+    min-height: 48px;
+    padding: 12px 12px;
+}
+.account-registration form select.business {
+     /* margin-bottom: 6px;
+    padding: 15.3px 12px;
+    background-position-y: 18px; */
+   color: rgba(45, 66, 86, 0.6);
+}
+.account-registration form select.business.selected {
+    color: #2d4256;
+}
+
+.account-registration form select option[value="---"] {
+    display:none;
+}
+
+.account-registration form select[form-type="Dealer"] option {
+    display:none;
+}
+.account-registration form select[form-type="Dealer"] option[value="United States"], .account-registration form select[form-type="Dealer"] option[value="Canada"] {
+    display:block;
+}
+
+
+.account-registration form .errorDiv {
+    color: rgb(235, 0, 27);
+      margin-top: 10px;
+}
+.account-registration form .successDiv {
+  color: #078a1c;
+      margin-top: 10px;
+}
+.account-registration form .form-group .error {
+    font-size: 10px;
+    color: rgb(235, 0, 27);
+    margin-top: -7px;
+    position: relative;
+    line-height: 10px;
+    display: block;
+    margin-bottom: 12px;
+}
+.account-registration .registration-success {
+    text-align: center;
+}
+
+.account-registration .registration-success {
+    text-align: center;
+}
+
+.account-registration .registrstion-form.registrstion-form-success {
+    display: flex;
+    align-items: center;
+}
+
+.account-registration .registration-success h1 {
+      font-size: 56px;
+    line-height: 59.36px;
+    letter-spacing: -1px;
+    margin: 16px 0 16px 0;
+}
+
+.account-registration .registration-success .description {
+    font-size: 16px;
+    line-height: 21.6px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 24px;
+    max-width: 394px;
+    margin: 0 auto 24px auto;
+}
+
+.account-registration .registration-success .description span {
+    /* font-weight: 600;
+    background: rgba(240, 208, 158, 0.6);
+    line-height: 20px; */
+       font-weight: 600;
+    background: #f0d09e80;
+    line-height: 16px;
+    display: inline-block;
+    padding-bottom: 3px;
+}
+.account-registration .registration-success .button {
+      min-width: 100%;
+    margin-bottom: 16px;
+}
+
+.account-registration .registration-success .login-link {
+    color: #2D4256;
+    text-transform: uppercase;
+    border-bottom: 1.5px solid #2D4256;
+    font-size: 14px;
+    line-height: 18.9px;
+    font-weight: 600;
+    letter-spacing: 0.28px;
+    text-decoration: none;
+}
+
+@media only screen and (max-width:749px) {
+  .account-registration .image {
+    display: none;
+  }
+  .account-registration .account-registration-inner .text {
+    width: 100%;
+  }
+  .account-registration .page-title {
+    font-size: 32px;
+    line-height: 36.8px;
+    margin: 0px 0 16px;
+  }
+  .account-registration {
+    margin: 32px 0 56px;
+  }
+  .account-registration .registrstion-form {
+    margin-left: 0px;
+     width:100%;
+  }
+  .account-registration .registration-success h1 {
+    font-size: 32px;
+    line-height: 36.8px;
+  }
+  .account-registration .registration-success .button {
+    margin-bottom: 12px;
+  }
+  .account-registration .registrstion-form.registrstion-form-success {
+    justify-content: center;
+  }
+}
+
+@media only screen and (min-width:750px) and (max-width:1024px) {
+  .account-registration .account-registration-inner {
+      gap: 0px;
+  }
+  .account-registration .image {
+    width: 50%;
+    height: 100% !important;
+  }
+  .account-registration .image img {
+    position: relative;
+    border-radius: 12px;
+  }
+  .account-registration .account-registration-inner .text {
+    min-width: 50%;
+    display: flex;
+    justify-content: center;
+  }
+ .account-registration  .registrstion-form {
+       width: 340px;
+      max-width: 100%;
+    margin-left: 0;
+  }
+  .account-registration .page-title {
+    font-size: 47px;
+    line-height: 54.36px;
+  }
+ .account-registration .registration-success h1 {
+    font-size: 48px;
+    line-height: 51.36px;
+  }
+}
+
+
+@media only screen and (min-width:1025px) and (max-width:1350px) {
+  .account-registration .account-registration-inner {
+      gap: 0px;
+  }
+  .account-registration .image {
+    width: 50%;
+    height: 100% !important;
+  }
+  .account-registration .image img {
+    position: relative;
+    border-radius: 12px;
+  }
+  .account-registration .account-registration-inner .text {
+    min-width: 50%;
+    display: flex;
+    justify-content: center;
+  }
+ .account-registration  .registrstion-form {
+    width: 380px;
+    max-width: 100%;
+  }
+}
+
+
+/*--------------- Request A Qoute------------*/
+
+.account-registration .description span {
+    font-weight: 600;
+    background: #f0d09e80;
+    line-height: 16px;
+    display: inline-block;
+    padding-bottom: 3px;
+}
+
+.account-registration.request-quote .bottom-text {
+    font-size: 14px;
+    line-height: 18.9px;
+    text-align: center;
+    font-weight: 400;
+}
+.account-registration.request-quote .bottom-text span {
+  font-weight: 600;
+}
+
+.account-registration.request-quote form input::-ms-input-placeholder { 
+  color: #2D4256;
+  font-size: 16px;
+  line-height: 21.6px;
+  opacity:1;
+  text-transform:uppercase;
+  letter-spacing:0.32px;
+   font-weight:600;
+}
+
+.account-registration.request-quote form input::placeholder {
+   color: #2D4256;
+   font-size: 16px;
+   line-height: 21.6px;
+   opacity:1;
+   text-transform:uppercase;
+   letter-spacing:0.32px;
+   font-weight:600;
+}
+
+.account-registration.request-quote form input {
+    border-radius: 80px;
+    border: 1.5px solid #2D4256;
+    padding: 11.8px 20px;
+    margin-bottom: 12px;
+    font-weight:600;
+   letter-spacing:0.32px;
+   font-size: 16px;
+   line-height: 21.6px;
+}
+
+.account-registration.request-quote form .title-frame {
+    margin-top: 22px;
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 21.6px;
+    font-family: var(--font-body-family);
+    letter-spacing: 0.32px;
+    font-weight: 600;
+}
+
+.account-registration.request-quote .page-title {
+      margin: 19px 0 16px;
+}
+
+.account-registration.request-quote .description {
+    max-width: 377px;
+    margin: 0 auto 24px auto;
+}
+
+
+.account-registration.request-quote {
+    margin: 32px 0 95px;
+}
+
+.account-registration.request-quote form .grid-row {
+    margin-bottom: 0;
+}
+
+.account-registration.request-quote .registration-success h1 {
+    font-size: 32px;
+    line-height: 36.8px;
+    letter-spacing: -1px;
+}
+.account-registration form .button.form-submit-btn {
+    min-width: 100%;
+}
+
+.account-registration.request-quote form .button.form-submit-btn {
+    margin-bottom: 12px;
+}
+.account-registration form .button .loading__spinner {
+  display:none;
+}
+
+.account-registration form .button.loading .loading__spinner {
+  display:flex;
+}
+.account-registration form .button.loading {
+    cursor: not-allowed;
+    opacity: .5;
+    pointer-events: none;
+}
+
+.account-registration form .button.loading span {
+    display:none;
+}
+
+.account-registration form.account-registration-form {
+    margin-top: 32px;
+}
+
+@media only screen and (max-width:749px) {
+  .account-registration.request-quote .account-registration-inner {
+      display: block;
+     margin: 0 -20px;
+  }
+  .account-registration.request-quote {
+    margin: 0px 0 56px;
+  }
+  .account-registration.request-quote .image {
+        width:100%;
+        display:block;
+        position: relative;
+        border-radius: 0;
+        height:220px;
+        top: 0;
+  }
+  .account-registration.request-quote .image img {
+     border-radius: 0;
+  }
+  .account-registration.request-quote .page-title {
+     margin: 32px 0 12px;
+     letter-spacing: -0.1px;
+  }
+  .account-registration.request-quote .account-registration-inner .text {
+        padding: 0 20px;
+    }
+  .account-registration.request-quote .description {
+    max-width: 100%;
+    margin: 0 auto 32px;
+  }
+  .account-registration.request-quote form .title-frame {
+    margin-top: 16px;
+  }
+  .account-registration.request-quote form .form-actions {
+    margin-top: 28px;
+  }
+  .account-registration.request-quote .registration-success h1 {
+      font-size: 24px;
+      line-height: 28.8px;
+      letter-spacing: -0.2px;
+      margin: 16px 0;
+  }
+  .account-registration.request-quote .registration-success {
+       margin-top: 32px;
+  }
+}

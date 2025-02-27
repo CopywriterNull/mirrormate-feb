@@ -1,0 +1,86 @@
+{%- if section.blocks.size > 0 -%}
+  <div class="Index_marquee_detail_list_main_new" style="background: {{ section.settings.main_background_color }}; color: {{ section.settings.main_information_color }};">
+    <div class="Index_marquee_detail_list_inner_new" data-aos="fade-in">
+      <div class="Index_marquee_detail_list_loops_new">
+        <div class="index-marquee">
+          <span>
+            {%- for block in section.blocks -%}
+              {% if block.settings.title != blank %}
+                <div class="Index_marquee_detail_list_loops_mainboxs_new">
+                  <div class="Index_marquee_detail_list_loops_innerboxs_new">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.6667 5.83331L8.33335 14.1666L4.16669 9.99998" stroke="{{ section.settings.main_information_color }}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    {{ block.settings.title }}
+                  </div>  
+                </div>
+              {%- endif -%}  
+            {%- endfor -%}
+            {%- for block in section.blocks -%}
+              {% if block.settings.title != blank %}
+                <div class="Index_marquee_detail_list_loops_mainboxs_new">
+                  <div class="Index_marquee_detail_list_loops_innerboxs_new">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.6667 5.83331L8.33335 14.1666L4.16669 9.99998" stroke="{{ section.settings.main_information_color }}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    {{ block.settings.title }}
+                  </div>  
+                </div>
+              {%- endif -%} 
+            {%- endfor -%}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Index Marquee Detail List",
+    "class": "Index_marquee_detail_list_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#5B80A1"
+      },
+      {
+        "type": "color",
+        "id": "main_information_color",
+        "label": "Add Main Information Color",
+        "default": "#FFFFFF"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "information",
+        "name": "Information",
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "title",
+            "label": "Add Main Information Text",
+            "default": "<p>Lorem Ipsum</p>"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Index Marquee Detail List",
+        "blocks": [
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

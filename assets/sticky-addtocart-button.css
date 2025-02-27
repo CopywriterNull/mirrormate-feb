@@ -1,0 +1,66 @@
+.scrolled-past-header-body .Product_template_new{ position:relative; z-index:1; }
+.sticky-addtocart-button {position: fixed; width: 100%; z-index: 3; bottom: 0; left: 0; margin: 0; display:none; }
+.sticky-addtocart-button .page-width{ max-width:100% !important; padding:0 56px !important; background: #fff;  border-top: 1px solid rgba(62, 85, 105, 0.20);}
+.sticky-addtocart-button .main-grid { display: flex; justify-content: space-between; align-items: center; min-height:80px; padding: 16px 0; grid-gap:20px; }
+.sticky_addtocart_left_new{ display:flex; align-items:center; }
+.sticky_addtocart_img_new{ width:45px; }
+.sticky_addtocart_img_new img{ width:100%; display:flex; border-radius:2px; }
+.sticky_addtocart_title_new{ width:calc(100% - 45px); padding-left:16px; }
+.sticky_addtocart_title_new h2 { font-family: var(--font-body-family); color: #2D4256; font-size: 18px; font-style: normal; font-weight: 600; line-height: 125%; margin:0; }
+.sticky_addtocart_price_new{ padding:2px 0 0 0; }
+.sticky_addtocart_price_new .price{ font-size: 16px; font-weight: 400; line-height: 135%; }
+.sticky_addtocart_price_new .price__container{ margin:0 !important; }
+.sticky_addtocart_right_new{ display:flex; align-items:center; flex-direction: row-reverse; grid-gap: 8px; }
+.frame_button_new{}
+.frame_button_new .frame-button{ margin:0; padding:0; }
+.frame_button_new .frame-button .button { width: auto; min-width: auto; padding-left: 32px; padding-right: 32px; }
+.sample_button_new{}
+.sample_button_new .button { width: auto; min-width: auto; padding-left: 32px; padding-right: 32px; }
+.display_header_new .sticky-addtocart-button{ display:block; }
+.hide_header_new .sticky-addtocart-button{ display:none; }
+.sticky_addtocart_right_new .Sample_meta_product_innerright_links_new{ margin-top:0; padding:12px 43px; font-size: 16px; margin-right:208px; }
+.display_header_new .product-form__buttons{ position: fixed; right: 56px; bottom: 16px; z-index: 99; width: 200px; min-width: 200px; }
+.display_header_new .product-form__submit{ min-width: 200px; transition:none; }
+.hide_header_new .product-form__buttons{ position:relative; right:auto; bottom:auto; margin:0; }
+.hide_header_new .product-form__submit{ min-width:100%; transition:none; }
+
+.display_header_new #chat-button{ display:none !important; }
+
+@media(min-width:0px) and (max-width:749px){
+  .sticky-addtocart-button .page-width{ padding:0 20px !important; }
+  .sticky-addtocart-button .main-grid{ display:block; }
+  .sticky_addtocart_img_new { width: 24px; }
+  .sticky_addtocart_title_new { width: calc(100% - 24px); padding-left: 8px; }
+  .sticky_addtocart_title_new h2{ font-size: 16px; font-weight: 600; line-height: 125%; } 
+  .sticky_addtocart_price_new{ display:none; }
+  .sticky_addtocart_right_new{ padding:12px 0 0 0; justify-content:left; }
+  .sticky_addtocart_right_new .frame_button_new{ width:50%; }
+  .sticky_addtocart_right_new .shopify-product-form{ width:100%; }
+  .sticky_addtocart_right_new product-form{ width:50%; }
+  .sample_button_new .button{ width:100%; }
+  .frame_button_new .frame-button .button, .sample_button_new .button { padding-left: 10px; padding-right: 10px; font-size: 14px; }
+  .frame_button_new .frame-button .button{ padding-left: 0px; padding-right: 0px; }
+
+  .sample_button_new_samplePDP{ width:calc(50% - 4px); }
+  .display_header_new .product-form__buttons{ right: 20px; width: calc(50% - 24px); min-width: initial; }
+  .display_header_new .product-form__submit{ min-width:initial;  font-size: 14px; }
+  .display_header_new .product-form__submit .hide_on_sticky{ display:none; }
+
+  
+}
+
+@media(min-width:750px) and (max-width:989px){
+  .sticky-addtocart-button .page-width{ padding:0 20px !important; }
+  .sticky_addtocart_title_new { padding-left: 12px; }
+  .sticky_addtocart_title_new h2{ font-size: 16px; font-weight: 600; line-height: 125%; } 
+  .sticky_addtocart_right_new{ }
+  .frame_button_new .frame-button .button, .sample_button_new .button { padding-left: 20px; padding-right: 20px; font-size: 14px; }
+}
+
+@media(min-width:990px) and (max-width:1439px){
+  .sticky-addtocart-button .page-width{ padding:0 20px !important; }
+  .sticky_addtocart_title_new { padding-left: 12px; }
+  .sticky_addtocart_title_new h2{ font-size: 16px; font-weight: 600; line-height: 125%; } 
+  .sticky_addtocart_right_new{ }
+  .frame_button_new .frame-button .button, .sample_button_new .button { padding-left: 30px; padding-right: 30px; font-size: 14px; }
+}

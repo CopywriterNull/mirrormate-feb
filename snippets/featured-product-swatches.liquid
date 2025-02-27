@@ -1,0 +1,127 @@
+{% if shop.metaobjects.build_my_frame.values_count > 0 %}
+    {% assign user_type = customer.metafields.SAGE.PriceLevel | downcase %}
+
+    {% if user_type == '' or user_type == '-' or user_type == 'none' %}
+        {% assign user_type = "r" %}
+    {% endif %}
+
+    <featured-product-stitcher class="featured-product-swatches">
+        {% assign buildMyFrame = shop.metaobjects.build_my_frame.values | first %}
+        {% assign colorsCollection = buildMyFrame.colors.value %}
+        {% assign stylesCollection = buildMyFrame.styles.value %}
+    
+        {% assign colorsFilter = "" %}
+        {% assign stylesFilter = "" %}
+    
+        {% for color_product in colorsCollection.products %}
+            {% assign swatchColor = color_product.metafields.custom.swatch_title | strip | handleize %}
+
+            {% unless colorsFilter contains swatchColor %}
+                {% assign colorsFilter = colorsFilter | append: swatchColor | append: ',' %}
+            {% endunless %}
+        {% endfor %}
+    
+        {% for style_product in stylesCollection.products %}
+            {% assign swatchStyle = style_product.metafields.custom.swatch_style | strip | handleize %}
+
+            {% unless stylesFilter contains swatchStyle %}
+                {% assign stylesFilter = stylesFilter | append: swatchStyle | append: ',' %}
+            {% endunless %}
+        {% endfor %}
+
+        {% assign colorsFilter = colorsFilter | split: "," %}
+        {% assign stylesFilter = stylesFilter | split: "," %}
+    
+        <div class="main__tabs">
+            <div class="tab__item is-active" js-tab-item data-tab-id="Tab-Colors">colors</div>
+            <div class="tab__item" js-tab-item data-tab-id="Tab-Styles">styles</div>
+        </div>
+        <div class="main__panels">
+            <div class="tab__panel is-active" js-tab-panel id="Tab-Colors">
+                {% if colorsFilter.size > 0 %}
+                    <div class="filters__slider" js-filters-slider>
+                        <div class="swiper-wrapper">
+                            <div class="filter__item swiper-slide is-selected" data-filter-value="all" js-filter-item>All</div>
+                            {% for color in colorsFilter %}
+                                <div class="filter__item swiper-slide" data-filter-value="{{ color | strip | handleize }}" js-filter-item>{{ color }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+                
+                <div class="details__grid">
+                    {%- liquid
+                        assign product_variant = product.selected_or_first_available_variant
+                        for variant in product.variants
+                            if user_type == "g" and variant.title contains "Gold" and variant.title contains "10LF"
+                                assign product_variant = variant
+                                break
+                            endif
+                            if user_type == "b" and variant.title contains "Base" and variant.title contains "10LF"
+                                assign product_variant = variant
+                                break
+                            endif
+                            if user_type == "s" and variant.title contains "Silver" and variant.title contains "10LF"
+                                assign product_variant = variant
+                                break
+                            endif
+                            if user_type == "v" and variant.title contains "Value" and variant.title contains "10LF"
+                                assign product_variant = variant
+                                break
+                            endif
+                        endfor
+                    -%}
+
+                    {% assign product_price = product_variant.price | money | remove: '.00' | prepend: 'from '  %}
+                    <span class="product__title">{{ product.title }}</span>
+                    <span class="product__price">| {{ product_price }}</span>
+                </div>
+                <div class="stitcher__grid">
+                    {% for color_product in colorsCollection.products %}
+                        <div class="stitcher__item{% if forloop.index > 16 %} hidden{% endif %}{% if color_product.id == product.id %} is-selected{% endif %}" data-product-handle="{{ color_product.handle }}" data-value="{{ color_product.metafields.custom.swatch_title | strip | handleize }}" js-swatch-item>
+                            {% if color_product.metafields.custom.swatch_image != blank %}
+                                {{ color_product.metafields.custom.swatch_image | image_url: width: '200x' | image_tag }}
+                            {% else %}
+                                {{ color_product.featured_image | image_url: width: '200x' | image_tag }}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+                {% if colorsCollection.products.size > 10 %}
+                    <div class="reveal__btn" js-see-more-btn>See more</div>
+                {% endif %}
+            </div>
+            <div class="tab__panel" js-tab-panel id="Tab-Styles">
+                {% if stylesFilter.size > 0 %}
+                    <div class="filters__slider" js-filters-slider>
+                        <div class="swiper-wrapper">
+                            <div class="filter__item swiper-slide is-selected" data-filter-value="all" js-filter-item>All</div>
+                            {% for style in stylesFilter %}
+                                <div class="filter__item swiper-slide" data-filter-value="{{ style | strip | handleize }}" js-filter-item>{{ style }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+                
+                <div class="details__grid">
+                    <span class="product__title">{{ product.title }}</span>
+                    <span class="product__price">| {{ product_price }}</span>
+                </div>
+                <div class="stitcher__grid">
+                    {% for style_product in stylesCollection.products %}
+                        <div class="stitcher__item{% if forloop.index > 10 %} hidden{% endif %}{% if forloop.first %} is-selected{% endif %}" data-product-handle="{{ style_product.handle }}" data-value="{{ style_product.metafields.custom.swatch_style | strip | handleize }}" js-swatch-item>
+                            {% if style_product.metafields.custom.swatch_image != blank %}
+                                {{ style_product.metafields.custom.swatch_image | image_url: width: '200x' | image_tag }}
+                            {% else %}
+                                {{ style_product.featured_image | image_url: width: '200x' | image_tag }}
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+                {% if stylesCollection.products.size > 10 %}
+                    <div class="reveal__btn" js-see-more-btn>See more</div>
+                {% endif %}
+            </div>
+        </div>
+    </featured-product-stitcher>
+{% endif %}

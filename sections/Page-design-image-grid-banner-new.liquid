@@ -1,0 +1,170 @@
+{% if section.blocks.size > 0 or section.settings.main_background_color != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_link != blank or section.settings.main_button_text != blank %}
+  <div class="Page_design_image_grid_banner_main_new" style="background-color: {{  section.settings.main_background_color }}">
+    <div class="page-width">
+      <div class="Page_design_image_grid_banner_inner_new">
+        <div class="Page_design_image_grid_banner_sides">
+          {% if section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_link != blank or section.settings.main_button_text != blank %}
+            <div class="Page_design_image_grid_banner_leftmain">
+              <div class="Page_design_image_grid_banner_leftinner">
+                {% if section.settings.main_heading_text != blank %}
+                <div class="Page_design_image_grid_banner_heading_text Common_title_new">
+                  <h1>{{ section.settings.main_heading_text }}</h1>
+                </div>
+                {% endif %}
+                {% if section.settings.main_information_text != blank %}
+                <div class="Page_design_image_grid_banner_information_text Index_meet_image_all_text_sides_innerright_infos_new">
+                  {{ section.settings.main_information_text }}
+                </div>
+                {% endif %}
+                {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                  <div class="Page_design_image_grid_banner_button">
+                    <a href="{{ section.settings.main_button_link }}" class="button">
+                      {{ section.settings.main_button_text }}  
+                    </a>
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {% endif %}
+          {% if section.blocks.size > 0 %}
+            <div class="Page_design_image_grid_banner_rightmain">
+              <div class="Page_design_image_grid_banner_rightinner">
+                <div class="Page_design_image_grid_main desktop_design_image_grid small-hide medium-hide">
+                  {% for block in section.blocks %} 
+                    {% if block.type == "grid-image-dekstop" %}
+                      {% if block.settings.main_mp4_video_desktop != blank or block.settings.main_grid_image_desktop %}
+                      <div class="single_design_grid_image_main desktop_only">
+                        {% if block.settings.main_mp4_video_desktop != blank %}
+                          {{ block.settings.main_mp4_video_desktop | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                        {% else %}
+                        {{
+                            block.settings.main_grid_image_desktop | 
+                            image_url: width: img.width | 
+                            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                            fetchpriority: 'auto', 
+                            class:'grid_image'
+                          }}
+                        {% endif %}
+                      </div>
+                        {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                </div>
+                <div class="Page_design_image_grid_main mobile_design_image_grid large-up-hide">
+                  {% for block in section.blocks %}
+                    {% if block.type == "grid-image-mobile" %}
+                      {% if block.settings.main_mp4_video_mobile != blank or block.settings.main_grid_image_mobile %}
+                      <div class="single_design_grid_image_main">
+                        {% if block.settings.main_mp4_video_mobile != blank %}
+                          {{ block.settings.main_mp4_video_mobile | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                        {% else %}
+                        {{
+                            block.settings.main_grid_image_mobile | 
+                            image_url: width: img.width | 
+                            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                            fetchpriority: 'auto', 
+                            class:'grid_image'
+                          }}
+                        {% endif %}
+                      </div>
+                        {% endif %}
+                      
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+  
+{% schema %}
+  {
+     "name": "Page Design Image Grid",
+    "class": "Page_design_image_grid_banner",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Looking For Design Advice?"
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "<p><span>We’ve got answers</span> to all your design related questions, from matching your vanity, to hardware, to frame width.</p>"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "shop now"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      },
+    ],
+    "blocks":[
+      {
+        "type": "grid-image-dekstop",
+        "name": "Grid Image Desktop",
+        "limit": 3,
+        "settings": [
+          {
+              "type": "video",
+              "id": "main_mp4_video_desktop",
+              "label": "Add Main MP4 Video for Desktop"
+          },
+            {
+              "type": "image_picker",
+              "id": "main_grid_image_desktop",
+              "label": "Add Main Grid Image for desktop"
+            }
+        ]
+      },
+      {
+        "type": "grid-image-mobile",
+        "name": "Grid Image mobile",
+        "limit": 3,
+        "settings": [
+          {
+              "type": "video",
+              "id": "main_mp4_video_mobile",
+              "label": "Add Main MP4 Video for Mobile"
+          },
+            {
+              "type": "image_picker",
+              "id": "main_grid_image_mobile",
+              "label": "Add Main Grid Image for mobile"
+            }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Page Design Image Grid Banner",
+        "blocks":[
+          {
+            "type": "grid-image-dekstop"
+          },
+          {
+            "type": "grid-image-mobile"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

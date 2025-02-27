@@ -1,0 +1,73 @@
+{{ "Page-icon-text-strip.css" | asset_url | stylesheet_tag }}
+
+{% if section.blocks.size > 0 %}
+  <div class="Page_icon_text_strip_main Page_icon_text_strip_main_{{ section.id }}" style="background-color: {{ section.settings.main_background_color }}">
+    <div class="page-width">
+      <div class="Page_icon_text_strip_inner">
+        {% for block in section.blocks %}
+          {% if block.type == "icon-text-block" %}
+            {% if block.settings.icon_image != blank or block.settings.icon_text != blank %}
+              <div class="Page_icon_text_block">
+                {% if block.settings.icon_image != blank %}
+                  <div class="icon_image">
+                    {{
+                      block.settings.icon_image | 
+                      image_url: width: img.width | 
+                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                      fetchpriority: 'auto', 
+                      class:'card_image'
+                    }}
+                  </div>
+                {% endif %}
+                {% if block.settings.icon_text != blank %}
+                  <div class="icon_text">
+                    {{ block.settings.icon_text }}
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Page Icon Text Strip",
+    "class": "Page_icon_text_strip",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#2D4256"
+      },
+    ],
+    "blocks": [
+      {
+        "type": "icon-text-block",
+        "name": "Icon Text Block",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "icon_image",
+            "label": "Add icon image"
+          },
+          {
+            "type": "richtext",
+            "id": "icon_text",
+            "label": "Add Icon Text",
+            "default":"<p>made in the usa</p>"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Page Icon Text Strip",  
+      }
+    ]
+  }
+{% endschema %}

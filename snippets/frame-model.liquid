@@ -1,0 +1,115 @@
+{% assign user_type = customer.metafields.SAGE.PriceLevel | downcase %}
+
+{% if user_type == '' or user_type == '-' or user_type == 'none' %}
+    {% assign user_type = "r" %}
+{% endif %}
+
+<frame-model class="frame-model{% if state != blank %} {{ state }}{% endif %} is-initial" data-form-id="{{ formId }}" {% if template.name == "product" %}data-type="product"{% endif %} data-user-type="{{ user_type }}" data-currency-symbol="{{ cart.currency.symbol }}">
+    {% assign metaProductDrawer = shop.metaobjects.product_meta_drawer.values | first %}
+    {% assign measurement_model = shop.metaobjects.measurement_model.values | first %}
+    {% assign measurement_faqs = shop.metaobjects.measurement_faqs.values %}
+    {% assign supports_meta = shop.metaobjects.need_help_supports.values | first %}
+    {% assign clipsStepDrawer = shop.metaobjects.clips_step_drawer_sb.values | first %}
+
+    {% assign hasProductMetaDrawer = false %}
+    {% assign hasProductMetaDrawer = false %}
+    {% assign hasClipsStepDrawer = false %}
+
+    {% if shop.metaobjects.product_meta_drawer.values_count > 0 %}
+        {% assign hasProductMetaDrawer = true %}
+    {% endif %}
+    {% if shop.metaobjects.measurement_model.values_count > 0 %}
+        {% assign hasMeasurementModel = true %}
+    {% endif %}
+    {% if shop.metaobjects.clips_step_drawer_sb.values_count > 0 %}
+        {% assign hasClipsStepDrawer = true %}
+    {% endif %}
+
+    <div class="announcement__bar">
+        <p class="announcement__bar-text">SHOP 65+ STYLES</p>
+    </div>
+    <div class="steps-header">
+        <div class="page-width">
+            <div class="steps-header-main">
+                <div class="steps-header-grid">
+                    <div class="back-btn disabled" js-back-btn>
+                        <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.375 1L1.625 7.75L8.375 14.5" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                    
+                    </div>
+                    <div class="steps-grid">
+                        <span class="steps-label">step</span>
+                        {% if user_type == "r" %}
+                            <span class="steps-counter" js-steps-counter data-total-steps="7">1/7</span>
+                        {% else %}
+                            <span class="steps-counter" js-steps-counter data-total-steps="5">1/5</span>
+                        {% endif %}
+                    </div>
+                    <div class="close-btn" js-close-btn data-trigger-id="Close-Model">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19.0703 4.9292L4.92818 19.0713" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                            <path d="M19.0718 19.0713L4.92969 4.9292" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                        </svg>                                      
+                    </div>
+                </div>
+                {% if shop.metaobjects.need_help_supports.values_count > 0 %}
+                    {% render "need-help", meta: supports_meta %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="steps-progress-bar">
+            <span class="steps-progress-meter" js-steps-progress-meter data-default-progress="{% if user_type == "r" %}14.28{% else %}20{% endif %}"></span>
+        </div>
+    </div>
+    <div class="frame-steps" data-scrollable>
+        {% render "build-my-frame", user_type: user_type %}
+        {% if user_type == "r" %}
+            {% render "frame-step-1", sectionId: sectionId, user_type: user_type %}
+            {% render "frame-step-2" %}
+        {% endif %}
+        {% render "frame-step-3", 
+            formId: formId, 
+            sectionId: sectionId, 
+            measurement_faqs: measurement_faqs, 
+            hasMeasurementModel: hasMeasurementModel,
+            user_type: user_type 
+        %}
+        {% render "frame-step-4", 
+            hasProductMetaDrawer: hasProductMetaDrawer, 
+            formId: formId, 
+            measurement_faqs: measurement_faqs,
+            hasMeasurementModel: hasMeasurementModel,
+            user_type: user_type 
+        %}
+        {% render "frame-step-5", 
+            hasClipsStepDrawer: hasClipsStepDrawer, 
+            formId: formId,
+            user_type: user_type 
+        %}
+        {% render "frame-step-6", 
+            hasProductMetaDrawer: hasProductMetaDrawer, 
+            formId: formId,
+            user_type: user_type  
+        %}
+        {% render "frame-step-7",
+            formId: formId, 
+            sectionId: sectionId,
+            user_type: user_type 
+        %}
+    </div>
+
+    {% if hasProductMetaDrawer %}
+        {% render "product-meta-drawer", meta: metaProductDrawer %}
+    {% endif %}
+    {% if hasMeasurementModel %}
+        {% render "measurement-model", meta: measurement_model %}
+    {% endif %}
+    {% if hasClipsStepDrawer %}
+        {% render "clips-step-drawer", meta: clipsStepDrawer %}
+    {% endif %}
+    {% render "product-info-drawer", sectionId: sectionId %}
+    {% render "close-model" %}
+    {% render "skip-measurement-model" %}
+
+    <script text="application/json" id="VariantsJSON">{{ product.variants | json }}</script>
+</frame-model>

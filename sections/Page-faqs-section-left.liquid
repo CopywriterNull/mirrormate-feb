@@ -1,0 +1,482 @@
+{%- if section.settings.main_heading_text != blank or section.settings.main_information_text_1 != blank or section.settings.main_information_text_2 != blank or section.settings.main_detail_text != blank or section.blocks.size > 0 -%}
+  <div class="new_faq_section Page_FAQs_left_side_detail_static_new" >
+    <div class="page-width">
+  <div class="responsive_faq_top">
+    {% if  section.settings.box_bottom_content %}
+  <div class="box_top_content Index_meet_image_all_text_sides_innerright_infos_new">{{ section.settings.box_bottom_content }}</div>
+    {% endif %}
+    {% if section.blocks.size > 0 %}
+    <div class="responsive_faq_tab_main">
+    <ul class="tab-heading">
+    {%- for block in section.blocks -%}
+                           {%- case block.type -%}
+                             {%- when 'tab' -%}
+                             <li><a href="#id_{{ block.settings.tab | handle }}">{{ block.settings.tab }}</a></li>
+                     {%- endcase -%}
+                     {%- endfor -%}
+      </ul>
+    </div>
+    {% endif %}
+    
+  </div>
+  </div>
+      <div class=" Page_FAQs_left_side_detail_in_new">
+      {%- if section.settings.main_detail_text != blank or section.blocks.size > 0 -%}
+          <div class="">
+            <div class="">
+              
+                <div class="Product_faqs_accordions_2_sides_mainleft_new">
+                  <div class="left-side-grid">
+
+                  
+                
+                  {%- if section.settings.main_detail_text != blank -%}
+                  <div class="Product_faqs_accordions_2_sides_innerleft_new" style="background: {{ section.settings.main_box_background_color }};">
+                    <div class="Product_faqs_accordions_2_sides_innerleft_parent">
+                    <div class="Product_faqs_accordions_2_sides_innerleft_parent_main_heading">
+                       
+                    <p>{{ section.settings.main_detail_text }}</p>
+                    </div>
+
+                      <div class="Product_faqs_accordions_2_sides_innerleft_main">
+                        <h2>{{ section.settings.main_detail_text }}</h2>
+                    <div class="close">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3787_24467)">
+<path d="M19.0713 4.92969L4.92915 19.0718" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+<path d="M19.0708 19.0718L4.92871 4.92969" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_3787_24467">
+<rect width="24" height="24" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+
+                    </div>
+                   <div class="select1 large-up-hide">
+                    <input class="select-field" value="" placeholder="Jump to a section" readonly />
+			<span></span>
+                    <ul class="tab-heading select-list">
+                      <button onclick="removeClass()"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_486_51597)">
+<path d="M12.9502 3.0498L3.0507 12.9493" stroke="black" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M12.9493 12.9493L3.0498 3.0498" stroke="black" stroke-miterlimit="10" stroke-linecap="round"/>
+</g>
+<defs>
+<clipPath id="clip0_486_51597">
+<rect width="16" height="16" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+</button>  
+                      <h3>{{ section.settings.main_detail_text }}</h3>
+                      {%- for block in section.blocks -%}
+                           {%- case block.type -%}
+                             {%- when 'tab' -%}
+                             <li><a href="#id_{{ block.settings.tab | handle }}">{{ block.settings.tab }}</a></li>
+                     {%- endcase -%}
+                     {%- endfor -%}
+                      <div class="bottom-content">{{ section.settings.bottomcontent }}</div>
+                      </ul>
+                    <div class="bottom-content">{{ section.settings.box_bottom_content }}</div>
+                   </div>
+                     <div class="tab_heading_main">
+                   
+                    <ul class="tab-heading">
+                      {%- for block in section.blocks -%}
+                           {%- case block.type -%}
+                             {%- when 'tab' -%}
+                             <li><a href="#id_{{ block.settings.tab | handle }}">{{ block.settings.tab }}</a></li>
+                     {%- endcase -%}
+                     {%- endfor -%}
+                      </ul>
+                   </div>
+                    {% if  section.settings.box_bottom_content %}
+  <div class="box_bottom_content Index_meet_image_all_text_sides_innerright_infos_new">{{ section.settings.box_bottom_content }}</div>
+    {% endif %}
+                      </div>
+                  </div>
+                    
+                    
+                  </div>
+                    {%- endif -%}
+  
+                    </div>
+  
+                </div>
+            
+           
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}  
+<style>
+  .new_faq_section .left-side-grid{position:absolute;max-width:336px;width:100%; border-radius:12px;
+    background-position: center left;}
+  .Page_FAQs_left_side_detail_in_new { max-width: 1104px; margin: 0 auto; }
+.box_bottom_content { text-align: center; }
+  
+  .new_faq_section .tab-heading{padding-left:0;list-style:none;margin:0;}
+  .new_faq_section .tab-heading li{background: #fff;padding:0;line-height: 0;border: 1.5px solid #2D4256; border-radius: 32px; text-align:center; }
+  .new_faq_section .tab-heading li a{  display:block;padding: 10.5px; text-decoration:none;  letter-spacing: 0.28px;  font-family: var(--font-body-family);font-size: 14px;font-weight: 600;line-height: 135%;color:#2D4256 ;text-transform:uppercase;}
+  .new_faq_section .tab-heading li.active a { color: #FFF; background-color: #2D4256; border-radius: 32px; }
+  .new_faq_section .tab-heading li:not(:last-child){margin-bottom:8px;}
+  .left-side-grid { z-index: 3; }
+  .faq_box_fixed .left-side-grid{ position:fixed; top:100px; }
+.faq_box_fixed_bottom .left-side-grid{ position:absolute;top:268px; }
+  .Page_FAQs_left_side_detail_static_new .close { display: none; position: absolute; }
+  .Product_faqs_accordions_2_sides_innerleft_parent_main_heading { display: none; }
+  .responsive_faq_top { display: none; }
+  
+  @media(min-width:1500px){
+  }
+  (min-width: 990px) and (max-width: 1439px){
+    .new_faq_section .page-width { padding: 0 20px !important;}
+  }
+  @media (max-width:1300px){
+
+  }
+  @media(max-width:1025px){
+  
+    
+  }
+
+  @media(max-width:1110px)
+{
+  .new_faq_section .left-side-grid { left: 20px; }
+  /* body.sticky .left-side-grid { left: 20px; } */
+}
+
+  @media(max-width:991px){
+    .Page_FAQs_left_side_detail_in_new { position: fixed; bottom: 0; width: 100%;  z-index: 3; }
+    .new_faq_section.Page_FAQs_left_side_detail_static_new .page-width { padding: 0 !important; }
+    /* .new_faq_section .Product_faqs_accordions_2_sides_innerleft_new { padding: 20px; }  */
+    .Page_FAQs_left_side_detail_static_new .close { display: block; top: 20px; right: 20px; cursor: pointer; }
+    .Product_faqs_accordions_2_sides_innerleft_parent_main_heading { cursor: pointer; border-radius: 32px; background-color: #FFF; display: block; border: 1.5px solid #2D4256; padding: 11.5px 13px; text-align: center; }
+    .Product_faqs_accordions_2_sides_innerleft_parent_main_heading p { text-transform: uppercase; font-size: 16px; line-height: 135%; font-weight: 700; margin: 0; letter-spacing: 0.36px; }  
+    .Product_faqs_accordions_2_sides_innerleft_main { display: none; }
+    .new_faq_section .Product_faqs_accordions_2_sides_innerleft_new h2 { padding-top: 24px; }
+
+    .responsive_faq_top { display: block; padding: 0 20px; text-align: center; }
+    .box_top_content { padding-top: 0; }
+    .responsive_faq_tab_main { padding-top: 24px; }
+    .new_faq_section .responsive_faq_tab_main .tab-heading { display: flex; gap: 16px; flex-wrap: wrap; }
+    .new_faq_section .responsive_faq_tab_main .tab-heading li { width: calc(33.33% - 11px);}
+    .new_faq_section .responsive_faq_tab_main .tab-heading li:not(:last-child) { margin-bottom: 0; }
+    .select1.large-up-hide { display: none !important; }
+  }
+  
+  @media(max-width:900px){
+/* .select1.large-up-hide {display: none;} */
+    .new_faq_section .left-side-grid .Product_faqs_accordions_2_sides_innerleft_new h2 {
+        font-size: 28px;
+        line-height: 39.2px;
+    }
+    .new_faq_section .left-side-grid{top:326px;}
+    .faq_box_fixed .left-side-grid{top:60px;}
+
+    
+   
+  }
+  @media(max-width:768px){
+  .left-side-grid .box_bottom_content { padding-top: 24px !important; }
+  .left-side-grid .select1.large-up-hide { display: none !important; border-top: 1px solid;padding: 24px 19px;}
+  .left-side-grid .select1.large-up-hide{background-position: center!important;background:url({{'sticky-cta.png' | asset_url | image_url:'master' }})!important;background-size: cover !important;background-repeat: no-repeat!important;}
+   /* .new_faq_section .Product_faqs_accordions_2_sides_innerleft_new h2{display:none;} */
+    .new_faq_section .left-side-grid{background: transparent;max-width: 100%;border-radius: 0;border:none;left:0;position:relative;}
+    .new_faq_section .tab-heading li{padding:0;}
+    /* .new_faq_section .tab-heading li a{padding: 16px;font-weight: 700;text-align: left;color:#1D1D1D;display:block;text-decoration:none;} */
+    .left-side-grid .select1{text-align:center;position:fixed;bottom:0px;width:100%;left:0;right:0;padding:24px 20px;background:url({{'sticky-cta.jpg' | asset_url |image_url:'master' }});background-size: cover;z-index:999;transition: all .3s ease;will-change: bottom;}
+   .select-list.tabopen h3{font-family: var(--font-body-family);margin:0 0 24px;font-size: 24px;font-weight: 450;line-height: 26.4px;text-align: center;color:#0C0C0C;}
+   
+    .bottom-content p{margin:24px -3px 0;font-family: var(--font-body-family);font-size: 14px;font-weight: 450;line-height: 19.6px;text-align: center;}
+    .bottom-content p a{color:#0C0C0C;text-decoration:none;}
+    /* dropdown css */
+      .select-field {
+  padding:18px;
+  width: 100%;
+  background-color: #000;
+         margin: 0 auto;
+  color:#fff!important;
+  transition: 0.2s;
+  z-index: 1;padding: 18px;
+  cursor: pointer;
+      border:none;
+        font-size: 15px;font-weight: 500;line-height: 18px;text-align: center;text-transform:uppercase;letter-spacing:0;
+        
+}
+.select-field:focus {
+  outline: transparent;
+  box-shadow: none;
+}
+.select-field::placeholder {
+font-size: 15px;font-weight: 500;line-height: 18px;text-align: center;color:#fff!important;text-transform:uppercase;letter-spacing:0;
+}
+.select-field + span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 17px;
+  bottom: 0;
+  width: 11px;
+}
+.select-field + span::after {
+  content: "";
+  pointer-events: none;
+  transition: 0.5s;
+  width: 10px;
+  height: 8px;
+  background-size: contain;
+  z-index: 1;
+}
+.select-field.turn + span::after {
+  /* border-width: 0 8px 8px 8px;
+  border-color: transparent transparent #008095 transparent; */
+            transform: rotate(180deg);
+}
+  .select-list {
+  /* display: none; */
+  position: absolute;
+  top: 45px;
+  left: 0;
+         width: 94%;
+  background-color: #fff;
+  border: 1px solid #1D1D1D;
+  /* animation: fadeIn 0.4s; */
+  z-index: 10;
+    right:0;
+    margin:0 auto;
+    transform: translateY(100%);
+    transition: all 1.9s ease;
+    
+}
+.select-list.tabopen {
+  /* display: block; */
+      border: 1px solid #000;
+          position: fixed;
+        bottom: 0;
+        top: auto;
+        width: 100%;
+        padding: 32px 27px;
+          border: none;
+      transform: translateY(0%);
+  transition: all 0.9s ease;
+  background:url({{'faq-bg.jpg' | asset_url | image_url:'master' }});
+    background-size: cover;
+
+}
+.select-list  button{
+    border: none;
+    padding: 0;
+    margin-right: 0;
+    margin-left: auto;
+    text-align: right;
+    position: absolute;
+    display: block;
+    background: transparent;
+    cursor: pointer;
+        right: 16px;
+    top: 16px;}
+.select-list li {
+  display: block;
+  color: var(--textColor);
+  font-weight: var(--textWeightLight);
+  padding: 12px 12px 12px 12px;
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+.select-list li:not(:last-child) {
+  border-bottom: 1px solid #1D1D1D;
+}
+.select-list li:hover {
+  background-color: #1D1D1D;
+  color: #fff;
+}
+    .select-list li:hover a{color:#fff;}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+  }
+
+  @media(max-width:640px){
+    .new_faq_section .responsive_faq_tab_main .tab-heading { gap: 8px; }
+    .new_faq_section .responsive_faq_tab_main .tab-heading li { width: calc(50% - 4px);}
+  }
+
+</style>  
+
+
+
+  {% comment %}
+<script>
+  if(window.matchMedia("(max-width: 800px)")){
+ class SelectManager {
+	constructor(containerSelector, selectSelector) {
+		this.container = document.querySelector(containerSelector);
+		this.selectSelector = selectSelector;
+		this.init();
+	}
+
+	init() {
+		this.container.addEventListener("click", (e) => {
+			const targetSelect = e.target.closest(this.selectSelector);
+			if (targetSelect) {
+				this.handleSelectClick(targetSelect);
+			} else {
+				this.closeAllSelects();
+			}
+		});
+
+		document.addEventListener("click", (e) => {
+			if (
+				!e.target.closest(this.selectSelector) &&
+				!e.target.closest(".select-list")
+			) {
+				this.closeAllSelects();
+			}
+		});
+	}
+
+	handleSelectClick(select) {
+		const field = select.querySelector(".select-field");
+		const list = select.querySelector(".select-list");
+
+		this.closeOtherSelects(field);
+
+		list.classList.toggle("tabopen");
+		field.classList.toggle("turn");
+
+		list.addEventListener("click", (e) => {
+			e.stopPropagation();
+		});
+
+		const selectItemClickHandler = (e) => {
+			const selectedItem = e.target.closest("li");
+			if (selectedItem) {
+				const result = selectedItem.textContent.trim();
+				field.value = result;
+				list.classList.remove("tabopen");
+				field.classList.remove("turn");
+				list.removeEventListener("click", selectItemClickHandler);
+			}
+		};
+
+		list.addEventListener("click", selectItemClickHandler);
+	}
+
+	closeOtherSelects(clickedField) {
+		var selects = this.container.querySelectorAll(this.selectSelector);
+		for (var i = 0; i < selects.length; i++) {
+			var select = selects[i];
+			var field = select.querySelector(".select-field");
+			var list = select.querySelector(".select-list");
+
+			if (field && list && field !== clickedField) {
+				if (list.classList.contains("tabopen")) {
+					list.classList.remove("tabopen");
+				}
+				if (field.classList.contains("turn")) {
+					field.classList.remove("turn");
+				}
+			}
+		}
+	}
+
+	closeAllSelects() {
+		let selects = this.container.querySelectorAll(this.selectSelector);
+		for (let i = 0; i < selects.length; i++) {
+			let select = selects[i];
+			const field = select.querySelector(".select-field");
+			const list = select.querySelector(".select-list");
+
+			if (list && field) {
+				list.classList.remove("tabopen");
+				field.classList.remove("turn");
+			}
+		}
+	}
+}
+
+// Init
+const selectManager = new SelectManager("body", ".select1");
+
+    window.onscroll = function() {scrollFunction()};
+function scrollFunction() {
+    if (document.body.scrollTop > 650 || document.documentElement.scrollTop > 650) {
+        document.querySelector(".left-side-grid .select1.large-up-hide").style.display = "block";
+    } else {
+        document.querySelector(".left-side-grid .select1.large-up-hide").style.display = "none";
+    }
+}  
+  }
+
+   function removeClass() {  
+      var element = document.querySelector(".tab-heading.select-list");  
+element.classList.remove("tabopen");  
+    }  
+
+  
+</script>
+
+{% endcomment %}
+
+{% schema %}
+  {
+    "name": "FAQ section Left",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_box_background_color",
+        "label": "Add Main Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "text",
+        "id": "main_detail_text",
+        "label": "Add Main Detail Text",
+        "default": "Choose a topic"
+      },
+      {
+        "type": "richtext",
+        "id": "box_bottom_content",
+        "label": "Box Bottom Content"
+      },
+      {
+        "type": "richtext",
+        "id": "bottomcontent",
+        "label": "Mobile Bottom Content"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "tab",
+        "name":"Tab",
+        "settings": [
+          {
+            "type": "text",
+            "id":"tab",
+            "label": "Tab Name",
+            "info": "Please enter Tab Name same as FAQ Title."
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "FAQ section Left"
+      }
+    ]
+  }
+{% endschema %}

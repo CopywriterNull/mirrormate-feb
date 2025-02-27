@@ -1,0 +1,249 @@
+{{ 'Page_2_column_image_text_list.css' | asset_url | stylesheet_tag }}
+{% capture image_video_sec %}
+      <div class="Page_2_column_image_text_list_leftinner"  data-aos="fade-right" data-aos-delay="200">
+                {% if section.settings.main_desktop_image != blank and section.settings.main_mp4_video == blank %}
+                <div class="Page_2_column_image_text_list_leftinner_image  {% if section.settings.main_mobile_image != blank %} small-hide {% endif %}">
+                    {{  section.settings.main_desktop_image | 
+                      image_url: width: img.width | 
+                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                      fetchpriority: 'auto', 
+                      class:''
+                    }}
+                </div>
+                  {% endif %}
+                 {% if section.settings.main_mobile_image != blank and section.settings.main_mp4_video == blank %}
+                <div class="Page_2_column_image_text_list_leftinner_image medium-hide large-up-hide">
+                {{  section.settings.main_mobile_image | 
+                      image_url: width: img.width | 
+                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                      fetchpriority: 'auto', 
+                      class:''
+                    }}
+                </div>
+                   {% endif %}
+         {% if section.settings.main_mp4_video != blank %}
+                <div class="Page_2_column_image_text_list_leftinner_video {% if section.settings.main_mp4_video_mobile != blank %}small-hide{% endif %}">
+                   {{ section.settings.main_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                </div>
+                {% endif %}
+                {% if section.settings.main_mp4_video_mobile != blank %}
+                <div class="Page_2_column_image_text_list_leftinner_video medium-hide large-up-hide">
+                   {{ section.settings.main_mp4_video_mobile | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                </div>
+                {% endif %}
+              </div>
+          
+  {% endcapture %}
+{% if section.settings.main_mp4_video != blank or section.settings.main_desktop_image != blank or section.settings.main_mobile_image != blank or section.settings.main_subeading_text != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_link != blank or section.settings.main_button_text != blank or section.blocks.size > 0 %}
+  <div class="Page_2_column_image_text_list_main Page_2_column_image_text_list_main_{{ section.id }}" style="background-color: {{ section.settings.main_background_color }}">
+    <div class="page-width">
+      <div class="Page_2_column_image_text_list_inner">
+        <div class="Page_2_column_image_text_list_sides">
+          {% if section.settings.main_mp4_video != blank or section.settings.main_desktop_image != blank or section.settings.main_mobile_image != blank %}
+            <div class="Page_2_column_image_text_list_leftmain small-hide">
+           {{ image_video_sec }}
+            </div>
+          {% endif %}
+          {% if section.settings.main_subeading_text != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank %}
+          <div class="Page_2_column_image_text_list_rightmain"  data-aos="fade-up" data-aos-delay="200">
+            {% if section.settings.main_subeading_text != blank %}
+            <div class="Page_2_column_image_text_list_rightmain_main_subheading">
+            <h3>{{ section.settings.main_subeading_text }}</h3>
+            </div>
+            {% endif %}
+            {% if section.settings.main_heading_text != blank %}
+            <div class="Page_2_column_image_text_list_rightmain_main_heading_text">
+            <h2>{{ section.settings.main_heading_text }}</h2>
+            </div>
+            {% endif %}
+            {% if section.settings.main_information_text != blank %}
+            <div class="Page_2_column_image_text_list_rightmain_main_information_text">
+            {{ section.settings.main_information_text }}
+            </div>
+            {% endif %}
+            {% if section.settings.main_mp4_video != blank or section.settings.main_desktop_image != blank or section.settings.main_mobile_image != blank %}
+            <div class="Page_2_column_image_text_list_leftmain large-up-hide medium-hide">
+           {{ image_video_sec }}
+            </div>
+          {% endif %}
+            {% if section.blocks.size > 0 %}
+  <div class="Page_2_column_image_text_list_rightmain_list_item_content">
+    <ul>
+            {% for block in section.blocks %}
+              <li>
+                {{ block.settings.list_item_text }}
+              </li>
+            {% endfor %}
+      </ul>
+</div>
+            {% endif %}
+{% if section.settings.product_grid != blank %}
+            <div class="Page_2_column_image_text_list_rightmain_product_detail">
+              {% assign product = all_products[section.settings.product_grid] %}
+              <div class="Page_2_column_image_text_list_rightmain_product_detail_wrapper">
+                <div class="Page_2_column_image_text_list_rightmain_product_detail_wrapper_leftside">
+                  <div class="Page_2_column_image_text_list_rightmain_product_detail_wrapper_leftside_image">
+                    {{  section.settings.product_image | 
+                      default:product.featured_image |
+                      image_url: width: img.width | 
+                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                      fetchpriority: 'auto', 
+                      class:''
+                    }}
+                  </div>
+                </div>
+                <div class="Page_2_column_image_text_list_rightmain_product_detail_wrapper_rightside">
+                  <div class="product_title">
+                    {{ section.settings.product_title | default:product.title }}
+                  </div>
+                  <div class="product_description">
+                    {{ section.settings.product_description  | default:product.description | truncate:55 }}
+                  </div>
+                  <div class="product_buy_btn">
+                    <a class="list_anchor_link" href="{{ section.settings.product_button_link }}">{{ section.settings.product_button_text }}</a>
+              
+                  </div>
+                </div>
+              </div>
+              </div>
+            {% endif %}
+
+            {% if section.settings.main_button_text != blank and section.settings.main_button_link != blank %}
+              <div class="main_button_css">
+              <a href="{{ section.settings.main_button_link }}" class="button">{{ section.settings.main_button_text  }}</a>
+              </div>
+            {% endif %}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+  
+{% schema %}
+  {
+    "name": "Page 2 Col Image Txt List",
+    "class": "Page_2_column_image_text_list",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "video",
+        "id": "main_mp4_video",
+        "label": "Add Main MP4 Video"
+      },
+      {
+        "type": "video",
+        "id": "main_mp4_video_mobile",
+        "label": "Add Main MP4 Mobile Video"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_desktop_image",
+        "label": "Add Main Desktop Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_mobile_image",
+        "label": "Add Main Mobile Image"
+      },
+      {
+        "type": "textarea",
+        "id": "main_subeading_text",
+        "label": "Add Main Sub Heading Text",
+        "default": "MIRRORMATE FRAMES"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "The Least Expensive, Highest Impact Upgrade You Can Make"
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "<p>Frame your existing mirror with one of our <span>easy DIY frame kits.</span></p>"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "Book a 15-min virtual demo"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      },
+      {
+        "type": "header",
+        "content": "Product Details"
+      },
+      {
+        "type": "product",
+        "id": "product_grid",
+        "label": "Select Product"
+      },
+      {
+        "type": "image_picker",
+        "id": "product_image",
+        "label": "Image",
+        "info": "If Image blank then selected product image will be display"
+      },
+      {
+        "type": "text",
+        "id": "product_title",
+        "label": "Title",
+        "info": "If Title blank then selected product title will be display"
+      },
+      {
+        "type": "richtext",
+        "id": "product_description",
+        "label": "Description",
+        "info": "Short description of Product"
+      },
+     {  "type": "text",
+        "id": "product_button_text",
+        "label": "Add Main Button Text",
+        "default": "Add to Cart"
+      },
+      {
+        "type": "url",
+        "id": "product_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      },
+    ],
+    "blocks": [
+      {
+        "type": "list-item",
+        "name": "List item",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "list_item_text",
+            "label": "Add List Item Text",
+            "default": "Assembles and installs in minutes"
+          },
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Page Image Text List",
+        "blocks": [
+          {
+            "type": "list-item",
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

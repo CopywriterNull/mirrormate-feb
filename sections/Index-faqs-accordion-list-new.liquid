@@ -1,0 +1,224 @@
+<div js-faqs-accordion-list data-section="{{ section.id }}">
+  {%- if section.settings.main_heading_text != blank or section.settings.main_button_link != blank or section.blocks.size > 0 or section.settings.main_desktop_video != blank or section.settings.main_desktop_image != blank -%}
+    {%- if section.settings.main_mobile_image != blank -%}
+      <div class="Index_faqs_accordion_list_sides_mainmobile_new mobile_only">
+        <div class="Index_faqs_accordion_list_sides_innermobile_new">
+          {%- if section.settings.main_mobile_image != blank -%}
+            <div class="Index_faqs_accordion_list_sides_innermobile_videoimage_new">
+              {{
+                section.settings.main_mobile_image | 
+                image_url: width: img.width | 
+                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                fetchpriority: 'auto', 
+                class:'Full_image_new'
+              }}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+    <div class="Index_faqs_accordion_list_main_new{% if section.settings.main_reverse_media %} Index_faqs_accordion_list_reverse_new{% endif %} {% if section.settings.main_mobile_image != blank %} Mobile_image_available_new {% endif %}" style="background: {{ section.settings.main_background_color }};">
+      <div class="page-width">
+        <div class="Index_faqs_accordion_list_inner_new" data-aos="fade-in" data-aos-delay="200">
+          <div class="Index_faqs_accordion_list_sides_new">
+            {%- if section.settings.main_heading_text != blank or section.settings.main_button_link != blank -%}
+              <div class="Index_faqs_accordion_list_sides_mainboths_new">
+                <div class="Index_faqs_accordion_list_sides_innerboths_new">
+                  {%- if section.settings.main_heading_text != blank -%}
+                    <div class="Index_faqs_accordion_list_sides_innerboths_maintitle_new">
+                      <div class="Common_title_new Index_faqs_accordion_list_sides_innerboths_innertitle_new">
+                        <h2>{{ section.settings.main_heading_text }}</h2>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                  {%- if section.blocks.size > 0 -%}
+                    <div class="Index_faqs_accordion_list_sides_innerboths_mainloops_new">
+                      <div class="Index_faqs_accordion_list_sides_innerboths_innerloops_new">
+                        <div class="accordion">
+                          <ul class="list-unstyled">
+                            {%- for block in section.blocks -%}
+                              {%- if block.settings.title != blank and block.settings.infos != blank -%}
+                                <li{% if forloop.first %} class="open"{% endif %}>
+                                  {%- if block.settings.title != blank -%}
+                                    <div class="question">
+                                      <h3>{{ block.settings.title }}</h3>
+                                    </div>
+                                  {%- endif -%}
+                                  {%- if block.settings.infos != blank -%}
+                                    <div class="answer"{% if forloop.first %} style="display: block;"{% endif %}>
+                                      {{ block.settings.infos }}
+                                    </div>
+                                  {%- endif -%}
+                                </li>
+                              {%- endif -%}
+                            {%- endfor -%}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                  {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                    <div class="Index_faqs_accordion_list_sides_innerboths_mainbutton_new">
+                      <div class="Index_faqs_accordion_list_sides_innerboths_innerbutton_new">
+                        <a href="{{ section.settings.main_button_link }}" class="button button_white_new">
+                          {{ section.settings.main_button_text }}  
+                        </a>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+            {% if product.metafields.custom.product_faq_image_or_video != blank %}
+              
+              {%- for product_faq_image_or_video in product.metafields.custom.product_faq_image_or_video.value limit:1 -%}
+                <div class="Product_detail_accordions_innersides_mainright_new {% if forloop.first %} desktop_image_new {% else %} mobile_image_new {% endif %}">
+                  <div class="Product_detail_accordions_innersides_innerright_new">
+                    <div class="Product_detail_accordions_innersides_innerright_mainboxs_new">
+                      <div class="Product_detail_accordions_innersides_innerright_innerboxs_new">
+                        <div class="Product_detail_accordions_innersides_innerright_innerboxs_videoimage_new">
+                          {%- if product_faq_image_or_video contains "files" -%}
+                            {{
+                              product_faq_image_or_video | 
+                              image_url: width: img.width | 
+                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                              fetchpriority: 'auto', 
+                              class:''
+                            }}
+                          {%- else -%}
+                            {{ product_faq_image_or_video | video_tag: class: '', image_size: 'master', controls: false, autoplay: true, loop: true }}
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {%- endfor -%}
+                
+            {% else %}
+              {%- if section.settings.main_desktop_video != blank or section.settings.main_desktop_image != blank -%}
+                <div class="Index_faqs_accordion_list_sides_maindesktop_new">
+                  <div class="Index_faqs_accordion_list_sides_innerdesktop_new">
+                    {%- if section.settings.main_desktop_video != blank -%}
+                      <div class="Index_faqs_accordion_list_sides_innerdesktop_videoimage_new">
+                        {{ section.settings.main_desktop_video | video_tag: class: 'Full_video_new', image_size: 'master', controls: false, autoplay: true, loop: true }}
+                      </div>
+                    {% else %}  
+                      {%- if section.settings.main_desktop_image != blank -%}
+                        <div class="Index_faqs_accordion_list_sides_innerdesktop_videoimage_new">
+                          {{
+                            section.settings.main_desktop_image | 
+                            image_url: width: img.width | 
+                            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                            fetchpriority: 'auto', 
+                            class:'Full_image_new'
+                          }}
+                        </div>
+                      {%- endif -%}
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</div>  
+
+{% schema %}
+  {
+    "name": "Index FAQs Accordion List",
+    "class": "Index_faqs_accordion_list_new",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "main_reverse_media",
+        "label": "Add Main Reverse Media",
+        "default": false
+      },
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#2D4256"
+      },
+      {
+        "type": "video",
+        "id": "main_desktop_video",
+        "label": "Add Main Desktop Video"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_desktop_image",
+        "label": "Add Main Desktop Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_mobile_image",
+        "label": "Add Main mobile Image"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "FAQs"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "Read All Faqs"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "information",
+        "name": "Information",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Add Main Question Text",
+            "default": "Lorem Ipsum is simply dummy text?"
+          },
+          {
+            "type": "richtext",
+            "id": "infos",
+            "label": "Add Main Answer Text",
+            "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Index FAQs Accordion List",
+        "blocks": [
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

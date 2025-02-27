@@ -1,0 +1,160 @@
+<div class="frame-grid is-active" data-step="1" js-frame-step>
+    <div class="alpha">
+        <div class="img-wrap hide-mobile">
+            <img src="{{ product.featured_image | image_url: width: '800x' }}" alt="{{ product.featured_image.alt }}">
+        </div>
+        {% render "edit-frame-card" %}
+    </div>
+    <div class="beta" data-scrollable>
+        <div class="meta-contents">
+            <h2 class="frame-title">What size mirror are you framing?</h2>
+            {% unless product.has_only_default_variant %}
+                <div class="size-grid" id="Size-Options-{{ sectionId }}">
+                    {%- for option in product.options_with_values -%}
+                        {% if option.name == "Size" %}
+                            {% for value in option.values %}
+                                {% assign downcase_value = value.name | downcase %}
+                                
+                                {% if user_type == "r" %}
+                                    {% unless downcase_value contains "lf" %}
+                                        {% assign cr_variant = value.variant %}
+
+                                        {% if shop.metaobjects.size_threshold.values_count > 0 %}
+                                            {% for threshold in shop.metaobjects.size_threshold.values %}
+                                                {% assign sizeHandle = threshold.variant_name | strip | handleize %}
+                                                {% assign valueHandle = value.name | strip | handleize %}
+            
+                                                {% if sizeHandle == valueHandle %}
+                                                    {% assign sizeThreshold = threshold %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                        
+                                        {% if cr_variant.metafields.custom.sample_image != blank %}
+                                            {% assign sizeImage = cr_variant.metafields.custom.sample_image %}
+                                        {% else %}
+                                            {% assign sizeImage = sizeThreshold.image %}
+                                        {% endif %}
+
+                                        {% if cr_variant.metafields.custom.wide_feet != blank %}
+                                            {% assign wideFeet = cr_variant.metafields.custom.wide_feet %}
+                                        {% else %}
+                                            {% assign wideFeet = sizeThreshold.fit %}
+                                        {% endif %}
+
+                                        <div class="size-option{% unless cr_variant.available %} disabled{% endunless %}{% if value.selected %} is-checked{% endif %}" js-size-option data-option-value-id="{{ value.id }}" data-option-value-name="{{ value.name }}">
+                                            <div class="size-img">
+                                                {% if sizeImage != blank %}
+                                                    <img src="{{ sizeImage | image_url: width: '500x' }}" alt="{{ sizeImage.alt }}">
+                                                {% else %}
+                                                    {{ 'image' | placeholder_svg_tag: 'placeholder__svg' }}
+                                                {% endif %}
+                                            </div>
+                                            <div class="size-details">
+                                                <div class="size-header">
+                                                    <h3 class="size-title">{{ value.name }}</h3>
+                                                    {% if wideFeet != blank %}
+                                                        <span class="size-meta hide-desktop">{{ wideFeet }}</span>
+                                                    {% endif %}
+                                                    <span class="size-price">{{ cr_variant.price | money |  remove: '.00'  }}</span>
+                                                </div>
+                                                {% if wideFeet != blank %}
+                                                    <span class="size-meta hide-mobile">{{ wideFeet }}</span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    {% endunless %}
+                                {% else %}
+                                    {% if downcase_value contains "lf" %}
+                                        {% assign cr_variant = value.variant %}
+
+                                        {% if shop.metaobjects.size_threshold.values_count > 0 %}
+                                            {% for threshold in shop.metaobjects.size_threshold.values %}
+                                                {% assign sizeHandle = threshold.variant_name | strip | handleize %}
+                                                {% assign valueHandle = value.name | strip | handleize %}
+            
+                                                {% if sizeHandle == valueHandle %}
+                                                    {% assign sizeThreshold = threshold %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                        
+                                        {% if cr_variant.metafields.custom.sample_image != blank %}
+                                            {% assign sizeImage = cr_variant.metafields.custom.sample_image %}
+                                        {% else %}
+                                            {% assign sizeImage = sizeThreshold.image %}
+                                        {% endif %}
+
+                                        {% if cr_variant.metafields.custom.wide_feet != blank %}
+                                            {% assign wideFeet = cr_variant.metafields.custom.wide_feet %}
+                                        {% else %}
+                                            {% assign wideFeet = sizeThreshold.fit %}
+                                        {% endif %}
+
+                                        <div class="size-option{% unless cr_variant.available %} disabled{% endunless %}{% if value.selected %} is-checked{% endif %}" js-size-option data-option-value-id="{{ value.id }}" data-option-value-name="{{ value.name }}">
+                                            <div class="size-img">
+                                                {% if sizeImage != blank %}
+                                                    <img src="{{ sizeImage | image_url: width: '500x' }}" alt="{{ sizeImage.alt }}">
+                                                {% else %}
+                                                    {{ 'image' | placeholder_svg_tag: 'placeholder__svg' }}
+                                                {% endif %}
+                                            </div>
+                                            <div class="size-details">
+                                                <div class="size-header">
+                                                    <h3 class="size-title">{{ value.name }}</h3>
+                                                    {% if wideFeet != blank %}
+                                                        <span class="size-meta hide-desktop">{{ wideFeet }}</span>
+                                                    {% endif %}
+                                                    <span class="size-price">{{ cr_variant.price | money |  remove: '.00'  }}</span>
+                                                </div>
+                                                {% if wideFeet != blank %}
+                                                    <span class="size-meta hide-mobile">{{ wideFeet }}</span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            
+                            <script type="application/json" id="SizeRangeJson">
+                                [
+                                    {% for value in option.values %}
+                                        {% assign cr_variant = value.variant %}
+
+                                        {% if cr_variant.metafields.custom.width_range != blank %}
+                                            {% assign widthRange = cr_variant.metafields.custom.width_range %}
+                                        {% else %}
+                                            {% if shop.metaobjects.size_threshold.values_count > 0 %}
+                                                {% for threshold in shop.metaobjects.size_threshold.values %}
+                                                    {% assign sizeHandle = threshold.variant_name | strip | handleize %}
+                                                    {% assign valueHandle = value.name | strip | handleize %}
+                
+                                                    {% if sizeHandle == valueHandle %}
+                                                        {% assign widthRange = threshold.range %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                        {% endif %}
+    
+                                        {
+                                            "name": "{{ value.name }}",
+                                            "range": "{{ widthRange }}",
+                                            "id": "{{ value.id }}"
+                                        }
+                                        {% unless forloop.last %},{% endunless %}
+                                    {% endfor %}
+                                ]
+                            </script>
+                        {% break %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endunless %}
+            {% if user_type == "r" %}
+                <span class="skip-btn" js-skip-btn data-trigger-step="3">Skip this step and measure now</span>
+            {% else %}
+                <span class="gap-bottom hide-mobile"></span>
+            {% endif %}
+        </div>
+    </div>
+</div>

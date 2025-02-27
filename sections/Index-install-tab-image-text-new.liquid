@@ -1,0 +1,257 @@
+{% if section.settings.main_background_color != blank or section.settings.main_heading_text != blank or section.settings.main_button_link != blank or section.settings.main_button_text != blank or section.settings.main_inside_custom_logo != blank or section.settings.main_outside_custom_logo %}
+  <div class="Index_install_tab_image_text_main_new" style="background: {{ section.settings.main_background_color }};">
+    <div class="page-width">
+      <div class="Index_install_tab_image_text_inner_new">
+        {% if section.settings.main_heading_text != blank %}
+          <div class="Index_install_tab_image_text_heading_text mobile_main_heading Common_title_new medium-hide large-up-hide">
+            <h2>
+              {{ section.settings.main_heading_text }}
+            </h2>
+          </div>
+        {% endif %}
+        {%- if section.settings.main_outside_custom_logo != blank or section.settings.main_inside_custom_logo != blank -%}
+          <div class="Index_install_tab_image_text_custom_logo Index_meet_image_all_text_sides_innerleft_mainoverlay_new">
+                    <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_new">
+                      {%- if section.settings.main_outside_custom_logo != blank -%}
+                        <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_mainoutside_new">
+                          <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_inneroutside_new">
+                            {{
+                              section.settings.main_outside_custom_logo | 
+                              image_url: width: img.width | 
+                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                              fetchpriority: 'auto', 
+                              class:'Full_image_new spin'
+                            }}
+                          </div>
+                        </div>
+                      {%- endif -%}
+                      {%- if section.settings.main_inside_custom_logo != blank -%}
+                        <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_maininside_new">
+                          <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_innerinside_new">
+                            {{
+                              section.settings.main_inside_custom_logo | 
+                              image_url: width: img.width | 
+                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                              fetchpriority: 'auto', 
+                              class:'Full_image_new'
+                            }}
+                          </div>
+                        </div>
+                      {%- endif -%}
+                    </div>
+                  </div>
+        {%- endif -%}
+        {% if section.settings.main_heading_text != blank or section.settings.main_button_link != blank or section.settings.main_button_text != blank %}
+        <div class="Index_install_tab_image_text_sides_new">
+          {%- if section.blocks.size > 0 -%}
+            <div class="Index_install_tab_image_text_leftmain">
+              <div class="Index_install_tab_image_text_leftinner">
+                <div class="Index_install_tab_image_text_left_img_video_main">
+                  {%- for block in section.blocks -%}
+                    {% if block.type == "tab-content" %}
+                      {% if block.settings.tab_mp4_video != blank or block.settings.video_tag_text != blank or block.settings.tab_image != blank %}
+                      <div class="Index_install_tab_image_text_left_img_video_inner" id="tab-{{ forloop.index }}">
+                        {% if block.settings.tab_mp4_video != blank and block.settings.video_tag_text != blank %}
+                          <div class="Index_install_tab_image_text_left_video_main">
+                            <div class="Index_install_tab_image_text_left_video_inner">
+                              {{ block.settings.tab_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                            </div>
+                            {%- if block.settings.video_tag_text != blank -%}
+                            <div class="video_tag">
+                              <span>                                
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_3788_53233)">
+                                <circle cx="12" cy="12" r="12" fill="#2D4256"></circle>
+                                <path d="M32 12C32 8.04438 30.827 4.17758 28.6294 0.888601C26.4318 -2.40038 23.3082 -4.96383 19.6537 -6.47758C15.9992 -7.99133 11.9778 -8.3874 8.0982 -7.6157C4.21858 -6.84399 0.654922 -4.93918 -2.14213 -2.14213C-4.93918 0.654922 -6.84399 4.21858 -7.6157 8.0982C-8.3874 11.9778 -7.99133 15.9992 -6.47758 19.6537C-4.96383 23.3082 -2.40038 26.4318 0.888601 28.6294C4.17758 30.827 8.04438 32 12 32C17.3026 31.9943 22.3863 29.8853 26.1358 26.1358C29.8853 22.3863 31.9943 17.3026 32 12ZM9.11501 18.5717C8.97995 18.5013 8.86675 18.3953 8.78771 18.2651C8.70867 18.135 8.66681 17.9856 8.66667 17.8333V6.16667C8.6668 6.01425 8.70874 5.86477 8.78791 5.73452C8.86709 5.60427 8.98047 5.49824 9.11572 5.42795C9.25097 5.35766 9.40291 5.32581 9.55501 5.33587C9.7071 5.34593 9.85352 5.39751 9.97834 5.48501L18.3117 11.3183C18.4155 11.399 18.4996 11.5024 18.5574 11.6206C18.6152 11.7387 18.6452 11.8685 18.6452 12C18.6452 12.1315 18.6152 12.2613 18.5574 12.3795C18.4996 12.4976 18.4155 12.601 18.3117 12.6817L9.97834 18.515C9.85341 18.6026 9.70684 18.6542 9.5546 18.6642C9.40237 18.6741 9.25031 18.6422 9.11501 18.5717Z" fill="white"></path>
+                                </g>
+                                <defs>
+                                <clipPath id="clip0_3788_53233">
+                                <rect width="24" height="24" fill="white"></rect>
+                                </clipPath>
+                                </defs>
+                                </svg>
+                              </span>
+                              <span class="video_tag_text">{{ block.settings.video_tag_text }}</span>
+                            </div>
+                          {%- endif -%}
+                          </div>
+                        {% else %}
+                          {% if block.settings.tab_image != blank %}
+                            <div class="Index_install_tab_image_text_left_image_main">
+                              {{
+                                block.settings.tab_image | 
+                                image_url: width: img.width | 
+                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                fetchpriority: 'auto', 
+                                class:'tab_image_new'
+                              }}
+                            </div>
+                          {% endif %}
+                        {% endif %}
+                      </div>
+                      {% endif %}
+                    {% endif %}
+                {%- endfor -%}
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+          {% if section.settings.main_heading_text != blank %}
+          <div class="Index_install_tab_image_text_rightmain">
+              <div class="Index_install_tab_image_text_rightinner">
+                {% if section.settings.main_heading_text != blank %}
+                  <div class="Index_install_tab_image_text_heading_text Common_title_new small-hide">
+                    <h2>
+                      {{ section.settings.main_heading_text }}
+                    </h2>
+                  </div>
+                {% endif %}
+                {%- if section.blocks.size > 0 -%}
+                  <div class="Index_install_tab_image_text_main_content">
+                    <div class="Index_install_tab_title_main">
+                      <div class="Index_install_tab_title_main_inner">
+                        {%- for block in section.blocks -%}
+                          {% if block.type == "tab-content" %}
+                            {% if block.settings.tab_title_text != blank %}
+                              <div class="Index_install_tab_title_tag Index_meet_image_all_text_sides_innerright_infos_new" data-tab="tab-{{ forloop.index }}">
+                                <p>
+                                  {{ forloop.index }}. {{ block.settings.tab_title_text }}
+                                </p>
+                              </div>
+                            {% endif %}
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    </div>
+                    <div class="Index_install_tab_information_main">
+                      <div class="Index_install_tab_information_inner">
+                        {%- for block in section.blocks -%}
+                          {% if block.type == "tab-content" %}
+                            {% if block.settings.tab_information_text != blank %}
+                              <div class="Index_install_tab_information Index_meet_image_all_text_sides_innerright_infos_new" data-tab-information="tab-{{ forloop.index }}">
+                                {{ block.settings.tab_information_text }}
+                              </div>
+                            {% endif %}
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+                {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                  <div class="Index_install_tab_image_text_button small-hide">
+                    <a href="{{ section.settings.main_button_link }}" class="button">
+                      {{ section.settings.main_button_text }}  
+                    </a>
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+        {% endif %}
+
+
+        {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                  <div class="Index_install_tab_image_text_button medium-hide large-up-hide">
+                    <a href="{{ section.settings.main_button_link }}" class="button">
+                      {{ section.settings.main_button_text }}  
+                    </a>
+                  </div>
+                {%- endif -%}
+        
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+
+  
+{% schema %}
+  {
+    "name": "Index Install Tab ImgText",
+    "class": "Index_install_tab_image_text_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "How To Install"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_outside_custom_logo",
+        "label": "Add Main Outside Custom Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_inside_custom_logo",
+        "label": "Add Main Inside Custom Logo"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "build my custom frame"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      },
+    ],
+    "blocks": [
+      {
+        "type": "tab-content",
+        "name": "Tab Content", 
+        "settings": [
+          {
+            "type": "text",
+            "id": "tab_title_text",
+            "label": "Add Tab Title Text",
+            "default": "How To Install"
+          },
+          {
+            "type": "richtext",
+            "id": "tab_information_text",
+            "label": "Add Tab Information Text",
+            "default": "<p>Lay it your frame pieces down flat on the floor, and line up the edges. We’ve marked each leg with a top and bottom label to make things easy for you. <span>Slide something flat under each corner</span> that you won’t mind getting glue on (ex. cardboard, drop cloth)</p>"
+          },
+          {
+            "type": "video",
+            "id": "tab_mp4_video",
+            "label": "Add Tab MP4 Video"
+          },
+          {
+            "type": "text",
+            "id": "video_tag_text",
+            "label": "Add Video Tag Text",
+            "default": "Watch The video"
+          },
+          {
+            "type": "image_picker",
+            "id": "tab_image",
+            "label": "Add Tab Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Index Install Tab Image Text",
+        "blocks": [
+          {
+            "type": "tab-content"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

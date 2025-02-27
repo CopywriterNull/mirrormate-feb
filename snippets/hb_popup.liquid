@@ -1,0 +1,66 @@
+{{ 'hb_popup.css' |  asset_url |  stylesheet_tag }}
+<div class="popup-overlay" js-popup-overlay></div>
+<div class="hb_popup" js-popup>
+    <div class="hb_popup__wrapper">
+        <div class="hb_popup__main--wrapper">
+            <div class="hb_popup__image swiper-container" js-popup-image-slider>
+              <div class="swiper-wrapper">
+                {% for item in inspirationData.testimonial_image.value %}
+                  <div class="swiper-slide">
+                    <img src="{{ item |  image_url: width: "600x"  }}" alt="">
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="hb_popup__texts--wrapper">
+                <div class="hb_popup__texts--inner-wrap">
+                    <div class="hb_popup__cross--icon">
+                        <div class="hb_popup__cross--svg" js-popup-close-btn>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <g clip-path="url(#clip0_4085_23935)">
+                            <path d="M19.0703 4.9292L4.92818 19.0713" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                            <path d="M19.0718 19.0713L4.92969 4.9292" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_4085_23935">
+                            <rect width="24" height="24" fill="white"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="hb_popup__stars-and-date--wrapper">
+                        <div class="star_icon_wrap">
+                            {%- for icon in (1..5) -%} 
+                              <div class="testimonials-icon">
+                                <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.33931 12.5049L12.219 14.9015C12.7149 15.2078 13.3306 14.7522 13.1834 14.1878L12.0625 9.88862C12.031 9.76888 12.0347 9.64288 12.0733 9.52512C12.1119 9.40736 12.1838 9.30261 12.2808 9.22293L15.7598 6.39967C16.2169 6.02871 15.981 5.28901 15.3937 5.25185L10.8503 4.96435C10.7279 4.95583 10.6106 4.91359 10.5119 4.84254C10.4132 4.7715 10.3372 4.67457 10.2928 4.56306L8.5983 0.402583C8.55224 0.284222 8.47034 0.182322 8.36347 0.110416C8.25661 0.03851 8.12984 0 8 0C7.87016 0 7.74339 0.03851 7.63653 0.110416C7.52967 0.182322 7.44777 0.284222 7.40171 0.402583L5.70722 4.56306C5.66282 4.67457 5.58685 4.7715 5.48814 4.84254C5.38944 4.91359 5.27206 4.95583 5.14969 4.96435L0.60631 5.25185C0.0189969 5.28901 -0.216946 6.02871 0.240183 6.39967L3.71921 9.22293C3.81616 9.30261 3.88808 9.40736 3.92669 9.52512C3.96531 9.64288 3.96904 9.76888 3.93748 9.88862L2.89796 13.8756C2.72137 14.5529 3.46023 15.0997 4.05533 14.7321L7.66069 12.5049C7.76209 12.442 7.8798 12.4086 8 12.4086C8.1202 12.4086 8.23791 12.442 8.33931 12.5049Z" fill="#FFCB10"/>
+                                </svg>
+                              </div>
+                            {%- endfor -%}
+                        </div>
+                        <h4 class="hb_popup__date--title">{{ inspirationData.testimonial_date }}</h4>
+                    </div>
+                    <h2 class="hb_popup__title">{{ inspirationData.testimonial_title }}</h2>
+                    <div class="hb_popup__content">{{ inspirationData.testimonial_description }}</div>
+                    <h2 class="hb_popup__reviewver--name">{{ inspirationData.testimonial_author }}</h2>
+                    <div class="hb_popup__product--details-wrap">
+                        <div class="hb_popup_product--wrap">
+                            <div class="hb_popup__product--image">
+                                <img src="{{ product.featured_image |  image_url: width: "500x"  }}" alt="">
+                            </div>
+                            <div class="hb_popup__product--texts-wrap">
+                                <h3 class="hb_popup__product--name">{{ product.title }}</h3>
+                                <h4 class="hb_popup__price--from">{{ product.price | money_without_trailing_zeros }}</h4>
+                            </div>
+                        </div>
+                        <div class="hb-popup_btn-wrapper">
+                            <a href="{{ product.url }}" class="hb_popup__button">get $2 sample</a>
+                            <a href="{{ product.url }}" class="hb_popup__button shop_now">Shop now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

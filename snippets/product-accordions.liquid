@@ -1,0 +1,145 @@
+<div class="Common_object_accordions_main_new" {{ block.shopify_attributes }}>
+    <div class="Common_object_accordions_inner_new">
+        <div class="accordion">
+            <ul class="list-unstyled">
+            {%- if product.metafields.custom.product_accordion_description_text != blank or block.settings.main_product_desc_text != blank or product.metafields.custom.width_description != blank or product.metafields.custom.depth_description != blank -%}
+                <li class="open">
+                  <div class="question">
+                      <h4>Description</h4>
+                  </div>
+                  <div class="answer" style="display: block;">
+                    {%- if product.metafields.custom.product_accordion_description_text != blank -%}
+                      {{ product.metafields.custom.product_accordion_description_text | metafield_tag }}  
+                    {% endif %}
+
+                    {% if block.settings.main_product_desc_text != blank %}
+                      {{ block.settings.main_product_desc_text }}
+                    {% endif %}
+
+                    {% if product.metafields.custom.width_description != blank or product.metafields.custom.depth_description != blank or product.metafields.custom.slim_width_description != blank or product.metafields.custom.slim_depth_description != blank %}
+                      <p>Specifications</p>
+                      <div class="Specifications_main_new">
+                        {% if product.metafields.custom.width_description != blank or product.metafields.custom.depth_description != blank %}
+                          <div class="Specifications_new">
+                            <p><b>Standard</b></p>
+                            <ul>
+                              {% if product.metafields.custom.width_description != blank %}
+                                <li>Width: {{ product.metafields.custom.width_description }}</li>
+                              {% endif %}
+                              {% if product.metafields.custom.depth_description != blank %}
+                                <li>Depth: {{ product.metafields.custom.depth_description }}</li>
+                              {% endif %}
+                            </ul>
+                          </div>
+                        {% endif %}
+                        {% if product.metafields.custom.slim_width_description != blank or product.metafields.custom.slim_depth_description != blank %}
+                          <div class="Specifications_new">
+                            <p><b>Slim</b></p>
+                            <ul>
+                              {% if product.metafields.custom.slim_width_description != blank %}
+                                <li>Width: {{ product.metafields.custom.slim_width_description }}</li>
+                              {% endif %}
+                              {% if product.metafields.custom.slim_depth_description != blank %}
+                                <li>Depth: {{ product.metafields.custom.slim_depth_description }}</li>
+                              {% endif %}
+                            </ul>
+                          </div>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                  </div>
+                </li>
+            {%- endif -%}
+            {%- for product_accordion_how_to_measure in shop.metaobjects.product_accordion_how_to_measure.values -%}
+                {%- if product_accordion_how_to_measure.main_heading_text != blank and product_accordion_how_to_measure.main_details_text != blank -%}
+                <li>
+                    {%- if product_accordion_how_to_measure.main_heading_text != blank -%}
+                    <div class="question">
+                        <h4>{{ product_accordion_how_to_measure.main_heading_text }}</h4>
+                    </div>
+                    {%- endif -%}
+                    {%- if product_accordion_how_to_measure.main_details_text != blank -%}
+                    <div class="answer">
+                        {{ product_accordion_how_to_measure.main_details_text | metafield_tag }}
+                    </div>
+                    {%- endif -%}
+                </li>
+                {%- endif -%}
+            {%- endfor -%} 
+            {%- for product_accordion_how_to_install in shop.metaobjects.product_accordion_how_to_install.values -%}
+                {%- if product_accordion_how_to_install.main_heading_text != blank and product_accordion_how_to_install.main_details_text != blank -%}
+                <li>
+                    {%- if product_accordion_how_to_install.main_heading_text != blank -%}
+                    <div class="question">
+                        <h4>{{ product_accordion_how_to_install.main_heading_text }}</h4>
+                    </div>
+                    {%- endif -%}
+                    {%- if product_accordion_how_to_install.main_details_text != blank -%}
+                    <div class="answer">
+                        {{ product_accordion_how_to_install.main_details_text | metafield_tag }}
+                    </div>
+                    {%- endif -%}
+                </li>
+                {%- endif -%}
+            {%- endfor -%}
+            
+            {%- unless product.has_only_default_variant -%}
+                {% assign flag = 0 %}
+                {%- for option in product.options_with_values -%}
+                {% if option.name == "Size" %}
+                    {% assign flag = 1 %}
+                {% endif %}
+                {% endfor %}
+                {% if flag == 1 %}
+                <li>
+                    <div class="question">
+                    <h4>Pricing</h4>
+                    </div>
+                    
+                    {% if isWizard %}
+                        {% assign id = "Pricing-List-Wizard" %}
+                    {% else %}
+                        {% assign id = "Pricing-List-Main" %}
+                    {% endif %}
+                    <div class="answer">
+                    {% render 'pricing-accordian-new', id: id %}
+                    </div>
+                </li>
+                {% endif %}
+            {%- endunless -%}
+            {%- for product_accordion_guarantee in shop.metaobjects.product_accordion_guarantee.values -%}
+                {%- if product_accordion_guarantee.main_heading_text != blank and product_accordion_guarantee.main_details_text != blank -%}
+                <li>
+                    {%- if product_accordion_guarantee.main_heading_text != blank -%}
+                    <div class="question">
+                        <h4>{{ product_accordion_guarantee.main_heading_text }}</h4>
+                    </div>
+                    {%- endif -%}
+                    {%- if product_accordion_guarantee.main_details_text != blank -%}
+                    <div class="answer">
+                        {{ product_accordion_guarantee.main_details_text | metafield_tag }}
+                    </div>
+                    {%- endif -%}
+                </li>
+                {%- endif -%}
+            {%- endfor -%}
+            {%- for product_accordion_shipping_returns in shop.metaobjects.product_accordion_shipping_returns.values -%}
+                {%- if product_accordion_shipping_returns.main_heading_text != blank and product_accordion_shipping_returns.main_details_text != blank -%}
+                <li>
+                    {%- if product_accordion_shipping_returns.main_heading_text != blank -%}
+                    <div class="question">
+                        <h4>{{ product_accordion_shipping_returns.main_heading_text }}</h4>
+                    </div>
+                    {%- endif -%}
+                    {%- if product_accordion_shipping_returns.main_details_text != blank -%}
+                    <div class="answer">
+                        {{ product_accordion_shipping_returns.main_details_text | metafield_tag }}
+                    </div>
+                    {%- endif -%}
+                </li>
+                {%- endif -%}
+            {%- endfor -%}
+            </ul>
+        </div>
+    </div>
+</div>

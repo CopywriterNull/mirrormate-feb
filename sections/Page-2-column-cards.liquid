@@ -1,0 +1,152 @@
+{% if section.blocks.size > 0 %}
+  <div class="Page_2_column_cards_main Page_2_column_cards_main_{{ section.id }}" style="background-color: {{ section.settings.main_background_color }}">
+    <div class="page-width">
+      <div class="Page_2_column_cards_inner">
+        <div class=Page_2_column_cards_grid>
+          {% for block in section.blocks %}
+            {% if block.type == "column-card" %}
+              {% if block.settings.card_title != blank or block.settings.card_description != blank or block.settings.card_link != blank or block.settings.card_link_text != blank or block.settings.card_image != blank %}
+                <div class="column_card" style="background-color: {{ block.settings.card_background_color }}">
+                  <div class="column_card_inner">
+                    {% if block.settings.card_image != blank %}
+                      <div class="column_card_image">
+                        {{
+                            block.settings.card_image | 
+                            image_url: width: img.width | 
+                            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                            fetchpriority: 'auto', 
+                            class:'card_image'
+                          }}
+                      </div>
+                    {% endif %}
+                    {% if block.settings.card_title != blank or block.settings.card_description != blank or block.settings.card_button_link != blank or block.settings.card_button_text != blank %}
+                      <div class="column_card_information">
+                        {% if block.settings.card_title != blank %}
+                          <div class="column_card_title">
+                            <h5>
+                              {{ block.settings.card_title }}
+                            </h5>
+                          </div>
+                        {% endif %}
+                        {% if block.settings.card_description != blank %}
+                          <div class="column_card_description">
+                            {{ block.settings.card_description }}
+                          </div>
+                        {% endif %}
+                        {% if block.settings.card_button_link != blank or block.settings.card_button_text != blank %}
+                          <div class="column_card_button">
+                            <a class="button" href="{{ block.settings.card_button_link }}">
+                              {{ block.settings.card_button_text }}
+                            </a>
+                          </div>
+                        {% endif %}
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+<style>
+  .Page_2_column_cards_main { padding: 96px 0; }
+  .Page_2_column_cards_grid { display: flex; flex-wrap: wrap; gap: 16px; }
+  .Page_2_column_cards_grid .column_card { width: calc(50% - 8px); border-radius: 12px; overflow: hidden; }
+  .Page_2_column_cards_grid .column_card_information { padding: 20px 24px 24px; }
+  .Page_2_column_cards_grid .column_card_title h5 { font-size: 32px; line-height: 115%; letter-spacing: -0.1px; color: #2D4256; margin: 0; }
+  .Page_2_column_cards_grid .column_card_description { padding-top: 8px; }
+  .Page_2_column_cards_grid .column_card_description p { color: #2D4256; font-size: 16px; line-height: 135%; font-weight: 400; margin: 0; }
+  .Page_2_column_cards_grid .column_card_button { padding-top: 24px; }
+  .Page_2_column_cards_grid .column_card_button .button { min-width: 280px; }
+  .Page_2_column_cards_grid .column_card_image { aspect-ratio: 1.64; }
+  .Page_2_column_cards_grid .column_card_image img { display: block; height: 100% !important; width: 100%; object-fit: cover; }
+
+  @media (max-width:989px){
+    .Page_2_column_cards_main { padding: 56px 0;  }
+    .Page_2_column_cards_grid .column_card { border-radius: 8px; }
+    .Page_2_column_cards_grid .column_card_information {  padding: 16px; }
+    .Page_2_column_cards_grid .column_card_button { padding-top: 16px; }
+    .Page_2_column_cards_grid .column_card_title h5 { font-size: 24px; }
+  }
+
+  @media (max-width: 749px){
+    .Page_2_column_cards_main { padding: 24px 0 56px;  }
+    .Page_2_column_cards_grid { gap: 24px; }
+    .Page_2_column_cards_grid .column_card { width: 100%; }
+    .Page_2_column_cards_grid .column_card_image { aspect-ratio: 1.3958; }
+    .Page_2_column_cards_grid .column_card_button .button { min-width: 303px; }
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "2 Column Cards",
+    "class": "Page_2_column_cards_section",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      }
+    ],
+    "blocks":[
+      {
+        "type": "column-card",
+        "name": "Column Card",
+        "settings": [
+          {
+            "type": "color",
+            "id": "card_background_color",
+            "label": "Add Card Background Color",
+            "default": "#F6F3F2"
+          },
+          {
+            "type": "image_picker",
+            "id": "card_image",
+            "label": "Card Image"
+          },
+          {
+            "type": "textarea",
+            "id": "card_title",
+            "label": "Add Card Title",
+            "default": "Single frames"
+          },
+          {
+            "type": "textarea",
+            "id": "card_description",
+            "label": "Add Card Description",
+            "default": "<p>Shop our collection of 65+ styles and order a single frame.</p>"
+          },
+          {
+            "type": "text",
+            "id": "card_button_text",
+            "label": "learn more",
+            "default": "order one frame"
+          },
+          {
+            "type": "url",
+            "id": "card_button_link",
+            "label": "Add Card Button URL",
+            "default": "/"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Page 2 Column Cards Section",
+        "blocks": [
+          {
+            "type": "column-card"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

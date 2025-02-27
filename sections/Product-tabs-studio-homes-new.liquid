@@ -1,0 +1,479 @@
+<div js-product-tabs-studio data-section="{{ section.id }}">
+  {%- if section.settings.main_tab_title_text_1 != blank and section.settings.main_tab_title_text_2 != blank -%}
+    {%- if section.blocks.size > 0 or product.metafields.custom.product_in_the_studio_before_and_after_image != blank or product.metafields.custom.product_in_real_homes_images != blank or section.settings.main_desktop_image_1 != blank or section.settings.main_desktop_image_2 != blank or section.settings.main_mobile_image_1 != blank or section.settings.main_mobile_image_2 != blank or section.settings.main_desktop_video != blank or section.settings.main_desktop_image != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank -%}
+      <div class="Product_tabs_studio_homes_main_new" id="real_homes" style="background: {{ section.settings.main_background_color }};">
+        <div class="page-width">
+          <div class="Product_tabs_studio_homes_inner_new" data-aos="fade-in" data-aos-delay="200" >
+            {%- if section.blocks.size > 0 or product.metafields.custom.product_in_the_studio_before_and_after_image != blank or product.metafields.custom.product_in_real_homes_images != blank or section.settings.main_desktop_image_1 != blank or section.settings.main_desktop_image_2 != blank or section.settings.main_mobile_image_1 != blank or section.settings.main_mobile_image_2 != blank or section.settings.main_desktop_video != blank or section.settings.main_desktop_image != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank -%}
+              <div class="Product_tabs_studio_homes_mainsides_new">
+                <div class="Product_tabs_studio_homes_innersides_new Tabs_common_main_new">
+                  {%- if product.metafields.custom.product_in_the_studio_before_and_after_image != blank or product.metafields.custom.product_in_real_homes_images != blank or section.settings.main_desktop_video != blank or section.settings.main_desktop_image != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank -%}
+                    <div class="Product_tabs_studio_homes_innersides_mainleft_new desktop_only">
+                      <div class="Product_tabs_studio_homes_innersides_innerleft_new">
+                        {%- if section.settings.main_desktop_video != blank or section.settings.main_desktop_image != blank -%}
+                          <div class="Product_tabs_studio_homes_innersides_innerleft_mainboths_new">
+                            <div class="Product_tabs_studio_homes_innersides_innerleft_innerboths_new">
+                              {%- if section.settings.main_desktop_video != blank -%}
+                                <div class="Product_tabs_studio_homes_innersides_innerleft_innerboths_videoimage_new">
+                                  {{ section.settings.main_desktop_video | video_tag: class: 'desktop_image_new', image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                </div>
+                              {% else %}  
+                                {%- if section.settings.main_desktop_image != blank -%}
+                                  <div class="Product_tabs_studio_homes_innersides_innerleft_innerboths_videoimage_new">
+                                    {{
+                                      section.settings.main_desktop_image | 
+                                      image_url: width: img.width | 
+                                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                      fetchpriority: 'auto', 
+                                      class:'desktop_image_new'
+                                    }}
+                                  </div>
+                                {%- endif -%}
+                              {%- endif -%}
+                            </div>
+                          </div>
+                        {%- endif -%}
+                        {%- if section.settings.main_heading_text != blank or section.settings.main_information_text != blank -%}
+                          <div class="Product_tabs_studio_homes_innersides_innerleft_maintexts_new">
+                            <div class="Product_tabs_studio_homes_innersides_innerleft_innertexts_new">
+                              {%- if section.settings.main_heading_text != blank -%}
+                                <div class="Common_title_new Product_tabs_studio_homes_innersides_innerleft_innertexts_title_new">
+                                  <h2>{{ section.settings.main_heading_text }}</h2>
+                                </div>
+                              {%- endif -%}
+                              {%- if section.settings.main_information_text != blank -%}
+                                <div class="Product_tabs_studio_homes_innersides_innerleft_innertexts_infos_new">
+                                  {{ section.settings.main_information_text }}
+                                </div>
+                              {%- endif -%}
+                            </div>
+                          </div>
+                        {%- endif -%}
+                        {%- if section.settings.main_tab_title_text_1 != blank and section.settings.main_tab_title_text_2 != blank -%}
+                          {%- if section.blocks.size > 0 or product.metafields.custom.product_in_the_studio_before_and_after_image != blank or product.metafields.custom.product_in_real_homes_images != blank  or section.settings.main_desktop_image_1 != blank or section.settings.main_desktop_image_2 != blank or section.settings.main_mobile_image_1 != blank or section.settings.main_mobile_image_2 != blank -%}
+                            <div class="Product_tabs_studio_homes_innersides_innerleft_mainparts_new">
+                              <div class="Product_tabs_studio_homes_innersides_innerleft_innerparts_new">
+                                <div class="tab">
+                                  {%- if section.settings.main_tab_title_text_1 != blank -%}
+                                    <button class="tablinks Tabs_common_inner_new active" tab_id="tab_facelift_1">
+                                      {{ section.settings.main_tab_title_text_1 }}
+                                    </button>  
+                                  {%- endif -%}
+                                  {%- if section.settings.main_tab_title_text_2 != blank -%}
+                                    <button class="tablinks Tabs_common_inner_new" tab_id="tab_facelift_2">
+                                      {{ section.settings.main_tab_title_text_2 }}
+                                    </button>  
+                                  {%- endif -%}
+                                </div>  
+                              </div>
+                            </div>
+                          {%- endif -%}
+                        {%- endif -%}
+                      </div>
+                    </div>
+                  {%- endif -%}
+                  {%- if section.settings.main_tab_title_text_1 != blank and section.settings.main_tab_title_text_2 != blank -%}
+                    {%- if section.blocks.size > 0 or product.metafields.custom.product_in_real_homes_images != blank or product.metafields.custom.product_in_the_studio_before_and_after_image != blank or section.settings.main_desktop_image_1 != blank or section.settings.main_desktop_image_2 != blank or section.settings.main_mobile_image_1 != blank or section.settings.main_mobile_image_2 != blank -%}
+                      <div class="Product_tabs_studio_homes_innersides_mainright_new">
+                        <div class="Product_tabs_studio_homes_innersides_innerright_new">
+                          {%- if product.metafields.custom.product_in_the_studio_before_and_after_image != blank or section.settings.main_desktop_image_1 != blank or section.settings.main_desktop_image_2 != blank or section.settings.main_mobile_image_1 != blank or section.settings.main_mobile_image_2 != blank -%}
+                            <div class="tabcontent tab_facelift_1_open" style="display:block;">
+                              <div class="Product_tabs_studio_homes_innersides_innerright_mainstatic_new">
+                                <div class="Product_tabs_studio_homes_innersides_innerright_innerstatic_new">
+                                  {% if product.metafields.custom.product_in_the_studio_before_and_after_image != blank %}
+                                    <div class="Product_tabs_studio_homes_innersides_innerright_innerstatic_maindesktop_new">
+                                      <div class="Product_tabs_studio_homes_innersides_innerright_innerstatic_innerdesktop_new">
+                                        <div class="twentytwenty-container">
+                                          {%- for product_in_the_studio_before_and_after_image in product.metafields.custom.product_in_the_studio_before_and_after_image.value limit:2 -%}
+                                            {{
+                                              product_in_the_studio_before_and_after_image | 
+                                              image_url: width: img.width | 
+                                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                              fetchpriority: 'auto', 
+                                              class:''
+                                            }}
+                                          {%- endfor -%}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  {% else %}
+                                    {%- if section.settings.main_desktop_image_1 != blank and section.settings.main_desktop_image_2 != blank -%}
+                                      <div class="Product_tabs_studio_homes_innersides_innerright_innerstatic_maindesktop_new">
+                                        <div class="Product_tabs_studio_homes_innersides_innerright_innerstatic_innerdesktop_new">
+                                          <div class="twentytwenty-container">
+                                            {%- if section.settings.main_desktop_image_1 != blank -%}
+                                              {{
+                                                section.settings.main_desktop_image_1 | 
+                                                image_url: width: img.width | 
+                                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                fetchpriority: 'auto', 
+                                                class:'Full_image_1_new'
+                                              }}
+                                            {%- endif -%}
+                                            {%- if section.settings.main_desktop_image_2 != blank -%}
+                                              {{
+                                                section.settings.main_desktop_image_2 | 
+                                                image_url: width: img.width | 
+                                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                fetchpriority: 'auto', 
+                                                class:'Full_image_2_new'
+                                              }}
+                                            {%- endif -%}
+                                          </div>
+                                        </div>
+                                      </div>
+                                    {%- endif -%}
+                                  {%- endif -%}
+  
+                                  {% comment %}
+                                    {%- if section.settings.main_mobile_image_1 != blank and section.settings.main_mobile_image_2 != blank -%}
+                                      <div class="Product_tabs_studio_homes_innersides_innerright_innerstatic_mainmobile_new mobile_only">
+                                        <div class="Product_tabs_studio_homes_innersides_innerright_innerstatic_innermobile_new">
+                                          <div class="twentytwenty-container">
+                                            {%- if section.settings.main_mobile_image_1 != blank -%}
+                                              {{
+                                                section.settings.main_mobile_image_1 | 
+                                                image_url: width: img.width | 
+                                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                fetchpriority: 'auto', 
+                                                class:'Full_image_1_new'
+                                              }}
+                                            {%- endif -%}
+                                            {%- if section.settings.main_mobile_image_2 != blank -%}
+                                              {{
+                                                section.settings.main_mobile_image_2 | 
+                                                image_url: width: img.width | 
+                                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                fetchpriority: 'auto', 
+                                                class:'Full_image_2_new'
+                                              }}
+                                            {%- endif -%}
+                                          </div>
+                                        </div>
+                                      </div>
+                                    {%- endif -%}
+                                  {% endcomment %}
+                                </div>
+                              </div>
+                            </div>
+                          {%- endif -%}
+                          {%- if section.settings.main_heading_text != blank or section.settings.main_information_text != blank -%}
+                            <div class="Product_tabs_studio_homes_innersides_innerleft_maintexts_new mobile_only">
+                              <div class="Product_tabs_studio_homes_innersides_innerleft_innertexts_new">
+                                {%- if section.settings.main_heading_text != blank -%}
+                                  <div class="Common_title_new Product_tabs_studio_homes_innersides_innerleft_innertexts_title_new">
+                                    <h2>{{ section.settings.main_heading_text }}</h2>
+                                  </div>
+                                {%- endif -%}
+                                {%- if section.settings.main_information_text != blank -%}
+                                  <div class="Product_tabs_studio_homes_innersides_innerleft_innertexts_infos_new">
+                                    {{ section.settings.main_information_text }}
+                                  </div>
+                                {%- endif -%}
+                              </div>
+                            </div>
+                          {%- endif -%}
+                          {%- if section.settings.main_details_text != blank -%}
+                            <div class="Product_tabs_studio_homes_innersides_innerright_maintitle_new mobile_only">
+                              <div class="Product_tabs_studio_homes_innersides_innerright_innertitle_new">
+                                {{ section.settings.main_details_text }}
+                              </div>
+                            </div>
+                          {%- endif -%}
+                          {%- if section.blocks.size > 0 or product.metafields.custom.product_in_real_homes_images != blank -%}
+                            <div class="tabcontent tab_facelift_2_open">
+                              <div class="Product_tabs_studio_homes_innersides_innerright_mainloops_new">
+                                <div class="Product_tabs_studio_homes_innersides_innerright_innerloops_new">
+                                  <div class="swiper Product_tabs_studio_homes_slider">
+                                    <div class="swiper-wrapper">
+                                      {% if product.metafields.custom.product_in_real_homes_images != blank %}
+                                        {%- for product_in_real_homes_images in product.metafields.custom.product_in_real_homes_images.value -%}
+                                          <div class="swiper-slide Product_tabs_studio_homes_innersides_innerright_innerloops_mainboxs_new">
+                                            <div class="Product_tabs_studio_homes_innersides_innerright_innerloops_innerboxs_new">
+                                              <div class="Product_tabs_studio_homes_innersides_innerright_innerloops_innerboxs_videoimage_new">
+                                                {%- if product_in_real_homes_images contains "files" -%}
+                                                  {{
+                                                    product_in_real_homes_images | 
+                                                    image_url: width: img.width | 
+                                                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                    fetchpriority: 'auto', 
+                                                    class:'desktop_image_new'
+                                                  }}
+                                                {%- else -%}
+                                                  {{ product_in_real_homes_images | video_tag: class: 'desktop_image_new', image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                                {%- endif -%}
+  
+                                                {%- if product_in_real_homes_images contains "files" -%}
+                                                  <img 
+                                                  src="{{ product_in_real_homes_images | img_url:'master' }}"
+                                                  data-ngsrc="{{ product_in_real_homes_images | img_url:'master' }}"
+                                                  data-nanogallery2-lightbox
+                                                  width=""
+                                                  height=""
+                                                  class="mobile_image_new" alt="">
+                                                {%- else -%}
+                                                  {% if product_in_real_homes_images.sources[1].url != blank %}
+                                                    {% assign video_url =  product_in_real_homes_images.sources[1].url  %}
+                                                  {% elsif  product_in_real_homes_images.sources[0].url != blank %}
+                                                    {% assign video_url =  product_in_real_homes_images.sources[0].url  %}
+                                                  {% elsif  product_in_real_homes_images.sources[2].url != blank %}
+                                                    {% assign video_url =  product_in_real_homes_images.sources[2].url  %}
+                                                  {% endif %}  
+                                                  <img 
+                                                  src="{{ product_in_real_homes_images | img_url:'master' }}"
+                                                  data-ngsrc="{{ video_url |  split: '?' |  first }}"
+                                                  data-nanogallery2-lightbox
+                                                  width=""
+                                                  height=""
+                                                  class="hb_mobile_image_new" alt="">
+                                                  
+                                                  <video class="mobile_image_new" playsinline="playsinline" autoplay="autoplay" loop="loop" preload="metadata" muted="muted" poster="{{ product_in_real_homes_images.preview_image | image_url}}">
+                                                    <source src="{{ video_url }}" type="video/mp4">
+                                                    <source src="{{ video_url }}" type="video/ogg">
+                                                  </video>
+                                                {%- endif -%}
+                                              </div>
+                                            </div>
+                                          </div>
+                                        {%- endfor -%}    
+                                      {% else %}
+                                        {%- for block in section.blocks -%}
+                                          {%- if block.settings.inner_desktop_image != blank -%}
+                                            <div class="swiper-slide Product_tabs_studio_homes_innersides_innerright_innerloops_mainboxs_new">
+                                              <div class="Product_tabs_studio_homes_innersides_innerright_innerloops_innerboxs_new">
+                                                {%- if block.settings.inner_desktop_image != blank -%}
+                                                  <div class="Product_tabs_studio_homes_innersides_innerright_innerloops_innerboxs_videoimage_new">
+                                                    {%- if block.settings.inner_desktop_image != blank -%}
+                                                      {{
+                                                        block.settings.inner_desktop_image | 
+                                                        image_url: width: img.width | 
+                                                        image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                        fetchpriority: 'auto', 
+                                                        class:'desktop_image_new'
+                                                      }}
+                                                    {%- endif -%}
+                                                    {%- if block.settings.inner_desktop_image != blank -%}
+                                                      <img 
+                                                      src="{{ block.settings.inner_desktop_image | img_url:'master' }}"
+                                                      data-ngsrc="{{ block.settings.inner_desktop_image | img_url:'master' }}"
+                                                      data-nanogallery2-lightbox
+                                                      width=""
+                                                      height=""
+                                                      class="mobile_image_new" alt="">
+                                                    {%- endif -%}
+                                                  </div>
+                                                {%- endif -%}
+                                              </div>
+                                            </div>
+                                          {%- endif -%}
+                                          {% comment %}
+                                            {%- if block.settings.inner_mp4_video != blank or block.settings.inner_desktop_image != blank or block.settings.inner_mobile_image != blank -%}
+                                              <div class="swiper-slide Product_tabs_studio_homes_innersides_innerright_innerloops_mainboxs_new">
+                                                <div class="Product_tabs_studio_homes_innersides_innerright_innerloops_innerboxs_new">
+                                                  {%- if block.settings.inner_mp4_video != blank -%}
+                                                    <div class="Product_tabs_studio_homes_innersides_innerright_innerloops_innerboxs_videoimage_new">
+                                                      {{ block.settings.inner_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                                    </div>
+                                                  {% else %}  
+                                                    {%- if block.settings.inner_desktop_image != blank and block.settings.inner_mobile_image != blank -%}
+                                                      <div class="Product_tabs_studio_homes_innersides_innerright_innerloops_innerboxs_videoimage_new">
+                                                        {%- if block.settings.inner_desktop_image != blank -%}
+                                                          {{
+                                                            block.settings.inner_desktop_image | 
+                                                            image_url: width: img.width | 
+                                                            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                            fetchpriority: 'auto', 
+                                                            class:''
+                                                          }}
+                                                        {%- endif -%}
+                                                        {%- if block.settings.inner_mobile_image != blank -%}
+                                                          <img 
+                                                          src="{{ block.settings.inner_mobile_image | img_url:'master' }}"
+                                                          data-ngsrc="{{ block.settings.inner_mobile_image | img_url:'master' }}"
+                                                          data-nanogallery2-lightbox
+                                                          width=""
+                                                          height=""
+                                                          class="mobile_image_new" alt="">
+                                                        {%- endif -%}
+                                                      </div>
+                                                    {%- endif -%}
+                                                  {%- endif -%}
+                                                </div>
+                                              </div>
+                                            {%- endif -%}
+                                          {% endcomment %}
+                                        {%- endfor -%}
+                                      {%- endif -%}
+                                    </div>
+                                    <div class="swiper-scrollbar"></div>
+                                    <div class="swiper-button-prev">
+                                      <svg width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 18.5L1 9.89115L9 1.5" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                      </svg>
+                                    </div>
+                                    <div class="swiper-button-next">
+                                      <svg width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 1.5L9 10.1089L1 18.5" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                      </svg>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          {%- endif -%}
+                          {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                            <div class="Product_tabs_studio_homes_innersides_innerright_mainbutton_new mobile_only">
+                              <div class="Product_tabs_studio_homes_innersides_innerright_innerbutton_new">
+                                <a href="{{ section.settings.main_button_link }}" class="button">
+                                  {{ section.settings.main_button_text }}  
+                                </a>
+                              </div>
+                            </div>
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    {%- endif -%}  
+  {%- endif -%}
+</div>
+  
+{% schema %}
+  {
+    "name": "Product Tabs Studio Homes",
+    "class": "Product_tabs_studio_homes_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "header",
+        "content": "==== Main Left Details ===="
+      },
+      {
+        "type": "video",
+        "id": "main_desktop_video",
+        "label": "Add Main Desktop Video"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_desktop_image",
+        "label": "Add Main Desktop Image"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Instantly Upgrade<br>Your Bathroom"
+      },
+      {
+        "type": "richtext",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "<p><strong>The perfect facelift</strong> for new construction, dated, or decaying bathroom mirrors.</p>"
+      },
+      {
+        "type": "textarea",
+        "id": "main_details_text",
+        "label": "Add Main Details Text",
+        "default": "See It In Real Homes"
+      },
+      {
+        "type": "textarea",
+        "id": "main_tab_title_text_1",
+        "label": "Add Main Tab Title Text-1",
+        "default": "In the studio"
+      },
+      {
+        "type": "textarea",
+        "id": "main_tab_title_text_2",
+        "label": "Add Main Tab Title Text-2",
+        "default": "In real homes"
+      },
+      {
+        "type": "header",
+        "content": "==== Main Right Details ===="
+      },
+      {
+        "type": "image_picker",
+        "id": "main_desktop_image_1",
+        "label": "Add Before Image"
+      }/*,
+      {
+        "type": "image_picker",
+        "id": "main_mobile_image_1",
+        "label": "Add Main Mobile Image-1"
+      }*/,
+      {
+        "type": "image_picker",
+        "id": "main_desktop_image_2",
+        "label": "Add After Image"
+      }/*,
+      {
+        "type": "image_picker",
+        "id": "main_mobile_image_2",
+        "label": "Add Main Mobile Image-2"
+      }*/,
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "See More Makeovers"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "information",
+        "name": "Information",
+        "settings": [
+          /*{
+            "type": "video",
+            "id": "inner_mp4_video",
+            "label": "Add Inner MP4 Video"
+          },*/
+          {
+            "type": "image_picker",
+            "id": "inner_desktop_image",
+            "label": "Add Image"
+          }/*,
+          {
+            "type": "image_picker",
+            "id": "inner_mobile_image",
+            "label": "Add Inner Mobile Image"
+          }*/
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Product Tabs Studio Homes",
+        "blocks": [
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

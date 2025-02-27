@@ -1,0 +1,22 @@
+{% if product.metafields.custom.select_stitcher != blank %}
+    <script src="{{ 'product-stitcher.js' | asset_url }}" defer></script>
+
+    <product-stitcher class="product-stitcher">
+        <div class="stitcher-header">
+            <span class="stitcher-option">Color:</span>
+            <span class="stitcher-value">{{ product.metafields.custom.swatch_title }}</span>
+        </div>
+        <div class="stitcher-grid">
+            {% assign stitcherProducts = product.metafields.custom.select_stitcher.value.choose_products %}
+            {% for product_stitcher in stitcherProducts.value %}
+                {% if product_stitcher.metafields.custom.swatch_image != blank %}
+                    <a href="{{ product_stitcher.url }}" data-product-handle="{{ product_stitcher.handle }}" class="stitcher-item{% if product.id == product_stitcher.id %} is-selected{% endif %}" js-stitcher-item>
+                        <div class="stitcher-img">
+                            <img src="{{ product_stitcher.metafields.custom.swatch_image |  image_url: width: '200x' }}" alt="{{ product_stitcher.metafields.custom.swatch_image.alt }}">
+                        </div>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </product-stitcher>
+{% endif %}

@@ -1,0 +1,36 @@
+{%- if section.settings.main_heading_text != blank -%}
+  <div class="LP_Acquisition_template_main_new" style="background: {{ section.settings.main_background_color }}; display: none;">
+    <div class="page-width">
+      <div class="LP_Acquisition_template_inner_new">
+        {%- if section.settings.main_heading_text != blank -%}
+          <div class="LP_Acquisition_template_maintitle_new">
+            <div class="Common_title_new LP_Acquisition_template_innertitle_new">
+              <h1>{{ section.settings.main_heading_text }}</h1>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>  
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "LP Acquisition Template",
+    "class": "LP_Acquisition_template_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Customer Acquisition"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,613 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: 32px;
+    padding-bottom: 56px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+
+
+{%- assign currentPage = blank -%}
+
+{%- assign page_url = content_for_header | split:'"pageurl":"' | last | split:'"' | first | split: request.host | last | replace:'\/','/' | replace:'%20',' ' | replace:'\u0026','&'  -%}
+{% assign param = blank %}
+
+{%- for i in (1..1) -%}
+  {%- unless page_url contains "?" -%}{% break %}{%- endunless -%}
+  {%- assign query_string = page_url | split:'?' | last -%}
+  {%- assign qry_parts= query_string | split:'&' -%}
+
+  {%- for part in qry_parts -%}
+    {%- assign key_and_value = part | split:'=' -%}
+    {%- if key_and_value.size > 1 -%}
+      
+      {% if key_and_value[0] == 'orderHistory' %}
+       {%- assign currentPage = key_and_value[1] | strip -%}
+      {% endif %}
+
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+
+
+<div class="customer account section-{{ section.id }}-padding">
+  <div>
+    <h1 class="customer__title">{{ 'customer.account.title' | t }}</h1>
+
+    <div class="customer-name">Welcome, <span>{{ customer.first_name }} {{ customer.last_name }}</span></div>
+    
+    <!-- <a href="{{ routes.account_logout_url }}">
+      <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" viewBox="0 0 18 19">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M6 4.5a3 3 0 116 0 3 3 0 01-6 0zm3-4a4 4 0 100 8 4 4 0 000-8zm5.58 12.15c1.12.82 1.83 2.24 1.91 4.85H1.51c.08-2.6.79-4.03 1.9-4.85C4.66 11.75 6.5 11.5 9 11.5s4.35.26 5.58 1.15zM9 10.5c-2.5 0-4.65.24-6.17 1.35C1.27 12.98.5 14.93.5 18v.5h17V18c0-3.07-.77-5.02-2.33-6.15-1.52-1.1-3.67-1.35-6.17-1.35z" fill="currentColor">
+      </svg>
+      {{ 'customer.log_out' | t }}
+    </a> -->
+  </div>
+
+  <div class="account-inner">
+
+    <div class="account-tab">
+       <div js-url="{{ routes.account_url }}" class="account-tab-title{% if currentPage == blank %} active{% endif %}" js-tab-title="account">my account</div>
+       <div js-url="{{ routes.account_url }}?orderHistory=true" class="account-tab-title{% if currentPage != blank %} active{% endif %}" js-tab-title="history">order history</div>
+    </div>
+    
+    <div class="order-history-outer" js-tab-content="history"{% if currentPage != blank %} style="display:block;"{% endif %}>
+
+       <div class="mobile-orders">
+         {%- paginate customer.orders by 6 -%}
+          {%- if customer.orders.size > 0 -%}
+              <div class="order-accordions">
+              {%- for order in customer.orders -%}
+                  <div class="order-accordion{% if forloop.first %} active{% endif %}" js-accordion>
+                     <div class="accordion-title" js-accordion-title>
+                       <span>ORDER: {{ order.name }}</span>
+
+                
+                         <svg class="minus" width="16" height="3" viewBox="0 0 16 3" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M14.6673 1.5H1.33398" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                         </svg>
+                        
+                        <svg class="plus" width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_3788_42501)">
+                              <path d="M8 1.83203V15.1654" stroke="#0C0C0C" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                              <path d="M14.6673 8.5H1.33398" stroke="#0C0C0C" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_3788_42501">
+                            <rect width="16" height="16" fill="white" transform="translate(0 0.5)"/>
+                            </clipPath>
+                            </defs>
+                        </svg>
+
+                     </div>
+                     <div class="accordion-details">
+                        <div>
+                          {%- assign items_title = '' -%}
+                          {%- for item in order.line_items -%}
+                            {%- capture temp -%}{{ item.product.title }}&nbsp;(x{{ item.quantity }}){%- unless forloop.last -%},&nbsp;{%- endunless -%}{%- endcapture -%}
+                            {%- assign items_title = items_title | append: temp -%}
+                          {%- endfor -%}
+                          {{ items_title | truncatewords: 5 }}
+                        </div>
+                        <div>Order Date: {{ order.created_at | date: '%m/%d/%y' }}</div>
+                       <div>Payment Status: {{ order.financial_status_label }}</div>
+                       <div>Fulfillment Status: {{ order.fulfillment_status_label }}</div>
+                       <div>Order Total: {{ order.total_net_amount | money_without_trailing_zeros }}</div>
+                     </div>
+
+
+                     {%- assign measurements_required = false -%}
+                     {%- assign measurements_count = 1 -%} 
+                     {%- for line_item in order.line_items -%}
+                           {%- if line_item.properties['_measurements'] == 'required' -%}
+                               {%- assign measurements_required = true -%}
+                               {%- assign line_quantity = line_item.quantity -%}
+                               {%- assign measurements_count = measurements_count | Plus: line_quantity -%} 
+                           {%- endif -%}
+                     {%- endfor -%}
+                      {%- if measurements_required -%}
+                        <div class="dimension-label mobile-label hidden" js-order-id-mobile="{{ order.name }}" js-order-measurements-count="{{ measurements_count }}">Click here to add measurements</div>
+                      {%- endif -%}
+
+
+                {%- assign available_for_reorder = false -%}
+                 <form js-reorder-form="{{ order.id }}" method="post" class="hidden" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data" novalidate="novalidate">
+         {%- assign temp_index = 0 -%}  
+         {%- for line_item in order.line_items -%}
+               {%- if line_item.variant.available -%}
+
+                   {%- assign available_for_reorder = true -%}
+                   {%- assign line_item_quantity = line_item.quantity -%}
+                   {%- if line_item.variant.inventory_policy == 'deny' -%}
+                       {%- if line_item.quantity > line_item.variant.inventory_quantity -%}
+                          {%- assign line_item_quantity = line_item.variant.inventory_quantity -%}
+                       {%- endif -%}
+                   {%- endif -%}  
+                   
+                  <input type="hidden" name="items[{{ temp_index }}][id]"  value="{{ line_item.variant_id }}" />
+                  <input type="hidden" name="items[{{ temp_index }}][quantity]"  value="{{ line_item_quantity }}" />
+                  {%- for properties in line_item.properties -%}
+                      <input type="hidden" name="items[{{ temp_index }}][properties][{{ properties.first }}]"  value="{{ properties.last }}" />
+                  {%- endfor -%}
+                  {%- assign temp_index = temp_index | plus: 1 -%}  
+
+               {%- endif -%}
+           {%- endfor -%}
+      </form>
+                
+                
+                   <div class="link">
+                         <a href="{{ order.customer_url }}">
+                           view details
+                         </a>
+
+                      {%- if available_for_reorder -%}
+                        <a href="javascript:void(0)" js-reorder-btn="{{ order.id }}" class="reorder">
+                          <span>reorder</span>
+                          <div class="loading__spinner">
+                            <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                            </svg>
+                          </div>
+                        </a>
+                     {%- endif -%}
+                     
+                       </div>
+                  </div>
+              {%- endfor -%}
+            </div>
+          {%- else -%}
+              <p>{{ 'customer.orders.none' | t }}</p>
+          {%- endif -%}
+
+
+           {%- if paginate.pages > 1 -%}
+          {%- if paginate.parts.size > 0 -%}
+            <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
+              <ul role="list">
+               
+                  <li class="previous">
+                     {%- if paginate.previous -%}
+                            <a href="{{ paginate.previous.url }}&orderHistory=true" aria-label="{{ 'general.pagination.previous' | t }}">
+                              <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M6.1875 1.4375L1.125 6.5L6.1875 11.5625" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </a>
+                       {%- else -%}
+                              <svg class="disabled" width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M6.1875 1.4375L1.125 6.5L6.1875 11.5625" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>    
+                       {%- endif -%}
+                  </li>
+                
+
+                {%- for part in paginate.parts -%}
+                  <li>
+                    {%- if part.is_link -%}
+                      <a href="{{ part.url }}&orderHistory=true" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">
+                        {{- part.title -}}
+                      </a>
+                    {%- else -%}
+                      {%- if part.title == paginate.current_page -%}
+                        <span aria-current="page" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">
+                          {{- part.title -}}
+                        </span>
+                      {%- else -%}
+                        <span class="pagination-dots">{{ part.title }}</span>
+                      {%- endif -%}
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+
+                
+                  <li class="next">
+                   {%- if paginate.next -%}
+                    <a href="{{ paginate.next.url }}&orderHistory=true" aria-label="{{ 'general.pagination.next' | t }}">
+                      <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1.8125 1.4375L6.875 6.5L1.8125 11.5625" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </a>
+                  {%- else -%}
+                      <svg class="disabled" width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1.8125 1.4375L6.875 6.5L1.8125 11.5625" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                  {%- endif -%}
+            
+                  </li>
+                
+              </ul>
+            </nav>
+          {%- endif -%}
+        {%- endif -%}
+           
+         {%- endpaginate -%}
+       </div>
+
+      <div class="desktop-orders">
+      {% paginate customer.orders by 8 %}
+        {%- if customer.orders.size > 0 -%}
+          <table role="table" class="order-history">
+            <!-- <caption class="visually-hidden">
+              {{ 'customer.orders.title' | t }}
+            </caption> -->
+            <thead role="rowgroup">
+              <tr role="row">
+                <th id="ColumnOrder" scope="col" role="columnheader">{{ 'customer.orders.order_number' | t }}</th>
+                <th id="ColumnDate" scope="col" role="columnheader">{{ 'customer.orders.date' | t }}</th>
+                <th id="ColumnPayment" scope="col" role="columnheader">{{ 'customer.orders.payment_status' | t }}</th>
+                <th id="ColumnFulfillment" scope="col" role="columnheader">
+                  {{ 'customer.orders.fulfillment_status' | t }}
+                </th>
+                <th id="ColumnTotal" scope="col" role="columnheader">{{ 'customer.orders.total' | t }}</th>
+              </tr>
+            </thead>
+            <tbody role="rowgroup">
+              {%- for order in customer.orders -%}
+                <tr role="row" js-row-clickable data-href="{{ order.customer_url }}">
+                  <td
+                    id="RowOrder"
+                    role="cell"
+                    headers="ColumnOrder"
+                    data-label="{{ 'customer.orders.order_number' | t }}"
+                  >
+
+                     
+                    
+                    {%- comment -%}
+                      {%- assign order_tags = order.tags | downcase -%}
+                      {%- if order_tags contains 'dimensionrequired' -%}
+                          <div class="dimension-label mobile-label">Measurements required</div>
+                      {%- endif -%}
+                     {%- endcomment -%}
+                
+                    <a
+                      href="{{ order.customer_url }}"
+                      aria-label="{{ 'customer.orders.order_number_link' | t: number: order.name }}"
+                    >
+                      {{ order.name }}
+                    </a>
+
+
+                    {%- assign measurements_required = false -%}
+                    {%- assign measurements_count = 0 -%} 
+                    
+                     {%- for line_item in order.line_items -%}
+                           {%- if line_item.properties['_measurements'] == 'required' -%}
+                               {%- assign measurements_required = true -%}
+                               {%- assign line_quantity = line_item.quantity -%}
+                               {%- assign measurements_count = measurements_count | plus: line_quantity -%} 
+                           {%- endif -%}
+                     {%- endfor -%}
+                    
+                      {%- if measurements_required -%}
+                        <div class="dimension-label desktop-label hidden" js-order-id="{{ order.name }}" js-order-measurements-count="{{ measurements_count }}">Click here to add measurements</div>
+                      {%- endif -%}
+                    
+                     {%- comment -%}
+                      {%- assign order_tags = order.tags | downcase -%}
+                      {%- if order_tags contains 'dimensionrequired' -%}
+                          <div class="dimension-label desktop-label">Measurements required</div>
+                      {%- endif -%}
+                     {%- endcomment -%}
+                
+                  </td>
+                  <td headers="RowOrder ColumnDate" role="cell" data-label="{{ 'customer.orders.date' | t }}">
+                    {{ order.created_at | date: '%m/%d/%y' }}
+                  </td>
+                  <td
+                    headers="RowOrder ColumnPayment"
+                    role="cell"
+                    data-label="{{ 'customer.orders.payment_status' | t }}"
+                  >
+                    {{ order.financial_status_label }}
+                  </td>
+                  <td
+                    headers="RowOrder ColumnFulfillment"
+                    role="cell"
+                    data-label="{{ 'customer.orders.fulfillment_status' | t }}"
+                  >
+                    {{ order.fulfillment_status_label }}
+                  </td>
+                  <td headers="RowOrder ColumnTotal" role="cell" data-label="{{ 'customer.orders.total' | t }}">
+                    {{ order.total_net_amount | money_without_trailing_zeros }}
+                  </td>
+                </tr>
+              {%- endfor -%}
+            </tbody>
+          </table>
+        {%- else -%}
+          <p>{{ 'customer.orders.none' | t }}</p>
+        {%- endif -%}
+
+        {%- if paginate.pages > 1 -%}
+          {%- if paginate.parts.size > 0 -%}
+            <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
+              <ul role="list">
+               
+                  <li class="previous">
+                     {%- if paginate.previous -%}
+                            <a href="{{ paginate.previous.url }}&orderHistory=true" aria-label="{{ 'general.pagination.previous' | t }}">
+                              <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M6.1875 1.4375L1.125 6.5L6.1875 11.5625" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </a>
+                       {%- else -%}
+                              <svg class="disabled" width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M6.1875 1.4375L1.125 6.5L6.1875 11.5625" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>    
+                       {%- endif -%}
+                  </li>
+                
+
+                {%- for part in paginate.parts -%}
+                  <li>
+                    {%- if part.is_link -%}
+                      <a href="{{ part.url }}&orderHistory=true" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">
+                        {{- part.title -}}
+                      </a>
+                    {%- else -%}
+                      {%- if part.title == paginate.current_page -%}
+                        <span aria-current="page" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">
+                          {{- part.title -}}
+                        </span>
+                      {%- else -%}
+                        <span class="pagination-dots">{{ part.title }}</span>
+                      {%- endif -%}
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+
+                
+                  <li class="next">
+                   {%- if paginate.next -%}
+                    <a href="{{ paginate.next.url }}&orderHistory=true" aria-label="{{ 'general.pagination.next' | t }}">
+                      <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1.8125 1.4375L6.875 6.5L1.8125 11.5625" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </a>
+                  {%- else -%}
+                      <svg class="disabled" width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1.8125 1.4375L6.875 6.5L1.8125 11.5625" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                  {%- endif -%}
+            
+                  </li>
+                
+              </ul>
+            </nav>
+          {%- endif -%}
+        {%- endif -%}
+      {% endpaginate %}
+    </div>
+    </div>
+
+    <div class="account-information" js-tab-content="account"{% if currentPage == blank %} style="display:block;"{% endif %}>
+
+      <div class="account-information1">
+          <h2>{{ 'customer.account.details' | t }}</h2>
+          <div class="account-info">
+
+             {% if customer.metafields.SAGE.ARDivisionNo == '' or customer.metafields.SAGE.ARDivisionNo == '10' %}
+               <div class="info">Name : {{ customer.name }}</div>
+               
+                 {%- if customer.default_address != blank -%}
+                      <div class="info">Address:  
+                         {{ customer.default_address.address1 }}
+  
+                          {% if customer.default_address.address2 != blank %}
+                            {{ customer.default_address.address2 }}<br>
+                          {% endif %}
+  
+                          {% if customer.default_address.city != blank %}
+                            {{ customer.default_address.city }},
+                          {% endif %}
+  
+                          {% if customer.default_address.province_code != blank %}
+                            {{ customer.default_address.province_code | upcase }}
+                          {% endif %}
+  
+                          {% if customer.default_address.zip != blank %}
+                            {{ customer.default_address.zip | upcase }}<br>
+                          {% endif %}
+  
+                          {% if customer.default_address.country != blank %}
+                            {{ customer.default_address.country }}<br>
+                          {% endif %}
+                      </div>
+                 {%- endif -%}
+
+                 {%- if customer.default_address.phone != blank -%}
+                  <div class="info">Phone: {{ customer.default_address.phone }}</div>
+                 {%- endif -%}
+              <div class="info">Email: {{ customer.email }}</div>
+            
+             {%- else -%}
+               {% if customer.metafields.SAGE.ARDivisionNo == '20' %}
+                  
+               {% elsif customer.metafields.SAGE.ARDivisionNo == '30' %}
+                
+               {% elsif customer.metafields.SAGE.ARDivisionNo == '23' %}
+                
+               {% elsif customer.metafields.SAGE.ARDivisionNo == '22' %}
+                
+               {% else %}
+                 <div class="info">Name : {{ customer.name }}</div>
+               {% endif %}
+               {% unless customer.metafields.SAGE.billing_address1 != blank or customer.metafields.SAGE.billing_address2 != blank  %}
+                 {%- if customer.default_address != blank -%}
+                      <div class="info">Address:  
+                         {{ customer.default_address.address1 }}
+    
+                          {% if customer.default_address.address2 != blank %}
+                            {{ customer.default_address.address2 }}<br>
+                          {% endif %}
+    
+                          {% if customer.default_address.city != blank %}
+                            {{ customer.default_address.city }},
+                          {% endif %}
+    
+                          {% if customer.default_address.province_code != blank %}
+                            {{ customer.default_address.province_code | upcase }}
+                          {% endif %}
+    
+                          {% if customer.default_address.zip != blank %}
+                            {{ customer.default_address.zip | upcase }}<br>
+                          {% endif %}
+    
+                          {% if customer.default_address.country != blank %}
+                            {{ customer.default_address.country }}<br>
+                          {% endif %}
+                      </div>
+                 {%- endif -%}
+               {% endunless %}
+               {%- unless customer.metafields.SAGE.billing_phone != blank -%}
+                 {%- if customer.default_address.phone != blank -%}
+                  <div class="info">Phone: {{ customer.default_address.phone }}</div>
+                 {%- endif -%}
+               {%- endunless -%}
+               {% if customer.metafields.SAGE.ARDivisionNo != "-" and customer.metafields.SAGE.CustomerNo != "-" %}
+                  <div class="info 1">Account Number: {{customer.metafields.SAGE.ARDivisionNo}}-{{customer.metafields.SAGE.CustomerNo}}</div>
+               {% endif %}
+              {%- if customer.metafields.SAGE.billing_company != blank -%}<div class="info">Name / Company: {{customer.metafields.SAGE.billing_company}}</div>{%- endif -%}
+
+               {% if customer.metafields.SAGE.billing_address1 != blank or customer.metafields.SAGE.billing_address2 != blank  %}
+                 <div class="info">Address:  
+                
+                       {{ customer.metafields.SAGE.billing_address1 }},
+
+                        {% if customer.metafields.SAGE.billing_address2 != blank %}
+                          {{ customer.metafields.SAGE.billing_address2 }},
+                        {% endif %}
+
+                        {% if customer.metafields.SAGE.billing_city != blank %}
+                          
+                          {{ customer.metafields.SAGE.billing_city }},
+                        {% endif %}
+
+                        {% if customer.metafields.SAGE.billing_state != blank %}
+                          {{ customer.metafields.SAGE.billing_state | upcase }}
+                        {% endif %}
+
+                        {% if customer.metafields.SAGE.billing_zip != blank %}
+                          {{ customer.metafields.SAGE.billing_zip | upcase }}
+                        {% endif %}
+
+                        {% if customer.metafields.SAGE.billing_country != "" %}
+                          {{ customer.metafields.SAGE.billing_country }}
+                        {% endif %}
+                 </div>
+                {% endif %}
+               {%- if customer.metafields.SAGE.billing_phone != blank -%}
+                <div class="info">Phone: {{ customer.metafields.SAGE.billing_phone }}</div>
+               {%- endif -%}
+                <div class="info">Email: {{ customer.email }}</div>
+              <div class="note">*To change your account information, please contact us.</div>
+             {%- endif -%}
+             
+          </div>
+      </div>
+        
+
+      
+{% comment %}
+    <div class="account-information2">
+      <h2>Your pricing</h2>
+        <div class="account-info">
+      <div class="info">Gold Level – 100% Markup</div> 
+      <a href="#">view pricing form</a> 
+           </div>
+   </div>
+{% endcomment %}
+      
+      
+<div class="login-part">
+   <a class="login-link" href="{{ routes.account_logout_url }}">
+      {{ 'customer.log_out' | t }}
+    </a>
+</div>
+      
+      <!-- {{ customer.default_address | format_address }}
+
+      <a href="{{ routes.account_addresses_url }}">
+        {{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})
+      </a> -->
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+    const measurementActions = document.querySelectorAll('[js-order-id]');
+    measurementActions.forEach((item)=> {
+    const itemKey = item.getAttribute('js-order-id');
+    const url = `https://usebasin.com/api/v1/submissions?filter_by=all&form_id=667197967fdf1ee7a22e549b21e6b2af&page=1&query=${itemKey}&api_token=667197967fdf1ee7a22e549b21e6b2af`;
+    fetch(url, {
+      method: "GET",
+    })
+    .then(resp => resp.json())
+    .then(function(data) {
+       const  measurementItemCount = Number(item.getAttribute('js-order-measurements-count'));
+        if(data.submissions.length >= measurementItemCount) {
+           item.classList.add('hidden');
+           if(document.querySelector(`[js-order-id-mobile="${itemKey}"]`))document.querySelector(`[js-order-id-mobile="${itemKey}"]`).classList.add('hidden');
+        }
+        else {
+           item.classList.remove('hidden');
+           if(document.querySelector(`[js-order-id-mobile="${itemKey}"]`))document.querySelector(`[js-order-id-mobile="${itemKey}"]`).classList.remove('hidden');
+        }
+    })
+    .catch(function(error) {
+    console.log(error);
+    });
+  });
+
+
+  
+    
+  </script>                         
+                            
+<script src="{{ 'account.js' | asset_url }}" defer="defer"></script>
+                            
+
+
+{% schema %}
+{
+  "name": "t:sections.main-account.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

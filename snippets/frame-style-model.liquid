@@ -1,0 +1,81 @@
+<div class="frame-style-model" id="FrameStyleModel">
+    <div class="model__overlay" js-model-overlay></div>
+    <div class="model__main">
+        <div class="model__header">
+            <div class="model__header-grid">
+                {% if section.settings.model_title != blank %}
+                    <h3 class="model__title">{{ section.settings.model_title }}</h3>
+                {% endif %}
+                <div class="block__icon close__icon" js-close-btn>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19.0713 4.92896L4.92915 19.0711" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                        <path d="M19.0708 19.0711L4.92871 4.92896" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="search__style">
+                <div class="search__field">
+                    <div class="search__icon block__icon">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_3953_73607)">
+                            <path d="M14.6659 14.6666L10.4365 10.4373" stroke="#2D4256" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/>
+                            <path d="M6.66634 11.9999C9.61186 11.9999 11.9997 9.6121 11.9997 6.66659C11.9997 3.72107 9.61186 1.33325 6.66634 1.33325C3.72082 1.33325 1.33301 3.72107 1.33301 6.66659C1.33301 9.6121 3.72082 11.9999 6.66634 11.9999Z" stroke="#2D4256" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_3953_73607">
+                            <rect width="16" height="16" fill="white"/>
+                            </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+                    <input type="text" placeholder="Search frames..." class="search__input" js-search-field>
+                </div>
+            </div>
+        </div>
+        <div class="model__inner">
+            {% assign style_collection = collections[section.settings.choose_collection] %}
+            {% paginate style_collection.products by 500 %}
+                {% for frameProduct in style_collection.products %}
+                    {% if frameProduct.available %}
+                        {% assign isSelected = false %}
+                        {% if product.id == frameProduct.id %}
+                            {% assign isSelected = true %}
+                        {% endif %}
+                        <div class="product__item" data-product-title="{{ frameProduct.title }}">
+                            {% render 'card-product',
+                                card_product: frameProduct,
+                                media_aspect_ratio: "adapt",
+                                image_shape: "default",
+                                show_secondary_image: false,
+                                show_vendor: false,
+                                show_rating: false,
+                                section_id: section.id,
+                                quick_add: false,
+                                isOrderForm: true,
+                                isSelected: isSelected
+                            %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endpaginate %}
+        </div>
+        <div class="model__footer">
+            <div class="footer__alpha">
+                <div class="swatch__img block__icon">
+                    {% if product.metafields.custom.swatch_image != blank %}
+                        <img js-selected-product-swatch src="{{ product.metafields.custom.swatch_image | image_url: width: '200x' }}" alt="{{ product.featured_image.alt }}">
+                    {% else %}
+                        <img js-selected-product-swatch src="{{ product.featured_image | image_url: width: '200x' }}" js-swatch-img>
+                    {% endif %}
+                </div>
+                <div class="contents__wrap">
+                    <span class="product-title" js-selected-product-title>{{ product.title }}</span>
+                    <span class="product-status">selected</span>
+                </div>
+            </div>
+            <div class="footer__beta">
+                <div class="done__btn button" js-done-btn>done</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+{%- if section.settings.main_custom_logo != blank or section.settings.enable_copyright_text == true or section.settings.main_bottom_menu != blank -%}
+  <footer class="color-{{ section.settings.color_scheme }} LP_Footer_main_new" data-aos="fade-in">
+    <div class="page-width">
+      <div class="LP_Footer_inner_new">
+        <div class="LP_Footer_detail_new">
+          {%- if section.settings.main_custom_logo != blank -%}
+            <div class="Footer_2_sides_mainright_new">
+              <div class="Footer_2_sides_innerright_new">
+                {{
+                  section.settings.main_custom_logo | 
+                  image_url: width: img.width | 
+                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                  fetchpriority: 'auto', 
+                  class:'Logo_image_new'
+                }}
+              </div>
+            </div>
+          {%- endif -%}
+          {%- if section.settings.enable_copyright_text == true or section.settings.main_bottom_menu != blank -%}
+            <div class="Footer_2_sides_mainleft_new">
+              <div class="Footer_2_sides_innerleft_new">
+                {%- if section.settings.enable_copyright_text == true -%}
+                  <div class="Footer_2_sides_innerleft_copyright_new">
+                    &copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url }}
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.main_bottom_menu != blank -%}
+                  <div class="Footer_2_sides_innerleft_menulists_new">
+                    <ul class="menu">
+                      {%- for link in section.settings.main_bottom_menu.links -%}
+                        <li class="menu-link">
+                          <a href="{{ link.url }}">{{ link.title }}</a>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </footer>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "LP Footer New",
+    "class": "LP_Footer_new",
+    "settings": [
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "default": "scheme-2"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_custom_logo",
+        "label": "Add Main Custom Logo"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_copyright_text",
+        "label": "Enable Copyright Text",
+        "default": true
+      },
+      {
+        "type": "link_list",
+        "id": "main_bottom_menu",
+        "label": "Add Main Bottom Menu",
+        "default": "footer"
+      }
+    ]
+  }
+{% endschema %}

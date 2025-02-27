@@ -1,0 +1,124 @@
+<script async type="text/javascript" src="//static.klaviyo.com/onsite/js/klaviyo.js?company_id=WGVGYu" ></script>
+<script>!function(){if(!window.klaviyo){window._klOnsite=window._klOnsite||[];try{window.klaviyo=new Proxy({},{get:function(n,i){return"push"===i?function(){var n;(n=window._klOnsite).push.apply(n,arguments)}:function(){for(var n=arguments.length,o=new Array(n),w=0;w<n;w++)o[w]=arguments[w];var t="function"==typeof o[o.length-1]?o.pop():void 0,e=new Promise((function(n){window._klOnsite.push([i].concat(o,[function(i){t&&t(i),n(i)}]))}));return e}}})}catch(n){window.klaviyo=window.klaviyo||[],window.klaviyo.push=function(){var n;(n=window._klOnsite).push.apply(n,arguments)}}}}();</script>
+
+<form id="dimensionform"  action="https://usebasin.com/f/d22f14d8ed94" method="POST" class="order-form" js-order-form>
+
+  
+      <input type="hidden" id="_payment_{{ order.id }}{{ line_item.key }}{{ lineitemNumber }}" name="_price" value="Price Changed Detected">
+  
+      <input type="hidden" id="key" name="key" value="{{ order.id }}{{ line_item.key }}{{ lineitemNumber }}">
+      <input type="hidden" id="email" name="email" value="{{ customer.email }}">
+      <input type="hidden" id="order" name="order" value="{{ order.name }}">
+      <input type="hidden" id="name" name="name" value="{{ line_item.title }} - {{ lineitemNumber }}">
+      <input type="hidden" id="sku" name="sku" value="{{ line_item.sku }}">
+      <input type="hidden" id="orderDate" name="orderDate" value="{{ order.created_at | date: '%m/%d/%y' }}">
+      <input type="hidden" id="orderId" name="orderId" value="{{ order.id }}">
+      <input type="hidden" id="product_image" name="image" value="{% if product.featured_image != blank %}{{ product.featured_image | image_url }}{% else %}{% endif %}">
+  
+      <input type="hidden" id="product_image_alt_text" name="alt_text" value="{{ product.featured_image.alt }}">
+  
+      <input type="hidden" id="_width_{{ order.id }}{{ line_item.key }}{{ lineitemNumber }}" name="_width" value="">
+      <input type="hidden" id="_width_fraction_{{ order.id }}{{ line_item.key }}{{ lineitemNumber }}" name="_width_fraction" value="">
+      <input type="hidden" id="_height_{{ order.id }}{{ line_item.key }}{{ lineitemNumber }}" name="_height" value="">
+      <input type="hidden" id="_height_fraction_{{ order.id }}{{ line_item.key }}{{ lineitemNumber }}" name="_height_fraction" value="">
+
+      <input type="hidden" id="_clearance_top_{{ order.id }}{{ line_item.key }}{{ lineitemNumber }}" name="_clearance_top" value="">
+      <input type="hidden" id="_clearance_right_{{ order.id }}{{ line_item.key }}{{ lineitemNumber }}" name="_clearance_right" value="">
+      <input type="hidden" id="_clearance_bottom_{{ order.id }}{{ line_item.key }}{{ lineitemNumber }}" name="_clearance_bottom" value="">
+      <input type="hidden" id="_clearance_left_{{ order.id }}{{ line_item.key }}{{ lineitemNumber }}" name="_clearance_left" value="">
+
+      <input type="hidden" id="_clips_channels_top_{{ order.id }}{{ line_item.key }}{{ lineitemNumber }}" name="_clips_channels_top" value="">
+      <input type="hidden" id="_clips_channels_right_{{ order.id }}{{ line_item.key }}{{ lineitemNumber }}" name="_clips_channels_right" value="">
+      <input type="hidden" id="_clips_channels_bottom_{{ order.id }}{{ line_item.key }}{{ lineitemNumber }}" name="_clips_channels_bottom" value="">
+      <input type="hidden" id="_clips_channels_left_{{ order.id }}{{ line_item.key }}{{ lineitemNumber }}" name="_clips_channels_left" value="">
+  
+
+      <input type="hidden" id="_frame_width_{{ order.id }}{{ line_item.key }}{{ lineitemNumber }}" name="_frame_Width" value="">
+      <input type="hidden" id="_frame_height_{{ order.id }}{{ line_item.key }}{{ lineitemNumber }}" name="_frame_Height" value="">
+
+      <input type="hidden" id="_frame_WidthFraction_{{ order.id }}{{ line_item.key }}{{ lineitemNumber }}" name="_frame_WidthFraction" value="">
+      <input type="hidden" id="_frame_HeightFraction_{{ order.id }}{{ line_item.key }}{{ lineitemNumber }}" name="_frame_HeightFraction" value="">
+
+  
+      <input type="hidden" id="_edges_align_{{ order.id }}{{ line_item.key }}{{ lineitemNumber }}" name="_edges_align" value="">
+      <input type="hidden" id="_measurements_size_{{ order.id }}{{ line_item.key }}{{ lineitemNumber }}" name="_measurements_size" value="">
+  
+      <button type="submit" value="Submit" class="button btn-submit" js-order-form-btn>
+       <span>SUBMIT</span>
+       <div class="loading__spinner">
+        <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+         <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+        </svg>
+      </div>
+     </button>
+</form>
+
+ <p class="text-success hidden" js-success-message>Thank you for submitting measurements!</p>
+
+<script>
+function toCamelCase(str) {
+  return str.replace(/_([a-z])/g, (match, letter) => letter.toUpperCase()).replace(/^_/, '');
+}
+  
+function getFormData() {
+  const form = document.getElementById('dimensionform');
+  const formData = new FormData(form);
+  let jsonObject = {};
+  formData.forEach((value, key) => {
+  const camelKey = toCamelCase(key);
+    jsonObject[camelKey] = value;
+  });
+  console.log(JSON.stringify(jsonObject, null, 2)); // Log the JSON for debugging
+  return jsonObject;
+}
+
+async function accountCreatedEvent(customerEmail, jsonData) {
+  try {
+    await klaviyo.identify({ email: customerEmail }); // Identify the customer
+    console.log('Customer identified:', customerEmail);
+    await klaviyo.track('Measurements Added', { data: jsonData });
+    console.log('Measurements Added event tracked successfully!');
+  } catch (error) {
+    console.error('Error tracking Klaviyo event:', error);
+  }
+}  
+  
+document.getElementById('dimensionform').addEventListener('submit', (event) => {
+  console.log("Form DIV Clicked");
+  const jsonData = getFormData();
+  const customerEmail = jsonData.email;
+  accountCreatedEvent(customerEmail, jsonData); // Track Klaviyo event
+  sendData();
+});
+
+  function sendData() {
+  let jsonData = getFormData(); // Assuming getFormData() returns your data as an array of objects
+   delete jsonData.image;
+  delete jsonData.altText;
+  delete jsonData.key;
+  delete jsonData.email;
+
+  fetch('https://hook.us2.make.com/0ivuoyt5txqdie4qy9v7lhwgq8jlv5yd', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(jsonData),
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Success:', data);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
+</script>
+
+ 
+

@@ -1,0 +1,40 @@
+{% if shop.metaobjects.diagonal_modal.values_count > 0 %}
+    {% assign diagonal_modal = shop.metaobjects.diagonal_modal.values | first %}
+
+    <div class="dimension-model measurement-model" id="Diagonal-Model">
+        <div class="frame-overlay" js-overlay></div>
+        <div class="model-main">
+            <div class="model-main-inner">
+                <div class="model-close-btn" js-trigger-close>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                        <path d="M19.0703 4.92896L4.92818 19.0711" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                        <path d="M19.0718 19.0711L4.92969 4.92896" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_2782_57782">
+                        <rect width="24" height="24" fill="white"/>
+                        </clipPath>
+                        </defs>
+                    </svg>            
+                </div>
+                {% if diagonal_modal.title != blank or diagonal_modal.text != blank %}
+                    <div class="model-rte">
+                        {% if diagonal_modal.title != blank %}
+                            <h4 class="model-title">{{ diagonal_modal.title }}</h4>
+                        {% endif %}
+                        {% if diagonal_modal.text != blank %}
+                            <div class="model-text">{{ diagonal_modal.text | metafield_tag }}</div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+                {% if diagonal_modal.image != blank %}
+                    <div class="model_img">
+                        <img src="{{ diagonal_modal.image |  image_url: width: '500x' }}" alt="{{ diagonal_modal.image.alt }}">
+                    </div>
+                {% endif %}
+                <div class="modal-btn button" js-trigger-close>got it</div>
+            </div>
+        </div>
+    </div>
+{% endif %}

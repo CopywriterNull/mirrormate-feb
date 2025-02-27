@@ -1,0 +1,209 @@
+{%- if section.blocks.size > 0 -%}
+  <div class="Index_custom_instagram_main_new" style="background: {{ section.settings.main_background_color }};">
+    <div class="page-width">
+      <div class="Index_custom_instagram_inner_new" data-aos="fade-in">
+        {%- if section.settings.main_desktop_heading_text != blank or section.settings.main_button_link != blank -%}
+          <div class="Index_custom_instagram_maindesktop_new">
+            <div class="Index_custom_instagram_innerdesktop_new">
+              {%- if section.settings.main_desktop_heading_text != blank -%}
+                <div class="Index_custom_instagram_innerdesktop_mainleft_new">
+                  <div class="Common_title_new Index_custom_instagram_innerdesktop_innerleft_new">
+                    <h3>{{ section.settings.main_desktop_heading_text }}</h3>
+                  </div>  
+                </div>
+              {%- endif -%}
+              {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                <div class="Index_custom_instagram_innerdesktop_mainright_new">
+                  <div class="Index_custom_instagram_innerdesktop_innerright_new">
+                    <a href="{{ section.settings.main_button_link }}" class="button">
+                      {{ section.settings.main_button_text }}
+                    </a>
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.main_mobile_heading_text != blank -%}
+          <div class="Index_custom_instagram_maintitle_new">
+            <div class="Common_title_new Index_custom_instagram_innertitle_new">
+              <h3>{{ section.settings.main_mobile_heading_text }}</h3>
+            </div>  
+          </div>
+        {%- endif -%}
+        {%- if section.blocks.size > 0 -%}
+          <div class="Index_custom_instagram_mainloops_new">
+            <div class="Index_custom_instagram_innerloops_new">
+              <div class="swiper Index_instagram_slider">
+                <div class="swiper-wrapper">
+                  {%- for block in section.blocks -%}
+                    {%- if block.settings.main_mp4_video != blank or block.settings.main_desktop_image != blank or block.settings.main_mobile_image != blank or block.settings.main_product_selected != blank -%}
+                      <div class="swiper-slide Index_custom_instagram_innerloops_mainboxs_new">
+                        <div class="Index_custom_instagram_innerloops_innerboxs_new">
+                          {%- if block.settings.main_mp4_video != blank or block.settings.main_desktop_image != blank or block.settings.main_mobile_image != blank -%}
+                            <div class="Index_custom_instagram_innerloops_innerboxs_mainboths_new">
+                              {%- if block.settings.main_redirect_link != blank -%}
+                                <a href="{{ block.settings.main_redirect_link }}">
+                              {%- endif -%}
+                                  <div class="Index_custom_instagram_innerloops_innerboxs_innerboths_new">
+                                    {%- if block.settings.main_mp4_video != blank -%}
+                                      <div class="Index_custom_instagram_innerloops_innerboxs_innerboths_videoimage_new">
+                                        {{ block.settings.main_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true, class: 'lazyload'}}
+                                      </div>
+                                    {% else %}  
+                                      {%- if block.settings.main_desktop_image != blank and block.settings.main_mobile_image != blank -%}
+                                        <div class="Index_custom_instagram_innerloops_innerboxs_innerboths_videoimage_new">
+                                          {%- if block.settings.main_desktop_image != blank -%}
+                                            {{
+                                              block.settings.main_desktop_image | 
+                                              image_url: width: img.width | 
+                                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                              fetchpriority: 'auto', 
+                                              class:'desktop_image_new'
+                                            }}
+                                          {%- endif -%}
+                                          {%- if block.settings.main_mobile_image != blank -%}
+                                            {{
+                                              block.settings.main_mobile_image | 
+                                              image_url: width: img.width | 
+                                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                              fetchpriority: 'auto', 
+                                              class:'mobile_image_new'
+                                            }}
+                                          {%- endif -%}
+                                        </div>
+                                      {%- endif -%}
+                                    {%- endif -%}
+                                  </div>
+                              {%- if block.settings.main_redirect_link != blank -%}
+                                </a>
+                              {%- endif -%}
+                            </div>
+                          {%- endif -%}
+                          {%- if block.settings.main_product_selected != blank -%}
+                            {%- assign Product_Selected = all_products[block.settings.main_product_selected] -%}
+                            <div class="Index_custom_instagram_innerloops_innerboxs_mainicons_new">
+                              <div class="Index_custom_instagram_innerloops_innerboxs_innericons_new">
+                                <a href="{{ Product_Selected.url }}">
+                                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="16" fill="white"/><path d="M12.8001 12.7994V9.59941C12.8001 7.83141 14.2361 6.39941 16.0001 6.39941C17.7681 6.39941 19.2001 7.83541 19.2001 9.59941V12.7994M9.6001 11.1994H22.4001V23.9994H9.6001V11.1994Z" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                </a>
+                              </div>
+                            </div>
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    {%- endif -%}  
+                  {%- endfor -%}  
+                </div>
+                <div class="swiper-scrollbar"></div>
+              </div>
+            </div>
+          </div>
+        {%- endif -%}  
+        {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+          <div class="Index_custom_instagram_mainbutton_new">
+            <div class="Index_custom_instagram_innerbutton_new">
+              <a href="{{ section.settings.main_button_link }}" class="button">
+                {{ section.settings.main_button_text }}
+              </a>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Index Custom Instagram",
+    "class": "Index_custom_instagram_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "textarea",
+        "id": "main_desktop_heading_text",
+        "label": "Add Main Desktop Heading Text",
+        "default": "Keep Up With Us"
+      },
+      {
+        "type": "textarea",
+        "id": "main_mobile_heading_text",
+        "label": "Add Main Mobile Heading Text",
+        "default": "Keep Up With MirrorMate"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "Follow @Mirrormate"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "information",
+        "name": "Information",
+        "settings": [
+          {
+            "type": "video",
+            "id": "main_mp4_video",
+            "label": "Add Main MP4 Video"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_desktop_image",
+            "label": "Add Main Desktop Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_mobile_image",
+            "label": "Add Main Mobile Image"
+          },
+          {
+            "type": "url",
+            "id": "main_redirect_link",
+            "label": "Add Main Redirect Link"
+          },
+          {
+            "type": "product",
+            "id": "main_product_selected",
+            "label": "Add Main Product Selected"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Index Custom Instagram",
+        "blocks": [
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

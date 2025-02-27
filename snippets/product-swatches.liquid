@@ -1,0 +1,248 @@
+{% assign user_type = customer.metafields.SAGE.PriceLevel | downcase %}
+
+{% if user_type == '' or user_type == '-' or user_type == 'none' %}
+    {% assign user_type = "r" %}
+{% endif %}
+
+{% if card_product.metafields.custom.select_stitcher != blank %}
+    <product-swatches class="product-swatches">
+        <div class="swatches-grid">
+            {%- liquid
+                assign main_product_variant = card_product.selected_or_first_available_variant
+                for variant in card_product.variants
+                    if user_type == "g" and variant.title contains "Gold" and variant.title contains "10LF"
+                        assign main_product_variant = variant
+                        break
+                    endif
+                    if user_type == "b" and variant.title contains "Base" and variant.title contains "10LF"
+                        assign main_product_variant = variant
+                        break
+                    endif
+                    if user_type == "s" and variant.title contains "Silver" and variant.title contains "10LF"
+                        assign main_product_variant = variant
+                        break
+                    endif
+                    if user_type == "v" and variant.title contains "Value" and variant.title contains "10LF"
+                        assign main_product_variant = variant
+                        break
+                    endif
+                endfor
+            -%}
+
+            {%- assign main_product_default_meta_selected = card_product.metafields.custom.product_default_meta_selected.value -%}
+
+            {%- liquid
+                assign main_product_default_meta_selected_variant = main_product_default_meta_selected.selected_or_first_available_variant
+                for variant in main_product_default_meta_selected_variant.variants
+                    if user_type == "g" and variant.title contains "Gold" and variant.title contains "10LF"
+                        assign main_product_default_meta_selected_variant = variant
+                    endif
+                    if user_type == "b" and variant.title contains "Base" and variant.title contains "10LF"
+                        assign main_product_default_meta_selected_variant = variant
+                    endif
+                    if user_type == "s" and variant.title contains "Silver" and variant.title contains "10LF"
+                        assign main_product_default_meta_selected_variant = variant
+                    endif
+                    if user_type == "v" and variant.title contains "Value" and variant.title contains "10LF"
+                        assign main_product_default_meta_selected_variant = variant
+                    endif
+                endfor
+            -%}
+
+            {% if card_product.metafields.custom.swatch_image != blank %}
+                {% assign mainProductSwatchImg = card_product.metafields.custom.swatch_image | image_url: width: '200x' %}
+            {% else %}
+                {% assign mainProductSwatchImg = card_product.featured_image | image_url: width: '200x' %}
+            {% endif %}
+
+            {% assign main_product_variant_id = card_product.first_available_variant.id %}
+            {% for variant in card_product.variants %}
+                {% if variant.title contains "Gold" and variant.title contains "LF" %}
+                    {% assign main_product_variant_id = variant.id %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+            
+            <div 
+                data-product-available="{{ card_product.available }}"
+                data-sample-product-available="{{ main_product_default_meta_selected.available }}"
+                data-product-sample-btn-url="{{ main_product_default_meta_selected.url }}" 
+                data-product-sample-btn-text="Add {{ main_product_default_meta_selected_variant.price | money_without_trailing_zeros }} Sample" 
+                data-product-handle="{{ card_product.handle }}" 
+                data-sample-product-variant-id="{{ main_product_default_meta_selected.variants.first.id }}" 
+                class="swatch-item is-selected" js-swatch-item
+                data-product-url="{{ card_product.url }}"
+                data-product-title="{{ card_product.title }}"
+                data-swatch-img="{{ mainProductSwatchImg }}"
+                data-variant-id="{{ main_product_variant_id }}"
+                data-product-handle="{{ card_product.handle }}"
+                data-featured-image-src="{{ card_product.featured_image | image_url: width: "540x" }}"
+                data-featured-image-srcset="{%- if card_product.featured_image.width >= 165 -%}{{ card_product.featured_image | image_url: width: 165 }} 165w,{%- endif -%}
+                {%- if card_product.featured_image.width >= 360 -%}{{ card_product.featured_image | image_url: width: 360 }} 360w,{%- endif -%}
+                {%- if card_product.featured_image.width >= 533 -%}{{ card_product.featured_image | image_url: width: 533 }} 533w,{%- endif -%}
+                {%- if card_product.featured_image.width >= 720 -%}{{ card_product.featured_image | image_url: width: 720 }} 720w,{%- endif -%}
+                {%- if card_product.featured_image.width >= 940 -%}{{ card_product.featured_image | image_url: width: 940 }} 940w,{%- endif -%}
+                {%- if card_product.featured_image.width >= 1066 -%}{{ card_product.featured_image | image_url: width: 1066 }} 1066w,{%- endif -%}
+                {{ card_product.featured_image | image_url }} {{ card_product.featured_image.width }}w"
+                data-secondary-image-src="{{ card_product.images[1] | image_url: width: "540x" }}"
+                data-secondary-image-srcset="{%- if card_product.images[1].width >= 165 -%}{{ card_product.images[1] | image_url: width: 165 }} 165w,{%- endif -%}
+                {%- if card_product.images[1].width >= 360 -%}{{ card_product.images[1] | image_url: width: 360 }} 360w,{%- endif -%}
+                {%- if card_product.images[1].width >= 533 -%}{{ card_product.images[1] | image_url: width: 533 }} 533w,{%- endif -%}
+                {%- if card_product.images[1].width >= 720 -%}{{ card_product.images[1] | image_url: width: 720 }} 720w,{%- endif -%}
+                {%- if card_product.images[1].width >= 940 -%}{{ card_product.images[1] | image_url: width: 940 }} 940w,{%- endif -%}
+                {%- if card_product.images[1].width >= 1066 -%}{{ card_product.images[1] | image_url: width: 1066 }} 1066w,{%- endif -%}
+                {{ card_product.images[1] | image_url }} {{ card_product.images[1].width }}w"
+                data-regular-price="From {{ main_product_variant.price | money | remove: '.00' }}"
+                {% if main_product_variant.compare_at_price > main_product_variant.price %}
+                    data-compare-price="{{ main_product_variant.compare_at_price | money | remove: '.00' }}"
+                {% endif %}
+                data-product-price-without-currency="{{ main_product_variant.price | money | remove: ".00" | remove: cart.currency.symbol }}"
+                data-product-title="{{ card_product.title }}"
+            >
+                <div class="swatch-img">
+                    <img src="{{ card_product.metafields.custom.swatch_image | image_url: width: '200x' }}" alt="{{ card_product.metafields.custom.swatch_image.alt }}">
+                </div>
+
+                <script type="application/json" js-product-json>{{ card_product | json }}</script>
+            </div>
+
+            {% assign products_length = '' %}
+            {% assign swatch_index = 0 %}
+            {% for product_swatch in card_product.metafields.custom.select_stitcher.value.choose_products.value %}
+                {% unless product_swatch.handle == card_product.handle %}
+                    {% if product_swatch.metafields.custom.swatch_image != blank %}
+                        {% if swatch_index > 1 %}
+                          {% assign products_length = forloop.length %}
+                          {% break %}
+                        {% endif %}
+    
+                        {%- liquid
+                            assign swatch_product_variant = product_swatch.selected_or_first_available_variant
+                            for variant in product_swatch.variants
+                                if user_type == "g" and variant.title contains "Gold" and variant.title contains "10LF"
+                                    assign swatch_product_variant = variant
+                                    break
+                                endif
+                                if user_type == "b" and variant.title contains "Base" and variant.title contains "10LF"
+                                    assign swatch_product_variant = variant
+                                    break
+                                endif
+                                if user_type == "s" and variant.title contains "Silver" and variant.title contains "10LF"
+                                    assign swatch_product_variant = variant
+                                    break
+                                endif
+                                if user_type == "v" and variant.title contains "Value" and variant.title contains "10LF"
+                                    assign swatch_product_variant = variant
+                                    break
+                                endif
+                            endfor
+                        -%}
+    
+                        {%- liquid
+                            assign card_product_variant = card_product.selected_or_first_available_variant
+                            for variant in card_product.variants
+                                if user_type == "g" and variant.title contains "Gold" and variant.title contains "10LF"
+                                    assign card_product_variant = variant
+                                endif
+                                if user_type == "b" and variant.title contains "Base" and variant.title contains "10LF"
+                                    assign card_product_variant = variant
+                                endif
+                                if user_type == "s" and variant.title contains "Silver" and variant.title contains "10LF"
+                                    assign card_product_variant = variant
+                                endif
+                                if user_type == "v" and variant.title contains "Value" and variant.title contains "10LF"
+                                    assign card_product_variant = variant
+                                endif
+                            endfor
+                        -%}
+                      
+                        {% assign product_price = card_product_variant.price | money | remove: '.00' | prepend: 'from ' %}
+    
+                        {%- assign product_default_meta_selected = product_swatch.metafields.custom.product_default_meta_selected.value -%}
+    
+                        {%- liquid
+                            assign product_default_meta_selected_variant = product_default_meta_selected.selected_or_first_available_variant
+                            for variant in product_default_meta_selected_variant.variants
+                                if user_type == "g" and variant.title contains "Gold" and variant.title contains "10LF"
+                                    assign product_default_meta_selected_variant = variant
+                                endif
+                                if user_type == "b" and variant.title contains "Base" and variant.title contains "10LF"
+                                    assign product_default_meta_selected_variant = variant
+                                endif
+                                if user_type == "s" and variant.title contains "Silver" and variant.title contains "10LF"
+                                    assign product_default_meta_selected_variant = variant
+                                endif
+                                if user_type == "v" and variant.title contains "Value" and variant.title contains "10LF"
+                                    assign product_default_meta_selected_variant = variant
+                                endif
+                            endfor
+                        -%}
+    
+                        {% if product_swatch.metafields.custom.swatch_image != blank %}
+                            {% assign swatchImg = product_swatch.metafields.custom.swatch_image | image_url: width: '200x' %}
+                        {% else %}
+                            {% assign swatchImg = product_swatch.featured_image | image_url: width: '200x' %}
+                        {% endif %}
+    
+                        {% assign variant_id = product_swatch.first_available_variant.id %}
+                        {% for variant in product_swatch.variants %}
+                            {% if variant.title contains "Gold" and variant.title contains "LF" %}
+                              {% assign variant_id = variant.id %}
+                              {% break %}
+                            {% endif %}
+                        {% endfor %}
+                        
+                        <div 
+                            data-product-available="{{ product_swatch.available }}"
+                            data-sample-product-available="{{ product_default_meta_selected.available }}"
+                            data-product-sample-btn-url="{{ product_default_meta_selected.url }}" 
+                            data-product-sample-btn-text="Add {{ product_default_meta_selected_variant.price | money_without_trailing_zeros }} Sample" 
+                            data-product-handle="{{ product_swatch.handle }}" 
+                            data-sample-product-variant-id="{{ product_default_meta_selected.variants.first.id }}" 
+                            class="swatch-item" js-swatch-item
+                            data-product-url="{{ product_swatch.url }}"
+                            data-product-title="{{ product_swatch.title }}"
+                            data-swatch-img="{{ swatchImg }}"
+                            data-variant-id="{{ variant_id }}"
+                            data-product-handle="{{ product_swatch.handle }}"
+                            data-featured-image-src="{{ product_swatch.featured_image | image_url: width: "540x" }}"
+                            data-featured-image-srcset="{%- if product_swatch.featured_image.width >= 165 -%}{{ product_swatch.featured_image | image_url: width: 165 }} 165w,{%- endif -%}
+                            {%- if product_swatch.featured_image.width >= 360 -%}{{ product_swatch.featured_image | image_url: width: 360 }} 360w,{%- endif -%}
+                            {%- if product_swatch.featured_image.width >= 533 -%}{{ product_swatch.featured_image | image_url: width: 533 }} 533w,{%- endif -%}
+                            {%- if product_swatch.featured_image.width >= 720 -%}{{ product_swatch.featured_image | image_url: width: 720 }} 720w,{%- endif -%}
+                            {%- if product_swatch.featured_image.width >= 940 -%}{{ product_swatch.featured_image | image_url: width: 940 }} 940w,{%- endif -%}
+                            {%- if product_swatch.featured_image.width >= 1066 -%}{{ product_swatch.featured_image | image_url: width: 1066 }} 1066w,{%- endif -%}
+                            {{ product_swatch.featured_image | image_url }} {{ product_swatch.featured_image.width }}w"
+                            data-secondary-image-src="{{ product_swatch.images[1] | image_url: width: "540x" }}"
+                            data-secondary-image-srcset="{%- if product_swatch.images[1].width >= 165 -%}{{ product_swatch.images[1] | image_url: width: 165 }} 165w,{%- endif -%}
+                            {%- if product_swatch.images[1].width >= 360 -%}{{ product_swatch.images[1] | image_url: width: 360 }} 360w,{%- endif -%}
+                            {%- if product_swatch.images[1].width >= 533 -%}{{ product_swatch.images[1] | image_url: width: 533 }} 533w,{%- endif -%}
+                            {%- if product_swatch.images[1].width >= 720 -%}{{ product_swatch.images[1] | image_url: width: 720 }} 720w,{%- endif -%}
+                            {%- if product_swatch.images[1].width >= 940 -%}{{ product_swatch.images[1] | image_url: width: 940 }} 940w,{%- endif -%}
+                            {%- if product_swatch.images[1].width >= 1066 -%}{{ product_swatch.images[1] | image_url: width: 1066 }} 1066w,{%- endif -%}
+                            {{ product_swatch.images[1] | image_url }} {{ product_swatch.images[1].width }}w"
+                            data-regular-price="From {{ swatch_product_variant.price | money | remove: '.00' }}"
+                            {% if swatch_product_variant.compare_at_price > swatch_product_variant.price %}
+                                data-compare-price="{{ swatch_product_variant.compare_at_price | money | remove: '.00' }}"
+                            {% endif %}
+                            data-product-price-without-currency="{{ swatch_product_variant.price | money | remove: ".00" | remove: cart.currency.symbol }}"
+                            data-product-title="{{ product_swatch.title }}"
+                        >
+                            <div class="swatch-img">
+                                <img src="{{ product_swatch.metafields.custom.swatch_image | image_url: width: '200x' }}" alt="{{ product_swatch.metafields.custom.swatch_image.alt }}">
+                            </div>
+    
+                            <script type="application/json" js-product-json>{{ product_swatch | json }}</script>
+                        </div>
+
+                        {% assign swatch_index = swatch_index | plus: 1 %}
+                    {% endif %}
+                {% endunless %}
+            {% endfor %}
+          
+            {% if products_length != blank %}
+              <span class="hb_extra-variant-count">+{{ products_length | minus: 3 }}</span>
+            {% endif %}
+        </div>
+    </product-swatches>
+{% endif %}

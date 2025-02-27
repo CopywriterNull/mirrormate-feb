@@ -1,0 +1,241 @@
+{{ 'news-you-need-section-new.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    {% if section.blocks.size > 2 %}
+    .news_you_need_sec_main_column_leftside{position: sticky;top: 6rem;height: 50.802vh;}
+      {% endif %}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+{% if section.settings.main_heading != blank or section.settings.short_description != blank or section.settings.main_description != blank or section.settings.main_button_link != blank or section.settings.button_text != blank or section.blocks.size > 0 %}
+<div class="news_you_need_sec_main_wrapper section-{{ section.id }}-padding" style="background:{{ section.settings.bgcolor }}">
+  <div class="page-width">
+     <div class="news_you_need_sec_main_grid">
+        {% if section.settings.main_heading != blank or section.settings.short_description != blank or section.settings.main_description != blank or section.settings.main_button_link != blank or section.settings.button_text != blank %}
+       <div class="news_you_need_sec_main_column_leftside" data-aos="fade-left"  data-aos-delay="200">
+         {% if section.settings.main_heading != blank %}
+           <div class="news_you_need_sec_main_heading Common_title_new">
+             <h2>{{ section.settings.main_heading }}</h2>
+           </div>
+           {% endif %}
+         {% if section.settings.short_description != blank %}
+         <div class="news_you_need_sec_short_desc">
+           {{ section.settings.short_description  }}
+         </div>
+           {% endif %}
+         {% if section.settings.main_description != blank %}
+         <div class="news_you_need_sec_main_description">
+           {{ section.settings.main_description  }}
+         </div>
+           {% endif %}
+         {% if section.settings.main_button_link != blank and section.settings.button_text != blank %}
+         <div class="news_you_need_sec_CTA small-hide">
+           <a href="{{ section.settings.main_button_link }}" class="button">{{ section.settings.button_text }}</a>
+         </div>
+           {% endif %}
+       </div>
+          {% endif %}
+       {% if section.blocks.size > 0 %}
+       <div class="news_you_need_sec_main_column_rightside" data-aos="fade-right"  data-aos-delay="200">
+         <div class="news_you_need_sec_main_detail_grid_wrapper">
+           <div class="news_you_need_sec_slides small-hide">
+             <div class="news_you_need_sec_main_detail_grid_item_wrapper_slides">
+           {% for block in section.blocks %}
+             <div class="news_you_need_sec_main_detail_grid_item_wrapper">
+               <div class="news_you_need_sec_main_detail_grid_item">
+                 {% if block.settings.main_slide_img != blank %}
+                 <div class="news_you_need_sec_main_detail_grid_item_image">
+                  {{
+                      block.settings.main_slide_img | 
+                      image_url: width: img.width | 
+                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                      fetchpriority: 'auto', 
+                      class:''
+                    }}
+                 </div>
+                 {% endif %}
+                 <div class="news_you_need_sec_main_detail_grid_item_content">
+                   {% if block.settings.slide_heading != blank %}
+                 <div class="news_you_need_sec_main_detail_grid_item_slide_heading">
+                   <h3>{{ block.settings.slide_heading }}</h3>
+                 </div>
+                     {% endif %}
+                    {% if block.settings.slide_description != blank %}
+                      <div class="news_you_need_sec_main_detail_grid_item_slide_description">
+                        {{ block.settings.slide_description }}
+                      </div>
+                   {% endif %}
+                   {% if block.settings.slide_cta_link != blank  and block.settings.slide_cta_text != blank %}
+                      <div class="news_you_need_sec_main_detail_grid_item_slide_cta_links">
+                        <a href="{{ block.settings.slide_cta_link }}">{{ block.settings.slide_cta_text }}</a>
+                      </div>
+                   {% endif %}
+                 </div>
+               </div>
+             </div>
+           {% endfor %}
+             </div>
+           </div>
+
+           <!--  -->
+            <div class="news_you_need_sec_slides swiper medium-hide large-up-hide">
+             <div class="news_you_need_sec_main_detail_grid_item_wrapper_slides swiper-wrapper">
+           {% for block in section.blocks %}
+             <div class="news_you_need_sec_main_detail_grid_item_wrapper swiper-slide">
+               <div class="news_you_need_sec_main_detail_grid_item">
+                 {% if block.settings.main_slide_img != blank %}
+                 <div class="news_you_need_sec_main_detail_grid_item_image">
+                  {{
+                      block.settings.main_slide_img | 
+                      image_url: width: img.width | 
+                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                      fetchpriority: 'auto', 
+                      class:''
+                    }}
+                 </div>
+                 {% endif %}
+                 <div class="news_you_need_sec_main_detail_grid_item_content">
+                   {% if block.settings.slide_heading != blank %}
+                 <div class="news_you_need_sec_main_detail_grid_item_slide_heading">
+                   <h3>{{ block.settings.slide_heading }}</h3>
+                 </div>
+                     {% endif %}
+                    {% if block.settings.slide_description != blank %}
+                      <div class="news_you_need_sec_main_detail_grid_item_slide_description">
+                        {{ block.settings.slide_description }}
+                      </div>
+                   {% endif %}
+                   {% if block.settings.slide_cta_link != blank  and block.settings.slide_cta_text != blank %}
+                      <div class="news_you_need_sec_main_detail_grid_item_slide_cta_links">
+                        <a href="{{ block.settings.slide_cta_link }}">{{ block.settings.slide_cta_text }}</a>
+                      </div>
+                   {% endif %}
+                 </div>
+               </div>
+             </div>
+           {% endfor %}
+             </div>
+               <div class="swiper-scrollbar"></div>
+           </div>
+          <!--  -->
+         {% if section.settings.main_button_link != blank and section.settings.button_text != blank %}
+         <div class="news_you_need_sec_CTA large-up-hide medium-hide">
+           <a href="{{ section.settings.main_button_link }}" class="button">{{ section.settings.button_text }}</a>
+         </div>
+           {% endif %}
+         </div>
+       </div>
+       {% endif %}
+     </div>
+  </div>
+</div>
+  {% endif %}
+{% schema %}
+  {
+    "name": "News You Need Section",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bgcolor",
+        "label": "Background Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "header",
+        "content": "Left Column Content"
+      },
+      {
+        "type": "text",
+        "id": "main_heading",
+        "label": "Main Heading"
+      },
+      {
+        "type": "richtext",
+        "id": "short_description",
+        "label": "Short Description"
+      },
+      {
+        "type": "richtext",
+        "id": "main_description",
+        "label": "Description"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Button Link"
+      },
+      {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button Label"
+      },
+      {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+    ],
+    "blocks": [
+      {
+        "type": "content",
+        "name":"Content",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "main_slide_img",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "slide_heading",
+            "label": "Heading"
+          },
+          {
+            "type": "richtext",
+            "id": "slide_description",
+            "label": "Description"
+          },
+          {
+            "type": "url",
+            "id": "slide_cta_link",
+            "label": "Button Link"
+          },
+          {
+            "type": "text",
+            "id": "slide_cta_text",
+            "label": "Button Label"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "News You Need Section"
+      }
+    ]
+  }
+{% endschema %}

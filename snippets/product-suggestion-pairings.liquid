@@ -1,0 +1,121 @@
+{%- if product.metafields.custom.product_hardware_icon_with_text_selection != blank or product.metafields.custom.product_vanity_color_icon_with_text_selection != blank -%}
+    <div class="Object_suggested_pairings_main_new" {{ block.shopify_attributes }}>
+      <div class="Object_suggested_pairings_inner_new">
+        <div class="Object_suggested_pairings_maintitle_new">
+            <div class="Object_suggested_pairings_innertitle_new">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.16602 14.1667H10.8327V9.16675H9.16602V14.1667ZM9.99935 7.50008C10.2355 7.50008 10.4335 7.42008 10.5935 7.26008C10.7535 7.10008 10.8332 6.9023 10.8327 6.66675C10.8321 6.43119 10.7521 6.23342 10.5927 6.07341C10.4332 5.91341 10.2355 5.83342 9.99935 5.83342C9.76324 5.83342 9.56546 5.91341 9.40602 6.07341C9.24657 6.23342 9.16657 6.43119 9.16602 6.66675C9.16546 6.9023 9.24546 7.10036 9.40602 7.26092C9.56657 7.42147 9.76435 7.50119 9.99935 7.50008ZM9.99935 18.3334C8.84657 18.3334 7.76324 18.1145 6.74935 17.6767C5.73546 17.239 4.85352 16.6454 4.10352 15.8959C3.35352 15.1465 2.75991 14.2645 2.32268 13.2501C1.88546 12.2356 1.66657 11.1523 1.66602 10.0001C1.66546 8.84786 1.88435 7.76453 2.32268 6.75008C2.76102 5.73564 3.35463 4.85369 4.10352 4.10425C4.85241 3.3548 5.73435 2.76119 6.74935 2.32341C7.76435 1.88564 8.84768 1.66675 9.99935 1.66675C11.151 1.66675 12.2343 1.88564 13.2493 2.32341C14.2643 2.76119 15.1463 3.3548 15.8952 4.10425C16.6441 4.85369 17.238 5.73564 17.6768 6.75008C18.1157 7.76453 18.3344 8.84786 18.3327 10.0001C18.331 11.1523 18.1121 12.2356 17.676 13.2501C17.2399 14.2645 16.6463 15.1465 15.8952 15.8959C15.1441 16.6454 14.2621 17.2392 13.2493 17.6776C12.2366 18.1159 11.1532 18.3345 9.99935 18.3334ZM9.99935 16.6667C11.8605 16.6667 13.4368 16.0209 14.7285 14.7292C16.0202 13.4376 16.666 11.8612 16.666 10.0001C16.666 8.13897 16.0202 6.56258 14.7285 5.27091C13.4368 3.97925 11.8605 3.33341 9.99935 3.33341C8.13824 3.33341 6.56185 3.97925 5.27018 5.27091C3.97852 6.56258 3.33268 8.13897 3.33268 10.0001C3.33268 11.8612 3.97852 13.4376 5.27018 14.7292C6.56185 16.0209 8.13824 16.6667 9.99935 16.6667Z" fill="#2D4256"/></svg>
+                {{ block.settings.main_heading_text | default: "Suggested pairings" }}
+            </div>
+        </div>
+        <div class="Object_suggested_pairings_maininfo_new">
+          {%- if product.metafields.custom.product_hardware_icon_with_text_selection != blank -%}
+            <div class="Object_suggested_pairings_1_new">
+              <div class="Object_suggested_pairings_1_boths_new">
+                {%- if block.settings.inner_heading_text_1 != blank -%}
+                  <div class="Object_suggested_pairings_1_boths_maintitle_new">
+                    <div class="Object_suggested_pairings_1_boths_innertitle_new">
+                      <h4>{{ block.settings.inner_heading_text_1 }}</h4>
+                    </div>
+                  </div>
+                {%- endif -%}
+                {%- if product.metafields.custom.product_hardware_icon_with_text_selection != blank -%}
+                  <div class="Object_suggested_pairings_1_boths_mainloops_new">
+                    <div class="Object_suggested_pairings_1_boths_innerloops_new">
+                      {%- for product_hardware_icon_with_text_selection in product.metafields.custom.product_hardware_icon_with_text_selection.value -%}
+                        {%- if product_hardware_icon_with_text_selection.image.value != blank and product_hardware_icon_with_text_selection.title.value != blank -%}
+                          <div class="Object_suggested_pairings_1_boths_innerloops_mainboxs_new">
+                            <div class="Object_suggested_pairings_1_boths_innerloops_innerboxs_new">
+                              {%- if product_hardware_icon_with_text_selection.image.value != blank -%}
+                                {%- if product_hardware_icon_with_text_selection.image.value contains "files" -%}
+                                  <div class="Object_suggested_pairings_1_boths_innerloops_innerboxs_mainimage_new">
+                                    <div class="Object_suggested_pairings_1_boths_innerloops_innerboxs_innerimage_new">
+                                      {{
+                                        product_hardware_icon_with_text_selection.image.value | 
+                                        image_url: width: img.width | 
+                                        image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                        fetchpriority: 'auto', 
+                                        class:'Static_image_new'
+                                      }}
+                                    </div>
+                                  </div>
+                                {%- endif -%}
+                              {%- endif -%}
+                              {%- if product_hardware_icon_with_text_selection.title.value != blank -%}
+                                <div class="Object_suggested_pairings_1_boths_innerloops_innerboxs_maintitle_new">
+                                  <div class="Object_suggested_pairings_1_boths_innerloops_innerboxs_innertitle_new">
+                                    {{ product_hardware_icon_with_text_selection.title }}
+                                  </div>
+                                </div>
+                              {%- endif -%}  
+                            </div>
+                          </div>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </div>
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+          {%- if product.metafields.custom.product_vanity_color_icon_with_text_selection != blank -%}
+            <div class="Object_suggested_pairings_2_new">
+              <div class="Object_suggested_pairings_2_boths_new">
+                {%- if block.settings.inner_heading_text_2 != blank -%}
+                  <div class="Object_suggested_pairings_2_boths_maintitle_new">
+                    <div class="Object_suggested_pairings_2_boths_innertitle_new">
+                      <h4>{{ block.settings.inner_heading_text_2 }}</h4>
+                    </div>
+                  </div>
+                {%- endif -%}
+                {%- if product.metafields.custom.product_vanity_color_icon_with_text_selection != blank -%}
+                  <div class="Object_suggested_pairings_2_boths_mainloops_new">
+                    <div class="Object_suggested_pairings_2_boths_innerloops_new">
+                      {%- for product_vanity_color_icon_with_text_selection in product.metafields.custom.product_vanity_color_icon_with_text_selection.value -%}
+                        {%- if product_vanity_color_icon_with_text_selection.image.value != blank and product_vanity_color_icon_with_text_selection.title.value != blank -%}
+                          <div class="Object_suggested_pairings_2_boths_innerloops_mainboxs_new">
+                            <div class="Object_suggested_pairings_2_boths_innerloops_innerboxs_new">
+                              {%- if product_vanity_color_icon_with_text_selection.image.value != blank -%}
+                                {%- if product_vanity_color_icon_with_text_selection.image.value contains "files" -%}
+                                  <div class="Object_suggested_pairings_2_boths_innerloops_innerboxs_mainimage_new">
+                                    <div class="Object_suggested_pairings_2_boths_innerloops_innerboxs_innerimage_new">
+                                      {{
+                                        product_vanity_color_icon_with_text_selection.image.value | 
+                                        image_url: width: img.width | 
+                                        image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                        fetchpriority: 'auto', 
+                                        class:'Static_image_new'
+                                      }}
+                                    </div>
+                                  </div>
+                                {%- endif -%}
+                              {%- endif -%}
+                              {%- if product_vanity_color_icon_with_text_selection.title.value != blank -%}
+                                <div class="Object_suggested_pairings_2_boths_innerloops_innerboxs_maintitle_new">
+                                  <div class="Object_suggested_pairings_2_boths_innerloops_innerboxs_innertitle_new">
+                                    {{ product_vanity_color_icon_with_text_selection.title }}
+                                  </div>
+                                </div>
+                              {%- endif -%}  
+                            </div>
+                          </div>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </div>
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+          {%- if block.settings.main_button_text != blank -%}
+            <div class="Object_suggested_pairings_mainbutton_new">
+              <div class="Object_suggested_pairings_innerbutton_new">
+                <a href="#real_homes">
+                  {{ block.settings.main_button_text }}  
+                </a>
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+{%- endif -%} 

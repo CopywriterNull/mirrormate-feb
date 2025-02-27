@@ -1,0 +1,36 @@
+<script>
+
+   {%- assign page_check = true -%}
+   {%- if template contains 'page' and page.handle == 'checklogin' -%}
+       {%- assign page_check = false -%}
+   {%- endif -%}
+
+{%- if page_check -%}
+  {%- assign page_page = request.path -%}
+  {%- if customer -%}
+        {%- if page_page == '/pages/dealer' -%}  
+          window.location.href = '/pages/dealer-trade-2';
+        {%- elsif page_page == '/pages/hotels' -%}  
+          window.location.href = '/pages/hotel-supply-2';
+        {%- elsif page_page == '/pages/multi-family-mirror-kits' -%}  
+          window.location.href = '/pages/multifamily';
+        {%- elsif page_page == '/pages/multifamily-frames' -%}  
+          window.location.href = '/pages/multifamily';
+        {%- endif -%}
+  {%- else -%}
+        {%- if page_page == '/pages/dealer-trade-2' -%}  
+          window.location.href = '/pages/dealer';
+        {%- elsif page_page == '/pages/hotel-supply-2' -%}  
+          window.location.href = '/pages/hotels';
+        {%- elsif page_page == '/pages/multifamily' -%}  
+          window.location.href = '/pages/multi-family-mirror-kits';
+        {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+
+ {% if request.path contains '/cart' or request.path == '/cart' %}
+     window.location.href = '/?viewcart=true';
+  {%- endif -%}
+
+  
+</script>

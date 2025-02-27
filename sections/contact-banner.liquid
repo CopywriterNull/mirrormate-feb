@@ -1,0 +1,192 @@
+{{ "contact-banner.css" | asset_url | stylesheet_tag }}
+
+{% if section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.contact_number_link != blank or section.settings.contact_email_link != blank or section.settings.contact_adress_link != blank or section.settings.main_banner_image_desktop != blank or section.settings.main_mp4_video != blank or section.settings.main_banner_image_mobile != blank  %}
+  <div class="Contact_banner_main Contact_banner_main_{{ section.id }}" style="background-color: {{ section.settings.main_background_color }}">
+    <div class="page-width">
+      <div class="Contact_banner_inner">
+        <div class="Contact_banner_sides">
+          {% if section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.contact_number_text != blank or section.settings.contact_email_link != blank or section.settings.contact_address_text != blank %}
+            <div class="Contact_banner_leftmain">
+              <div class="Contact_banner_leftinner">
+                {% if section.settings.main_heading_text != blank or section.settings.main_information_text != blank %}
+                  <div class="Contact_banner_left_main_heading_part">
+                    {% if section.settings.main_heading_text != blank %}
+                      <div class="Contact_banner_left_main_heading_text Common_title_new">
+                        <h2>
+                          {{ section.settings.main_heading_text }}
+                        </h2>
+                      </div>
+                    {% endif %}
+                    {% if section.settings.main_information_text != blank %}
+                      <div class="Contact_banner_left_main_information_text">
+                        {{ section.settings.main_information_text }}
+                      </div>
+                    {% endif %}
+                  </div>
+                {% endif %}
+                {% if section.settings.contact_number_link != blank or section.settings.contact_email_link != blank or section.settings.contact_adress_link != blank %}
+                  <div class="Contact_banner_left_contact_details_part">
+                    {% if section.settings.contact_number_link != blank and section.settings.contact_number_text != blank %}
+                      <div class="Contact_banner_left_single_contact_detail">
+                        <div class="Contact_icon">
+                          <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22.0996 15.889L17.038 13.6207C16.8087 13.5225 16.5585 13.483 16.31 13.5058C16.0615 13.5286 15.8227 13.6131 15.6151 13.7515C15.5941 13.765 15.574 13.7801 15.5551 13.7965L12.9097 16.0465C12.8822 16.0615 12.8517 16.0699 12.8204 16.071C12.7892 16.0721 12.7581 16.0659 12.7297 16.053C11.0292 15.2322 9.26776 13.4814 8.4438 11.8046C8.43008 11.7766 8.42295 11.7458 8.42295 11.7146C8.42295 11.6834 8.43008 11.6526 8.4438 11.6246L10.7014 8.94592C10.7176 8.92612 10.7326 8.90537 10.7464 8.88378C10.8829 8.67538 10.9653 8.43628 10.9863 8.18804C11.0072 7.93981 10.966 7.69027 10.8664 7.46194L8.61416 2.4089C8.48626 2.11061 8.26507 1.86185 7.98378 1.69996C7.70249 1.53806 7.37628 1.47176 7.05411 1.51101C5.65395 1.69508 4.36871 2.38269 3.43858 3.44533C2.50846 4.50797 1.99708 5.87294 2.00001 7.28515C2.00001 15.6747 8.82524 22.5 17.2148 22.5C18.627 22.5027 19.9918 21.9912 21.0544 21.0611C22.117 20.1311 22.8046 18.846 22.9889 17.4459C23.0281 17.1252 22.9627 16.8005 22.8025 16.52C22.6422 16.2395 22.3957 16.0182 22.0996 15.889ZM17.2148 21.2142C9.53455 21.2142 3.28577 14.9654 3.28577 7.28515C3.28219 6.18575 3.679 5.12265 4.40207 4.29448C5.12514 3.46631 6.125 2.92973 7.21483 2.78499H7.23947C7.28265 2.78579 7.32458 2.79962 7.35976 2.82467C7.39494 2.84972 7.42173 2.88481 7.43662 2.92535L9.69741 7.97303C9.71031 8.0011 9.71698 8.03161 9.71698 8.0625C9.71698 8.09338 9.71031 8.1239 9.69741 8.15197L7.43555 10.8371C7.41876 10.8563 7.40336 10.8767 7.38948 10.8981C7.24794 11.1142 7.1646 11.3632 7.14752 11.6209C7.13044 11.8786 7.1802 12.1364 7.29198 12.3693C8.24237 14.315 10.2031 16.2608 12.1704 17.2112C12.4046 17.3224 12.6636 17.3709 12.9222 17.3522C13.1808 17.3334 13.4301 17.2479 13.6458 17.1041C13.6661 17.0901 13.6865 17.0751 13.7058 17.0591L16.3501 14.809C16.3763 14.795 16.4051 14.7867 16.4347 14.7849C16.4643 14.783 16.4939 14.7876 16.5216 14.7983L21.5842 17.0666C21.6256 17.0842 21.6604 17.1144 21.6836 17.1528C21.7069 17.1913 21.7175 17.2361 21.7139 17.2809C21.5699 18.3712 21.0338 19.3718 20.2058 20.0957C19.3779 20.8196 18.3146 21.2172 17.2148 21.2142Z" fill="#2D4256"></path>
+                          </svg>
+                        </div>
+                        <div class="Contact_detail">
+                          <a target="_blank" href="{{ section.settings.contact_number_link }}">
+                            {{ section.settings.contact_number_text }}
+                          </a>
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if section.settings.contact_email_link != blank and section.settings.contact_email_text != blank %}
+                      <div class="Contact_banner_left_single_contact_detail">
+                        <div class="Contact_icon">
+                          <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21.4286 4.5H2.57143C2.15466 4.5 1.75496 4.66857 1.46026 4.96863C1.16556 5.26869 1 5.67565 1 6.1V18.9C1 19.3243 1.16556 19.7313 1.46026 20.0314C1.75496 20.3314 2.15466 20.5 2.57143 20.5H21.4286C21.8453 20.5 22.245 20.3314 22.5397 20.0314C22.8344 19.7313 23 19.3243 23 18.9V6.1C23 5.67565 22.8344 5.26869 22.5397 4.96863C22.245 4.66857 21.8453 4.5 21.4286 4.5ZM19.7 6.1L12 11.524L4.3 6.1H19.7ZM2.57143 18.9V6.828L11.5521 13.156C11.6837 13.2489 11.8399 13.2987 12 13.2987C12.1601 13.2987 12.3163 13.2489 12.4479 13.156L21.4286 6.828V18.9H2.57143Z" fill="#2D4256"></path>
+                          </svg>
+                        </div>
+                        <div class="Contact_detail">
+                          <a target="_blank" href="{{ section.settings.contact_email_link }}">
+                            {{ section.settings.contact_email_text }}
+                          </a>
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if section.settings.contact_address_text != blank or section.settings.contact_adress_link != blank %}
+                      <div class="Contact_banner_left_single_contact_detail">
+                        <div class="Contact_icon">
+                          <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.75 10.25C18.75 8.45979 18.0388 6.7429 16.773 5.47703C15.5071 4.21116 13.7902 3.5 12 3.5C10.2098 3.5 8.4929 4.21116 7.22703 5.47703C5.96116 6.7429 5.25 8.45979 5.25 10.25C5.25 13.019 7.4655 16.628 12 20.951C16.5345 16.628 18.75 13.019 18.75 10.25ZM12 23C6.4995 18.0005 3.75 13.7495 3.75 10.25C3.75 8.06196 4.61919 5.96354 6.16637 4.41637C7.71354 2.86919 9.81196 2 12 2C14.188 2 16.2865 2.86919 17.8336 4.41637C19.3808 5.96354 20.25 8.06196 20.25 10.25C20.25 13.7495 17.5005 18.0005 12 23Z" fill="#2D4256"></path>
+                            <path d="M12 12.5C12.5967 12.5 13.169 12.2629 13.591 11.841C14.0129 11.419 14.25 10.8467 14.25 10.25C14.25 9.65326 14.0129 9.08097 13.591 8.65901C13.169 8.23705 12.5967 8 12 8C11.4033 8 10.831 8.23705 10.409 8.65901C9.98705 9.08097 9.75 9.65326 9.75 10.25C9.75 10.8467 9.98705 11.419 10.409 11.841C10.831 12.2629 11.4033 12.5 12 12.5ZM12 14C11.0054 14 10.0516 13.6049 9.34835 12.9017C8.64509 12.1984 8.25 11.2446 8.25 10.25C8.25 9.25544 8.64509 8.30161 9.34835 7.59835C10.0516 6.89509 11.0054 6.5 12 6.5C12.9946 6.5 13.9484 6.89509 14.6517 7.59835C15.3549 8.30161 15.75 9.25544 15.75 10.25C15.75 11.2446 15.3549 12.1984 14.6517 12.9017C13.9484 13.6049 12.9946 14 12 14Z" fill="#2D4256"></path>
+                          </svg>
+                        </div>
+                        <div class="Contact_detail">
+                          <a target="_blank" href="{{ section.settings.contact_adress_link }}">
+                            {{ section.settings.contact_address_text }}
+                          </a>
+                        </div>
+                      </div>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+          {% if section.settings.main_banner_image_desktop != blank or section.settings.main_mp4_video_desktop != blank or section.settings.main_banner_image_mobile != blank or section.settings.main_mp4_video_mobile != blank %}
+            <div class="Contact_banner_rightmain">
+              <div class="Contact_banner_rightinner">
+                {%- if section.settings.main_mp4_video != blank -%}
+                  <div class="Contact_banner_right_video_image_main">
+                    {{ section.settings.main_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                  </div>
+                  {% else %}  
+                    {%- if section.settings.main_banner_image_desktop != blank and section.settings.main_banner_image_mobile != blank -%}
+                      <div class="Contact_banner_right_video_image_main">
+                            {%- if section.settings.main_banner_image_desktop != blank -%}
+                              {{
+                                section.settings.main_banner_image_desktop | 
+                                image_url: width: img.width | 
+                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                fetchpriority: 'auto', 
+                                class:'desktop_image_new'
+                              }}
+                            {%- endif -%}
+                            {%- if section.settings.main_banner_image_mobile != blank -%}
+                              {{
+                                section.settings.main_banner_image_mobile | 
+                                image_url: width: img.width | 
+                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                fetchpriority: 'auto', 
+                                class:'mobile_image_new'
+                              }}
+                            {%- endif -%}
+                          </div>
+                    {%- endif -%}
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+  
+{% schema %}
+  {
+    "name": "Contact Banner",
+    "class": "Contact_banner",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFF"
+      },
+      {
+        "type": "video",
+        "id": "main_mp4_video",
+        "label": "Add Main MP4 Video"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_banner_image_desktop",
+        "label": "Add Main Banner Image Desktop"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_banner_image_mobile",
+        "label": "Add Main Banner Image Mobile"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Contact Us"
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "<p>For Multifamily sales, contact Dustin Murphy at:</p>"
+      },
+      {
+        "type": "header",
+        "content": "Contact Number"
+      },
+      {
+        "type": "text",
+        "id": "contact_number_text",
+        "label": "Add Contact Number",
+        "default": "(704) 390-7378"
+      },
+      {
+        "type": "url",
+        "id": "contact_number_link",
+        "label": "Add Contact Number Link"
+      },
+      {
+        "type": "header",
+        "content": "Contact Email"
+      },
+      {
+        "type": "text",
+        "id": "contact_email_text",
+        "label": "Add Contact Email",
+        "default": "info@cabinetmate.com"
+      },
+      {
+        "type": "url",
+        "id": "contact_email_link",
+        "label": "Add Contact Email Link"
+      },
+    ],
+    "presets": [
+      {
+        "name": "Contact Banner"
+      }
+    ]
+  }
+{% endschema %}

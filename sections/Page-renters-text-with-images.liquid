@@ -1,0 +1,170 @@
+{{ "Page-renters-text-with-images.css" | asset_url | stylesheet_tag }}
+
+{% if section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_text != blank or section.settings.main_button_link != blank or section.blocks.size > 0 %}
+  <div class="Page_renters_text_with_images_main Page_renters_text_with_images_main_{{ section.id }}" style="background-color: {{ section.settings.main_background_color }}">
+    <div class="page-width">
+      <div class=Page_renters_text_with_images_inner>
+        <div class="Page_renters_text_with_images_sides">
+          {% if section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_text != blank or section.settings.main_button_link != blank %}
+            <div class="Page_renters_text_with_images_leftmain">
+              <div class="Page_renters_text_with_images_leftinner">
+                {%- if section.settings.main_heading_text != blank -%}
+                  <div class="Common_title_new Page_renters_text_with_images_left_main_heading_text">
+                    <h2>
+                      {{ section.settings.main_heading_text }}
+                    </h2>
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.main_information_text != blank -%}
+                  <div class="Page_renters_text_with_images_left_main_information_text">
+                    {{ section.settings.main_information_text }}
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                  <div class="Page_renters_text_with_images_left_main_button">
+                    <a href="{{ section.settings.main_button_link }}" class="button">
+                      {{ section.settings.main_button_text }}  
+                    </a>
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {% endif %}
+          {% if section.blocks.size > 0 %}
+            <div class="Page_renters_text_with_images_rightmain">
+              <div class="Page_renters_text_with_images_rightinner">
+                <div class="Page_renters_text_with_images_right_images_container">
+                  {% for block in section.blocks %}
+                    {% if block.type == "image-block" %}
+                      {% if block.settings.image %}
+                        <div class="Page_renters_text_with_images_right_single_image">
+                          {{
+                            block.settings.image | 
+                            image_url: width: img.width | 
+                            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                            fetchpriority: 'auto', 
+                              class:'right_image'
+                          }}
+                        </div>
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+                </div>
+                {%- if section.settings.main_outside_custom_logo != blank or section.settings.main_inside_custom_logo != blank -%}
+                  <div class="Index_meet_image_all_text_sides_innerleft_mainoverlay_new">
+                    <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_new" style="background-color: {{ section.settings.custom_logo_background_color }}">
+                      {%- if section.settings.main_outside_custom_logo != blank -%}
+                        <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_mainoutside_new">
+                          <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_inneroutside_new">
+                            {{
+                              section.settings.main_outside_custom_logo | 
+                              image_url: width: img.width | 
+                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                              fetchpriority: 'auto', 
+                              class:'Full_image_new spin'
+                            }}
+                          </div>
+                        </div>
+                      {%- endif -%}
+                      {%- if section.settings.main_inside_custom_logo != blank -%}
+                        <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_maininside_new">
+                          <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_innerinside_new">
+                            {{
+                              section.settings.main_inside_custom_logo | 
+                              image_url: width: img.width | 
+                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                              fetchpriority: 'auto', 
+                              class:'Full_image_new'
+                            }}
+                          </div>
+                        </div>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+  
+{% schema %}
+  {
+    "name": "Page Renters Txt Images",
+    "class": "Page_renters_text_with_images",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFF"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_outside_custom_logo",
+        "label": "Add Main Outside Custom Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_inside_custom_logo",
+        "label": "Add Main Inside Custom Logo"
+      },
+      {
+        "type": "color",
+        "id": "custom_logo_background_color",
+        "label": "Add Main Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Give Renters a Kitchen + Bath They'll Love"
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "<p>CabinetMate's <span>easy, affordable cabinet refacing kits</span> are sure to bring new life to any kitchen or bathroom space.</p>"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "Contact Us"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      },
+    ],
+    "blocks": [
+      {
+        "type": "image-block",
+        "name": "Image Block",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Add Image",
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Page Renters Text With Images",  
+        "blocks": [
+          {
+            "type": "image-block"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

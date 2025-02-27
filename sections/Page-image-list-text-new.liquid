@@ -1,0 +1,162 @@
+{% if section.settings.main_background_color != blank or section.settings.main_heading_text != blank or section.settings.main_box_background_color != blank or section.settings.main_box_title != blank or section.settings.main_box_information_text != blank or section.settings.main_desktop_image!= blank or section.settings.main_mobile_image %}
+  <div class="Page_image_list_text_main_new" style="background-color: {{ section.settings.main_background_color }}">
+    <div class="page-width">
+      <div class="Page_image_list_text_inner_new">
+        <div class="Page_image_list_text_sides_main">
+          {% if section.settings.main_heading_text != blank or section.settings.main_box_background_color != blank or section.settings.main_box_title != blank or section.settings.main_box_information_text != blank or section.settings.main_mobile_image != blank or section.blocks.size > 0 %}
+            <div class="Page_image_list_leftmain">
+              <div class="Page_image_list_leftinner">
+                {%- if section.settings.main_heading_text != blank -%}
+                  <div class="Common_title_new Page_image_text_main_heading_text">
+                    <h2>{{ section.settings.main_heading_text }}</h2>
+                  </div>
+                {%- endif -%}
+                {% if section.blocks.size > 0 %}
+                  <div class="Page_image_list_main">
+                    <div class="Page_image_list_inner">
+                      {%- for block in section.blocks -%}
+                        {% if block.type == "list-item" %}
+                          {% if block.settings.list_item_text %}
+                            <div class="Page_image_list_item_main">
+                            <div class="Page_image_list_item_inner">
+                              <div class="list_item_number_box">
+                                <span>{{ forloop.index }}</span>
+                              </div>
+                              <div class="list_item_text Index_meet_image_all_text_sides_innerright_infos_new">
+                                <p>
+                                  {{ block.settings.list_item_text }}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          {% endif %}
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  </div>
+                {%- endif -%}
+                {% if section.settings.main_mobile_image %}
+                <div class="Page_image_list_main_image large-up-hide">
+                  {{
+                      section.settings.main_mobile_image | 
+                      image_url: width: img.width | 
+                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                      fetchpriority: 'auto', 
+                      class:'image_new'
+                    }}
+            </div>
+          {% endif %}
+                {% if section.settings.main_box_background_color != blank or section.settings.main_box_title != blank or section.settings.main_box_information_text != blank %}
+                  <div class="Page_image_list_text_box_main">
+                    <div class="Page_image_list_text_box" style="background-color: {{ section.settings.main_box_background_color }}">
+                      {% if section.settings.main_box_title != blank %}
+                        <div class="Page_image_list_text_box_title Common_subtitle_new">
+                          <span>
+                            {{ section.settings.main_box_title }}
+                          </span>
+                        </div>
+                      {% endif %}
+                      {% if section.settings.main_box_information_text != blank %}
+                        <div class="Page_image_list_text_box_information_text Index_meet_image_all_text_sides_innerright_infos_new">
+                          {{ section.settings.main_box_information_text }}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+          {% if section.settings.main_desktop_image %}
+            <div class="Page_image_list_rightmain small-hide medium-hide">
+              <div class="Page_image_list_rightinner">
+                <div class="Page_image_list_main_image small-hide medium-hide">
+                  {{
+                      section.settings.main_desktop_image | 
+                      image_url: width: img.width | 
+                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                      fetchpriority: 'auto', 
+                      class:'desktop_image_new'
+                    }}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+          
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}  
+
+{% schema %}
+  {
+    "name": "Page Image List Text",
+    "class": "Page_image_list_text_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_desktop_image",
+        "label": "Add Main Desktop Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_mobile_image",
+        "label": "Add Main Mobile Image"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "How It Works"
+      },
+      {
+        "type": "color",
+        "id": "main_box_background_color",
+        "label": "Add Main Box Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "textarea",
+        "id": "main_box_title",
+        "label": "Add Main Box Title",
+        "default": "About pay in 4"
+      },
+      {
+        "type": "richtext",
+        "id": "main_box_information_text",
+        "label": "Add Main Box Information Text",
+      }
+    ],
+    "blocks": [
+      {
+        "type": "list-item",
+        "name": "List item",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "list_item_text",
+            "label": "Add List Item Text",
+            "default": "Build your frame and add it to cart"
+          },
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Page Image List Text",
+        "blocks": [
+          {
+            "type": "list-item",
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

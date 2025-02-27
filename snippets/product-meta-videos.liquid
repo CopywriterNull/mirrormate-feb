@@ -1,0 +1,332 @@
+<div class="video_play_list_new">
+  {%- if product.metafields.custom.product_people_think_video_items_selections != blank -%}
+    <div class="meta_people_think_video_main_new" {{ block.shopify_attributes }}>
+      <div class="meta_people_think_video_inner_new">
+        <div class="meta_people_think_video_title_new">
+          {{ block.settings.main_heading_text }}
+        </div>
+        <div class="meta_people_think_video_loops_new">
+          <div class="swiper Product_meta_people_think_video_slider">
+            <div class="swiper-wrapper">
+              {%- for product_people_think_video_items_selections in product.metafields.custom.product_people_think_video_items_selections.value -%}
+                {%- if product_people_think_video_items_selections.main_video_or_image_column.value != blank or product_people_think_video_items_selections.main_title_column.value != blank -%}
+                  <div class="swiper-slide meta_people_think_video_loops_mainstatic_new">
+                    <div class="meta_people_think_video_loops_innerstatic_new">
+                      {%- if product_people_think_video_items_selections.main_video_or_image_column.value != blank -%}
+                        <div class="meta_people_think_video_loops_innerstatic_mainboths_new">
+                          <div class="meta_people_think_video_loops_innerstatic_innerboths_new">
+                            {%- if product_people_think_video_items_selections.main_video_or_image_column.value contains "files" -%}
+                              <div class="meta_people_think_video_loops_innerstatic_innerboths_imagevideo_new people_popup_open" video_id="{{ section.id }}_popup_video_{{ forloop.index }}">
+                                {{
+                                  product_people_think_video_items_selections.main_video_or_image_column.value | 
+                                  image_url: width: img.width | 
+                                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                  fetchpriority: 'auto', 
+                                  class:'Static_image_new'
+                                }}
+                              </div>
+                            {%- else -%}
+                              <div class="meta_people_think_video_loops_innerstatic_innerboths_imagevideo_new people_popup_open" video_id="{{ section.id }}_popup_video_{{ forloop.index }}">
+                                {% comment %}
+                                {% if product_people_think_video_items_selections.main_video_or_image_column.value.sources[1].url != blank %}
+                                  {% assign video_url =  product_people_think_video_items_selections.main_video_or_image_column.value.sources[1].url  %}
+                                {% elsif  product_people_think_video_items_selections.main_video_or_image_column.value.sources[0].url != blank %}
+                                  {% assign video_url =  product_people_think_video_items_selections.main_video_or_image_column.value.sources[0].url  %}
+                                {% elsif  product_people_think_video_items_selections.main_video_or_image_column.value.sources[2].url != blank %}
+                                  {% assign video_url =  product_people_think_video_items_selections.main_video_or_image_column.value.sources[2].url  %}
+                                {% endif %}
+                                {% endcomment %}
+                                <img src="{{ product_people_think_video_items_selections.main_video_or_image_column.value.preview_image | image_url }}" alt="" width="" height="" />
+                                <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g><circle cx="12.5" cy="12" r="6" fill="white"/><path d="M24.668 12C24.668 9.62663 23.9642 7.30655 22.6456 5.33316C21.327 3.35977 19.4529 1.8217 17.2602 0.913451C15.0675 0.00519943 12.6547 -0.232441 10.3269 0.230582C7.99912 0.693605 5.86092 1.83649 4.18269 3.51472C2.50446 5.19295 1.36157 7.33115 0.898551 9.65892C0.435528 11.9867 0.673168 14.3995 1.58142 16.5922C2.48967 18.7849 4.02774 20.6591 6.00113 21.9776C7.97452 23.2962 10.2946 24 12.668 24C15.8495 23.9966 18.8998 22.7312 21.1495 20.4815C23.3991 18.2318 24.6645 15.1815 24.668 12ZM10.937 15.943C10.8559 15.9008 10.788 15.8372 10.7406 15.7591C10.6932 15.681 10.6681 15.5914 10.668 15.5V8.5C10.6681 8.40855 10.6932 8.31887 10.7407 8.24072C10.7882 8.16257 10.8563 8.09894 10.9374 8.05677C11.0186 8.0146 11.1097 7.99549 11.201 8.00152C11.2922 8.00756 11.3801 8.03851 11.455 8.091L16.455 11.591C16.5173 11.6394 16.5677 11.7015 16.6024 11.7723C16.6371 11.8432 16.6551 11.9211 16.6551 12C16.6551 12.0789 16.6371 12.1568 16.6024 12.2277C16.5677 12.2986 16.5173 12.3606 16.455 12.409L11.455 15.909C11.38 15.9615 11.2921 15.9925 11.2007 15.9985C11.1094 16.0045 11.0182 15.9853 10.937 15.943Z" fill="#5C5C5C"/></g><defs><clipPath id="clip0_277_3158023423"><rect width="24" height="24" fill="white" transform="translate(0.667969)"/></clipPath></defs></svg>
+                              </div>
+                            {%- endif -%}
+                          </div>
+                        </div>
+                      {%- endif -%}
+                      {%- if product_people_think_video_items_selections.main_title_column.value != blank -%}
+                        <div class="meta_people_think_video_loops_innerstatic_maintitle_new">
+                          <div class="meta_people_think_video_loops_innerstatic_innertitle_new">
+                            {{ product_people_think_video_items_selections.main_title_column }}
+                          </div>
+                        </div>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                {%- endif -%}  
+              {%- endfor -%}
+            </div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- else -%}
+    {%- if shop.metaobjects.product_people_think_video_items_selections.values != blank -%}
+      <div class="meta_people_think_video_main_new" {{ block.shopify_attributes }}>
+        <div class="meta_people_think_video_inner_new">
+          <div class="meta_people_think_video_title_new">
+            {{ block.settings.main_heading_text }}
+          </div>
+          <div class="meta_people_think_video_loops_new">
+            <div class="swiper Product_meta_people_think_video_slider">
+              <div class="swiper-wrapper">
+                {%- for product_people_think_video_items_selections in shop.metaobjects.product_people_think_video_items_selections.values -%}
+                  {% for product_people_think_video_items_selections in product_people_think_video_items_selections.product_people_think_video_items_selections.value %}
+                    {%- if product_people_think_video_items_selections.main_video_or_image_column.value != blank or product_people_think_video_items_selections.main_title_column.value != blank -%}
+                      <div class="swiper-slide meta_people_think_video_loops_mainstatic_new">
+                        <div class="meta_people_think_video_loops_innerstatic_new">
+                          {%- if product_people_think_video_items_selections.main_video_or_image_column.value != blank -%}
+                            <div class="meta_people_think_video_loops_innerstatic_mainboths_new">
+                              <div class="meta_people_think_video_loops_innerstatic_innerboths_new">
+                                {%- if product_people_think_video_items_selections.main_video_or_image_column.value contains "files" -%}
+                                  <div class="meta_people_think_video_loops_innerstatic_innerboths_imagevideo_new people_popup_open" video_id="{{ section.id }}_popup_video_{{ forloop.index }}">
+                                    {{
+                                      product_people_think_video_items_selections.main_video_or_image_column.value | 
+                                      image_url: width: img.width | 
+                                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                      fetchpriority: 'auto', 
+                                      class:'Static_image_new'
+                                    }}
+                                  </div>
+                                {%- else -%}
+                                  <div class="meta_people_think_video_loops_innerstatic_innerboths_imagevideo_new people_popup_open" video_id="{{ section.id }}_popup_video_{{ forloop.index }}">
+                                    {% comment %}
+                                    {% if product_people_think_video_items_selections.main_video_or_image_column.value.sources[1].url != blank %}
+                                      {% assign video_url =  product_people_think_video_items_selections.main_video_or_image_column.value.sources[1].url  %}
+                                    {% elsif  product_people_think_video_items_selections.main_video_or_image_column.value.sources[0].url != blank %}
+                                      {% assign video_url =  product_people_think_video_items_selections.main_video_or_image_column.value.sources[0].url  %}
+                                    {% elsif  product_people_think_video_items_selections.main_video_or_image_column.value.sources[2].url != blank %}
+                                      {% assign video_url =  product_people_think_video_items_selections.main_video_or_image_column.value.sources[2].url  %}
+                                    {% endif %}
+                                    {% endcomment %}
+                                    <img src="{{ product_people_think_video_items_selections.main_video_or_image_column.value.preview_image | image_url }}" alt="" width="" height="" />
+                                    <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g><circle cx="12.5" cy="12" r="6" fill="white"/><path d="M24.668 12C24.668 9.62663 23.9642 7.30655 22.6456 5.33316C21.327 3.35977 19.4529 1.8217 17.2602 0.913451C15.0675 0.00519943 12.6547 -0.232441 10.3269 0.230582C7.99912 0.693605 5.86092 1.83649 4.18269 3.51472C2.50446 5.19295 1.36157 7.33115 0.898551 9.65892C0.435528 11.9867 0.673168 14.3995 1.58142 16.5922C2.48967 18.7849 4.02774 20.6591 6.00113 21.9776C7.97452 23.2962 10.2946 24 12.668 24C15.8495 23.9966 18.8998 22.7312 21.1495 20.4815C23.3991 18.2318 24.6645 15.1815 24.668 12ZM10.937 15.943C10.8559 15.9008 10.788 15.8372 10.7406 15.7591C10.6932 15.681 10.6681 15.5914 10.668 15.5V8.5C10.6681 8.40855 10.6932 8.31887 10.7407 8.24072C10.7882 8.16257 10.8563 8.09894 10.9374 8.05677C11.0186 8.0146 11.1097 7.99549 11.201 8.00152C11.2922 8.00756 11.3801 8.03851 11.455 8.091L16.455 11.591C16.5173 11.6394 16.5677 11.7015 16.6024 11.7723C16.6371 11.8432 16.6551 11.9211 16.6551 12C16.6551 12.0789 16.6371 12.1568 16.6024 12.2277C16.5677 12.2986 16.5173 12.3606 16.455 12.409L11.455 15.909C11.38 15.9615 11.2921 15.9925 11.2007 15.9985C11.1094 16.0045 11.0182 15.9853 10.937 15.943Z" fill="#5C5C5C"/></g><defs><clipPath id="clip0_277_3158023423"><rect width="24" height="24" fill="white" transform="translate(0.667969)"/></clipPath></defs></svg>
+                                  </div>
+                                {%- endif -%}
+                              </div>
+                            </div>
+                          {%- endif -%}
+                          {%- if product_people_think_video_items_selections.main_title_column.value != blank -%}
+                            <div class="meta_people_think_video_loops_innerstatic_maintitle_new">
+                              <div class="meta_people_think_video_loops_innerstatic_innertitle_new">
+                                {{ product_people_think_video_items_selections.main_title_column }}
+                              </div>
+                            </div>
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    {%- endif -%}  
+                  {%- endfor -%}
+                {%- endfor -%}
+              </div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+  
+  
+  <!-- popup -->                                 
+  <div class="people_popup_overlay_new"></div>
+  {%- if product.metafields.custom.product_people_think_video_items_selections != blank -%}
+    {%- for product_people_think_video_items_selections in product.metafields.custom.product_people_think_video_items_selections.value -%}
+      {%- if product_people_think_video_items_selections.main_video_or_image_column.value != blank or product_people_think_video_items_selections.main_title_column.value != blank -%}
+        <div class="meta_real_reviews_mainpopup_new {{ section.id }}_popup_video_{{ forloop.index }}_open">
+          <div class="meta_real_reviews_innerpopup_new">
+            {%- if product_people_think_video_items_selections.main_video_or_image_column.value != blank -%}
+              <div class="meta_real_reviews_mainclose_new">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_2782_57492123)">
+                    <path d="M19.0703 4.92896L4.92818 19.0711" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"></path>
+                    <path d="M19.0718 19.0711L4.92969 4.92896" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"></path>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_2782_57492123">
+                    <rect width="24" height="24" fill="white"></rect>
+                    </clipPath>
+                    </defs>
+                </svg>
+              </div> 
+              {%- if product_people_think_video_items_selections.main_video_or_image_column.value contains "files" -%}
+                <div class="meta_real_reviews_innerimage_new">
+                  {{
+                    product_people_think_video_items_selections.main_video_or_image_column.value | 
+                    image_url: width: img.width | 
+                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                    fetchpriority: 'auto', 
+                    class:'Static_image_new'
+                  }}
+                </div>
+              {%- else -%}
+                <div class="mute_video_popup_main_new">
+                  <div class="mute_video_popup active">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g clip-path="url(#clip0_6021_17280)">
+                      <mask id="mask0_6021_17280" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48">
+                      <path d="M48 0H0V48H48V0Z" fill="white"></path>
+                      </mask>
+                      <g mask="url(#mask0_6021_17280)">
+                      <circle cx="24" cy="24" r="24" fill="white"></circle>
+                      <path d="M31 24H35" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"></path>
+                      <path d="M29.6504 19L33.1004 17" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"></path>
+                      <path d="M29.6504 29L33.1004 31" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"></path>
+                      <path d="M27 34L19.5 28.5H15C14.4696 28.5 13.9609 28.2893 13.5858 27.9142C13.2107 27.5391 13 27.0304 13 26.5V21.5C13 20.9696 13.2107 20.4609 13.5858 20.0858C13.9609 19.7107 14.4696 19.5 15 19.5H19.5L27 14V34Z" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"></path>
+                      </g>
+                      </g>
+                      <defs>
+                      <clipPath id="clip0_6021_17280">
+                      <rect width="48" height="48" fill="white"></rect>
+                      </clipPath>
+                      </defs>
+                    </svg>
+                  </div>
+                  <div class="unmute_video_popup">
+                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g clip-path="url(#clip0_6021_17261)">
+                      <mask id="mask0_6021_17261" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48">
+                      <path d="M48 0H0V48H48V0Z" fill="white"></path>
+                      </mask>
+                      <g mask="url(#mask0_6021_17261)">
+                      <circle cx="24" cy="24" r="24" fill="white"></circle>
+                      <mask id="mask1_6021_17261" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="12" y="11" width="24" height="25">
+                      <path d="M36 11.25H12V35.25H36V11.25Z" fill="white"></path>
+                      </mask>
+                      <g mask="url(#mask1_6021_17261)">
+                      <path d="M29.5488 26.8C30.3305 26.0202 30.8309 25.0028 30.9713 23.9076C31.1117 22.8125 30.8841 21.7017 30.3243 20.75" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"></path>
+                      <path d="M32.3496 29.6C33.8136 28.1262 34.7254 26.1933 34.9317 24.1262C35.1381 22.0592 34.6264 19.9841 33.4826 18.25" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"></path>
+                      <path d="M19.5 27.75H15C14.4696 27.75 13.9609 27.5393 13.5858 27.1642C13.2107 26.7891 13 26.2804 13 25.75V20.75C13 20.2196 13.2107 19.7109 13.5858 19.3358C13.9609 18.9607 14.4696 18.75 15 18.75H19.5L27 13.25V20.25" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10"></path>
+                      <path d="M27 24.25V33.25L22 29.5835" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"></path>
+                      <path d="M13.5 33.75L34.5 12.75" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"></path>
+                      </g>
+                      </g>
+                      </g>
+                      <defs>
+                      <clipPath id="clip0_6021_17261">
+                      <rect width="48" height="48" fill="white"></rect>
+                      </clipPath>
+                      </defs>
+                    </svg>
+                  </div>
+                </div>
+                <div class="meta_real_reviews_innerimage_new video_play_icon_new active">
+                  {% if product_people_think_video_items_selections.main_video_or_image_column.value.sources[1].url != blank %}
+                    {% assign video_url =  product_people_think_video_items_selections.main_video_or_image_column.value.sources[1].url  %}
+                  {% elsif  product_people_think_video_items_selections.main_video_or_image_column.value.sources[0].url != blank %}
+                    {% assign video_url =  product_people_think_video_items_selections.main_video_or_image_column.value.sources[0].url  %}
+                  {% elsif  product_people_think_video_items_selections.main_video_or_image_column.value.sources[2].url != blank %}
+                    {% assign video_url =  product_people_think_video_items_selections.main_video_or_image_column.value.sources[2].url  %}
+                  {% endif %}
+                  <video playsinline="playsinline" loop="loop" preload="metadata" poster="{{ product_people_think_video_items_selections.main_video_or_image_column.value.preview_image | image_url}}" video_url="{{ video_url }}"></video>
+                  <svg class="play_icon" style="display: block;" width="57" height="56" viewBox="0 0 57 56" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#filter0_b_4619_26012)"><rect x="0.5" width="56" height="56" rx="28" fill="black" fill-opacity="0.12"></rect><path d="M21.5 15.75V40.25L42.5 28L21.5 15.75Z" fill="white"></path></g><defs><filter id="filter0_b_4619_26012" x="-22.5" y="-23" width="102" height="102" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood><feGaussianBlur in="BackgroundImageFix" stdDeviation="11.5"></feGaussianBlur><feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_4619_26012"></feComposite><feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_4619_26012" result="shape"></feBlend></filter></defs></svg>
+                </div>
+              {%- endif -%}
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  {% else %}
+    {%- for product_people_think_video_items_selections in shop.metaobjects.product_people_think_video_items_selections.values -%}
+      {% for product_people_think_video_items_selections in product_people_think_video_items_selections.product_people_think_video_items_selections.value %}
+        {%- if product_people_think_video_items_selections.main_video_or_image_column.value != blank or product_people_think_video_items_selections.main_title_column.value != blank -%}
+          <div class="meta_real_reviews_mainpopup_new {{ section.id }}_popup_video_{{ forloop.index }}_open">
+            <div class="meta_real_reviews_innerpopup_new">
+              {%- if product_people_think_video_items_selections.main_video_or_image_column.value != blank -%}
+                <div class="meta_real_reviews_mainclose_new">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g clip-path="url(#clip0_2782_57492123)">
+                      <path d="M19.0703 4.92896L4.92818 19.0711" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"></path>
+                      <path d="M19.0718 19.0711L4.92969 4.92896" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"></path>
+                      </g>
+                      <defs>
+                      <clipPath id="clip0_2782_57492123">
+                      <rect width="24" height="24" fill="white"></rect>
+                      </clipPath>
+                      </defs>
+                  </svg>
+                </div> 
+                {%- if product_people_think_video_items_selections.main_video_or_image_column.value contains "files" -%}
+                  <div class="meta_real_reviews_innerimage_new">
+                    {{
+                      product_people_think_video_items_selections.main_video_or_image_column.value | 
+                      image_url: width: img.width | 
+                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                      fetchpriority: 'auto', 
+                      class:'Static_image_new'
+                    }}
+                  </div>
+                {%- else -%}
+                  <div class="mute_video_popup_main_new">
+                    <div class="mute_video_popup active">
+                      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_6021_17280)">
+                        <mask id="mask0_6021_17280" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48">
+                        <path d="M48 0H0V48H48V0Z" fill="white"></path>
+                        </mask>
+                        <g mask="url(#mask0_6021_17280)">
+                        <circle cx="24" cy="24" r="24" fill="white"></circle>
+                        <path d="M31 24H35" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"></path>
+                        <path d="M29.6504 19L33.1004 17" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"></path>
+                        <path d="M29.6504 29L33.1004 31" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"></path>
+                        <path d="M27 34L19.5 28.5H15C14.4696 28.5 13.9609 28.2893 13.5858 27.9142C13.2107 27.5391 13 27.0304 13 26.5V21.5C13 20.9696 13.2107 20.4609 13.5858 20.0858C13.9609 19.7107 14.4696 19.5 15 19.5H19.5L27 14V34Z" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"></path>
+                        </g>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_6021_17280">
+                        <rect width="48" height="48" fill="white"></rect>
+                        </clipPath>
+                        </defs>
+                      </svg>
+                    </div>
+                    <div class="unmute_video_popup">
+                      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_6021_17261)">
+                        <mask id="mask0_6021_17261" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48">
+                        <path d="M48 0H0V48H48V0Z" fill="white"></path>
+                        </mask>
+                        <g mask="url(#mask0_6021_17261)">
+                        <circle cx="24" cy="24" r="24" fill="white"></circle>
+                        <mask id="mask1_6021_17261" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="12" y="11" width="24" height="25">
+                        <path d="M36 11.25H12V35.25H36V11.25Z" fill="white"></path>
+                        </mask>
+                        <g mask="url(#mask1_6021_17261)">
+                        <path d="M29.5488 26.8C30.3305 26.0202 30.8309 25.0028 30.9713 23.9076C31.1117 22.8125 30.8841 21.7017 30.3243 20.75" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"></path>
+                        <path d="M32.3496 29.6C33.8136 28.1262 34.7254 26.1933 34.9317 24.1262C35.1381 22.0592 34.6264 19.9841 33.4826 18.25" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"></path>
+                        <path d="M19.5 27.75H15C14.4696 27.75 13.9609 27.5393 13.5858 27.1642C13.2107 26.7891 13 26.2804 13 25.75V20.75C13 20.2196 13.2107 19.7109 13.5858 19.3358C13.9609 18.9607 14.4696 18.75 15 18.75H19.5L27 13.25V20.25" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10"></path>
+                        <path d="M27 24.25V33.25L22 29.5835" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"></path>
+                        <path d="M13.5 33.75L34.5 12.75" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"></path>
+                        </g>
+                        </g>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_6021_17261">
+                        <rect width="48" height="48" fill="white"></rect>
+                        </clipPath>
+                        </defs>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="meta_real_reviews_innerimage_new video_play_icon_new active">
+                    {% if product_people_think_video_items_selections.main_video_or_image_column.value.sources[1].url != blank %}
+                      {% assign video_url =  product_people_think_video_items_selections.main_video_or_image_column.value.sources[1].url  %}
+                    {% elsif  product_people_think_video_items_selections.main_video_or_image_column.value.sources[0].url != blank %}
+                      {% assign video_url =  product_people_think_video_items_selections.main_video_or_image_column.value.sources[0].url  %}
+                    {% elsif  product_people_think_video_items_selections.main_video_or_image_column.value.sources[2].url != blank %}
+                      {% assign video_url =  product_people_think_video_items_selections.main_video_or_image_column.value.sources[2].url  %}
+                    {% endif %}
+                    <video playsinline="playsinline" loop="loop" preload="metadata" poster="{{ product_people_think_video_items_selections.main_video_or_image_column.value.preview_image | image_url}}" video_url="{{ video_url }}"></video>
+                    <svg class="play_icon" style="display: block;" width="57" height="56" viewBox="0 0 57 56" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#filter0_b_4619_26012)"><rect x="0.5" width="56" height="56" rx="28" fill="black" fill-opacity="0.12"></rect><path d="M21.5 15.75V40.25L42.5 28L21.5 15.75Z" fill="white"></path></g><defs><filter id="filter0_b_4619_26012" x="-22.5" y="-23" width="102" height="102" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood><feGaussianBlur in="BackgroundImageFix" stdDeviation="11.5"></feGaussianBlur><feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_4619_26012"></feComposite><feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_4619_26012" result="shape"></feBlend></filter></defs></svg>
+                  </div>
+                {%- endif -%}
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endfor -%}
+  {%- endif -%}
+</div>

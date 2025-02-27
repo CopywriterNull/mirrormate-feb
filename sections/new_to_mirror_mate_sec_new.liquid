@@ -1,0 +1,137 @@
+{% style %}
+  .section_{{ section.id }}_padding{ padding-top:{{ section.settings.padding_top }}px;padding-bottom:{{ section.settings.padding_bottom }}px; }
+  
+  {% endstyle %}
+  {{ 'new_to_mirror_mate_sec_new.css' | asset_url | stylesheet_tag }}
+  {% if section.settings.image != blank or section.settings.heading != blank or section.settings.btnurl1 != blank or section.settings.btnlabel1 != blank or section.settings.btnurl2 != blank and section.settings.btnlabel2 != blank or section.settings.bottom_content != blank %}
+<div class="new_to_mirror_mate_sec_main section_{{ section.id }}_padding" style="background:{{ section.settings.bgcolor }}">
+  <div class="page-width">
+    <div class="new_to_mirror_mate_sec_wrapper">
+      {% if section.settings.image != blank or section.settings.heading != blank %}
+      <div class="new_to_mirror_mate_sec_leftside_col">
+        <div class="new_to_mirror_mate_sec_leftside_col_content_wrapper">
+          {% if section.settings.image != blank %}
+          <div class="new_to_mirror_mate_sec_leftside_image">
+            {{
+            section.settings.image | 
+            image_url: width: img.width | 
+            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+            fetchpriority: 'auto', 
+            class:''
+             }}
+          </div>
+            {% endif %}
+          {% if section.settings.heading != blank %}
+          <div class="new_to_mirror_mate_sec_leftside_content Common_title_new">
+            <h2>{{ section.settings.heading }}</h2>
+          </div>
+            {% endif %}
+        </div>
+      </div>
+      {% endif %}
+      <div class="new_to_mirror_mate_sec_rightside_col">
+         {% if section.settings.btnurl1 != blank or section.settings.btnlabel1 != blank or section.settings.btnurl2 != blank and section.settings.btnlabel2 != blank %}
+        <div class="new_to_mirror_mate_sec_rightside_button_wrapper">
+          {% if section.settings.btnurl1 != blank and section.settings.btnlabel1 != blank %}
+          <a href="{{ section.settings.btnurl1 }}" class="button">{{ section.settings.btnlabel1 }}</a>
+            {% endif %}
+           {% if section.settings.btnurl2 != blank and section.settings.btnlabel2 != blank %}
+          <a href="{{ section.settings.btnurl2 }}" class="button {% if section.settings.btnlabel1 != blank %}button--secondary{% endif %}">{{ section.settings.btnlabel2 }}</a>
+             {% endif %}
+        </div>
+           {% endif %}
+        {% if section.settings.bottom_content != blank %}
+        <div class="new_to_mirror_mate_sec_rightside_bottom_para">
+          {{ section.settings.bottom_content }}
+        </div>
+          {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+    {% endif %}
+{% schema %}
+  {
+    "name": "New to MirrorMate",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bgcolor",
+        "label": "Background Color",
+        "default":"#fff"
+      },
+      {
+        "type": "header",
+        "content": "Left side content"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default":"New to MirrorMate?"
+      },
+      {
+        "type": "header",
+        "content": "Right side content"
+      },
+      {
+        "type": "text",
+        "id": "btnlabel1",
+        "label": "Button Label 1",
+        "default":"request a quote"
+      },
+      {
+        "type": "url",
+        "id": "btnurl1",
+        "label": "Button URL 1",
+        "default":"/"
+      },
+     {
+        "type": "text",
+        "id": "btnlabel2",
+        "label": "Button Label 2",
+       "default":"create an account"
+      },
+      {
+        "type": "url",
+        "id": "btnurl2",
+        "label": "Button URL 2",
+        "default":"/"
+      },
+      {
+        "type": "richtext",
+        "id": "bottom_content",
+        "label": "Bottom Content",
+        "default":"<p>have an account? sign in here</p>"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "default":56,
+        "label": "Padding Top",
+        "step": 4
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "default":56,
+        "label": "Padding Bottom",
+        "step": 4
+      }
+    ],
+    "presets": [
+      {
+        "name": "New to MirrorMate"
+      }
+    ]
+  }
+{% endschema %}

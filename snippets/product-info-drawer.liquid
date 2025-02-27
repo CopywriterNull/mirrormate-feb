@@ -1,0 +1,64 @@
+<div class="product-drawer" id="Product-Drawer">
+    <div class="frame-overlay" js-overlay></div>
+    <div class="frame-drawer-main">
+        <div class="close__btn" js-trigger-close>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_2782_57492123)">
+                <path d="M19.0703 4.92896L4.92818 19.0711" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                <path d="M19.0718 19.0711L4.92969 4.92896" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_2782_57492123">
+                <rect width="24" height="24" fill="white"/>
+                </clipPath>
+                </defs>
+            </svg>
+        </div>
+        <div class="product-meta">
+            <div class="product-header-grid">
+                <div class="product__img">
+                    <img src="{{ product.featured_image | image_url: width: '300x' }}" alt="{{ product.featured_image.alt }}">
+                </div>
+                <div class="product__contents">
+                    <div class="product-reviews">
+                        {% render 'okendo-reviews-product-rating-summary', product: product %}
+                    </div>
+                    <h2 class="product_title">{{ product.title }}</h2>
+                    <span class="product__price" id="Product-Drawer-Price-{{ sectionId }}">
+                        from {{ product.selected_or_first_available_variant.price | money | remove: '.00' }}
+                    </span>
+                </div>
+            </div>
+            {% if product.metafields.custom.short_description != blank %}
+                <div class="product-short-desc">{{ product.metafields.custom.short_description | metafield_tag }}</div>
+            {% endif %}
+            <a href="{{ product.link }}" class="product__link">
+                <div class="link-label">View more details</div>
+                <div class="link__icon">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 7L14 2M14 2H10.6667M14 2V5.33333M14 9.33333V12.6667C14 13.0203 13.8595 13.3594 13.6095 13.6095C13.3594 13.8595 13.0203 14 12.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V3.33333C2 2.97971 2.14048 2.64057 2.39052 2.39052C2.64057 2.14048 2.97971 2 3.33333 2H6.66667" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </a>
+        </div>
+        <div class="drawer-scroll">
+            {% if product.metafields.custom.product_specs != blank %}
+                <div class="specs-grid">
+                    {% for product_specs in product.metafields.custom.product_specs.value %}
+                        {% if product_specs.image != blank and product_specs.title != blank %}
+                            <div class="specs-item">
+                                <div class="specs-img">
+                                    <img src="{{ product_specs.image | image_url: width: '300x' }}" alt="{{ product_specs.image.alt }}">
+                                </div>
+                                <h4 class="specs-title">{{ product_specs.title }}</h4>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% render "product-accordions", isWizard: true %}
+            {% render "product-meta-videos" %}
+            {% render "product-suggestion-pairings" %}
+        </div>
+    </div>
+</div>

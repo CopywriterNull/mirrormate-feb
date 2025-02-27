@@ -1,0 +1,34 @@
+.bg_image_with_text .button.button--secondary{background: #FFF;color:#3E5569;}
+.bg_image_with_text .banner__box{margin-top: 83px;border-radius: 12px;}
+.bg_image_with_text h2.banner__heading.inline-richtext.h1{font-family:var(--font-heading-family);font-size: 56px;font-weight: 500;line-height: 96%;letter-spacing: -1px;text-align: center;margin:0 0 16px;}
+.bg_image_with_text .banner__text p{line-height: 135%;max-width: 335px;margin: auto;}
+.bg_image_with_text .banner__text p a{color:inherit;text-decoration-thickness: 0.5px;}
+.bg_image_with_text.banner--content-align-center .banner__buttons--multiple>*{max-width:15em;min-width:unset;width:100%;}
+.bg_image_with_text .banner__buttons{display: flex;flex-wrap: nowrap;width: 100%;justify-content: center;max-width: 49rem;margin:auto;}
+.bg_image_with_text .banner__box>*+.banner__buttons {margin-top: 2.4rem;}
+.bg_image_with_text .banner__text.caption-with-letter-spacing{margin-top:18.5px;}
+.bg_image_with_text .banner__text.caption-with-letter-spacing p{color:#2D4256;font-size: 14px;font-style: normal;font-weight: 600;line-height: 135%;letter-spacing: 0.28px;}
+@media screen and (min-width: 1400px) {
+.bg_image_with_text .banner__box {max-width: 60rem;}
+}
+@media screen and (min-width: 750px) {
+.bg_image_with_text .banner__box {width: auto;max-width: 60rem;min-width: 60rem;}
+.template-delar-trade-template1 .bg_image_with_text .banner__box {margin-top: 93px;}
+.template-delar-trade-template1 .bg_image_with_text .banner__text.caption-with-letter-spacing{margin-top: 16.5px;}
+.template-delar-trade-template2 .bg_image_with_text .banner__box {margin-top: 99px;}
+.template-hotel-supply-2  .bg_image_with_text .banner__box{margin-top:80px;}
+.template-hotel-supply  .bg_image_with_text .banner__box{margin-top:80px;}
+.template-hotel-supply-2 .bg_image_with_text .button{max-width: 321px;width:100%;}
+.template-hotel-supply .bg_image_with_text .button{max-width: 321px;width:100%;}
+}
+@media(max-width:749px){
+  .bg_image_with_text .banner__box{margin-top:0;}
+  .bg_image_with_text h2.banner__heading.inline-richtext.h1{font-size: 32px;line-height: 115%;letter-spacing: -0.1px;}
+  .bg_image_with_text.banner--mobile-bottom .banner__box {padding: 2.4rem 0 5.6rem;}
+  .bg_image_with_text .banner__text p{max-width: 300px;margin: auto;}
+  .bg_image_with_text.banner--content-align-center .banner__buttons--multiple>* {max-width: 21em;}
+  .bg_image_with_text .banner__buttons{gap: 1.2rem;}
+  .bg_image_with_text .banner__text.caption-with-letter-spacing {margin-top: 16px;}
+  .bg_image_with_text .banner__buttons{flex-wrap:wrap;}
+  
+}

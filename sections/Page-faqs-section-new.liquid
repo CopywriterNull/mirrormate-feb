@@ -1,0 +1,262 @@
+{%- if section.settings.main_heading_text != blank or section.settings.main_information_text_1 != blank or section.settings.main_information_text_2 != blank or section.settings.main_detail_text != blank or section.blocks.size > 0 -%}
+  <div class="new_faq_section Product_faqs_accordions_main_new " style="background: {{ section.settings.main_background_color }};">
+    <div class="page-width">
+      <div class="Product_faqs_accordions_inner_new">
+        
+      {%- if section.settings.main_detail_text != blank or section.blocks.size > 0 -%}
+          <div class="Product_faqs_accordions_2_new">
+            <div class="Product_faqs_accordions_2_sides_new">
+              
+                <div class="Product_faqs_accordions_2_sides_mainleft_new">
+                </div>
+             {%- if section.blocks.size > 0 -%}
+                <div class="Product_faqs_accordions_2_sides_mainright_new">
+                  <div class="Product_faqs_accordions_2_sides_innerright_new Common_faqs_accordion_new">
+                    <div class="accordion">
+                      <ul class="list-unstyled">
+                         {% if section.settings.fag-title != blank %}
+                          <div id="id_{{ section.settings.fag-title | handle }}" class="faq-title">
+                    <h2>{{ section.settings.fag-title }}</h2>
+                 </div>
+                            {% endif %}
+                        {%- for block in section.blocks -%}
+                           
+                          {% if block.type == "faq-subtitle" %}  
+                            {% if block.settings.faq-sub-title != blank %}
+                            <div class="faq_subtitle">
+                              <h5>
+                                {{ block.settings.faq-sub-title }}
+                              </h5>
+                            </div>
+                            {% endif %}
+                          {% endif %}
+
+                          {% if block.type == "faq" %}
+                          {%- if block.settings.title != blank and block.settings.infos != blank -%}
+                            <li{% if forloop.first %} class="open"{% endif %}>
+                              {%- if block.settings.title != blank -%}
+                                <div class="question Index_meet_image_all_text_sides_innerright_infos_new">
+                                  <h2><p>{{ block.settings.title }}</p></h2>
+                                </div>
+                              {%- endif -%}
+                              {%- if block.settings.infos != blank -%}
+                                <div class="answer Index_meet_image_all_text_sides_innerright_infos_new"{% if forloop.first %} style="display:block;"{% endif %}>
+                                  {{ block.settings.infos }}
+                                </div>
+                              {%- endif -%}
+                            </li>
+                          {%- endif -%}  
+                          {% endif %}
+                             
+                        {%- endfor -%}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}  
+
+<style>
+
+  .Product_faqs_accordions_2_sides_mainleft_new { position: relative; }
+  body.sticky .left-side-grid { position: fixed; top: 50px; width: 100%; }
+  .Product_faqs_accordions_main_new{min-height:100vh;}
+  .template-faq .Index_object_instagram_new{margin-top:64px;}
+  .new_faq_section .page-width{ margin: 0 auto;}
+  .Product_faqs_accordions_inner_new { max-width: 1104px; margin: 0 auto; }
+  .new_faq_section .Product_faqs_accordions_2_new{width:100%;}
+  .new_faq_section .Product_faqs_accordions_2_sides_mainright_new {width: 100%;max-width:720px;}
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li{padding:16px 0;border-bottom:1px solid #3E556933; }
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul .faq_subtitle + li,
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul .faq-title + li{ padding-top: 24px; }
+  /* .new_faq_section .Common_faqs_accordion_new .accordion>ul>li:last-child{border-bottom:none;padding-bottom:0;} */
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .question { padding: 0; }
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .question h2{margin:0px 40px 0px 0px; }
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li.open .question h2{margin:0px 40px 8px 0px;}
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .question h2 p{margin:0;padding:0; font-weight: 600; line-height: 125%; }
+  .new_faq_section .Product_faqs_accordions_2_sides_new{padding-top:0;display:flex;justify-content: space-between;}
+  .new_faq_section .Product_faqs_accordions_2_sides_mainleft_new{width: 35%;padding-right: 20px;}
+  .new_faq_section.Product_faqs_accordions_main_new{padding:0px 0 32px;margin:0; }
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer{padding-top: 16px; ;margin-top:0;}
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer ul{list-style:disc;padding-left: 24px;}
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer p:not(:first-child) { padding-top: 16px; }
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer p,.new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer li{color: #2D4256;
+    font-size: 16px; font-weight: 400; line-height: 135%; margin: 0; padding-bottom: 16px; font-family: var(--font-body-family); padding: 0; margin: 0; }
+  /* .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer p{margin:0px 0 10px;} */
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer .table_div { overflow-x: scroll; padding: 0 1px 1px;}
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer .table_div table { width: max-content; }
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer table { width: 100%; text-align: center; margin-top: 16px; border-collapse: collapse; }
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer table td.bold { font-weight: 700 !important; text-align: left; padding: 12px 8px !important; }
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer table td, 
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer table th { border: 1px solid #D8DDE1 !important; padding: 12px; }
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer table h6 { font-size: 14px; font-weight: 600; line-height: 135%;
+    color: #2D4256; margin: 0; }
+   .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer table th p { font-size: 12px; font-weight: 400; line-height: 135%;
+    color: #2D4256; padding-top: 2px !important; }
+.new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer table td { font-size: 14px; font-weight: 400; line-height: 135%;
+    color: #2D4256; margin: 0;}
+  .bold { font-weight: 700 !important;}
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer table.shipping_table th { padding: 12px; font-size: 14px; font-weight: 600; line-height: 135%;
+    color: #2D4256; margin: 0;}
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer table.shipping_table td:first-child { text-align:left; padding: 12px 5px 11px 8px; }
+    .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer table.shipping_table td:first-child p { font-size: 12px; font-weight: 400; line-height: 135%;
+    color: #2D4256; padding-top: 2px !important; }
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer table img { width: 42px; height: 42px !important; display: block; margin: 0 auto 10px; }
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer ul li::marker { font-size: 12px; }
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer * + ol, .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer * + ul { padding-top: 8px; }
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer ol { padding-left: 20px; }
+  .new_faq_section .Product_faqs_accordions_2_sides_innerleft_new h2 { margin: 0; padding-bottom:24px;  text-align: center; font-size: 20px; font-weight: 500; line-height: 120%; letter-spacing: -.2px; font-family: var(--font-heading-family);}
+  .new_faq_section .Product_faqs_accordions_2_sides_innerleft_new{ padding: 24px; border-radius: 12px; }
+  .new_faq_section .faq-title h2{font-family:var(--font-heading-family);margin:0; font-size: 32px; letter-spacing: -0.1px; color: #2D4256; font-weight: 500;line-height: 115%; text-align: left;text-transform:none; }
+  .new_faq_section .faq_subtitle { padding-top: 32px; }
+  .new_faq_section .accordion>ul>li + .faq_subtitle { padding-top: 48px; }
+  .new_faq_section .faq_subtitle h5 { margin: 0;  font-size: 20px; font-weight: 500; line-height: 120%; letter-spacing: -.2px; font-family: var(--font-heading-family); }
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .question{position:relative;}
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .question:before{transition:all 0.5s ease;content:'';position:absolute; background: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(%23clip0_3787_23291)"><path d="M8 1.33203V14.6654" stroke="%232D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/><path d="M14.6668 8H1.3335" stroke="%232D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/></g><defs><clipPath id="clip0_3787_23291"><rect width="16" height="16" fill="white"/></clipPath></defs></svg>'); background-repeat: no-repeat; background-size: contain; top: 0;right:0;width:16px;height:16px;}
+  .new_faq_section .Common_faqs_accordion_new .accordion>ul>li.open .question:before{background: url('data:image/svg+xml,<svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(%23clip0_3787_23169)"><path d="M15.1668 8H1.8335" stroke="%232D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_3787_23169"><rect width="16" height="16" fill="white" transform="translate(0.5)"/></clipPath></defs></svg>')}
+  .new_faq_section li + .faq-title{margin-top:80px;}
+  .new_faq_section .faq-title a{text-decoration:none;}
+  /* .new_faq_section .accordion{border: 1px solid #000000;background: #fff;padding: 32px 24px;} */
+  .new_faq_section .Product_faqs_accordions_2_sides_innerleft_new{ padding: 32px 24px;}
+ @media(min-width:1500px){
+    .new_faq_section .Product_faqs_accordions_2_sides_new{justify-content: center;}
+  }
+  @media (max-width:1300px){
+    .new_faq_section .Product_faqs_accordions_2_sides_new{justify-content: space-between;}
+    .new_faq_section .Product_faqs_accordions_2_sides_mainright_new {width: 60.695%;}
+  }
+  @media(max-width:1025px){
+    .new_faq_section .Product_faqs_accordions_2_sides_mainleft_new{padding-right: 35px;}
+    /* .new_faq_section .Product_faqs_accordions_2_sides_innerleft_new h2{font-size: 38px;line-height: 49.2px;} */
+    /* .new_faq_section .faq-title h2{font-size: 48px;line-height: 60px;} */
+    .new_faq_section .page-width{padding:0 20px!important;}
+    
+  }
+
+  @media(max-width: 991px){
+    .new_faq_section .Product_faqs_accordions_2_sides_new { flex-direction: column; gap: 32px; }
+    .new_faq_section .Product_faqs_accordions_2_sides_mainleft_new { padding-right: 0; width: 100%; }
+    .new_faq_section .left-side-grid { position: unset; max-width: 100%; }
+    /* .Product_faqs_accordions_2_sides_innerleft_new { background-color: transparent !important; } */
+
+    .new_faq_section .Product_faqs_accordions_2_sides_innerleft_new { padding: 20px; position: relative; border-radius: 0; }
+    .new_faq_section .Product_faqs_accordions_2_sides_mainright_new { width: 100%; max-width: 100%; }
+    .new_faq_section .faq_subtitle { padding-top: 24px; }
+    .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .question h2 p { font-size: 16px; }
+    .Product_faqs_accordions_main_new { min-height: unset; }
+    .Product_faqs_accordions_inner_new { padding-bottom: 56px; }
+    .new_faq_section.Product_faqs_accordions_main_new { padding-bottom: 0; }
+  }
+  
+  @media(max-width:900px){
+    /* .new_faq_section .Product_faqs_accordions_2_sides_mainleft_new {width: 55%;} */
+    .new_faq_section .faq-title h2 {font-size: 24px;line-height: 26.4px;}
+    /* .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .question h2 p {font-size:16px;line-height: 22.4px;} */
+    /* .new_faq_section .Common_faqs_accordion_new .accordion>ul>li {padding: 16px 0;} */
+    .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .question {background-size: 14px;}
+    .new_faq_section li + .faq-title {margin-top: 40px;}
+    .new_faq_section .faq-title h2 {margin: 0 0 -3px;}
+    /* .new_faq_section .page-width {padding: 0 55px !important;} */
+    /* .new_faq_section .Product_faqs_accordions_2_sides_mainleft_new { padding-right: 65px;} */
+  }
+  @media(max-width:768px){
+    .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer ul{list-style:none;padding-left:0;}
+    .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer ul li{margin-bottom:10px;}
+    .template-faq .Index_object_instagram_new {margin-top: 56px;}
+    /* .new_faq_section .accordion{padding:24px 20px;} */
+    .new_faq_section .Product_faqs_accordions_2_sides_mainright_new {width: 100%;}
+    .new_faq_section .Product_faqs_accordions_2_sides_mainleft_new {padding-right:0px;width: 100%;display: block;z-index:0;margin-bottom:0px;}
+    /* .new_faq_section .Product_faqs_accordions_2_sides_new {padding-top: 0;flex-direction: column;row-gap: 24px;} */
+    .new_faq_section .page-width {padding: 0 20px !important;}
+    /* .new_faq_section .Product_faqs_accordions_2_sides_innerleft_new{padding:0;} */
+    .new_faq_section.Product_faqs_accordions_main_new {padding: 0;}
+    .new_faq_section .faq-title h2{line-height:26.4px;}
+    .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer{padding: 1px 0px 0px 0;}
+    .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .answer p{line-height: 21.6px;}
+    .new_faq_section .Common_faqs_accordion_new .accordion>ul>li.open{padding-top:16px;}
+    .new_faq_section li + .faq-title {margin-top: 44px;}
+    .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .question {background-size: 15px;}
+    .new_faq_section .Common_faqs_accordion_new .accordion>ul>li .question:before{width: 12.75px;height: 13px;background-size: contain;top: 5px;}
+    
+  }
+</style>   
+
+{% schema %}
+  {
+    "name": "FAQs",
+    "class": "Product_faqs_accordions_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "text",
+        "id": "fag-title",
+        "label": "FAQ Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "faq-subtitle",
+        "name": "FAQ Sub title",
+        "settings": [
+          {
+            "type": "text",
+            "id": "faq-sub-title",
+            "label": "FAQ Sub Title"
+          }
+        ]
+      },
+      {
+        "type": "faq",
+        "name":"FAQ",
+        "settings": [
+          
+     {
+            "type": "textarea",
+            "id": "title",
+            "label": "Add Main Question Text",
+            "default": "Lorem Ipsum is simply dummy?"
+          },
+          {
+            "type": "html",
+            "id": "infos",
+            "label": "Add Main Answer Text",
+            "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "FAQs",
+        "blocks": [
+          {
+            "type": "faq-subtitle"
+          },
+          { 
+            "type": "faq"
+          },
+          {
+            "type": "faq"
+          },
+          {
+            "type": "faq"
+          },
+          {
+            "type": "faq"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

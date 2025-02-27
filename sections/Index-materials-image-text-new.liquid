@@ -1,0 +1,269 @@
+{% if section.settings.main_heading_text != blank or section.settings.main_material_heading_text != blank or section.settings.main_material_list != blank or section.settings.main_need_heading_text != blank or section.settings.box_background_color != blank or section.settings.box_image != blank or section.settings.box_information_text != blank or section.settings.main_image != blank or section.settings.main_mp4_video != blank %}
+  <div class="Index_material_image_text_main_new" style="background-color: {{ section.settings.main_background_color }}">
+    <div class="page-width">
+      <div class="Index_material_image_text_inner_new">
+        {% if section.settings.main_heading_text != blank %}
+                <div class="Index_material_image_text_main_heading_text mobile_main_heading Common_title_new medium-hide large-up-hide">
+                  <h4>
+                    {{ section.settings.main_heading_text }}
+                  </h4>
+                </div>
+              {% endif %}
+        <div class="Index_material_image_text_sides_new">
+          {% if section.settings.main_heading_text != blank or section.settings.main_material_heading_text != blank or section.settings.main_material_list != blank or section.settings.main_need_heading_text != blank or section.settings.box_background_color != blank or section.settings.box_image != blank or section.settings.box_information_text != blank %}
+          <div class="Index_material_image_text_sides_leftmain">
+            <div class="Index_material_image_text_sides_leftinner">
+              {% if section.settings.main_heading_text != blank %}
+                <div class="Index_material_image_text_main_heading_text Common_title_new small-hide">
+                  <h4>
+                    {{ section.settings.main_heading_text }}
+                  </h4>
+                </div>
+              {% endif %}
+              {% if section.settings.main_material_heading_text != blank or section.settings.main_material_list != blank %}
+                <div class="Index_material_image_text_materials_main">
+                  {% if section.settings.main_material_heading_text != blank %}
+                    <div class="Index_material_image_text_materials_heading_text Common_subtitle_new">
+                      <span>
+                        {{ section.settings.main_material_heading_text }}
+                      </span>
+                    </div>
+                  {% endif %}
+                  {% if section.settings.main_material_list != blank %}
+                    <div class="Index_material_image_text_materials_list">
+                        {{ section.settings.main_material_list }}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
+              <div class="Index_material_image_text_need_materials_main">
+                <div class="Index_material_image_text_need_materials_inner">
+                  {% if section.settings.main_need_heading_text %}
+                    <div class="Index_material_image_text_need_materials_heading_text Common_subtitle_new">
+                      <span>
+                        {{ section.settings.main_need_heading_text }}
+                      </span>
+                    </div>
+                  {% endif %}
+                  {%- if section.blocks.size > 0 -%}
+                    <div class="Index_material_image_text_need_materials_information_main">
+                      {%- for block in section.blocks -%}
+                        {% if block.type == "hover-material-box" %}
+                          {% if block.settings.material_title != blank or block.settings.hover_material_box_background_color != blank or block.settings.hover_material_box_image != blank or block.settings.hover_material_box_image_background_color != blank or block.settings.hover_material_box_information_text != blank %}
+                            <div class="Index_material_image_text_need_materials_information_title_main">
+                              {% if block.settings.material_title %}
+                                <div class="Index_material_image_text_need_materials_information_title_inner">
+                                  <div class="Index_material_image_text_need_material_title Index_meet_image_all_text_sides_innerright_infos_new">
+                                    <p>
+                                      {{ block.settings.material_title }}
+                                    </p>
+                                  </div>
+                                  <div class="Index_material_image_text_need_material_title_info_icon">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 7.33333V10.6667M8 14C7.21207 14 6.43185 13.8448 5.7039 13.5433C4.97595 13.2417 4.31451 12.7998 3.75736 12.2426C3.20021 11.6855 2.75825 11.0241 2.45672 10.2961C2.15519 9.56815 2 8.78793 2 8C2 7.21207 2.15519 6.43185 2.45672 5.7039C2.75825 4.97595 3.20021 4.31451 3.75736 3.75736C4.31451 3.20021 4.97595 2.75825 5.7039 2.45672C6.43185 2.15519 7.21207 2 8 2C9.5913 2 11.1174 2.63214 12.2426 3.75736C13.3679 4.88258 14 6.4087 14 8C14 9.5913 13.3679 11.1174 12.2426 12.2426C11.1174 13.3679 9.5913 14 8 14ZM8.03333 5.33333V5.4H7.96667V5.33333H8.03333Z" stroke="#2D4256" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+
+                                  </div>
+                                </div>
+                                  {% if block.settings.hover_material_box_background_color != blank or block.settings.hover_material_box_image != blank or block.settings.hover_material_box_image_background_color != blank or block.settings.hover_material_box_information_text != blank %}
+                                    <div class="Index_material_image_text_need_material_hover_box" style="background-color: {{ block.settings.hover_material_box_background_color }}">
+                                      <div class="Index_material_image_text_need_material_hover_box_inner">
+                                        {% if block.settings.hover_material_box_image != blank %}
+                                          <div class="Index_material_image_text_need_material_hover_box_image" style="background-color: {{ block.settings.hover_material_box_image_background_color }}">
+                                            {{
+                                              block.settings.hover_material_box_image | 
+                                              image_url: width: img.width | 
+                                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                              fetchpriority: 'auto', 
+                                              class:'material_box_image_new'
+                                            }}
+                                          </div>
+                                        {% endif %}
+                                        {% if block.settings.hover_material_box_information_text != blank %}
+                                          <div class="Index_material_image_text_need_material_hover_box_information_text Index_meet_image_all_text_sides_innerright_infos_new">
+                                            {{ block.settings.hover_material_box_information_text }}
+                                          </div>
+                                        {% endif %}
+                                      </div>
+                                    </div>
+                                  {% endif %}
+                              {% endif %}
+                          </div>
+                          {% endif %}
+                        {% endif %}
+                      {%- endfor -%}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+              {% if section.settings.box_background_color != blank or section.settings.box_image != blank or section.settings.box_information_text != blank %}
+              <div class="Index_material_image_text_sides_box_main">
+                <div class="Index_material_image_text_sides_box" style="background-color: {{ section.settings.box_background_color }}">
+                  {% if section.settings.box_image != blank %}
+                    <div class="Index_material_image_text_sides_box_image">
+                      {{
+                        section.settings.box_image | 
+                        image_url: width: img.width | 
+                        image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                        fetchpriority: 'auto', 
+                        class:'box_image_new'
+                      }}
+                    </div>
+                  {% endif %}
+                  {% if section.settings.box_information_text != blank %}
+                    <div class="Index_material_image_text_sides_box_information_text Index_meet_image_all_text_sides_innerright_infos_new">
+                      {{ section.settings.box_information_text }}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          {% endif %}
+          {% if section.settings.main_image != blank or section.settings.main_mp4_video != blank %}
+            <div class="Index_material_image_text_sides_rightmain">
+              <div class="Index_material_image_text_sides_rightinner">
+                <div class="Index_material_image_video_main">
+                  {% if section.settings.main_mp4_video != blank %}
+                    <div class="Index_material_video_main">
+                      {{ section.settings.main_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                    </div>
+                    {% else %}
+                      {% if section.settings.main_image != blank %}
+                        <div class="Index_material_image_main">
+                          {{
+                                section.settings.main_image | 
+                                image_url: width: img.width | 
+                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                fetchpriority: 'auto', 
+                                class:'main_image_new'
+                              }}
+                        </div>
+                      {% endif %}
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+
+
+{% schema %}
+  {
+     "name": "Index Material Image Text",
+    "class": "Index_materials_image_text_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "video",
+        "id": "main_mp4_video",
+        "label": "Add Main MP4 Video"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_image",
+        "label": "Add Main Image"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "The Materials"
+      },
+      {
+        "type": "textarea",
+        "id": "main_material_heading_text",
+        "label": "Add Main Material Heading Text",
+        "default": "What’s included"
+      },
+      {
+        "type": "richtext",
+        "id": "main_material_list",
+        "label": "Add Material List Items",
+        "default": "<ul><li>4 frame legs</li><li>Alcohol wipes</li><li>Wood glue</li><li>Marker (for select styles)</li><li>8-12 frame connectors (short and/or long)</li><li>2-3 placement corner blocks</li><li>Replacement clip pack (if necessary)</li></ul>"
+      },
+      {
+        "type": "textarea",
+        "id": "main_need_heading_text",
+        "label": "Add Main Need Heading Text",
+        "default": "What else you’ll need"
+      },
+      {
+        "type": "color",
+        "id": "box_background_color",
+        "label": "Add Box Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "image_picker",
+        "id": "box_image",
+        "label": "Add Box Image"
+      },
+      {
+        "type": "textarea",
+        "id": "box_information_text",
+        "label": "Add Box Information Text",
+        "default": "<p>Our easy-install frame kit requires zero handiwork skills, making it <span>a true DIY project</span> that anyone can do!</p>"
+      },
+    ],
+    "blocks": [
+      {
+        "type": "hover-material-box",
+        "name": "Hover Material Box",
+        "limit": 3,
+        "settings": [
+          {
+            "type": "color",
+            "id": "hover_material_box_background_color",
+            "label": "Add Material Box Background Color",
+            "default": "#FFFFFF"
+          },
+          {
+            "type": "text",
+            "id": "material_title",
+            "label": "Add Material Title",
+            "default": "Damp rag"
+          },
+          {
+            "type": "image_picker",
+            "id": "hover_material_box_image",
+            "label": "Add Material Box Image"
+          },
+          {
+            "type": "color",
+            "id": "hover_material_box_image_background_color",
+            "label": "Add Material Box Image Background Color",
+            "default": "#F6F3F2"
+          },
+          {
+            "type": "textarea",
+            "id": "hover_material_box_information_text",
+            "label": "Add Material Box Information Text",
+            "default": "<p>Helpful for making sure that your mirror is perfectly aligned to a horizontal plane</p>"
+          },
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Index Materials Image Text",
+        "blocks": [
+          {
+            "type": "hover-material-box"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

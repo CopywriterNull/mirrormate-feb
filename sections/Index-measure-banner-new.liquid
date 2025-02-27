@@ -1,0 +1,258 @@
+
+{{  "index-measure-banner.css" |  asset_url |  stylesheet_tag }}
+
+{%- if section.settings.main_sub_title != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_text != blank or section.settings.main_button_link != blank or section.settings.main_desktop_image != blank -%}
+<div class="index-measure-banner Index_measure_banner_main_new {{ section.settings.custom_class_name }}" style="background: {{ section.settings.main_background_color }};">
+  <div class="page-width">
+    <div class="Index_measure_banner_inner_new">
+      <div class="Index_measure_banner_top_new">
+       {%- if section.settings.main_sub_title != blank or section.settings.main_heading_text != blank -%}
+        <div class="Index_measure_banner_left">
+          {%- if section.settings.main_sub_title != blank -%}
+            <div class="Common_subtitle_new Index_measure_banner_left_subtitle">
+              <span>
+                {{ section.settings.main_sub_title }}
+              </span>
+            </div>
+          {%- endif -%}
+          {%- if section.settings.main_heading_text != blank -%}
+            <div class="Common_title_new Index_measure_banner_left_main_heading">
+              <h1>
+                {{ section.settings.main_heading_text }}
+              </h1>
+            </div>
+          {%- endif -%}
+        </div>
+       {%- endif -%}
+       {%- if section.settings.main_information_text != blank or section.settings.main_button_text != blank or section.settings.main_button_link != blank -%}
+       <div class="Index_measure_banner_right">
+         {%- if section.settings.main_information_text != blank -%}
+           <div class="Index_measure_banner_information_text Index_meet_image_all_text_sides_innerright_infos_new">
+             {{ section.settings.main_information_text }}
+           </div>
+         {%- endif -%}
+         <div class=" {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank and section.settings.main_button_text_2 != blank and section.settings.main_button_link_2 != blank  -%}  two_buttons {% endif %} Index_meet_image_all_text_sides_innerright_buttons">
+           {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+            <div class="Index_meet_image_all_text_sides_innerright_button_new">
+              {% if section.settings.is_measurement_btn and section.settings.video_en != blank and section.settings.video_spanish != blank %}
+                <how-to-measure class="button measurement__btn" data-video-url="{{ section.settings.video_en }}">
+                  <div class="play__icon" js-play-icon>
+                    <svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0.987553 0.626405C0.894094 0.553813 0.784122 0.510684 0.669687 0.501742C0.555251 0.492801 0.440767 0.518393 0.338778 0.575713C0.236789 0.633034 0.15123 0.719872 0.0914736 0.826713C0.0317176 0.933555 7.07116e-05 1.05628 0 1.18144V14.8186C7.07116e-05 14.9437 0.0317176 15.0664 0.0914736 15.1733C0.15123 15.2801 0.236789 15.367 0.338778 15.4243C0.440767 15.4816 0.555251 15.5072 0.669687 15.4983C0.784122 15.4893 0.894094 15.4462 0.987553 15.3736L9.73803 8.55503C9.81905 8.49196 9.88509 8.40868 9.93066 8.31214C9.97623 8.2156 10 8.10859 10 8C10 7.89141 9.97623 7.7844 9.93066 7.68786C9.88509 7.59132 9.81905 7.50804 9.73803 7.44497L0.987553 0.626405Z" fill="white"/>
+                      </svg>
+                  </div>
+                  <span class="btn__label">{{ section.settings.main_button_text }}</span>  
+                  <div class="language__selector" js-language-selector>
+                    <div class="selector">
+                      <span class="select__label" js-select-value>EN</span>
+                      <div class="select__icon">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9.375 4.875L6 8.25L2.625 4.875" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="language__dropdown" js-language-dropdown>
+                      <div class="language-item is-selected" js-option-item data-language="EN" data-video-url="{{ section.settings.video_en }}">
+                        <span class="language__label">English</span>
+                        <span class="checkmark">
+                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 6L4.5 9.5L11 3" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </span>
+                      </div>
+                      <div class="language-item" js-option-item data-language="SP" data-video-url="{{ section.settings.video_spanish }}">
+                        <span class="language__label">Spanish</span>
+                        <span class="checkmark">
+                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 6L4.5 9.5L11 3" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </how-to-measure>
+              {% else %}
+                <a href="{{ section.settings.main_button_link }}" class="button">
+                  {{ section.settings.main_button_text }}  
+                </a>
+              {% endif %}
+            </div>
+         {%- endif -%}
+         {%- if section.settings.main_button_text_2 != blank and section.settings.main_button_link_2 != blank -%}
+            <div class="Index_meet_image_all_text_sides_innerright_button_new hb_button_wrap">
+              <a target="_blank" js-instruction-link href="{{ section.settings.main_button_link_2 }}" class="button button_white_new">
+                <div class="hb_down_icon">
+                  <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 15L5.6875 9.375L7.175 7.74375L9.9375 10.6687V1.5H12.0625V10.6687L14.825 7.74375L16.3125 9.375L11 15ZM4.625 19.5C4.04062 19.5 3.54054 19.2799 3.12475 18.8396C2.70896 18.3994 2.50071 17.8695 2.5 17.25V13.875H4.625V17.25H17.375V13.875H19.5V17.25C19.5 17.8687 19.2921 18.3986 18.8763 18.8396C18.4605 19.2806 17.9601 19.5007 17.375 19.5H4.625Z" fill="#2D4256"/>
+                  </svg>
+                </div>
+                {{ section.settings.main_button_text_2 }}  
+              </a>
+              <div class="language__selector" js-ins-language-selector>
+                <div class="selector">
+                  <span class="select__label" js-ins-select-value>EN</span>
+                  <div class="select__icon">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9.375 4.875L6 8.25L2.625 4.875" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="language__dropdown" js-ins-language-dropdown>
+                  <div class="language-item is-selected" js-ins-option-item data-language="EN" data-url="{{ section.settings.main_button_link_2 }}">
+                    <span class="language__label">English</span>
+                    <span class="checkmark">
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 6L4.5 9.5L11 3" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="language-item" js-ins-option-item data-language="SP" data-url="{{ section.settings.main_button_link_3 }}">
+                    <span class="language__label">Spanish</span>
+                    <span class="checkmark">
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 6L4.5 9.5L11 3" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+         {%- endif -%}
+         </div>
+         
+       </div>
+       {%- endif -%}      
+      </div>
+      
+    </div>
+  </div>
+  {%- if section.settings.main_desktop_image != blank and section.settings.main_mobile_image  -%}
+    <div class="Index_measure_banner_main_img">
+      {%- if section.settings.main_desktop_image != blank -%}
+    <div class="Index_measure_banner_main_desktop_img">
+          {{
+              section.settings.main_desktop_image| 
+              image_url: width: img.width | 
+              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+              fetchpriority: 'auto', 
+              class:'banner_image_new'
+          }}
+        </div>
+      {%- endif  -%}
+      {%- if section.settings.main_mobile_image != blank -%}
+    <div class="Index_measure_banner_main_mobile_img">
+          {{
+              section.settings.main_mobile_image| 
+              image_url: width: img.width | 
+              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+              fetchpriority: 'auto', 
+              class:'banner_image_new'
+          }}
+        </div>
+      {%- endif  -%}
+    </div>
+  {%- endif  -%}
+  {% if section.settings.is_measurement_btn and section.settings.video_en != blank and section.settings.video_spanish != blank %}
+    <script src="{{ 'how-to-measure-model.js' | asset_url }}" defer="defer"></script>
+    {% render "how-to-measure-model" %}
+  {% endif %}
+</div>
+{%- endif  -%}
+
+  
+ 
+{% schema %}
+  {
+    "name": "Index Measure Banner",
+    "class": "Index_measure_banner_new",
+    "settings": [
+      {
+        "type": "text",
+        "id": "custom_class_name",
+        "label": "Custom Class Name"
+      },
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "text",
+        "id": "main_sub_title",
+        "label": "Add Main Sub Title",
+        "default": "HOW TO MEASURE"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Measure Your Mirror In Less Than 3 min"
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "<p>Once you select your desired style, it’s time to measure your mirror. <span>All you need is a tape measure</span> to start our simple, 3-minute measuring process.</p>"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "How to measure"
+      },
+      {
+        "type": "checkbox",
+        "id": "is_measurement_btn",
+        "label": "Is measurement button",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "video_en",
+        "label": "Video url (English)"
+      },
+      {
+        "type": "text",
+        "id": "video_spanish",
+        "label": "Video url (Spanish)"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text_2",
+        "label": "Add Main Button Text 2"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link_2",
+        "label": "Add Main Button Link (English)"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link_3",
+         "label": "Add Main Button Link (Spanish)"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_desktop_image",
+        "label": "Add Main Desktop Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_mobile_image",
+        "label": "Add Main Mobile Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Index Measure Banner"
+      }
+    ]
+  }
+{% endschema %}

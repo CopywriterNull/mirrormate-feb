@@ -1,0 +1,159 @@
+{{ "Page-2-column-contact-cards.css" | asset_url | stylesheet_tag }}
+
+{% if section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.blocks.size > 0 %}
+  <div class="Page_2_column_contact_cards_main Page_2_column_contact_cards_main_{{ section.id }}" style="background-color: {{ section.settings.main_background_color }}" data-aos="fade-up">
+    <div class="page-width">
+      <div class="Page_2_column_contact_cards_inner">
+        {% if section.settings.main_heading_text != blank or section.settings.main_information_text != blank %}
+          <div class="Page_2_column_contact_cards_main_heading_container">
+            {% if section.settings.main_heading_text != blank %}
+              <div class="Page_2_column_contact_cards_main_heading_text">
+                <h3>
+                  {{ section.settings.main_heading_text }}
+                </h3>
+              </div>
+            {% endif %}
+            {% if section.settings.main_information_text != blank %}
+              <div class="Page_2_column_contact_cards_main_information_text">
+                {{ section.settings.main_information_text }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+        {% if section.blocks.size > 0 %}
+          <div class="Page_2_column_contact_cards_main_grid">
+            {% for block in section.blocks %}
+              {% if block.type == "contact-card" %}
+                {% if block.settings.card_title != blank or block.settings.contact_number != blank or block.settings.contact_email != blank or block.settings.card_image != blank %}
+                  <div class="Page_2_column_contact_card" style="background-color: {{ block.settings.card_background_color }}">
+                    {% if block.settings.card_title != blank or block.settings.contact_number != blank or block.settings.contact_email != blank %}
+                      {% if block.settings.card_title != blank  %}
+                        <div class="Page_2_column_contact_card_title">
+                          <h6>
+                            {{ block.settings.card_title }}
+                          </h6>
+                        </div>
+                      {% endif %}
+                      {% if block.settings.contact_number != blank or block.settings.contact_email != blank %}
+                        <div class="Page_2_column_card_contact_deatils">
+                          {% if block.settings.contact_number != blank %}
+                            <div class="Page_2_column_card_contact_main">
+                              <div class="contact_icon call_icon"> 
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M22.0996 15.389L17.038 13.1207C16.8087 13.0225 16.5585 12.983 16.31 13.0058C16.0615 13.0286 15.8227 13.1131 15.6151 13.2515C15.5941 13.265 15.574 13.2801 15.5551 13.2965L12.9097 15.5465C12.8822 15.5615 12.8517 15.5699 12.8204 15.571C12.7892 15.5721 12.7581 15.5659 12.7297 15.553C11.0292 14.7322 9.26776 12.9814 8.4438 11.3046C8.43008 11.2766 8.42295 11.2458 8.42295 11.2146C8.42295 11.1834 8.43008 11.1526 8.4438 11.1246L10.7014 8.44592C10.7176 8.42612 10.7326 8.40537 10.7464 8.38378C10.8829 8.17538 10.9653 7.93628 10.9863 7.68804C11.0072 7.43981 10.966 7.19027 10.8664 6.96194L8.61416 1.9089C8.48626 1.61061 8.26507 1.36185 7.98378 1.19996C7.70249 1.03806 7.37628 0.971763 7.05411 1.01101C5.65395 1.19508 4.36871 1.88269 3.43858 2.94533C2.50846 4.00797 1.99708 5.37294 2.00001 6.78515C2.00001 15.1747 8.82524 22 17.2148 22C18.627 22.0027 19.9918 21.4912 21.0544 20.5611C22.117 19.6311 22.8046 18.346 22.9889 16.9459C23.0281 16.6252 22.9627 16.3005 22.8025 16.02C22.6422 15.7395 22.3957 15.5182 22.0996 15.389ZM17.2148 20.7142C9.53455 20.7142 3.28577 14.4654 3.28577 6.78515C3.28219 5.68575 3.679 4.62265 4.40207 3.79448C5.12514 2.96631 6.125 2.42973 7.21483 2.28499H7.23947C7.28265 2.28579 7.32458 2.29962 7.35976 2.32467C7.39494 2.34972 7.42173 2.38481 7.43662 2.42535L9.69741 7.47303C9.71031 7.5011 9.71698 7.53161 9.71698 7.5625C9.71698 7.59338 9.71031 7.6239 9.69741 7.65197L7.43555 10.3371C7.41876 10.3563 7.40336 10.3767 7.38948 10.3981C7.24794 10.6142 7.1646 10.8632 7.14752 11.1209C7.13044 11.3786 7.1802 11.6364 7.29198 11.8693C8.24237 13.815 10.2031 15.7608 12.1704 16.7112C12.4046 16.8224 12.6636 16.8709 12.9222 16.8522C13.1808 16.8334 13.4301 16.7479 13.6458 16.6041C13.6661 16.5901 13.6865 16.5751 13.7058 16.5591L16.3501 14.309C16.3763 14.295 16.4051 14.2867 16.4347 14.2849C16.4643 14.283 16.4939 14.2876 16.5216 14.2983L21.5842 16.5666C21.6256 16.5842 21.6604 16.6144 21.6836 16.6528C21.7069 16.6913 21.7175 16.7361 21.7139 16.7809C21.5699 17.8712 21.0338 18.8718 20.2058 19.5957C19.3779 20.3196 18.3146 20.7172 17.2148 20.7142Z" fill="#2D4256"></path>
+                                </svg>
+                              </div>
+                              <div class="contact_text contact_number">
+                                <a href="tel:{{ block.settings.contact_number }}">
+                                  {{ block.settings.contact_number }}
+                                </a>
+                              </div>
+                            </div>
+                          {% endif %}
+                          {% if block.settings.contact_email != blank %}
+                            <div class="Page_2_column_card_contact_main">
+                              <div class="contact_icon email_icon"> 
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M21.4286 4H2.57143C2.15466 4 1.75496 4.16857 1.46026 4.46863C1.16556 4.76869 1 5.17565 1 5.6V18.4C1 18.8243 1.16556 19.2313 1.46026 19.5314C1.75496 19.8314 2.15466 20 2.57143 20H21.4286C21.8453 20 22.245 19.8314 22.5397 19.5314C22.8344 19.2313 23 18.8243 23 18.4V5.6C23 5.17565 22.8344 4.76869 22.5397 4.46863C22.245 4.16857 21.8453 4 21.4286 4ZM19.7 5.6L12 11.024L4.3 5.6H19.7ZM2.57143 18.4V6.328L11.5521 12.656C11.6837 12.7489 11.8399 12.7987 12 12.7987C12.1601 12.7987 12.3163 12.7489 12.4479 12.656L21.4286 6.328V18.4H2.57143Z" fill="#2D4256"></path>
+                                </svg>
+                              </div>
+                              <div class="contact_text contact_email">
+                                <a href="mailto:{{ block.settings.contact_email }}">
+                                  {{ block.settings.contact_email }}
+                                </a>
+                              </div>
+                            </div>
+                          {% endif %}
+                        </div>
+                      {% endif %}
+                      {% if block.settings.card_image != blank %}
+                        <div class="Page_2_column_contact_card_image">
+                          {{
+                            block.settings.card_image | 
+                            image_url: width: img.width | 
+                            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                            fetchpriority: 'auto', 
+                            class:'card_image'
+                          }}
+                        </div>
+                      {% endif %}
+                    {% endif %}
+                  </div>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Page 2 Col Contact Cards",
+    "class": "Page_2_column_contact_cards",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFF"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Need additional help?"
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "<p>For MirrorMate & CabinetMate quotes and free samples of frames & doors, contact Multifamily Sales:</p>"
+      },
+    ],
+    "blocks": [
+      {
+        "type": "contact-card",
+        "name": "Contact card",
+        "settings": [
+          {
+            "type": "color",
+            "id": "card_background_color",
+            "label": "Add Card Background Color",
+            "default": "#F6F3F2"
+          },
+          {
+            "type": "text",
+            "id": "card_title",
+            "label": "Add card Title",
+            "default": "Mirrormate"
+          },
+          {
+            "type": "text",
+            "id": "contact_number",
+            "label": "Add Contact Number",
+            "default": "(704)-390-7374"
+          },
+          {
+            "type": "text",
+            "id": "contact_email",
+            "label": "Add Contact Email",
+            "default": "multifamily@mirrormate.com"
+          },
+          {
+            "type": "image_picker",
+            "id": "card_image",
+            "label": "Add Card Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Page 2 Column Contact Cards",
+      }
+    ]
+  }
+{% endschema %}

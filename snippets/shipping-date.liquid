@@ -1,0 +1,25 @@
+{% if shop.metaobjects.shipping_data.values_count > 0 %}
+    {% assign shippingInfo = shop.metaobjects.shipping_data.values | first %}
+    {%- assign product_sku = product.selected_or_first_available_variant.sku | slice: 0 -%}
+
+    <div class="shipping-info{% if product_sku == 'S' %} sample-delivery-date{% endif %}" js-shipping-date>
+    {%- if product_sku == 'S' -%}
+        <div class="shipping-text">{{ shippingInfo.text_sample__product }}</div>
+    {%- else -%}
+        <div class="shipping-icon">
+            <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="9.5" cy="10" r="4.5" fill="#078A1C"/>
+                <circle cx="9.5" cy="10" r="7" stroke="#078A1C" stroke-opacity="0.2" stroke-width="5"/>
+            </svg>
+        </div>
+        <div class="shipping-text">
+            {{ shippingInfo.text_regular__product }} 
+            <span data-ship-date1></span> 
+            and 
+            <span data-ship-date2></span>.
+        </div>
+    {%- endif -%}
+
+    <div class="hidden" js-holidays>{{ shippingInfo.holidays_dates }}</div>
+    </div>
+{% endif %}

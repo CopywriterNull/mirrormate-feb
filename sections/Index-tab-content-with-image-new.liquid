@@ -1,0 +1,249 @@
+{% if section.settings.main_heading_desktop !=blank or section.settings.main_heading_Mobile %}
+<div class="Index_tab_content_image_main_new {% if section.settings.main_heading_desktop !=blank %} Index_tab_content_image_desktop_padding {% endif %} {% if section.settings.main_heading_Mobile != blank %} Index_tab_content_image_mobile_padding {% endif %}" style="background-color: {{ section.settings.main_background_color }}">
+  <div class="page-width">
+    <div class="Index_tab_content_image_inner_new">
+      {% if section.settings.main_heading_desktop !=blank %}
+        <div class="Index_tab_content_main_heading desktop_heading Common_title_new small-hide">
+          <h2>
+            {{ section.settings.main_heading_desktop }}
+          </h2>
+        </div>
+      {% endif %}
+      {% if section.settings.main_heading_Mobile !=blank %}
+        <div class="Index_tab_content_main_heading mobile_heading Common_title_new large-up-hide medium-hide">
+          <h2>
+            {{ section.settings.main_heading_Mobile }}
+          </h2>
+        </div>
+      {% endif %}
+      <div class="Index_tab_content_image_sides_new">
+        {%- if section.blocks.size > 0 -%}
+        <div class="Index_tab_content_image_left_main">
+          <div class="Index_tab_content_image_left_inner">
+            {%- for block in section.blocks -%}
+              {% if block.settings.tab_icon_image != blank or block.settings.tab_sub_heading != blank or block.settings.tab_heading != blank or block.settings.tab_information_text %}
+                <div class="Index_tab_content_information_main" data-tab="tab-{{ forloop.index }}">
+                  <div class="Index_tab_content_information_inner">
+                    {% if block.settings.tab_main_image != blank or block.settings.tab_main_mp4_video != blank %}
+                <div class="index_tab_image_video_main index_tab_image_video_mobile  large-up-hide medium-hide">
+                  <div class="index_tab_image_video_inner">
+                    {% if block.settings.tab_icon_image != blank %}
+                      <div class="Index_tab_icon_image large-up-hide medium-hide">
+                        {{
+                          block.settings.tab_icon_image | 
+                          image_url: width: img.width | 
+                          image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                          fetchpriority: 'auto', 
+                          class:'tab_icon_image'
+                        }}
+                      </div>
+                    {% endif %}
+                    {% if block.settings.tab_main_mp4_video != blank %}
+                      <div class="index_tab_video">
+                          {{ block.settings.tab_main_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                      </div>
+                    {% else %}
+                      <div class="index_tab_image {% if block.settings.tab_main_mobile_image %}small-hide{% endif %}">
+                        {{
+                          block.settings.tab_main_image | 
+                          image_url: width: img.width | 
+                          image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                          fetchpriority: 'auto', 
+                          class:'tab_image'
+                        }}
+                      </div>
+                      {% if block.settings.tab_main_mobile_image != blank %}
+                        <div class="large-up-hide medium-hide">
+                          {{
+                            block.settings.tab_main_mobile_image | 
+                            image_url: width: img.width | 
+                            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                            fetchpriority: 'auto', 
+                            class:'tab_image'
+                          }}
+                        </div>
+                      {% endif %}
+                    {% endif %}
+                  </div>
+                </div>
+              {% endif %}
+                    {% if block.settings.tab_icon_image != blank %}
+                      <div class="Index_tab_icon_image small-hide">
+                        {{
+                          block.settings.tab_icon_image | 
+                          image_url: width: img.width | 
+                          image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                          fetchpriority: 'auto', 
+                          class:'tab_icon_image'
+                        }}
+                      </div>
+                    {% endif %}
+                    {% if block.settings.tab_sub_heading != blank %}
+                      <div class="Index_tab_subheading Common_subtitle_new">
+                        <span>
+                          {{ block.settings.tab_sub_heading }}
+                        </span>
+                      </div>
+                    {% endif %}
+                    {% if block.settings.tab_heading != blank %}
+                      <div class="Index_tab_heading Common_title_new">
+                        <h2>
+                          {{ block.settings.tab_heading }}
+                        </h2>
+                      </div>
+                    {% endif %}
+                    {% if block.settings.tab_information_text != blank %}
+                      <div class="Index_tab_information_text Index_meet_image_all_text_sides_innerright_infos_new">
+                          {{ block.settings.tab_information_text }}
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endif %}
+            {%- endfor -%}
+          </div>
+        </div>
+        <div class="Index_tab_content_image_right_main">
+          <div class="Index_tab_content_image_right_inner">
+            {%- for block in section.blocks -%}
+              {% if block.settings.tab_main_image != blank or block.settings.tab_main_mp4_video != blank %}
+                <div class="index_tab_image_video_main" id="tab-{{ forloop.index }}">
+                  <div class="index_tab_image_video_inner">
+                    {% if block.settings.tab_main_mp4_video != blank %}
+                      <div class="index_tab_video">
+                          {{ block.settings.tab_main_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                      </div>
+                    {% else %}
+                      {% comment %}
+                      <div class="index_tab_image">
+                        {{
+                          block.settings.tab_main_image | 
+                          image_url: width: img.width | 
+                          image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                          fetchpriority: 'auto', 
+                          class:'tab_image'
+                        }}
+                      </div>
+                      {% endcomment %}
+                      <div class="index_tab_image {% if block.settings.tab_main_mobile_image %}small-hide{% endif %}">
+                        {{
+                          block.settings.tab_main_image | 
+                          image_url: width: img.width | 
+                          image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                          fetchpriority: 'auto', 
+                          class:'tab_image'
+                        }}
+                      </div>
+                      {% if block.settings.tab_main_mobile_image != blank %}
+                        <div class="large-up-hide medium-hide">
+                          {{
+                            block.settings.tab_main_mobile_image | 
+                            image_url: width: img.width | 
+                            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                            fetchpriority: 'auto', 
+                            class:'tab_image'
+                          }}
+                        </div>
+                      {% endif %}
+                    {% endif %}
+                  </div>
+                </div>
+              {% endif %}
+            {%- endfor -%}
+          </div>
+        </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<style>
+  @media (max-width: 1180px){
+    .Index_tab_content_image_main_new .Index_tab_information_text br { display: none; }
+  }
+</style>
+
+
+{% schema %}
+  {
+    "name": "Index Tab Content Image",
+    "class": "Index_tab_content_with_image_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFF"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_desktop",
+        "label": "Add Main Heading desktop"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_Mobile",
+        "label": "Add Main Heading mobile",
+        "default": "The MirrorMate Difference"
+      }    
+    ],
+    "blocks":[
+      {
+        "type": "tab-image-content",
+        "name": "Tab Image Content",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "tab_icon_image",
+            "label": "Add Tab Icon Image"
+          },
+          {
+            "type": "text",
+            "id": "tab_sub_heading",
+            "label": "Add Tab Sub Heading",
+            "default": "Designed to fit"
+          },
+          {
+            "type": "textarea",
+            "id": "tab_heading",
+            "label": "Add tab Heading",
+            "default": "Designed to fit almost all rectangular mirrors"
+          },
+          {
+            "type": "textarea",
+            "id": "tab_information_text",
+            "label": "Add tab Information Text",
+            "default": "<p>MirrorMate frames are compatible with with almost all builder-grade rectangular mirrors, including those that rest on a backsplash or touch a side wall.</p>"  
+          },
+          {
+            "type": "video",
+            "id": "tab_main_mp4_video",
+            "label": "Add Tab Main MP4 Video"
+          },
+          {
+            "type": "image_picker",
+            "id": "tab_main_image",
+            "label": "Add Tab Main Desktop Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "tab_main_mobile_image",
+            "label": "Add Tab Main Mobile Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Index Tab Content With Image",
+        "blocks": [
+          {
+            "type": "tab-image-content"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

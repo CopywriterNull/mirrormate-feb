@@ -1,0 +1,196 @@
+{{ "Page-keep-images-with-list-text.css" | asset_url | stylesheet_tag }}
+
+{% if section.settings.left_image_1 != blank or section.settings.left_image_2 != blank or section.settings.main_heading_text != blank or section.settings.main_button_link_1 != blank or section.settings.main_button_text_1 != blank or section.settings.main_button_link_2 != blank or section.settings.main_button_text_2 != blank or section.blocks.size > 0 %}
+  <div class="Page_keep_images_list_text_main Page_keep_images_list_text_main_{{ section.id }}" style="background-color: {{ section.settings.main_background_color }}">
+    <div class="page-width">
+      <div class="Page_keep_images_list_text_inner">
+        <div class="Page_keep_images_list_text_sides">
+          {% if section.settings.left_image_1 != blank or section.settings.left_image_2 != blank %}
+            <div class="Page_keep_images_list_text_leftmain" data-aos="fade-left" data-aos-delay="200">
+              <div class="Page_keep_images_list_text_leftinner">
+                <div class="Page_keep_images_list_text_left_images_container">
+                  {% if section.settings.left_image_1 != blank %}
+                    <div class="Page_keep_images_list_text_left_single_image">
+                      {{
+                        section.settings.left_image_1 | 
+                        image_url: width: img.width | 
+                        image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                        fetchpriority: 'auto', 
+                        class:'left_image'
+                      }}
+                    </div>
+                  {% endif %}
+                  {% if section.settings.left_image_2 != blank %}
+                    <div class="Page_keep_images_list_text_left_single_image">
+                      {{
+                        section.settings.left_image_2 | 
+                        image_url: width: img.width | 
+                        image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                        fetchpriority: 'auto', 
+                        class:'left_image'
+                      }}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+          {% if section.settings.main_heading_text != blank or section.settings.main_button_link_1 != blank or section.settings.main_button_text_1 != blank or section.settings.main_button_link_2 != blank or section.settings.main_button_text_2 != blank or section.blocks.size > 0 %}
+            <div class="Page_keep_images_list_text_rightmain" data-aos="fade-right"  data-aos-delay="200">
+              <div class="Page_keep_images_list_text_rightinner">
+                {% if section.settings.main_heading_text != blank %}
+                  <div class="Page_keep_images_list_text_right_main_heading_parent">
+                    <div class="Page_keep_images_list_text_right_main_heading_text Common_title_new">
+                      <h2>
+                        {{ section.settings.main_heading_text }}
+                      </h2>
+                    </div>
+                    {% if section.settings.main_heading_tag != blank %}
+                      <div class="Page_keep_images_list_text_right_main_heading_tag Common_subtext_new">
+                        <span>
+                          {{ section.settings.main_heading_tag }}
+                        </span>
+                      </div>
+                    {% endif %}
+                  </div>
+                {% endif %}
+                {% if section.blocks.size > 0 %}
+                  <div class="Page_keep_images_list_text_right_main_list_text_container">
+                    {% for block in section.blocks %}
+                      {% if block.type == "list-text" %}
+                        {% if block.settings.list_icon != blank or block.settings.list_text != blank %}
+                          <div class="Page_keep_images_list_text_right_main_list_text_main">
+                            {% if block.settings.list_icon != blank %}
+                              <div class="Page_keep_images_list_text_right_main_list_icon">
+                                {{
+                                  block.settings.list_icon | 
+                                  image_url: width: img.width | 
+                                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                  fetchpriority: 'auto', 
+                                  class:'list_icon'
+                                }}
+                              </div>
+                            {% endif %}
+                            {% if block.settings.list_text != blank  %}
+                              <div class="Page_keep_images_list_text_right_main_list_text">
+                                <p> 
+                                  {{ block.settings.list_text }}
+                                </p>
+                              </div>
+                            {% endif %}
+                          </div>
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                {% endif %}
+                {% if section.settings.main_button_link_1 != blank or section.settings.main_button_text_1 != blank or section.settings.main_button_link_2 != blank or section.settings.main_button_text_2 != blank %}
+                  <div class="Page_keep_images_list_text_right_buttons_parent">
+                    {% if section.settings.main_button_link_1 != blank or section.settings.main_button_text_1 != blank %}
+                      <div class="Page_keep_images_list_text_right_button1_parent">
+                        <a href="{{ section.settings.main_button_link_1 }}" class="right_button_1">
+                          {{ section.settings.main_button_text_1 }}
+                        </a>
+                      </div>
+                    {% endif %}
+                    {% if section.settings.main_button_link_2 != blank or section.settings.main_button_text_2 != blank %}
+                      <div class="Page_keep_images_list_text_right_button2_parent">
+                        <a href="{{ section.settings.main_button_link_2 }}" class="right_button_2">
+                          {{ section.settings.main_button_text_2 }}
+                        </a>
+                      </div>
+                    {% endif %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+  
+{% schema %}
+  {
+    "name": "Page Keep Images List Txt",
+    "class": "Page_keep_images_list_text",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#2D4256"
+      },
+      {
+        "type": "image_picker",
+        "id": "left_image_1",
+        "label": "Left Image 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "left_image_2",
+        "label": "Left Image 2"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Keep What You Have"
+      },
+      {
+        "type": "text",
+        "id": "main_heading_tag",
+        "label": "Add Main Heading Tag",
+        "default": "+ UPGRADE"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text_1",
+        "label": "Add Main Button Text 1",
+        "default": "reframe mirrors"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link_1",
+        "label": "Add Main Button Link_1",
+        "default": "/"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text_2",
+        "label": "Add Main Button Text 2",
+        "default": "reface cabinets"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link_2",
+        "label": "Add Main Button Link_2",
+        "default": "/"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "list-text",
+        "name": "List Text",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "list_icon",
+            "label": "Add List Icon"
+          },
+          {
+            "type": "text",
+            "id": "list_text",
+            "label": "Add List Text"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Page Keep Images List Text",
+      }
+    ]
+  }
+{% endschema %}

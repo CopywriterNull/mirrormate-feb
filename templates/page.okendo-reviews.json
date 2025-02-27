@@ -1,0 +1,84 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "page_customer_reviews_banner_new_RiiGdp": {
+      "type": "Page-customer-reviews-banner-new",
+      "settings": {
+        "main_background_color": "#efefef",
+        "main_desktop_image": "shopify://shop_images/Frame_1000005200-min_d8cc6645-3ef8-46a0-84b9-db58b4e59200.jpg",
+        "main_mobile_image": "shopify://shop_images/Frame_1000003388-min.jpg"
+      }
+    },
+    "main": {
+      "type": "Page-customer-reviews-template-new",
+      "settings": {
+        "main_background_color": "#f6f3f2",
+        "main_heading_text": "Customer Reviews"
+      }
+    },
+    "index_detail_logos_slider_new_N7ERYq": {
+      "type": "Index-detail-logos-slider-new",
+      "blocks": {
+        "information_3n7H4L": {
+          "type": "information",
+          "settings": {
+            "title": "<p>“These made-to-order frames can be installed in less than 20 minutes and you won’t even need to take the mirror off the wall.”</p>",
+            "main_custom_image": "shopify://shop_images/11.png"
+          }
+        },
+        "information_Vxi4DU": {
+          "type": "information",
+          "settings": {
+            "title": "<p>“Unlike others, these are precut and have adhesive backing so they’ll stick around your existing mirror.”</p>",
+            "main_custom_image": "shopify://shop_images/12.png"
+          }
+        },
+        "information_CgwAer": {
+          "type": "information",
+          "settings": {
+            "title": "<p>“It’s removable, but so good-looking that your landlord may ask you to leave it.”</p>",
+            "main_custom_image": "shopify://shop_images/13.png"
+          }
+        },
+        "information_tTGUgE": {
+          "type": "information",
+          "settings": {
+            "title": "<p>“Dress up an unframed, wall-mounted mirror with easy-to-install trim. Available in more than 65 styles and colors.”</p>",
+            "main_custom_image": "shopify://shop_images/Screenshot_2024-05-19_at_4.41_2.png"
+          }
+        },
+        "information_kmMiDP": {
+          "type": "information",
+          "settings": {
+            "title": "<p>“Tired of looking at that basic bathroom mirror? The online shop MirrorMate will make a custom frame that’s ridiculously easy to install.”</p>",
+            "main_custom_image": "shopify://shop_images/15.png"
+          }
+        }
+      },
+      "block_order": [
+        "information_3n7H4L",
+        "information_Vxi4DU",
+        "information_CgwAer",
+        "information_tTGUgE",
+        "information_kmMiDP"
+      ],
+      "settings": {
+        "main_background_color": "#2d4256",
+        "main_heading_text": "In The Press"
+      }
+    }
+  },
+  "order": [
+    "page_customer_reviews_banner_new_RiiGdp",
+    "main",
+    "index_detail_logos_slider_new_N7ERYq"
+  ]
+}

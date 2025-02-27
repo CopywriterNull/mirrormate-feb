@@ -1,0 +1,60 @@
+{{ 'hb_collection_all.css' |  asset_url |  stylesheet_tag }}
+
+<div class="hb_collection_all">
+    <div class="page-width">
+       <div class="hb_collection_all--wrapper">
+        <div class="hb_collection_all--content-area">
+            {% if section.settings.title != blank %}
+                <h1 class="hb_collection_all--title">{{ section.settings.title }}</h1> 
+            {% endif %}
+            {% if section.settings.text != blank  %}
+                <p class="hb_collection_all--content">{{ section.settings.text  }}</p>
+            {% endif %} 
+        </div> 
+        <div class="swiper-container" hb-js-collection_all>        
+            <div class="hb_collection_all__flex swiper-wrapper">
+                {% for cusCollection in section.settings.choose_collections %}
+                    <div class="swiper-slide {% if cusCollection.url == collection.url %}active{% endif %}">
+                        <a href="{{ cusCollection.url }}" class="hb_collection_all__col">
+                            {% if cusCollection.image != blank %}
+                                <div class="hb_collection_all--image">
+                                    <img src="{{ cusCollection.image  |  image_url: width: '400x'}}" alt="">  
+                                </div> 
+                            {% endif %}
+                            <h3 class="hb_collection_all--sub_title">{{ cusCollection.metafields.custom.testimonial_category_name }}</h3>  
+                        </a>
+                    </div>   
+               {% endfor %} 
+            </div>
+        </div>
+       </div>  
+    </div>
+</div> 
+   
+{% schema %} 
+{
+    "name": "Hb Collection All",    
+    "settings": [
+        {  
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "textarea",
+            "id": "text",
+            "label": "Paragraph" 
+        },
+        {
+            "type": "collection_list",
+            "id": "choose_collections", 
+            "label": "Choose Collections"  
+        }
+        ],
+        "presets": [
+            {
+                 "name": "Hb Collection All"
+            }
+        ]
+}
+{% endschema %}

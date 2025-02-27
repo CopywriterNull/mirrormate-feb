@@ -1,0 +1,94 @@
+.mute_video_main_new{ position:absolute; right:16px; bottom:16px; width:48px; height:48px; z-index:1; cursor:pointer; border-radius: 100%; }
+.mute_video_main_new svg{ height:auto; width:100%; display:flex; }
+.mute_video{ display:none; }
+.mute_video.active{ display:block; }
+.unmute_video{ display:none; }
+.unmute_video.active{ display:block; }
+
+.Page_affiliate_community_main_section h2 {
+    color: #fff;
+}
+.Page_affiliate_community_main_section  .Index_custom_instagram_innerdesktop_mainleft_new {
+    width: 100%;
+    padding-right: 0px;
+    text-align: center;
+}
+.Page_affiliate_community_main_section  .Index_custom_instagram_mainloops_new {
+    padding-top: 32px;
+}
+.Page_affiliate_community_main_section .Index_custom_instagram_innerloops_innerboxs_innerboths_videoimage_new {
+    padding-bottom: 173.38%;
+}
+.Page_affiliate_community_main_section .Index_custom_instagram_innerloops_innerboxs_innerboths_videoimage_new video{ cursor:pointer; }
+.Page_affiliate_community_main_section .Index_custom_instagram_innerloops_innerboxs_innerboths_videoimage_new svg{ cursor:pointer; position:absolute; left:0; top:0; z-index:2; backdrop-filter: blur(11.5px); transform: translate(-50%, -50%); border-radius: 100%; position:absolute; left:50%; top:50%; z-index:2; }
+.Page_affiliate_community_main_section .Index_custom_instagram_innerloops_mainboxs_new {
+    width: 24.3223%!important;
+}
+.Page_affiliate_community_main_section  .Index_custom_instagram_innerloops_innerboxs_innerboths_videoimage_new video,.Page_affiliate_community_main_section .Index_custom_instagram_innerloops_innerboxs_innerboths_videoimage_new img{
+    border-radius: 12px;
+}
+.Page_affiliate_community_main_section  .center-align-disable.swiper-wrapper{
+    justify-content: flex-start;
+}
+.Page_affiliate_community_main_section .swiper-wrapper {
+    justify-content:  center;
+}
+.Page_affiliate_community_main_section .Index_custom_instagram_innerloops_innerboxs_mainicons_new {
+    width: auto;
+    height: auto;
+    bottom: 20px;
+    left: 20px;
+    display: block!important;
+}
+.Page_affiliate_community_main_section .Index_custom_instagram_innerloops_innerboxs_innericons_new img {
+    width: 28px;
+    height: 28px!important;
+    border: 1px solid #fff;
+    border-radius: 100%
+}
+.Page_affiliate_community_main_section .Index_custom_instagram_innerloops_innerboxs_innericons_new  p {
+    font-family: 'district-pro';
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18.9px;
+    text-align: left;
+    color: #FFFFFF;
+    margin: 0px;
+}
+.Page_affiliate_community_main_section .Index_custom_instagram_innerloops_innerboxs_innericons_new {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}  
+ .Page_affiliate_community_main_section .swiper-scrollbar-drag {
+    background: #fff!important;
+}
+  .Page_affiliate_community_main_section .swiper-scrollbar {
+    background: #FFFFFF33;
+    margin-top: 32px;
+} 
+
+@media (max-width: 989px){
+.Page_affiliate_community_main_section .Index_custom_instagram_innerloops_innerboxs_innericons_new p {
+    font-size: 9px;
+}
+}  
+
+@media (max-width: 767px){
+.Page_affiliate_community_main_section .swiper-wrapper {
+    justify-content: flex-start;
+}
+.Index_custom_instagram_main_new.Page_affiliate_community_main_section {
+    padding:56px 0;
+    background: #2d4256 !important;
+}
+.Page_affiliate_community_main_section .Index_custom_instagram_innerloops_innerboxs_innerboths_videoimage_new {
+    padding-bottom: 166.67%;
+}
+.Page_affiliate_community_main_section .Index_custom_instagram_innerloops_mainboxs_new {
+    width: 300px !important;
+}
+.Page_affiliate_community_main_section  .swiper-horizontal {
+    padding: 0px 20px;
+}
+}

@@ -1,0 +1,39 @@
+<div class="frame-grid edges-step" js-edges-step data-step="{% if user_type == "r" %}6{% else %}4{% endif %}" js-frame-step>
+    <div class="alpha">
+        <div class="img-wrap">
+            {% if product.metafields.custom.align_step_image != blank %}
+                <img src="{{ product.metafields.custom.align_step_image | image_url: width: '800x' }}" alt="{{ product.metafields.custom.align_step_image.alt }}">
+            {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder__svg' }}
+            {% endif %}
+        </div>
+    </div>
+    <div class="beta" data-scrollable>
+        <div class="meta-contents mob-contents-left">
+            <h2 class="frame-title">One more thing...</h2>
+            <p class="frame-text">Do the left and right edges of your mirror align with the edges of your vanity?). {% if hasProductMetaDrawer %}
+                <span class="trigger-btn" js-trigger-btn data-trigger-id="Info-Drawer">Why do we need this info?</span>
+            {% endif %}</p>
+            <div class="edges-parameter-grid">
+                <div class="edges-parameter" js-edge-parameter>
+                    <div class="edge-img">
+                        <img src="{{ "align-sample.png" | file_img_url: 'master' }}" alt="">
+                    </div>
+                    <span class="edges-label">yes</span>
+                    <span class="edges-text">They are aligned</span>
+                    <input class="hide-field" type="radio" name="properties[_edges_align]" data-name="properties[_edges_align]" data-oversize-name="items[0][properties][_edges_align]" value="Yes" form="{{ formId }}">
+                </div>
+                <div class="edges-parameter" js-edge-parameter>
+                    <div class="edge-img">
+                        <img src="{{ "unalign-sample.png" | file_img_url: 'master' }}" alt="">
+                    </div>
+                    <span class="edges-label">no</span>
+                    <span class="edges-text">They don’t align</span>
+                    <input class="hide-field" type="radio" name="properties[_edges_align]" data-name="properties[_edges_align]" data-oversize-name="items[0][properties][_edges_align]" value="No" form="{{ formId }}">
+                </div>
+                <input class="hide-field" type="radio" name="properties[_edges_align]" data-name="properties[_edges_align]" data-oversize-name="items[0][properties][_edges_align]" value="N/A" form="{{ formId }}" js-edges-nil-field>
+            </div>
+            <span class="gap-bottom hide-mobile"></span>
+        </div>
+    </div>
+</div>

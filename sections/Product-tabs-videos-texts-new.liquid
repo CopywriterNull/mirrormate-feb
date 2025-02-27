@@ -1,0 +1,462 @@
+{%- if section.blocks.size > 0 -%}
+  <div class="Product_tabs_videos_texts_main_new" style="background: {{ section.settings.main_background_color }};">
+    <div class="page-width">
+      <div class="Product_tabs_videos_texts_inner_new" data-aos="fade-in" data-aos-delay="200" >
+        {%- if section.settings.main_outside_image != blank and section.settings.main_inside_image != blank -%}
+          <div class="Product_tabs_videos_texts_maincustom_new">
+            <div class="Product_tabs_videos_texts_innercustom_new">
+              {%- if section.settings.main_outside_image != blank -%}
+                <div class="Product_tabs_videos_texts_innercustom_mainoutside_new">
+                  <div class="Product_tabs_videos_texts_innercustom_inneroutside_new spin">
+                    {{
+                      section.settings.main_outside_image | 
+                      image_url: width: img.width | 
+                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                      fetchpriority: 'auto', 
+                      class:'Outside_image_new'
+                    }}
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if section.settings.main_inside_image != blank -%}
+                <div class="Product_tabs_videos_texts_innercustom_maininside_new">
+                  <div class="Product_tabs_videos_texts_innercustom_innerinside_new">
+                    {{
+                      section.settings.main_inside_image | 
+                      image_url: width: img.width | 
+                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                      fetchpriority: 'auto', 
+                      class:'Inside_image_new'
+                    }}
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+        {%- if section.blocks.size > 0 -%}
+          <div class="Product_tabs_videos_texts_mainsides_new desktop_only">
+            <div class="Product_tabs_videos_texts_innersides_new Tabs_common_main_new">
+              {%- if section.blocks.size > 0 -%}
+                <div class="Product_tabs_videos_texts_innersides_mainleft_new">
+                  <div class="Product_tabs_videos_texts_innersides_innerleft_new">
+                    {%- for block in section.blocks -%}
+                      {%- if block.settings.main_mp4_video != blank or block.settings.main_desktop_image != blank -%}
+                        <div class="tabcontent tab_{{ block.id | replace: '-', '_' }}_{{ forloop.index0 }}_open" {% if forloop.first %} style="display:block;"{% endif %}>
+                          <div class="Product_tabs_videos_texts_innersides_innerleft_mainboxs_new">
+                            <div class="Product_tabs_videos_texts_innersides_innerleft_innerboxs_new">
+                              {%- if block.settings.main_mp4_video != blank -%}
+                                <div class="Product_tabs_videos_texts_innersides_innerleft_innerboxs_videoimage_new">
+
+                                  {% if block.settings.main_mp4_video.sources[1].url != blank %}
+                                    {% assign video_url =  block.settings.main_mp4_video.sources[1].url  %}
+                                  {% elsif  block.settings.main_mp4_video.sources[0].url != blank %}
+                                    {% assign video_url =  block.settings.main_mp4_video.sources[0].url  %}
+                                  {% elsif  block.settings.main_mp4_video.sources[2].url != blank %}
+                                    {% assign video_url =  block.settings.main_mp4_video.sources[2].url  %}
+                                  {% endif %}
+                                  
+                                  {% if forloop.first %}
+                                    {{ block.settings.main_mp4_video | video_tag: class: '', image_size: 'master', controls: false, autoplay: true, loop: true, mute:mute  }}
+                                    {% comment %}
+                                    <video playsinline="playsinline" autoplay="autoplay" loop="loop" preload="metadata" muted="muted" poster="{{ block.settings.main_mp4_video.preview_image | image_url}}" video_url="{{ video_url }}">
+                                      <source src="{{ video_url }}" type="video/mp4">
+                                      <source src="{{ video_url }}" type="video/ogg">
+                                    </video>
+                                    
+                                    <video playsinline="playsinline" autoplay="autoplay" loop="loop" preload="metadata" muted="muted" poster="{{ block.settings.main_mp4_video.preview_image | image_url}}" video_url="{{ video_url }}" src="{{ video_url }}"></video>
+                                    {% endcomment %}
+                                  {% else %}
+                                    <video playsinline="playsinline" loop="loop" preload="metadata" muted="muted" poster="{{ block.settings.main_mp4_video.preview_image | image_url}}" video_url="{{ video_url }}"></video>
+                                  {% endif %}
+                                  
+                                  {%- if section.settings.main_desktop_button_text != blank and section.settings.video_url != blank -%}
+                                    <div class="Product_tabs_videos_texts_innersides_innerleft_innerboxs_mainbutton_new youtube_video_popup">
+                                      <div class="Product_tabs_videos_texts_innersides_innerleft_innerboxs_innerbutton_new">
+                                        <a href="javascript:void(0)">
+                                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_4041_8705)"><circle cx="12" cy="12" r="12" fill="#2D4256"/><path d="M32 12C32 8.04438 30.827 4.17758 28.6294 0.888601C26.4318 -2.40038 23.3082 -4.96383 19.6537 -6.47758C15.9992 -7.99133 11.9778 -8.3874 8.0982 -7.6157C4.21858 -6.84399 0.654922 -4.93918 -2.14213 -2.14213C-4.93918 0.654922 -6.84399 4.21858 -7.6157 8.0982C-8.3874 11.9778 -7.99133 15.9992 -6.47758 19.6537C-4.96383 23.3082 -2.40038 26.4318 0.888601 28.6294C4.17758 30.827 8.04438 32 12 32C17.3026 31.9943 22.3863 29.8853 26.1358 26.1358C29.8853 22.3863 31.9943 17.3026 32 12ZM9.11501 18.5717C8.97995 18.5013 8.86675 18.3953 8.78771 18.2651C8.70867 18.135 8.66681 17.9856 8.66667 17.8333V6.16667C8.6668 6.01425 8.70874 5.86477 8.78791 5.73452C8.86709 5.60427 8.98047 5.49824 9.11572 5.42795C9.25097 5.35766 9.40291 5.32581 9.55501 5.33587C9.7071 5.34593 9.85352 5.39751 9.97834 5.48501L18.3117 11.3183C18.4155 11.399 18.4996 11.5024 18.5574 11.6206C18.6152 11.7387 18.6452 11.8685 18.6452 12C18.6452 12.1315 18.6152 12.2613 18.5574 12.3795C18.4996 12.4976 18.4155 12.601 18.3117 12.6817L9.97834 18.515C9.85341 18.6026 9.70684 18.6542 9.5546 18.6642C9.40237 18.6741 9.25031 18.6422 9.11501 18.5717Z" fill="white"/></g><defs><clipPath id="clip0_4041_8705"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
+                                          {{ section.settings.main_desktop_button_text }}
+                                        </a>
+                                      </div>
+                                    </div>
+                                  {%- endif -%}
+                                </div>
+                              {% else %}  
+                                {%- if block.settings.main_desktop_image != blank -%}
+                                  <div class="Product_tabs_videos_texts_innersides_innerleft_innerboxs_videoimage_new">
+                                    {{
+                                      block.settings.main_desktop_image | 
+                                      image_url: width: img.width | 
+                                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                      fetchpriority: 'auto', 
+                                      class:'desktop_image_new'
+                                    }}
+                                  </div>
+                                {%- endif -%}
+                              {%- endif -%}
+                            </div>
+                          </div>
+                        </div>
+                      {%- endif -%}  
+                    {%- endfor -%}
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if section.blocks.size > 0 -%}
+                <div class="Product_tabs_videos_texts_innersides_mainright_new">
+                  <div class="Product_tabs_videos_texts_innersides_innerright_new">
+                    {%- if section.settings.main_heading_text != blank -%}
+                      <div class="Product_tabs_videos_texts_innersides_innerright_maintitle_new">
+                        <div class="Common_title_new Product_tabs_videos_texts_innersides_innerright_innertitle_new">
+                          <h2>{{ section.settings.main_heading_text }}</h2>
+                        </div>
+                      </div>
+                    {%- endif -%}
+                    {%- if section.blocks.size > 0 -%}
+                      <div class="Product_tabs_videos_texts_innersides_innerright_mainloops_new">
+                        <div class="Product_tabs_videos_texts_innersides_innerright_innerloops_new">
+                          <div class="tab">
+                            {%- for block in section.blocks -%}
+                              {%- if block.settings.title != blank -%}
+                                <button class="tablinks Tabs_common_inner_new{% if forloop.first %} active{% endif %}" tab_id="tab_{{ block.id | replace: '-', '_' }}_{{ forloop.index0 }}">
+                                  <div class="Product_tabs_videos_texts_innersides_innerright_innerloops_maintitle_new">
+                                    <div class="Product_tabs_videos_texts_innersides_innerright_innerloops_innertitle_new">
+                                      {{ block.settings.title }}
+                                    </div>
+                                  </div>
+                                </button>  
+                              {%- endif -%}
+                            {%- endfor -%}
+                          </div>  
+                        </div>
+                      </div>
+                    {%- endif -%}
+                    {%- if section.blocks.size > 0 -%}
+                      <div class="Product_tabs_videos_texts_innersides_innerright_maininfos_new">
+                        <div class="Product_tabs_videos_texts_innersides_innerright_innerinfos_new">
+                          {%- for block in section.blocks -%}
+                            {%- if block.settings.main_information_text != blank -%}
+                              <div class="tabcontent tab_{{ block.id | replace: '-', '_' }}_{{ forloop.index0 }}_open" {% if forloop.first %} style="display:block;"{% endif %}>
+                                <div class="Product_tabs_videos_texts_innersides_innerright_innerinfos_mainboxs_new">
+                                  <div class="Product_tabs_videos_texts_innersides_innerright_innerinfos_innerboxs_new">
+                                    {{ block.settings.main_information_text }}
+                                  </div>
+                                </div>
+                              </div>
+                            {%- endif -%}  
+                          {%- endfor -%}  
+                        </div>
+                      </div>
+                    {%- endif -%}
+                    {%- if section.settings.main_Question_text != blank and section.settings.main_Answer_text != blank -%}
+                      <div class="Product_tabs_videos_texts_innersides_innerright_mainboths_new">
+                        <div class="Product_tabs_videos_texts_innersides_innerright_innerboths_new">
+                          {%- if section.settings.main_Question_text != blank -%}
+                            <div class="Product_tabs_videos_texts_innersides_innerright_innerboths_mainquestion_new">
+                              <div class="Product_tabs_videos_texts_innersides_innerright_innerboths_innerquestion_new">
+                                <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.4375 14.0625C11.4375 14.2479 11.3825 14.4292 11.2795 14.5833C11.1765 14.7375 11.0301 14.8577 10.8588 14.9286C10.6875 14.9996 10.499 15.0182 10.3171 14.982C10.1352 14.9458 9.9682 14.8565 9.83709 14.7254C9.70598 14.5943 9.61669 14.4273 9.58052 14.2454C9.54434 14.0635 9.56291 13.875 9.63387 13.7037C9.70482 13.5324 9.82499 13.386 9.97916 13.283C10.1333 13.18 10.3146 13.125 10.5 13.125C10.7486 13.125 10.9871 13.2238 11.1629 13.3996C11.3387 13.5754 11.4375 13.8139 11.4375 14.0625ZM10.5 5.625C8.77657 5.625 7.375 6.88672 7.375 8.4375V8.75C7.375 8.91576 7.44085 9.07473 7.55806 9.19194C7.67527 9.30915 7.83424 9.375 8 9.375C8.16576 9.375 8.32473 9.30915 8.44195 9.19194C8.55916 9.07473 8.625 8.91576 8.625 8.75V8.4375C8.625 7.57812 9.46641 6.875 10.5 6.875C11.5336 6.875 12.375 7.57812 12.375 8.4375C12.375 9.29688 11.5336 10 10.5 10C10.3342 10 10.1753 10.0658 10.0581 10.1831C9.94085 10.3003 9.875 10.4592 9.875 10.625V11.25C9.875 11.4158 9.94085 11.5747 10.0581 11.6919C10.1753 11.8092 10.3342 11.875 10.5 11.875C10.6658 11.875 10.8247 11.8092 10.9419 11.6919C11.0592 11.5747 11.125 11.4158 11.125 11.25V11.1938C12.55 10.932 13.625 9.79531 13.625 8.4375C13.625 6.88672 12.2234 5.625 10.5 5.625ZM18.625 10C18.625 11.607 18.1485 13.1779 17.2557 14.514C16.3629 15.8502 15.094 16.8916 13.6093 17.5065C12.1247 18.1215 10.491 18.2824 8.9149 17.9689C7.3388 17.6554 5.89106 16.8815 4.75476 15.7452C3.61846 14.6089 2.84463 13.1612 2.53112 11.5851C2.21762 10.009 2.37852 8.37535 2.99348 6.8907C3.60844 5.40605 4.64985 4.1371 5.986 3.24431C7.32214 2.35152 8.89303 1.875 10.5 1.875C12.6542 1.87727 14.7195 2.73403 16.2427 4.25727C17.766 5.78051 18.6227 7.84581 18.625 10ZM17.375 10C17.375 8.64025 16.9718 7.31104 16.2164 6.18045C15.4609 5.04987 14.3872 4.16868 13.131 3.64833C11.8747 3.12798 10.4924 2.99183 9.15876 3.2571C7.82514 3.52237 6.60013 4.17715 5.63864 5.13864C4.67716 6.10013 4.02238 7.32514 3.7571 8.65875C3.49183 9.99237 3.62798 11.3747 4.14833 12.6309C4.66868 13.8872 5.54987 14.9609 6.68046 15.7164C7.81105 16.4718 9.14026 16.875 10.5 16.875C12.3227 16.8729 14.0702 16.1479 15.3591 14.8591C16.6479 13.5702 17.3729 11.8227 17.375 10Z" fill="#2D4256"/></svg>
+                                {{ section.settings.main_Question_text }}
+                              </div>
+                            </div>
+                          {%- endif -%}
+                          {%- if section.settings.main_Answer_text != blank -%}
+                            <div class="Product_tabs_videos_texts_innersides_innerright_innerboths_mainanswer_new">
+                              <div class="Product_tabs_videos_texts_innersides_innerright_innerboths_inneranswer_new">
+                                {{ section.settings.main_Answer_text }}
+                              </div>
+                            </div>
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+        {%- if section.blocks.size > 0 -%}
+          <div class="Product_tabs_videos_texts_mainmobile_new mobile_only">
+            <div class="Product_tabs_videos_texts_innermobile_new">
+              {%- if section.settings.main_heading_text != blank -%}
+                <div class="Product_tabs_videos_texts_innermobile_maintitle_new">
+                  <div class="Common_title_new Product_tabs_videos_texts_innermobile_innertitle_new">
+                    <h2>{{ section.settings.main_heading_text }}</h2>
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if section.blocks.size > 0 -%}
+                <div class="Product_tabs_videos_texts_innermobile_mainloops_new">
+                  <div class="Product_tabs_videos_texts_innermobile_innerloops_new">
+                    {%- if section.blocks.size > 0 -%}
+                      <div class="Product_tabs_videos_texts_innermobile_innerloops_1_new">
+                        <div class="Product_tabs_videos_texts_innermobile_innerloops_1_details_new">
+                          <div class="swiper Tabinfos_slider">
+                            <div class="swiper-wrapper">
+                              {%- for block in section.blocks -%}
+                                {%- if block.settings.main_mp4_video != blank or block.settings.main_mobile_image != blank or block.settings.main_information_text != blank -%}
+                                  <div class="swiper-slide Product_tabs_videos_texts_innermobile_innerloops_1_details_mainboxs_new">
+                                    <div class="Product_tabs_videos_texts_innermobile_innerloops_1_details_innerboxs_new">
+                                      {%- if block.settings.main_mp4_video != blank or block.settings.main_mobile_image != blank -%}
+                                        <div class="Product_tabs_videos_texts_innermobile_innerloops_1_details_innerboxs_mainboths_new">
+                                          <div class="Product_tabs_videos_texts_innermobile_innerloops_1_details_innerboxs_innerboths_new">
+                                            {%- if block.settings.main_mp4_video != blank -%}
+                                              <div class="Product_tabs_videos_texts_innermobile_innerloops_1_details_innerboxs_innerboths_videoimage_new">
+                                                {% if forloop.first %}
+                                                  {{ block.settings.main_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                                {% else %}
+                                                  {{ block.settings.main_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: false, loop: true }}
+                                                {% endif %}
+                                              </div>
+                                            {% else %}  
+                                              {%- if block.settings.main_mobile_image != blank -%}
+                                                <div class="Product_tabs_videos_texts_innermobile_innerloops_1_details_innerboxs_innerboths_videoimage_new">
+                                                  {{
+                                                    block.settings.main_mobile_image | 
+                                                    image_url: width: img.width | 
+                                                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                    fetchpriority: 'auto', 
+                                                    class:'mobile_image_new'
+                                                  }}
+                                                </div>
+                                              {%- endif -%}
+                                            {%- endif -%}
+                                          </div>
+                                        </div>
+                                      {%- endif -%}
+                                      {%- if block.settings.main_information_text != blank -%}
+                                        <div class="Product_tabs_videos_texts_innermobile_innerloops_1_details_innerboxs_maininfos_new">
+                                          <div class="Product_tabs_videos_texts_innermobile_innerloops_1_details_innerboxs_innerinfos_new">
+                                            {{ block.settings.main_information_text }}
+                                          </div>
+                                        </div>
+                                      {%- endif -%}
+                                    </div>
+                                  </div>
+                                {%- endif -%}
+                              {%- endfor -%}
+                            </div>
+                            <div class="Product_tabs_videos_texts_innermobile_innerloops_1_details_commonpagination_new">
+                              <div class="swiper-button-prev"><svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.75 18.75L8 12L14.75 5.25" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                              <div class="swiper-pagination"></div>
+                              <div class="swiper-button-next"><svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.25 5.25L17 12L10.25 18.75" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {%- endif -%}
+                    {%- if section.blocks.size > 0 -%}
+                      <div class="Product_tabs_videos_texts_innermobile_innerloops_2_new">
+                        <div class="Product_tabs_videos_texts_innermobile_innerloops_2_details_new">
+                          <div thumbsSlider="" class="swiper Tabtitle_slider">
+                            <div class="swiper-wrapper">
+                              {%- for block in section.blocks -%}
+                                {%- if block.settings.title != blank -%}
+                                  <div class="swiper-slide Product_tabs_videos_texts_innermobile_innerloops_2_details_maintitle_new">
+                                    <div class="Product_tabs_videos_texts_innermobile_innerloops_2_details_innertitle_new">
+                                      {{ block.settings.title }}
+                                    </div>
+                                  </div>
+                                {%- endif -%}
+                              {%- endfor -%}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if section.settings.main_mobile_button_text != blank and section.settings.video_url != blank -%}
+                <div class="Product_tabs_videos_texts_innermobile_mainbutton_new youtube_video_popup">
+                  <div class="Product_tabs_videos_texts_innermobile_innerbutton_new">
+                    <a href="javascript:void(0)">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_4041_8705)"><circle cx="12" cy="12" r="12" fill="#2D4256"/><path d="M32 12C32 8.04438 30.827 4.17758 28.6294 0.888601C26.4318 -2.40038 23.3082 -4.96383 19.6537 -6.47758C15.9992 -7.99133 11.9778 -8.3874 8.0982 -7.6157C4.21858 -6.84399 0.654922 -4.93918 -2.14213 -2.14213C-4.93918 0.654922 -6.84399 4.21858 -7.6157 8.0982C-8.3874 11.9778 -7.99133 15.9992 -6.47758 19.6537C-4.96383 23.3082 -2.40038 26.4318 0.888601 28.6294C4.17758 30.827 8.04438 32 12 32C17.3026 31.9943 22.3863 29.8853 26.1358 26.1358C29.8853 22.3863 31.9943 17.3026 32 12ZM9.11501 18.5717C8.97995 18.5013 8.86675 18.3953 8.78771 18.2651C8.70867 18.135 8.66681 17.9856 8.66667 17.8333V6.16667C8.6668 6.01425 8.70874 5.86477 8.78791 5.73452C8.86709 5.60427 8.98047 5.49824 9.11572 5.42795C9.25097 5.35766 9.40291 5.32581 9.55501 5.33587C9.7071 5.34593 9.85352 5.39751 9.97834 5.48501L18.3117 11.3183C18.4155 11.399 18.4996 11.5024 18.5574 11.6206C18.6152 11.7387 18.6452 11.8685 18.6452 12C18.6452 12.1315 18.6152 12.2613 18.5574 12.3795C18.4996 12.4976 18.4155 12.601 18.3117 12.6817L9.97834 18.515C9.85341 18.6026 9.70684 18.6542 9.5546 18.6642C9.40237 18.6741 9.25031 18.6422 9.11501 18.5717Z" fill="white"/></g><defs><clipPath id="clip0_4041_8705"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
+                      {{ section.settings.main_mobile_button_text }}
+                    </a>
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if section.settings.main_Question_text != blank and section.settings.main_Answer_text != blank -%}
+                <div class="Product_tabs_videos_texts_innersides_innerright_mainboths_new">
+                  <div class="Product_tabs_videos_texts_innersides_innerright_innerboths_new">
+                    {%- if section.settings.main_Question_text != blank -%}
+                      <div class="Product_tabs_videos_texts_innersides_innerright_innerboths_mainquestion_new">
+                        <div class="Product_tabs_videos_texts_innersides_innerright_innerboths_innerquestion_new">
+                          <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.4375 14.0625C11.4375 14.2479 11.3825 14.4292 11.2795 14.5833C11.1765 14.7375 11.0301 14.8577 10.8588 14.9286C10.6875 14.9996 10.499 15.0182 10.3171 14.982C10.1352 14.9458 9.9682 14.8565 9.83709 14.7254C9.70598 14.5943 9.61669 14.4273 9.58052 14.2454C9.54434 14.0635 9.56291 13.875 9.63387 13.7037C9.70482 13.5324 9.82499 13.386 9.97916 13.283C10.1333 13.18 10.3146 13.125 10.5 13.125C10.7486 13.125 10.9871 13.2238 11.1629 13.3996C11.3387 13.5754 11.4375 13.8139 11.4375 14.0625ZM10.5 5.625C8.77657 5.625 7.375 6.88672 7.375 8.4375V8.75C7.375 8.91576 7.44085 9.07473 7.55806 9.19194C7.67527 9.30915 7.83424 9.375 8 9.375C8.16576 9.375 8.32473 9.30915 8.44195 9.19194C8.55916 9.07473 8.625 8.91576 8.625 8.75V8.4375C8.625 7.57812 9.46641 6.875 10.5 6.875C11.5336 6.875 12.375 7.57812 12.375 8.4375C12.375 9.29688 11.5336 10 10.5 10C10.3342 10 10.1753 10.0658 10.0581 10.1831C9.94085 10.3003 9.875 10.4592 9.875 10.625V11.25C9.875 11.4158 9.94085 11.5747 10.0581 11.6919C10.1753 11.8092 10.3342 11.875 10.5 11.875C10.6658 11.875 10.8247 11.8092 10.9419 11.6919C11.0592 11.5747 11.125 11.4158 11.125 11.25V11.1938C12.55 10.932 13.625 9.79531 13.625 8.4375C13.625 6.88672 12.2234 5.625 10.5 5.625ZM18.625 10C18.625 11.607 18.1485 13.1779 17.2557 14.514C16.3629 15.8502 15.094 16.8916 13.6093 17.5065C12.1247 18.1215 10.491 18.2824 8.9149 17.9689C7.3388 17.6554 5.89106 16.8815 4.75476 15.7452C3.61846 14.6089 2.84463 13.1612 2.53112 11.5851C2.21762 10.009 2.37852 8.37535 2.99348 6.8907C3.60844 5.40605 4.64985 4.1371 5.986 3.24431C7.32214 2.35152 8.89303 1.875 10.5 1.875C12.6542 1.87727 14.7195 2.73403 16.2427 4.25727C17.766 5.78051 18.6227 7.84581 18.625 10ZM17.375 10C17.375 8.64025 16.9718 7.31104 16.2164 6.18045C15.4609 5.04987 14.3872 4.16868 13.131 3.64833C11.8747 3.12798 10.4924 2.99183 9.15876 3.2571C7.82514 3.52237 6.60013 4.17715 5.63864 5.13864C4.67716 6.10013 4.02238 7.32514 3.7571 8.65875C3.49183 9.99237 3.62798 11.3747 4.14833 12.6309C4.66868 13.8872 5.54987 14.9609 6.68046 15.7164C7.81105 16.4718 9.14026 16.875 10.5 16.875C12.3227 16.8729 14.0702 16.1479 15.3591 14.8591C16.6479 13.5702 17.3729 11.8227 17.375 10Z" fill="#2D4256"/></svg>
+                          {{ section.settings.main_Question_text }}
+                        </div>
+                      </div>
+                    {%- endif -%}
+                    {%- if section.settings.main_Answer_text != blank -%}
+                      <div class="Product_tabs_videos_texts_innersides_innerright_innerboths_mainanswer_new">
+                        <div class="Product_tabs_videos_texts_innersides_innerright_innerboths_inneranswer_new">
+                          {{ section.settings.main_Answer_text }}
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {% if section.settings.video_url != blank %}
+      {% assign video_id = section.settings.video_url.id %}
+      {% assign loop = '&loop=1&playlist=' | append: video_id %}
+      <div class="youtube_video_overlay_new"></div>
+      <div class="youtube_video_new">
+        <div class="youtube_video_inner_new">
+          <div class="youtube_video_close_new">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_3855_58903)">
+            <path d="M19.0703 4.92889L4.92818 19.071" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+            <path d="M19.0718 19.071L4.92969 4.92889" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+            </g>
+            <defs>
+            <clipPath id="clip0_3855_58903">
+            <rect width="24" height="24" fill="white"/>
+            </clipPath>
+            </defs>
+            </svg>
+          </div>
+          <div class="videowrapper">
+            <iframe
+              src="https://www.youtube.com/embed/{{ video_id }}?enablejsapi=1&autoplay=0{{ loop }}"
+              class="js-youtube youtube_video"
+              allow="encrypted-media"
+              allowfullscreen
+              border="0"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  
+  </div>
+{%- endif -%}  
+
+{% schema %}
+  {
+    "name": "Product Tabs Videos Texts",
+    "class": "Product_tabs_videos_texts_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_outside_image",
+        "label": "Add Main Outside Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_inside_image",
+        "label": "Add Main Inside Image"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "How to Install"
+      },
+      {
+        "type": "textarea",
+        "id": "main_Question_text",
+        "label": "Add Main Question Text",
+        "default": "Got a question?"
+      },
+      {
+        "type": "richtext",
+        "id": "main_Answer_text",
+        "label": "Add Main Answer Text",
+        "default": "<p>Check our frequently asked questions or email us at info@mirrormate.com.</p>"
+      },
+      {
+        "type": "textarea",
+        "id": "main_desktop_button_text",
+        "label": "Add Main Desktop Button Text",
+        "default": "Watch The Video"
+      },
+      {
+        "type": "textarea",
+        "id": "main_mobile_button_text",
+        "label": "Add Main Mobile Button Text",
+        "default": "Watch The Video Tutorial"
+      },
+      {
+       "type": "video_url",
+        "id": "video_url",
+        "accept": ["youtube"],
+        "default": "https://youtu.be/kD-I0wEPIQQ",
+        "label": "Video Tutorial URL"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "information",
+        "name": "Information",
+        "settings": [
+          {
+            "type": "video",
+            "id": "main_mp4_video",
+            "label": "Add Main MP4 Video"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_desktop_image",
+            "label": "Add Main Desktop Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_mobile_image",
+            "label": "Add Main Mobile Image"
+          },
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Add Main Heading Text",
+            "default": "0. Heading"
+          },
+          {
+            "type": "richtext",
+            "id": "main_information_text",
+            "label": "Add Main Information Text",
+            "default": "<p>Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit.</strong> Maecenas rutrum aliquet felis vitae hendrerit. Nunc elit odio, luctus ut sapien vel, sagittis fringilla purus.</p>"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Product Tabs Videos Texts",
+        "blocks": [
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

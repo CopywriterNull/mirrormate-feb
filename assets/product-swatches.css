@@ -1,0 +1,34 @@
+.product-swatches {
+    display: block;
+    margin-top: 16px;
+    margin-left: 2px;
+}
+.product-swatches .swatches-grid {
+    display: flex;
+    align-items: center;
+    grid-gap: 8px;
+}
+.product-swatches .swatch-item {
+    max-width: 24px;
+    flex: 24px;
+    cursor: pointer;
+    position: relative;
+}
+.product-swatches .swatch-item.is-selected::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    border: 1.5px solid #2D4256;
+    border-radius: 2px;
+}
+.product-swatches .swatch-item img {
+    width: 100%;
+    display: block;
+    height: 100% !important;
+    object-fit: cover;
+}
+.hb_extra-variant-count{ font-size:14px; color:#2D4256; line-height: 100%; }

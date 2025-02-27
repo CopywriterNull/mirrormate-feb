@@ -1,0 +1,381 @@
+{% assign formId = "product-form-bulk-order-section" %}
+
+{% assign variant_id = product.first_available_variant.id %}
+{% for variant in product.variants %}
+    {% if variant.title contains "Gold" and variant.title contains "LF" %}
+      {% assign variant_id = variant.id %}
+      {% break %}
+    {% endif %}
+{% endfor %}
+
+<div class="main__block" js-form-block data-product-price="{{ product.first_available_variant.price | money | remove: ".00" | remove: cart.currency.symbol }}" data-form-order="1">
+    <div class="block__count" js-block-count>1</div>
+    <div class="block__contents">
+        <div class="column__grid">
+            <div class="block__column">
+                <div class="product__contents">
+                    <div class="product__img block__icon">
+                        {% if product.metafields.custom.swatch_image != blank %}
+                            <img src="{{ product.metafields.custom.swatch_image | image_url: width: '200x' }}" js-swatch-img>
+                        {% else %}
+                            <img src="{{ product.featured_image | image_url: width: '200x' }}" js-swatch-img>
+                        {% endif %}
+                        <div class="edit__btn" js-edit-style-btn data-trigger-id="FrameStyleModel">
+                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.8622 2.87624C11.2212 2.51718 11.7033 2.30808 12.2108 2.29137C12.7182 2.27465 13.2131 2.45157 13.5949 2.78624L13.6909 2.87624L14.1622 3.34758C14.5211 3.70653 14.7301 4.1885 14.7468 4.6958C14.7635 5.20311 14.5867 5.69779 14.2522 6.07958L14.1622 6.17558L6.68755 13.6509C6.58186 13.7566 6.45383 13.8372 6.31288 13.8869L6.20488 13.9182L3.23555 14.6036C3.13152 14.6276 3.02325 14.6263 2.91982 14.5999C2.81639 14.5734 2.72082 14.5225 2.64114 14.4514C2.56146 14.3804 2.49999 14.2912 2.46189 14.1915C2.4238 14.0918 2.41019 13.9843 2.42221 13.8782L2.43555 13.8029L3.12021 10.8329C3.15404 10.6872 3.2201 10.551 3.31355 10.4342L3.38755 10.3509L10.8622 2.87624ZM10.3909 5.23291L4.39755 11.2262L3.97355 13.0649L5.81221 12.6402L11.8055 6.64691L10.3909 5.23291ZM12.7482 3.81891C12.6334 3.70413 12.4807 3.63517 12.3187 3.62498C12.1566 3.6148 11.9965 3.66408 11.8682 3.76358L11.8055 3.81891L11.3335 4.29024L12.7482 5.70424L13.2195 5.23291C13.3343 5.11812 13.4033 4.96538 13.4135 4.80336C13.4237 4.64135 13.3744 4.48118 13.2749 4.35291L13.2195 4.29024L12.7482 3.81891Z" fill="#2D4256"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="product__meta">
+                        <h4 class="column__title" js-product-title>{{ product.title }}</h4>
+                    </div>
+                </div>
+                <div class="fields">
+                    <div class="fields__grid">
+                        <div class="block__field">
+                            <span class="field-label">Qty</span>
+                            <div class="field__wrap">
+                                <input type="number" value="1" name="items[0][quantity]" form="{{ formId }}" min="1">
+                            </div>
+                        </div>
+                        <div class="block__field">
+                            <span class="field-label frame-width-label">Frame Width</span>
+                            <div class="field__wrap">
+                                <div class="width-option rest-select" js-width-option js-dimension>
+                                    {% unless product.has_only_default_variant %}
+                                        {% for option in product.options_with_values %}
+                                            {% assign option_name = option.name | downcase %}
+                                            {% assign hasSlim = false %}
+
+                                            {% for value in option.values %}
+                                                {% assign value_downcase = value | downcase %}
+
+                                                {% if value_downcase contains "slim" %}
+                                                    {% assign hasSlim = true %}
+                                                {% endif %}
+                                            {% endfor %}
+
+                                            {% if option_name == "width" %}
+                                                <select name="width-option" js-width-select>
+                                                    {% for value in option.values %}
+                                                        {% assign value_downcase = value | downcase %}
+
+                                                        <option value="{{ value }}" 
+                                                        {% if hasSlim %}
+                                                            {% if value_downcase contains "slim" %} 
+                                                                selected 
+                                                            {% endif %}
+                                                        {% else %}
+                                                            {% if forloop.first %}
+                                                                selected
+                                                            {% endif %}
+                                                        {% endif %}>{{ value }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endunless %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fields__grid">
+                        <div class="block__field">
+                            <span class="field-label">PO #</span>
+                            <div class="field__wrap">
+                                <input type="text" class="is-optional" value="" name="items[0][properties][_PO]" placeholder="PO #" form="{{ formId }}" required>
+                            </div>
+                        </div>
+                        <div class="block__field">
+                            <span class="field-label">Room/Unit #</span>
+                            <div class="field__wrap">
+                                <input type="text" class="is-optional" value="" name="items[0][properties][_unit]" placeholder="Room/Unit #" form="{{ formId }}" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block__column">
+                <h4 class="column__title">Mirror dimensions *</h4>
+                <p class="column__rte">Measure the height and width of your mirror, making sure to round to the nearest 1/8” in.</p>
+                <div class="fields">
+                    <div class="fields__grid">
+                        <div class="block__field">
+                            <span class="field-label">width</span>
+                            <div class="field__wrap is-unselected width-parameter" js-dimension>
+                                <select name="items[0][properties][_width]" form="{{ formId }}" js-dimension-parameter>
+                                    {% if product.metafields.custom.width_dimension_minimum != blank and product.metafields.custom.width_dimension_maximum != blank %}
+                                        <option value="{{ product.metafields.custom.width_dimension_minimum }}">--</option>
+                                        {% for value in (product.metafields.custom.width_dimension_minimum..product.metafields.custom.width_dimension_maximum) %}
+                                            <option value="{{ value }}">{{ value }}</option>
+                                        {% endfor %}
+                                    {% else %}
+                                        {% if shop.metaobjects.width_dimension.values_count > 0 %}
+                                            {% assign widthDimension = shop.metaobjects.width_dimension.values | first %}
+                                            {% assign minValue = widthDimension.min %}
+                                            {% assign maxValue = widthDimension.max %}
+
+                                            <option value="{{ minValue }}">--</option>
+                                            {% for value in (minValue..maxValue) %}
+                                                <option value="{{ value }}">{{ value }}</option>
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="block__field">
+                            <span class="field-label">width fraction</span>
+                            <div class="field__wrap is-unselected rest-select" js-dimension>
+                                <select name="items[0][properties][_width_fraction]" form="{{ formId }}" js-dimension-parameter>
+                                    <option value="0">--</option>
+                                    <option value="0">0</option>
+                                    <option value="1/8">1/8</option>
+                                    <option value="1/4">1/4</option>
+                                    <option value="3/8">3/8</option>
+                                    <option value="1/2">1/2</option>
+                                    <option value="5/8">5/8</option>
+                                    <option value="3/4">3/4</option>
+                                    <option value="7/8">7/8</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fields__grid">
+                        <div class="block__field">
+                            <span class="field-label">height</span>
+                            <div class="field__wrap is-unselected height-parameter" js-dimension>
+                                <select name="items[0][properties][_height]" form="{{ formId }}" js-dimension-parameter>
+                                    {% if product.metafields.custom.width_dimension_minimum != blank and product.metafields.custom.width_dimension_maximum != blank %}
+                                        <option value="{{ product.metafields.custom.width_dimension_minimum }}">--</option>
+                                        {% for value in (product.metafields.custom.width_dimension_minimum..product.metafields.custom.width_dimension_maximum) %}
+                                            <option value="{{ value }}">{{ value }}</option>
+                                        {% endfor %}
+                                    {% else %}
+                                        {% if shop.metaobjects.width_dimension.values_count > 0 %}
+                                            {% assign widthDimension = shop.metaobjects.width_dimension.values | first %}
+                                            {% assign minValue = widthDimension.min %}
+                                            {% assign maxValue = widthDimension.max %}
+
+                                            <option value="{{ minValue }}">--</option>
+                                            {% for value in (minValue..maxValue) %}
+                                                <option value="{{ value }}">{{ value }}</option>
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endif %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="block__field">
+                            <span class="field-label">height fraction</span>
+                            <div class="field__wrap is-unselected rest-select" js-dimension>
+                                <select name="items[0][properties][_height_fraction]" form="{{ formId }}" js-dimension-parameter>
+                                    <option value="0">--</option>
+                                    <option value="0">0</option>
+                                    <option value="1/8">1/8</option>
+                                    <option value="1/4">1/4</option>
+                                    <option value="3/8">3/8</option>
+                                    <option value="1/2">1/2</option>
+                                    <option value="5/8">5/8</option>
+                                    <option value="3/4">3/4</option>
+                                    <option value="7/8">7/8</option>
+                                </select>
+                            </div>
+                        </div>
+                        <input type="hidden" form="{{ formId }}" name="items[0][properties][_frame_Width]" value="" js-frame-width-field>
+                        <input type="hidden" form="{{ formId }}" name="items[0][properties][_frame_WidthFraction]" value="" js-frame-width-fraction-field>
+                        <input type="hidden" form="{{ formId }}" name="items[0][properties][_frame_Height]" value="" js-frame-height-field>
+                        <input type="hidden" form="{{ formId }}" name="items[0][properties][_frame_HeightFraction]" value="" js-frame-height-fraction-field>
+                        <input type="hidden" form="{{ formId }}" name="items[0][properties]" data-name="items[0][properties]" value="" js-shipping-dimensions-field>
+                        <input type="hidden" form="{{ formId }}" name="items[0][properties][_customer_tag]" value="b2b">
+                        <input type="hidden" form="{{ formId }}" name="items[0][properties][_shipping_dimensions]"  value="" js-shipping-dimensions-b2b-field>
+
+                        <input type="hidden" form="{{ formId }}" name="items[0][properties][_locationTop]" value="" js-location-top-field>
+                        <input type="hidden" form="{{ formId }}" name="items[0][properties][_locationBottom]" value="" js-location-bottom-field>
+                        <input type="hidden" form="{{ formId }}" name="items[0][properties][_locationLeft]" value="" js-location-left-field>
+                        <input type="hidden" form="{{ formId }}" name="items[0][properties][_locationRight]" value="" js-location-right-field>
+
+                        {% comment %} <input type="hidden" form="{{ formId }}" name="items[0][properties][_replacement_clips]" value="N/A"> {% endcomment %}
+                    </div>
+                </div>
+            </div>
+            <div class="block__column space-around-dimension">
+                <h4 class="column__title">Space around mirror *</h4>
+                <p class="column__rte">Measure the distance to the nearest obstruction (light fixture, outlet, backsplash, or wall). </p>
+                <div class="fields">
+                    <div class="fields__grid">
+                        <div class="block__field">
+                            <span class="field-label">Top</span>
+                            <div class="field__wrap is-unselected rest-select" js-dimension>
+                                <select name="items[0][properties][_clearance_top]" form="{{ formId }}" js-dimension-parameter>
+                                    <option value="0">--</option>
+                                    <option value="0">0</option>
+                                    <option value="1/8">1/8</option>
+                                    <option value="1/4">1/4</option>
+                                    <option value="3/8">3/8</option>
+                                    <option value="1/2">1/2</option>
+                                    <option value="5/8">5/8+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="block__field">
+                            <span class="field-label">Bottom</span>
+                            <div class="field__wrap is-unselected rest-select" js-dimension>
+                                <select name="items[0][properties][_clearance_bottom]" form="{{ formId }}" js-dimension-parameter>
+                                    <option value="0">--</option>
+                                    <option value="0">0</option>
+                                    <option value="1/8">1/8</option>
+                                    <option value="1/4">1/4</option>
+                                    <option value="3/8">3/8</option>
+                                    <option value="1/2">1/2</option>
+                                    <option value="5/8">5/8+</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fields__grid">
+                        <div class="block__field">
+                            <span class="field-label">Left</span>
+                            <div class="field__wrap is-unselected rest-select" js-dimension>
+                                <select name="items[0][properties][_clearance_left]" form="{{ formId }}" js-dimension-parameter>
+                                    <option value="0">--</option>
+                                    <option value="0">0</option>
+                                    <option value="1/8">1/8</option>
+                                    <option value="1/4">1/4</option>
+                                    <option value="3/8">3/8</option>
+                                    <option value="1/2">1/2</option>
+                                    <option value="5/8">5/8+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="block__field">
+                            <span class="field-label">Right</span>
+                            <div class="field__wrap is-unselected rest-select" js-dimension>
+                                <select name="items[0][properties][_clearance_right]" form="{{ formId }}" js-dimension-parameter>
+                                    <option value="0">--</option>
+                                    <option value="0">0</option>
+                                    <option value="1/8">1/8</option>
+                                    <option value="1/4">1/4</option>
+                                    <option value="3/8">3/8</option>
+                                    <option value="1/2">1/2</option>
+                                    <option value="5/8">5/8+</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block__column">
+                <h4 class="column__title">clips or channels * </h4>
+                <p class="column__rte">Check which side(s) have clips or J-channels. Include the channel in mirror height.</p>
+                <div class="fields">
+                    <div class="clip__fields">
+                        <div class="block__field" js-clip-field>
+                            <label class="clip__field">
+                                <input type="checkbox" class="hide__field" js-clip-input-field>
+                                <div class="checkbox">
+                                    <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="checkbox__label">Top</div>
+                            </label>
+                            <input type="hidden" name="items[0][properties][_clips_channels_top]" form="{{ formId }}" value="No">
+                        </div>
+                        <div class="block__field" js-clip-field>
+                            <label class="clip__field">
+                                <input type="checkbox" class="hide__field" js-clip-input-field>
+                                <div class="checkbox">
+                                    <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="checkbox__label">Bottom</div>
+                            </label>
+                            <input type="hidden" name="items[0][properties][_clips_channels_bottom]" form="{{ formId }}" value="No">
+                        </div>
+                        <div class="block__field" js-clip-field>
+                            <label class="clip__field">
+                                <input type="checkbox" class="hide__field" js-clip-input-field>
+                                <div class="checkbox">
+                                    <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="checkbox__label">Left</div>
+                            </label>
+                            <input type="hidden" name="items[0][properties][_clips_channels_left]" form="{{ formId }}" value="No">
+                        </div>
+                        <div class="block__field" js-clip-field>
+                            <label class="clip__field">
+                                <input type="checkbox" class="hide__field" js-clip-input-field>
+                                <div class="checkbox">
+                                    <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="checkbox__label">Right</div>
+                            </label>
+                            <input type="hidden" name="items[0][properties][_clips_channels_right]" form="{{ formId }}" value="No">
+                        </div>
+                    </div>
+                    <div class="block__field" js-clip-field>
+                        <h4 class="column__title secondary__title">Are your clips larger than 1 inch? </h4>
+                        <label class="clip__field">
+                            <input type="checkbox" class="hide__field" js-clip-input-field>
+                            <div class="checkbox">
+                                <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="checkbox__label">Yes</div>
+                        </label>
+                        <input type="hidden" name="items[0][properties][_clips-larger-than-1-inch]" form="{{ formId }}" value="No">
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" value="Multi Order Form" name="items[0][properties][order]" form="{{ formId }}">
+            <input type="hidden" value="{{ variant_id }}" name="items[0][id]" form="{{ formId }}" js-variant-id-field>
+            <script type="application/json" js-product-json>{{ product | json }}</script>
+        </div>
+        <div class="strip__bar">
+            <div class="strip__grid">
+                <div class="strip__tool" js-edit-style-btn data-trigger-id="FrameStyleModel">
+                    <div class="tool__icon block__icon">
+                        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_3953_72079)">
+                            <path d="M13.3629 3.32889C13.8116 2.88005 14.4143 2.61868 15.0486 2.59779C15.6829 2.5769 16.3015 2.79805 16.7788 3.21639L16.8988 3.32889L17.4879 3.91805C17.9365 4.36674 18.1977 4.9692 18.2186 5.60333C18.2395 6.23747 18.0185 6.85582 17.6004 7.33305L17.4879 7.45305L8.14459 16.7972C8.01248 16.9293 7.85245 17.0301 7.67625 17.0922L7.54125 17.1314L3.82959 17.9881C3.69956 18.0181 3.56422 18.0165 3.43493 17.9834C3.30564 17.9503 3.18618 17.8867 3.08658 17.7979C2.98698 17.709 2.91014 17.5976 2.86252 17.4729C2.81491 17.3483 2.7979 17.214 2.81292 17.0814L2.82959 16.9872L3.68542 13.2747C3.7277 13.0926 3.81028 12.9223 3.92709 12.7764L4.01959 12.6722L13.3629 3.32889ZM12.7738 6.27472L5.28209 13.7664L4.75209 16.0647L7.05042 15.5339L14.5421 8.04222L12.7738 6.27472ZM15.7204 4.50722C15.5769 4.36374 15.386 4.27755 15.1835 4.26481C14.981 4.25208 14.7808 4.31368 14.6204 4.43805L14.5421 4.50722L13.9521 5.09639L15.7204 6.86389L16.3096 6.27472C16.4531 6.13123 16.5393 5.94031 16.552 5.73779C16.5647 5.53527 16.5031 5.33506 16.3788 5.17472L16.3096 5.09639L15.7204 4.50722Z" fill="white"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_3953_72079">
+                            <rect width="20" height="20" fill="white" transform="translate(0 0.816406)"/>
+                            </clipPath>
+                            </defs>
+                        </svg>                                        
+                    </div>
+                    <span class="tool__label">Edit frame style</span>
+                </div>
+                <div class="strip__tool" js-duplicate-btn>
+                    <div class="tool__icon block__icon">
+                        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.99967 14.1497H4.16634C3.94533 14.1497 3.73337 14.0619 3.57709 13.9056C3.42081 13.7493 3.33301 13.5373 3.33301 13.3163V4.98299C3.33301 4.76198 3.42081 4.55002 3.57709 4.39374C3.73337 4.23746 3.94533 4.14966 4.16634 4.14966H12.4997C12.7207 4.14966 12.9326 4.23746 13.0889 4.39374C13.2452 4.55002 13.333 4.76198 13.333 4.98299V5.81632M7.49967 17.483H15.833C16.054 17.483 16.266 17.3952 16.4223 17.2389C16.5785 17.0826 16.6663 16.8707 16.6663 16.6497V8.31632C16.6663 8.09531 16.5785 7.88335 16.4223 7.72707C16.266 7.57079 16.054 7.48299 15.833 7.48299H7.49967C7.27866 7.48299 7.0667 7.57079 6.91042 7.72707C6.75414 7.88335 6.66634 8.09531 6.66634 8.31632V16.6497C6.66634 16.8707 6.75414 17.0826 6.91042 17.2389C7.0667 17.3952 7.27866 17.483 7.49967 17.483Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+                        </svg>                                        
+                    </div>
+                    <span class="tool__label">Duplicate</span>
+                </div>
+                <div class="strip__tool" js-delete-btn>
+                    <div class="tool__icon block__icon">
+                        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.6663 9.98307V14.9831M8.33301 9.98307V14.9831M4.99967 6.64974V16.6497C4.99967 17.0918 5.17527 17.5157 5.48783 17.8283C5.80039 18.1408 6.22431 18.3164 6.66634 18.3164H13.333C13.775 18.3164 14.199 18.1408 14.5115 17.8283C14.8241 17.5157 14.9997 17.0918 14.9997 16.6497V6.64974M3.33301 6.64974H16.6663M5.83301 6.64974L7.49967 3.31641H12.4997L14.1663 6.64974" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                                        
+                    </div>
+                    <span class="tool__label">Delete</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div js-order-form-template>
+    {% render "order-form", initial: false, formId: formId, product: product %}
+</div>

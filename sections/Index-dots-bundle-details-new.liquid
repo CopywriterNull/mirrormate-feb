@@ -1,0 +1,564 @@
+{%- if section.blocks.size > 0 or section.settings.main_sub_heading_text != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_details_text != blank or section.settings.main_button_link != blank or section.settings.main_bundle_mp4_video != blank or section.settings.main_bundle_desktop_image != blank or section.settings.main_bundle_mobile_image != blank or section.settings.main_bundle_heading_text != blank or section.settings.main_bundle_details_text != blank or section.settings.main_bundle_button_text != blank -%}
+  <div class="Index_dots_bundle_details_main_new" style="background: {{ section.settings.main_background_color }};">
+    <div class="page-width">
+      <div class="Index_dots_bundle_details_inner_new">
+        <div class="Index_dots_bundle_details_sides_new">
+          {%- if section.settings.main_sub_heading_text != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_details_text != blank or section.settings.main_button_link != blank or section.settings.main_bundle_mp4_video != blank or section.settings.main_bundle_desktop_image != blank or section.settings.main_bundle_mobile_image != blank or section.settings.main_bundle_heading_text != blank or section.settings.main_bundle_details_text != blank or section.settings.main_bundle_button_text != blank -%}
+            <div class="Index_dots_bundle_details_sides_mainleft_new" data-aos="fade-in">
+              <div class="Index_dots_bundle_details_sides_innerleft_new">
+                {%- if section.settings.main_sub_heading_text != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_details_text != blank or section.settings.main_button_link != blank -%}
+                  <div class="Index_dots_bundle_details_sides_innerleft_1_new">
+                    <div class="Index_dots_bundle_details_sides_innerleft_1_boths_new">
+                      {%- if section.settings.main_sub_heading_text != blank -%}
+                        <div class="Index_dots_bundle_details_sides_innerleft_1_boths_texts_new">
+                          <h5>{{ section.settings.main_sub_heading_text }}</h5>
+                        </div>
+                      {%- endif -%}
+                      {%- if section.settings.main_heading_text != blank -%}
+                        <div class="Common_title_new Index_dots_bundle_details_sides_innerleft_1_boths_title_new">
+                          <h3>{{ section.settings.main_heading_text }}</h3>
+                        </div>
+                      {%- endif -%}
+                      {%- if section.settings.main_information_text != blank -%}
+                        <div class="Index_dots_bundle_details_sides_innerleft_1_boths_infos_new">
+                          {{ section.settings.main_information_text }}
+                        </div>
+                      {%- endif -%}
+                      {%- if section.settings.main_details_text != blank -%}
+                        <div class="Index_dots_bundle_details_sides_innerleft_1_boths_lists_new">
+                          {{ section.settings.main_details_text }}
+                        </div>
+                      {%- endif -%}
+                      {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                        <div class="Index_dots_bundle_details_sides_innerleft_1_boths_button_new">
+                          <a href="{{ section.settings.main_button_link }}" class="button">
+                            {{ section.settings.main_button_text }}
+                          </a>
+                        </div>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.main_bundle_mp4_video != blank or section.settings.main_bundle_desktop_image != blank or section.settings.main_bundle_mobile_image != blank or section.settings.main_bundle_heading_text != blank or section.settings.main_bundle_details_text != blank or section.settings.main_bundle_button_text != blank -%}
+                  <div class="Index_dots_bundle_details_sides_innerleft_2_new">
+                    {%- if section.settings.main_bundle_redirect_link != blank -%}
+                      <a href="{{ section.settings.main_bundle_redirect_link }}">
+                    {%- endif -%}
+                        <div class="Index_dots_bundle_details_sides_innerleft_2_boths_new">
+                          {%- if section.settings.main_bundle_mp4_video != blank or section.settings.main_bundle_desktop_image != blank or section.settings.main_bundle_mobile_image != blank -%}
+                            <div class="Index_dots_bundle_details_sides_innerleft_2_boths_mainleft_new">
+                              <div class="Index_dots_bundle_details_sides_innerleft_2_boths_innerleft_new">
+                                {%- if section.settings.main_bundle_mp4_video != blank -%}
+                                  <div class="Index_dots_bundle_details_sides_innerleft_2_boths_innerleft_videoimage_new">
+                                    {{ section.settings.main_bundle_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                  </div>
+                                {% else %}  
+                                  {%- if section.settings.main_bundle_desktop_image != blank and section.settings.main_bundle_mobile_image != blank -%}
+                                    <div class="Index_dots_bundle_details_sides_innerleft_2_boths_innerleft_videoimage_new">
+                                      {%- if section.settings.main_bundle_desktop_image != blank -%}
+                                        {{
+                                          section.settings.main_bundle_desktop_image | 
+                                          image_url: width: img.width | 
+                                          image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                          fetchpriority: 'auto', 
+                                          class:'desktop_image_new'
+                                        }}
+                                      {%- endif -%}
+                                      {%- if section.settings.main_bundle_mobile_image != blank -%}
+                                        {{
+                                          section.settings.main_bundle_mobile_image | 
+                                          image_url: width: img.width | 
+                                          image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                          fetchpriority: 'auto', 
+                                          class:'mobile_image_new'
+                                        }}
+                                      {%- endif -%}
+                                    </div>
+                                  {%- endif -%}
+                                {%- endif -%}
+                              </div>
+                            </div>
+                          {%- endif -%}
+                          {%- if section.settings.main_bundle_heading_text != blank or section.settings.main_bundle_details_text != blank or section.settings.main_bundle_button_text != blank -%}
+                            <div class="Index_dots_bundle_details_sides_innerleft_2_boths_mainright_new">
+                              <div class="Index_dots_bundle_details_sides_innerleft_2_boths_innerright_new">
+                                {%- if section.settings.main_bundle_heading_text != blank -%}
+                                  <div class="Index_dots_bundle_details_sides_innerleft_2_boths_innerright_title_new">
+                                    {{ section.settings.main_bundle_heading_text }}
+                                  </div>
+                                {%- endif -%}
+                                {%- if section.settings.main_bundle_details_text != blank -%}
+                                  <div class="Index_dots_bundle_details_sides_innerleft_2_boths_innerright_infos_new">
+                                    {{ section.settings.main_bundle_details_text }}
+                                  </div>
+                                {%- endif -%}
+                                {%- if section.settings.main_bundle_button_text != blank -%}
+                                  <div class="Index_dots_bundle_details_sides_innerleft_2_boths_innerright_button_new">
+                                    {{ section.settings.main_bundle_button_text }}
+                                  </div>
+                                {%- endif -%}
+                              </div>
+                            </div>
+                          {%- endif -%}  
+                        </div>
+                    {%- if section.settings.main_bundle_redirect_link != blank -%}
+                      </a>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+          {%- if section.blocks.size > 0 -%}
+            <div class="Index_dots_bundle_details_sides_mainright_new" data-aos="fade-left">
+              <div class="Index_dots_bundle_details_sides_innerright_new">
+                {%- if section.settings.main_mp4_video != blank or section.settings.main_desktop_image != blank or section.settings.main_mobile_image != blank -%}
+                  <div class="Index_dots_bundle_details_sides_innerright_mainstatic_new">
+                    <div class="Index_dots_bundle_details_sides_innerright_innerstatic_new">
+                      {%- if section.settings.main_mp4_video != blank -%}
+                        <div class="Index_dots_bundle_details_sides_innerright_innerstatic_videoimage_new">
+                          {{ section.settings.main_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                        </div>
+                      {% else %}  
+                        {%- if section.settings.main_desktop_image != blank and section.settings.main_mobile_image != blank -%}
+                          <div class="Index_dots_bundle_details_sides_innerright_innerstatic_videoimage_new">
+                            {%- if section.settings.main_desktop_image != blank -%}
+                              {{
+                                section.settings.main_desktop_image | 
+                                image_url: width: img.width | 
+                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                fetchpriority: 'auto', 
+                                class:'desktop_image_new'
+                              }}
+                            {%- endif -%}
+                            {%- if section.settings.main_mobile_image != blank -%}
+                              {{
+                                section.settings.main_mobile_image | 
+                                image_url: width: img.width | 
+                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                fetchpriority: 'auto', 
+                                class:'mobile_image_new'
+                              }}
+                            {%- endif -%}
+                          </div>
+                        {%- endif -%}
+                      {%- endif -%}
+                    </div>
+                  </div>
+                {%- endif -%}
+
+                {% comment %}
+                {%- if section.settings.main_bundle_mp4_video != blank or section.settings.main_bundle_desktop_image != blank or section.settings.main_bundle_mobile_image != blank or section.settings.main_bundle_heading_text != blank or section.settings.main_bundle_details_text != blank or section.settings.main_bundle_button_text != blank -%}
+                  <div class="Index_dots_bundle_details_sides_innerleft_2_new Index_dots_bundle_details_sides_innerright_desktopbundle_new">
+                    {%- if section.settings.main_bundle_redirect_link != blank -%}
+                      <a href="{{ section.settings.main_bundle_redirect_link }}">
+                    {%- endif -%}
+                        <div class="Index_dots_bundle_details_sides_innerleft_2_boths_new">
+                          {%- if section.settings.main_bundle_mp4_video != blank or section.settings.main_bundle_desktop_image != blank or section.settings.main_bundle_mobile_image != blank -%}
+                            <div class="Index_dots_bundle_details_sides_innerleft_2_boths_mainleft_new">
+                              <div class="Index_dots_bundle_details_sides_innerleft_2_boths_innerleft_new">
+                                {%- if section.settings.main_bundle_mp4_video != blank -%}
+                                  <div class="Index_dots_bundle_details_sides_innerleft_2_boths_innerleft_videoimage_new">
+                                    {{ section.settings.main_bundle_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                  </div>
+                                {% else %}  
+                                  {%- if section.settings.main_bundle_desktop_image != blank and section.settings.main_bundle_mobile_image != blank -%}
+                                    <div class="Index_dots_bundle_details_sides_innerleft_2_boths_innerleft_videoimage_new">
+                                      {%- if section.settings.main_bundle_desktop_image != blank -%}
+                                        {{
+                                          section.settings.main_bundle_desktop_image | 
+                                          image_url: width: img.width | 
+                                          image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                          fetchpriority: 'auto', 
+                                          class:'desktop_image_new'
+                                        }}
+                                      {%- endif -%}
+                                      {%- if section.settings.main_bundle_mobile_image != blank -%}
+                                        {{
+                                          section.settings.main_bundle_mobile_image | 
+                                          image_url: width: img.width | 
+                                          image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                          fetchpriority: 'auto', 
+                                          class:'mobile_image_new'
+                                        }}
+                                      {%- endif -%}
+                                    </div>
+                                  {%- endif -%}
+                                {%- endif -%}
+                              </div>
+                            </div>
+                          {%- endif -%}
+                          {%- if section.settings.main_bundle_heading_text != blank or section.settings.main_bundle_details_text != blank or section.settings.main_bundle_button_text != blank -%}
+                            <div class="Index_dots_bundle_details_sides_innerleft_2_boths_mainright_new">
+                              <div class="Index_dots_bundle_details_sides_innerleft_2_boths_innerright_new">
+                                {%- if section.settings.main_bundle_heading_text != blank -%}
+                                  <div class="Index_dots_bundle_details_sides_innerleft_2_boths_innerright_title_new">
+                                    {{ section.settings.main_bundle_heading_text }}
+                                  </div>
+                                {%- endif -%}
+                                {%- if section.settings.main_bundle_details_text != blank -%}
+                                  <div class="Index_dots_bundle_details_sides_innerleft_2_boths_innerright_infos_new">
+                                    {{ section.settings.main_bundle_details_text }}
+                                  </div>
+                                {%- endif -%}
+                                {%- if section.settings.main_bundle_button_text != blank -%}
+                                  <div class="Index_dots_bundle_details_sides_innerleft_2_boths_innerright_button_new">
+                                    {{ section.settings.main_bundle_button_text }}
+                                  </div>
+                                {%- endif -%}
+                              </div>
+                            </div>
+                          {%- endif -%}  
+                        </div>
+                    {%- if section.settings.main_bundle_redirect_link != blank -%}
+                      </a>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+                {% endcomment %}
+            
+                {%- if section.blocks.size > 0 -%}
+                  <div class="Index_dots_bundle_details_sides_innerright_maindesktop_new">
+                    <div class="Index_dots_bundle_details_sides_innerright_innerdesktop_new">
+                      {%- for block in section.blocks -%}
+                        {%- if block.settings.main_product_selected != blank -%}
+                          {%- assign Main_Product_Selected = all_products[block.settings.main_product_selected] -%}
+                          <div class="Index_dots_bundle_details_sides_innerright_innerdesktop_mainboxs_new">
+                            <div class="Index_dots_bundle_details_sides_innerright_innerdesktop_innerboxs_new" style="top: {{ block.settings.main_dots_top_position }}%; left: {{ block.settings.main_dots_left_position }}%;">
+                              <div class="Index_dots_bundle_details_sides_innerright_innerdesktop_innerboxs_1_new">
+                                <div class="Index_dots_bundle_details_sides_innerright_innerdesktop_innerboxs_1_icons_new">
+                                  <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12.5" cy="12.5" r="5.5" fill="white" fill-opacity="0.3"/><circle cx="12.5" cy="12.5" r="7.5" fill="white"/></svg>
+                                </div>
+                              </div>
+                              {%- if block.settings.main_product_selected != blank -%}
+                                <div class="Index_dots_bundle_details_sides_innerright_innerdesktop_innerboxs_2_new {% if block.settings.product_box_position == "right" %} product_right_position_new {% endif %}">
+                                  <a href="{{ Main_Product_Selected.url }}">
+                                    <div class="Index_dots_bundle_details_sides_innerright_innerdesktop_innerboxs_2_items_new">
+                                      {%- if block.settings.main_custom_image != blank or Main_Product_Selected.featured_image != blank -%}
+                                        <div class="Index_dots_bundle_details_sides_innerright_innerdesktop_innerboxs_2_items_mainimage_new">
+                                          <div class="Index_dots_bundle_details_sides_innerright_innerdesktop_innerboxs_2_items_innerimage_new">
+                                            {%- if block.settings.main_custom_image != blank -%}
+                                              {{
+                                                block.settings.main_custom_image | 
+                                                image_url: width: img.width | 
+                                                image_tag: widths: '300', 
+                                                fetchpriority: 'auto', 
+                                                class:'Product_image_new'
+                                              }}
+                                            {%- else -%}
+                                              {{
+                                                Main_Product_Selected.featured_image | 
+                                                image_url: width: img.width | 
+                                                image_tag: widths: '300', 
+                                                fetchpriority: 'auto', 
+                                                class:'Product_image_new'
+                                              }}
+                                            {%- endif -%}
+                                          </div>
+                                        </div>
+                                      {%- endif -%}
+                                      {%- if Main_Product_Selected.title != blank or Main_Product_Selected.price != blank -%}
+                                        <div class="Index_dots_bundle_details_sides_innerright_innerdesktop_innerboxs_2_items_maintexts_new">
+                                          <div class="Index_dots_bundle_details_sides_innerright_innerdesktop_innerboxs_2_items_innertexts_new">
+                                            {%- if Main_Product_Selected.title != blank -%}
+                                              <div class="Index_dots_bundle_details_sides_innerright_innerdesktop_innerboxs_2_items_innertexts_title_new">
+                                                {{ Main_Product_Selected.title }}
+                                              </div>
+                                            {%- endif -%}
+                                            {%- if Main_Product_Selected.price != blank -%}
+                                              <div class="Index_dots_bundle_details_sides_innerright_innerdesktop_innerboxs_2_items_innertexts_price_new">
+                                                {% render 'price', product: Main_Product_Selected, price_class: '', show_compare_at_price: false %}
+                                              </div>
+                                            {%- endif -%}
+                                            <div class="Index_dots_bundle_details_sides_innerright_innerdesktop_innerboxs_2_items_innertexts_button_new">
+                                              Shop Now
+                                            </div>  
+                                          </div>
+                                        </div>
+                                      {%- endif -%}
+                                    </div>
+                                  </a>
+                                </div>
+                              {%- endif -%}
+                            </div>
+                          </div>
+                        {%- endif -%}  
+                      {%- endfor -%}
+                    </div>
+                  </div>
+                {%- endif -%}
+                {%- if section.blocks.size > 0 -%}
+                  <div class="Index_dots_bundle_details_sides_innerright_mainmobile_new" data-aos="fade-in">
+                    <div class="Index_dots_bundle_details_sides_innerright_innermobile_new">
+                      <div class="Index_dots_bundle_details_sides_innerright_innermobile_mainicons_new">
+                        <div class="Index_dots_bundle_details_sides_innerright_innermobile_innericons_new">
+                          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" rx="20" fill="white"/><g clip-path="url(#clip0_3053_19583)"><path d="M27.5625 29.625H12.4375V14.5H27.5625V29.625Z" stroke="#2D4256" stroke-width="2" stroke-linecap="round"/><path d="M16.5625 17.9375V13.8125C16.5625 11.9143 18.1018 10.375 20 10.375C21.8982 10.375 23.4375 11.9143 23.4375 13.8125V17.9375" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/></g><defs><clipPath id="clip0_3053_19583"><rect width="22" height="22" fill="white" transform="translate(9 9)"/></clipPath></defs></svg>
+                        </div>  
+                      </div>
+                      {%- if section.blocks.size > 0 -%}
+                        <div class="Index_dots_bundle_details_sides_innerright_innermobile_mainitems_new">
+                          <div class="Index_dots_bundle_details_sides_innerright_innermobile_inneritems_new">
+                            <div class="Index_dots_bundle_details_sides_innerright_innermobile_inneritems_mainclose_new">
+                              <div class="Index_dots_bundle_details_sides_innerright_innermobile_inneritems_innerclose_new">
+                                <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="28" height="29" rx="14" fill="white"/><g clip-path="url(#clip0_91_10917)"><path d="M18.7139 9.78589L9.28578 19.214" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/><path d="M18.7142 19.214L9.28613 9.78589" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/></g><defs><clipPath id="clip0_91_10917"><rect width="16" height="16" fill="white" transform="translate(6 6.5)"/></clipPath></defs></svg>
+                              </div>  
+                            </div>  
+                            {%- if section.blocks.size > 0 -%}
+                              <div class="Index_dots_bundle_details_sides_innerright_innermobile_inneritems_mainloops_new">
+                                <div class="Index_dots_bundle_details_sides_innerright_innermobile_inneritems_innerloops_new">
+                                  <div class="swiper Index_dots_bundle_mobile_slider">
+                                    <div class="swiper-wrapper">
+                                      {%- for block in section.blocks -%}
+                                        {%- if block.settings.main_product_selected != blank -%}
+                                          {%- assign Main_Product_Selected = all_products[block.settings.main_product_selected] -%}
+                                          <div class="swiper-slide Index_dots_bundle_details_sides_innerright_innermobile_inneritems_innerloops_mainboxs_new">
+                                            <a href="{{ Main_Product_Selected.url }}">
+                                              <div class="Index_dots_bundle_details_sides_innerright_innermobile_inneritems_innerloops_innerboxs_new">
+                                                {%- if block.settings.main_custom_image != blank or Main_Product_Selected.featured_image != blank -%}
+                                                  <div class="Index_dots_bundle_details_sides_innerright_innermobile_inneritems_innerloops_innerboxs_mainimage_new">
+                                                    <div class="Index_dots_bundle_details_sides_innerright_innermobile_inneritems_innerloops_innerboxs_innerimage_new">
+                                                      {%- if block.settings.main_custom_image != blank -%}
+                                                        {{
+                                                          block.settings.main_custom_image | 
+                                                          image_url: width: img.width | 
+                                                          image_tag: widths: '300', 
+                                                          fetchpriority: 'auto', 
+                                                          class:'Product_image_new'
+                                                        }}
+                                                      {%- else -%}
+                                                        {{
+                                                          Main_Product_Selected.featured_image | 
+                                                          image_url: width: img.width | 
+                                                          image_tag: widths: '300', 
+                                                          fetchpriority: 'auto', 
+                                                          class:'Product_image_new'
+                                                        }}
+                                                      {%- endif -%}
+                                                    </div>
+                                                  </div>
+                                                {%- endif -%}
+                                                {%- if Main_Product_Selected.title != blank -%}
+                                                  <div class="Index_dots_bundle_details_sides_innerright_innermobile_inneritems_innerloops_innerboxs_maintitle_new">
+                                                    <div class="Index_dots_bundle_details_sides_innerright_innermobile_inneritems_innerloops_innerboxs_innertitle_new">
+                                                      {{ Main_Product_Selected.title }}
+                                                    </div>
+                                                  </div>
+                                                {%- endif -%}
+                                              </div>
+                                            </a>
+                                          </div>
+                                        {%- endif -%}  
+                                      {%- endfor -%}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            {%- endif -%}
+                          </div>
+                        </div>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                {%- endif -%}  
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}  
+
+{% schema %}
+  {
+    "name": "Index Dots Bundle Details",
+    "class": "Index_dots_bundle_details_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "header",
+        "content": "==== Left Side Detail ===="
+      },
+      {
+        "type": "textarea",
+        "id": "main_sub_heading_text",
+        "label": "Add Main Sub Heading Text",
+        "default": "Need Help Deciding?"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Start With a <br>$2 Sample"
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "<p><span>Want to try out a few different styles?</span> No problem, order samples to see what looks best in your space.</p>"
+      },
+      {
+        "type": "richtext",
+        "id": "main_details_text",
+        "label": "Add Main Details Text",
+        "default": "<ul><li>Try out a variety of styles</li><li>See your favorites up close</li><li>Get FREE shipping</li></ul>"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "Shop All $2 Samples"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      },
+      {
+        "type": "header",
+        "content": "==== Right Side Detail ===="
+      },
+      {
+        "type": "video",
+        "id": "main_mp4_video",
+        "label": "Add Main MP4 Video"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_desktop_image",
+        "label": "Add Main Desktop Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_mobile_image",
+        "label": "Add Main Mobile Image"
+      },
+      {
+        "type": "header",
+        "content": "==== Build My Bundle Detail ===="
+      },
+      {
+        "type": "video",
+        "id": "main_bundle_mp4_video",
+        "label": "Add Main Bundle MP4 Video"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_bundle_desktop_image",
+        "label": "Add Main Bundle Desktop Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_bundle_mobile_image",
+        "label": "Add Main Bundle Mobile Image"
+      },
+      {
+        "type": "textarea",
+        "id": "main_bundle_heading_text",
+        "label": "Add Main Bundle Heading Text",
+        "default": "Bundle and Save"
+      },
+      {
+        "type": "richtext",
+        "id": "main_bundle_details_text",
+        "label": "Add Main Bundle Details Text",
+        "default": "<p>Buy 4 samples and get your 5th one FREE!</p>"
+      },
+      {
+        "type": "text",
+        "id": "main_bundle_button_text",
+        "label": "Add Main Bundle Button Text",
+        "default": "Build My Bundle"
+      },
+      {
+        "type": "url",
+        "id": "main_bundle_redirect_link",
+        "label": "Add Main Bundle Redirect Link",
+        "default": "/"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "information",
+        "name": "Information",
+        "settings": [
+          {
+            "type": "product",
+            "id": "main_product_selected",
+            "label": "Add Main Product Selected"
+          },
+          {
+            "type": "select",
+            "id": "product_box_position",
+            "label": "Product Box Position",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "left"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_custom_image",
+            "label": "Add Main Custom Image",
+            "info": "Note: If you need custom product image."
+          },
+          {
+            "type": "range",
+            "id": "main_dots_top_position",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "label": "Select Main Dots Top Position",
+            "default": 20
+          },
+          {
+            "type": "range",
+            "id": "main_dots_left_position",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "label": "Select Main Dots Left Position",
+            "default": 20
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Index Dots Bundle Details",
+        "blocks": [
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

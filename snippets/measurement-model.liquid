@@ -1,0 +1,34 @@
+<div class="measurement-model" id="Measurement-Model">
+    <div class="frame-overlay" js-overlay></div>
+    <div class="model-main">
+        {% if meta.image != blank %}
+            <div class="model__img">
+                <img src="{{ meta.image | image_url: width: '500x' }}" alt="{{ meta.image.alt }}">
+            </div>
+        {% endif %}
+        <div class="model-close-btn" js-trigger-close>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                <path d="M19.0703 4.92896L4.92818 19.0711" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                <path d="M19.0718 19.0711L4.92969 4.92896" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_2782_57782">
+                <rect width="24" height="24" fill="white"/>
+                </clipPath>
+                </defs>
+            </svg>            
+        </div>
+        <div class="model-rte">
+            {% if meta.title != blank %}
+                <h3 class="model-title">{{ meta.title }}</h3>
+            {% endif %}
+            {% if meta.text != blank %}
+                <div class="model-text">{{ meta.text | metafield_tag }}</div>
+            {% endif %}
+            {% if meta.button_label != blank %}
+                <div class="model-btn" js-trigger-close>{{ meta.button_label }}</div>
+            {% endif %}
+        </div>
+    </div>
+</div>

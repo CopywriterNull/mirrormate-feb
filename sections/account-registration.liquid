@@ -1,0 +1,441 @@
+
+ {{ 'account-registration.css' | asset_url | stylesheet_tag }}
+ <script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/inputmask.min.js" crossorigin="anonymous"></script>
+
+ 
+<div class="account-registration">
+  <div class="page-width">
+
+     <div class="account-registration-inner hidden"  js-success-part>
+        <div class="image">
+        {%- if section.settings.image_success != blank -%}
+            {{
+              section.settings.image_success | 
+              image_url: width: img.width | 
+              image_tag: widths: '640, 650, 700, 750, 800, 900, 1000', 
+              fetchpriority: 'auto', 
+              class:'registration-image'
+            }}
+        {%- endif -%}
+        </div>
+        <div class="text">
+         <div class="registrstion-form registrstion-form-success">
+          
+           <div class="registration-success">
+
+
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.66663 18.3333V7.72217C6.66663 7.44603 6.89048 7.22217 7.16663 7.22217L17.7777 7.22219" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M74.4445 62.2223L74.4445 72.8334C74.4445 73.1095 74.2206 73.3334 73.9445 73.3334L63.3333 73.3333" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M57.6818 38.3091V40C57.6795 43.9207 56.4099 47.7357 54.0624 50.876C51.7148 54.0163 48.415 56.3136 44.6551 57.4252C40.8953 58.5369 36.8768 58.4034 33.199 57.0447C29.5212 55.6859 26.3811 53.1747 24.2471 49.8855C22.1131 46.5964 21.0996 42.7055 21.3575 38.7933C21.6155 34.881 23.1312 31.1569 25.6786 28.1765C28.226 25.196 31.6686 23.1188 35.493 22.2548C39.3174 21.3907 43.3186 21.786 46.8999 23.3818" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M59.5 23.6364L39.5 43.6364L34.0454 38.1818" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+
+             
+              {%- if section.settings.title_success != blank -%}
+                <h1>{{ section.settings.title_success | escape }}</h1>
+              {%- endif -%}
+             
+              {%- if section.settings.description_success != blank -%}
+                <div class="description">{{ section.settings.description_success }}</div>
+              {%- endif -%}
+
+             {%- if section.settings.btn_text != blank -%}
+                <a class="button" href="{{ section.settings.btn_url }}">{{ section.settings.btn_text | escape }}</a>
+              {%- endif -%}
+
+              {%- if section.settings.link_text != blank -%}
+                <a class="login-link" href="{{ section.settings.link_url }}">{{ section.settings.link_text | escape }}</a>
+              {%- endif -%}
+             
+           </div>
+
+             
+           
+
+          </div> 
+        </div>
+    </div>
+    
+    <div class="account-registration-inner" js-form-part>
+        <div class="image">
+        {%- if section.settings.image != blank -%}
+            {{
+              section.settings.image | 
+              image_url: width: img.width | 
+              image_tag: widths: '640, 650, 700, 750, 800, 900, 1000', 
+              fetchpriority: 'auto', 
+              class:'registration-image'
+            }}
+        {%- endif -%}
+        </div>
+        <div class="text">
+         <div class="registrstion-form">
+           
+           {%- if section.settings.title != blank -%}<h1 class="page-title">{{ section.settings.title }}</h1>{%- endif -%}
+           
+           {%- if section.settings.description != blank -%}
+              <div class="description">
+                  {{ section.settings.description }}
+              </div>
+           {%- endif -%}
+
+
+           
+           
+ <form id="account-registration" class="account-registration-form" method="post" js-registration-form>
+             
+              
+<h4 class="title">1. Contact info</h4>
+<div class="grid-row">
+<div class="gr-col-4">
+  <div class="form-group">
+    <label>First Name<span class="required">*</span></label> 
+    <input class="form-control" id="firstname" name="firstname" type="text" required="true" placeholder="First Name">
+  </div>
+</div>
+<div class="gr-col-4">
+<div class="form-group"><label>Last Name<span class="required">*</span></label> <input placeholder="Last Name" required="true" class="form-control" id="lastname" name="lastname" type="text"></div>
+</div>
+<div class="gr-col-4">
+<div class="form-group"><label>Address 1<span class="required">*</span></label> <input required="true" placeholder="Address 1" class="form-control" id="addressone" name="addressone" type="text"></div>
+</div>
+<div class="gr-col-4">
+<div class="form-group"><label>Address 2</label> <input placeholder="Address 2" class="form-control" name="addresstwo" type="text"></div>
+</div>
+<div class="gr-col-4">
+<div class="form-group">
+<label>Country<span class="required">*</span></label>
+  <select class="form-control" js-country id="AddressCountryNew" name="country" size="1">
+ <option value="United States" data-provinces="[[&quot;Alabama&quot;,&quot;Alabama&quot;],[&quot;Alaska&quot;,&quot;Alaska&quot;],[&quot;American Samoa&quot;,&quot;American Samoa&quot;],[&quot;Arizona&quot;,&quot;Arizona&quot;],[&quot;Arkansas&quot;,&quot;Arkansas&quot;],[&quot;Armed Forces Americas&quot;,&quot;Armed Forces Americas&quot;],[&quot;Armed Forces Europe&quot;,&quot;Armed Forces Europe&quot;],[&quot;Armed Forces Pacific&quot;,&quot;Armed Forces Pacific&quot;],[&quot;California&quot;,&quot;California&quot;],[&quot;Colorado&quot;,&quot;Colorado&quot;],[&quot;Connecticut&quot;,&quot;Connecticut&quot;],[&quot;Delaware&quot;,&quot;Delaware&quot;],[&quot;District of Columbia&quot;,&quot;Washington DC&quot;],[&quot;Federated States of Micronesia&quot;,&quot;Micronesia&quot;],[&quot;Florida&quot;,&quot;Florida&quot;],[&quot;Georgia&quot;,&quot;Georgia&quot;],[&quot;Guam&quot;,&quot;Guam&quot;],[&quot;Hawaii&quot;,&quot;Hawaii&quot;],[&quot;Idaho&quot;,&quot;Idaho&quot;],[&quot;Illinois&quot;,&quot;Illinois&quot;],[&quot;Indiana&quot;,&quot;Indiana&quot;],[&quot;Iowa&quot;,&quot;Iowa&quot;],[&quot;Kansas&quot;,&quot;Kansas&quot;],[&quot;Kentucky&quot;,&quot;Kentucky&quot;],[&quot;Louisiana&quot;,&quot;Louisiana&quot;],[&quot;Maine&quot;,&quot;Maine&quot;],[&quot;Marshall Islands&quot;,&quot;Marshall Islands&quot;],[&quot;Maryland&quot;,&quot;Maryland&quot;],[&quot;Massachusetts&quot;,&quot;Massachusetts&quot;],[&quot;Michigan&quot;,&quot;Michigan&quot;],[&quot;Minnesota&quot;,&quot;Minnesota&quot;],[&quot;Mississippi&quot;,&quot;Mississippi&quot;],[&quot;Missouri&quot;,&quot;Missouri&quot;],[&quot;Montana&quot;,&quot;Montana&quot;],[&quot;Nebraska&quot;,&quot;Nebraska&quot;],[&quot;Nevada&quot;,&quot;Nevada&quot;],[&quot;New Hampshire&quot;,&quot;New Hampshire&quot;],[&quot;New Jersey&quot;,&quot;New Jersey&quot;],[&quot;New Mexico&quot;,&quot;New Mexico&quot;],[&quot;New York&quot;,&quot;New York&quot;],[&quot;North Carolina&quot;,&quot;North Carolina&quot;],[&quot;North Dakota&quot;,&quot;North Dakota&quot;],[&quot;Northern Mariana Islands&quot;,&quot;Northern Mariana Islands&quot;],[&quot;Ohio&quot;,&quot;Ohio&quot;],[&quot;Oklahoma&quot;,&quot;Oklahoma&quot;],[&quot;Oregon&quot;,&quot;Oregon&quot;],[&quot;Palau&quot;,&quot;Palau&quot;],[&quot;Pennsylvania&quot;,&quot;Pennsylvania&quot;],[&quot;Puerto Rico&quot;,&quot;Puerto Rico&quot;],[&quot;Rhode Island&quot;,&quot;Rhode Island&quot;],[&quot;South Carolina&quot;,&quot;South Carolina&quot;],[&quot;South Dakota&quot;,&quot;South Dakota&quot;],[&quot;Tennessee&quot;,&quot;Tennessee&quot;],[&quot;Texas&quot;,&quot;Texas&quot;],[&quot;Utah&quot;,&quot;Utah&quot;],[&quot;Vermont&quot;,&quot;Vermont&quot;],[&quot;Virgin Islands&quot;,&quot;U.S. Virgin Islands&quot;],[&quot;Virginia&quot;,&quot;Virginia&quot;],[&quot;Washington&quot;,&quot;Washington&quot;],[&quot;West Virginia&quot;,&quot;West Virginia&quot;],[&quot;Wisconsin&quot;,&quot;Wisconsin&quot;],[&quot;Wyoming&quot;,&quot;Wyoming&quot;]]">United States</option>
+</select></div>
+</div>
+<div class="gr-col-4">
+<div class="form-group"><label>City<span class="required">*</span></label> <input required="true" placeholder="City" class="form-control" id="city" name="city" type="text"></div>
+</div>
+<div class="gr-col-4" id="AddressProvinceContainerNew">
+<div class="form-group">
+  <label>State<span class="required">*</span></label>
+<select class="form-control" id="AddressProvinceNew" name="state" size="1">
+
+</select>
+</div>
+</div>
+<div class="gr-col-4">
+<div class="form-group"><label>Zip Code<span class="required">*</span></label> <input required="true" placeholder="Zip Code" class="form-control" id="zip" name="zip" type="text"></div>
+</div>
+<div class="gr-col-4">
+<div class="form-group">
+  <label>Phone Number<span class="required">*</span></label> 
+  
+  <input required="true" data-pattern="^\+[1-9]{1}[0-9]{3,14}$" placeholder="Phone Number" class="form-control phonecls" id="telephone" name="telephone" type="tel">
+   
+</div>
+</div>
+</div>
+<h4 class="title">2. Company Details</h4>
+<div class="grid-row">
+<div class="gr-col-4">
+<div class="form-group">
+  <label>Company Name
+     {%- if request.path contains "multi-registration" -%}
+      <span class="required">*</span>
+     {%- endif -%}
+  </label> 
+  <input {% if request.path contains "multi-registration" %}required="true"{% endif %} placeholder="Company Name" class="form-control" id="cname" name="cname" type="text"></div>
+</div>
+
+
+   {%- if request.path contains "dealer_trade_registration" -%}
+      <div class="gr-col-4">
+        <div class="form-group">
+          <label>Franchise</label>
+          <select class="form-control business" name="franchise" size="1">
+            <option value="">Franchise</option>
+            <option value="APSD">APSD</option>
+            <option value="Decorating Den">Decorating Den</option>
+            <option value="Deco Zone">Deco Zone</option>
+            <option value="Glass Guru">Glass Guru</option>
+            <option value="Granite/Trend Transformations">Granite/Trend Transformations</option>
+            <option value="Henderson Glass">Henderson Glass</option>
+            <option value="Primesource">Primesource</option>
+            <option value="SGO">SGO</option>
+            <option value="NONE">NONE</option>
+        </select>
+        </div>
+      </div>
+  {%- endif -%}
+  
+  {%- if request.path contains "dealer_trade_registration" -%}
+      <div class="gr-col-4">
+        <div class="form-group">
+          <label>Type of Business<span class="required">*</span></label>
+          <select class="form-control business" required id="business_type" name="business_type" size="1">
+            <option value="">Type of Business</option>
+             <option value="Architect">Architect</option>
+            <option value="Bath and Kitchen Showroom">Bath and Kitchen Showroom</option>
+            <option value="Residential Remodeler">Residential Remodeler</option>
+            <option value="Designer">Designer</option>
+            <option value="Frame Store">Frame Store</option>
+            <option value="Glass Store">Glass Store</option>
+            <option value="Show Room">Show Room</option>
+            <option value="Other">Other</option>
+        </select>
+        </div>
+      </div>
+  {%- endif -%}
+
+  {%- if request.path contains "multi-registration" -%}
+      <div class="gr-col-4">
+        <div class="form-group">
+          <label>Type of Business<span class="required">*</span></label>
+          <select class="form-control business" required id="business_type" name="business_type" size="1">
+            <option value="">Type of Business</option>
+            <option value="Multifamily">Multifamily</option>
+            <option value="National/Regional Home Builder">National/Regional Home Builder</option>
+            <option value="Supply Company">Supply Company</option>
+            <option value="Hotel">Hotel</option>
+        </select>
+       </div>
+      </div>
+  {%- endif -%}
+  
+
+   
+<!-- <div class="gr-col-4">
+<div class="form-group"><label>Telephone:<span class="required">*</span></label> <input type="text" name="comtelenumber" id="comtelenumber" class="form-control phonecls" /></div>
+</div> -->
+<!-- <div class="gr-col-4">
+<div class="form-group"><label>Fax: <span class="required"></span></label> <input class="form-control" id="fac" name="fac" type="text"></div>
+</div> -->
+<div class="gr-col-4">
+<div class="form-group">
+  <label>Sales Tax Exemption Certificate Number
+     {%- if request.path contains "dealer_trade_registration" -%}<span class="required">*</span>{%- endif -%}
+  </label> 
+  
+  <input {% if request.path contains "dealer_trade_registration" %}required="true"{% endif %} placeholder="Sales Tax Exemption Certificate Number" class="form-control" id="certificate" name="certificate" type="text"></div>
+</div>
+
+
+   
+<div class="gr-col-4">
+<div class="form-group"><label>Federal Tax ID Number<span class="required">*</span></label> <input required="true" placeholder="Federal Tax ID Number" class="form-control" id="taxid" name="taxid" type="text"></div>
+</div>
+
+  {%- if request.path contains "dealer_trade_registration" -%}
+<div class="gr-col-4">
+<div class="form-group">
+<label>Decorating Den Franchise Number</label> 
+  <input type="text" name="frnchisenumber" placeholder="Decorating Den Franchise Number" class="form-control">
+</div>
+</div>
+  {%- endif -%}   
+  
+
+  <div class="gr-col-4">
+<div class="form-group">
+<label>Fax</label> <input type="text" placeholder="Fax" name="fac" class="form-control">
+</div>
+</div>
+
+  
+{%- if request.path contains "/pages/multi-registration/hotel" -%}
+  
+  <div id="hearaboutusHotelD" class="gr-col-4">
+    <div class="form-group">
+      <label>How did you hear about us?</label>
+      <select class="form-control business" id="hearaboutusHotel" name="hearaboutusHotel" size="1">
+        <option value="">How did you hear about us?</option>
+        <option value="1">Google/Internet Search</option>
+        <option value="2">Facebook/Instagram</option>
+        <option value="3">Referral</option>
+        <option value="4">Trade Show</option>
+        <option value="5">Other</option>
+    </select>
+    </div>
+</div>
+  
+{%- elsif request.path contains "/multi-registration/" -%}
+ 
+    <div id="hearaboutusD" class="gr-col-4">
+      <div class="form-group">
+          <label>How did you hear about us?</label>
+          <select class="form-control business" id="hearaboutus" name="hearaboutus" size="1">
+              <option value="">How did you hear about us?</option>
+              <option value="1">Trade Show</option>
+              <option value="2">UNITS Magazine</option>
+              <option value="3">Email</option>
+              <option value="4">Google/Internet Search</option>
+              <option value="5">Other</option>
+          </select>
+      </div>
+    </div>
+
+{%- endif -%}
+  
+{%- if request.path contains "dealer_trade_registration" -%}
+  <div id="hearaboutusHotelD" class="gr-col-4">
+  <div class="form-group"><label>How did you hear about us? <span class="required">*</span></label>
+  <select required class="form-control business" id="hearaboutusHotel" name="hearaboutusHotel" size="1">
+<option value="">How did you hear about us?</option>
+<option value="1">Glass Magazine</option>
+<option value="2">Windows &amp; Doors Magazine</option>
+<option value="3">Google/Internet Search</option>
+<option value="4">Client/Customer</option>
+<option value="5">Instagram/Facebook</option>
+<option value="6">RESA/Home Staging Resource</option>
+<option value="7">Trade Show</option>
+<option value="8">Other</option>
+</select></div>
+</div>
+{%- endif -%}
+  
+</div>
+<h4 class="title">3. Login Info</h4>
+<div class="grid-row">
+<div class="gr-col-4">
+<div class="form-group"><label>Email Address<span>*</span></label> <input pattern="/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zAZ0-9]{2,4})+$/" required="true" placeholder="Email Address" class="form-control" id="email" name="email" type="text"></div>
+</div>
+<div class="gr-col-4">
+<div class="form-group"><label>Confirm Email Address<span>*</span></label> <input pattern="/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zAZ0-9]{2,4})+$/" required="true" placeholder="Confirm Email Address" class="form-control" id="cemail" name="cemail" type="text"></div>
+</div>
+<div class="gr-col-4">
+<div class="form-group">
+  <label>Password<span>*</span></label> 
+    <input required="true" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 5 or more characters" placeholder="Password" class="form-control" id="password" name="password" type="password">
+   <div class="password-note">Passwords must be between 5 to 40 characters. Special characters are allowed.</div>
+</div>
+</div>
+<div class="gr-col-4">
+<div class="form-group"><label>Confirm Password<span>*</span></label> 
+  <input required="true" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 5 or more characters" placeholder="Confirm Password" class="form-control" id="cpassword" name="cpassword" type="password"></div>
+</div>
+</div>
+<h4 class="title title-frame">4. What products are you interested in?</h4>
+<div class="grid-row">
+   <div class="form-group-checkbox">
+     <label for="mirrors">
+       <input id="mirrors" name="mirror_frame_kit" value="yes" type="checkbox" />
+       
+      <div class="checkbox">
+          <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </div>
+       
+       Mirror Frame Kit
+     </label>
+      <label for="cabinets">
+       <input id="cabinets" name="cabinet_refacing_kits" value="yes" type="checkbox" />
+        
+       <div class="checkbox">
+            <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+        </div>
+        
+       Cabinet Refacing Kits
+     </label>
+   </div>
+</div>
+<!--<hr class="spam" />
+<div class="grid-row">
+<div class="gr-col-4 captchaaa"><label>Prevent Spam <span class="required">*</span></label> <input type="text" name="captcha" id="captcha" class="demoInputBox form-control" /> <img id="captcha_code" src="https://script.mirrormate.com/mm/captcha_code.php" /></div>
+</div>-->
+
+<div class="form-actions">
+  <input name="userType" id="userType" value="" type="hidden"> 
+  
+  <!-- <input class="button form-submit-btn" value="Submit" name="Submit" type="submit"> 
+   -->
+
+   <button class="button form-submit-btn" value="Submit" name="Submit" type="submit">
+      <span>Submit</span>
+      <div class="loading__spinner">
+          <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+            <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+          </svg>
+        </div>
+  </button>
+  
+  <img style="display: none;" class="loader-img" src="https://cdn.shopify.com/s/files/1/0090/5183/2386/files/ajax-loader.gif?26876"></div>
+
+   <div id="errorDiv" class="errorDiv"></div>
+<div id="successDiv" class="successDiv"></div>
+   
+            </form>
+          </div> 
+        </div>
+    </div>
+  </div>
+</div>
+
+ <script src="{{ 'account-registration.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+  {
+    "name": "Account Registration",
+    "settings": [
+      {
+        "type": "image_picker",
+         "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+         "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+         "id": "description",
+        "label": "Description"
+      },
+      {
+        "type": "header",
+        "content": "SUCCESS PAGE"
+      },
+      {
+        "type": "image_picker",
+         "id": "image_success",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+         "id": "title_success",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+         "id": "description_success",
+        "label": "Description"
+      },
+      {
+        "type": "text",
+         "id": "btn_text",
+        "label": "Button text"
+      },
+      {
+        "type": "url",
+         "id": "btn_url",
+        "label": "Button link"
+      },
+      {
+        "type": "text",
+         "id": "link_text",
+        "label": "Link text"
+      },
+      {
+        "type": "url",
+         "id": "link_url",
+        "label": "Link link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Account Registration",
+      }
+    ]
+  }
+{% endschema %}

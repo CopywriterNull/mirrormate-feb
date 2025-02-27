@@ -1,0 +1,479 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .template-login-1 .customer-page.login-page #message .message-body + div img { display: none !important; }
+</style>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- if section.settings.enable_shop_login_button == false -%}
+  {%- assign hide_shop_login_button = true -%}
+{%- endif -%}
+
+
+<div class="customer-page login-page">
+   <div class="page-width">
+     
+     <div id="success">
+
+
+        <div class="customer-page-inner">
+        <div class="customer-image">
+          {%- if section.settings.image_success != blank -%}
+              {{
+                section.settings.image_success | 
+                image_url: width: img.width | 
+                image_tag: widths: '640, 650, 700, 750, 800, 900, 1000', 
+                fetchpriority: 'auto', 
+                class:'image-recover'
+              }}
+          {%- endif -%}
+        </div>
+       
+      
+        <div class="customer-text">
+          
+       
+
+<div class="customer-text-inner login section-{{ section.id }}-padding">
+
+ <svg class="lock-icon" width="80" height="81" viewBox="0 0 80 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.66675 18.8333V8.22217C6.66675 7.94603 6.89061 7.72217 7.16675 7.72217L17.7779 7.72219" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M74.4443 62.7223L74.4443 73.3334C74.4443 73.6095 74.2205 73.8334 73.9443 73.8334L63.3332 73.8333" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M18.75 35.2524V57.7524C18.75 58.5481 19.0661 59.3112 19.6287 59.8738C20.1913 60.4364 20.9544 60.7524 21.75 60.7524H59.25C60.0456 60.7524 60.8087 60.4364 61.3713 59.8738C61.9339 59.3112 62.25 58.5481 62.25 57.7524V35.2524" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M27.375 31.33C24.3594 32.2509 21.464 33.5274 18.75 35.1325L38.7975 48.955C39.2982 49.3 39.8919 49.4848 40.5 49.4848C41.1081 49.4848 41.7018 49.3 42.2025 48.955L62.25 35.1325C59.536 33.5274 56.6406 32.2509 53.625 31.33" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M27.375 41.08V21.475C27.375 20.8782 27.6121 20.3059 28.034 19.884C28.456 19.462 29.0283 19.225 29.625 19.225H51.375C51.9717 19.225 52.544 19.462 52.966 19.884C53.3879 20.3059 53.625 20.8782 53.625 21.475V41.0725L42.2025 48.955C41.7018 49.3001 41.1081 49.4849 40.5 49.4849C39.8919 49.4849 39.2982 49.3001 38.7975 48.955L27.3825 41.08" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M47.625 25.8925H33.375" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M40.5 37.45H33.375" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M47.625 31.675H33.375" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M35.385 46.615L19.7175 59.965" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M45.5774 46.615L61.2899 59.965" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+
+    
+    <h1 tabindex="-1">
+      {{ 'customer.recover_password.title_success' | t }}
+    </h1>
+    <div class="description">
+        {{ 'customer.recover_password.success' | t }}
+    </div>
+    
+ 
+  
+
+   
+
+      <a href="{{ routes.all_products_collection_url }}" class="button btn-continue">
+        {{ 'general.continue_shopping' | t }}
+      </a>
+
+      <a href="{{ routes.account_login_url }}#login" class="recover-password-link">
+        {{ 'customer.login_page.cancel' | t }}
+      </a>
+   
+ 
+  </div>
+
+
+</div>
+ </div>
+       
+       
+     </div>
+     
+     <div id="recover">
+     <div class="customer-page-inner">
+        <div class="customer-image">
+          {%- if section.settings.image_recover != blank -%}
+              {{
+                section.settings.image_recover | 
+                image_url: width: img.width | 
+                image_tag: widths: '640, 650, 700, 750, 800, 900, 1000', 
+                fetchpriority: 'auto', 
+                class:'image-recover'
+              }}
+          {%- endif -%}
+        </div>
+       
+      
+        <div class="customer-text">
+          
+       
+
+<div class="customer-text-inner login section-{{ section.id }}-padding">
+
+  <svg class="lock-icon" width="80" height="81" viewBox="0 0 80 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.6665 18.8333V8.22217C6.6665 7.94603 6.89036 7.72217 7.16651 7.72217L17.7776 7.72219" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M74.4443 62.7223L74.4443 73.3334C74.4443 73.6095 74.2205 73.8334 73.9443 73.8334L63.3332 73.8333" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M53.2732 62.4989C55.1092 62.4989 56.6112 60.999 56.6112 59.163V40.1909C56.6085 39.3066 56.2559 38.4593 55.6304 37.8342C55.005 37.2091 54.1575 36.8571 53.2732 36.855H25.7272C24.8429 36.8571 23.9954 37.2091 23.3699 37.8342C22.7444 38.4593 22.3918 39.3066 22.3892 40.1909V59.163C22.3918 60.0473 22.7444 60.8945 23.3699 61.5197C23.9954 62.1448 24.8429 62.4968 25.7272 62.4989H53.2732ZM53.2732 60.9989H25.7272C25.4852 61.0017 25.2451 60.9562 25.0209 60.865C24.7968 60.7737 24.5932 60.6386 24.4219 60.4675C24.2507 60.2965 24.1154 60.0931 24.0239 59.869C23.9324 59.645 23.8866 59.4049 23.8892 59.163V40.1909C23.8892 39.1609 24.6962 38.355 25.7272 38.355H53.2732C54.3042 38.355 55.1112 39.1599 55.1112 40.1909V59.163C55.1112 60.194 54.3042 60.9989 53.2732 60.9989Z" fill="#2D4256"/>
+<path d="M38.9699 17.499C38.8808 17.5011 38.7928 17.519 38.7099 17.552C32.4409 17.698 27.3979 22.762 27.3979 29.062V37.121C27.3979 37.3199 27.477 37.5107 27.6176 37.6513C27.7583 37.792 27.949 37.871 28.1479 37.871C28.3469 37.871 28.5376 37.792 28.6783 37.6513C28.8189 37.5107 28.8979 37.3199 28.8979 37.121V29.062C28.8937 27.7385 29.1515 26.4273 29.6563 25.2039C30.1612 23.9805 30.9031 22.8691 31.8395 21.9338C32.7758 20.9984 33.8881 20.2577 35.112 19.7542C36.336 19.2506 37.6475 18.9943 38.971 19H40.0289C41.3524 18.9943 42.6639 19.2506 43.8879 19.7542C45.1118 20.2577 46.2241 20.9984 47.1604 21.9338C48.0968 22.8691 48.8387 23.9805 49.3436 25.2039C49.8484 26.4273 50.1062 27.7385 50.102 29.062V37.384C50.102 37.5829 50.181 37.7737 50.3216 37.9144C50.4623 38.055 50.653 38.134 50.852 38.134C51.0509 38.134 51.2416 38.055 51.3823 37.9144C51.5229 37.7737 51.602 37.5829 51.602 37.384V29.062C51.602 22.669 46.4269 17.499 40.0289 17.499H38.971H38.9699ZM39.1349 20.427C34.6049 20.427 30.9279 24.07 30.9279 28.574V37.326C30.9279 37.5249 31.007 37.7157 31.1476 37.8564C31.2883 37.997 31.479 38.076 31.6779 38.076C31.8769 38.076 32.0676 37.997 32.2083 37.8564C32.3489 37.7157 32.4279 37.5249 32.4279 37.326V28.573C32.4279 24.882 35.4019 21.927 39.1349 21.927H39.8649C43.5979 21.927 46.5719 24.882 46.5719 28.574V37.364C46.5719 37.5629 46.651 37.7537 46.7916 37.8943C46.9323 38.035 47.123 38.114 47.3219 38.114C47.5209 38.114 47.7116 38.035 47.8523 37.8943C47.9929 37.7537 48.0719 37.5629 48.0719 37.364V28.574C48.0719 24.07 44.396 20.427 39.8649 20.427H39.1349ZM39.4999 43.363C38.5536 43.3661 37.6469 43.7435 36.9777 44.4127C36.3085 45.0819 35.9311 45.9886 35.9279 46.935C35.9279 48.045 36.521 49.009 37.3809 49.679V53.872C37.3809 55.033 38.3379 55.994 39.4999 55.994C40.6619 55.994 41.62 55.034 41.62 53.872V49.6769C42.479 49.0069 43.0709 48.044 43.0719 46.935C43.0688 45.9886 42.6914 45.0819 42.0222 44.4127C41.353 43.7435 40.4463 43.3661 39.4999 43.363ZM39.4999 44.863C40.6529 44.863 41.5719 45.782 41.5719 46.935C41.5717 47.3042 41.4728 47.6666 41.2853 47.9847C41.0979 48.3028 40.8288 48.5649 40.5059 48.744C40.3887 48.8088 40.291 48.9039 40.223 49.0192C40.1549 49.1346 40.119 49.266 40.1189 49.4V53.872C40.1216 53.9541 40.1074 54.0359 40.0772 54.1124C40.0471 54.1888 40.0016 54.2583 39.9437 54.3166C39.8857 54.3748 39.8164 54.4206 39.7401 54.4511C39.6638 54.4816 39.5821 54.4962 39.4999 54.494C39.4177 54.4963 39.3359 54.4819 39.2595 54.4515C39.183 54.421 39.1136 54.3752 39.0556 54.317C38.9975 54.2587 38.952 54.1891 38.9218 54.1126C38.8915 54.0361 38.8773 53.9542 38.8799 53.872V49.402C38.8802 49.268 38.8445 49.1364 38.7766 49.0208C38.7087 48.9053 38.6111 48.8101 38.4939 48.7451C38.1709 48.5659 37.9017 48.3036 37.7143 47.9853C37.5269 47.667 37.428 47.3044 37.4279 46.935C37.4279 45.781 38.3469 44.863 39.4999 44.863Z" fill="#2D4256"/>
+</svg>
+
+    
+    <h1 tabindex="-1">
+      {{ 'customer.recover_password.title' | t }}
+    </h1>
+    <div class="description">
+        {{ 'customer.recover_password.subtext' | t }}
+    </div>
+    
+ 
+  
+
+    {%- form 'recover_customer_password' -%}
+      {% assign recover_success = form.posted_successfully? %}
+
+
+      {%- if form.errors -%}
+        <small id="RecoverEmail-email-error" class="form__message form__message_reset">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 13 13">
+            <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+            <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+            <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+            <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+          </svg>
+          {{ form.errors.messages.form }}
+        </small>
+      {%- endif -%}
+      
+        <input
+          type="email"
+          value=""
+          name="email"
+          id="RecoverEmail"
+          autocorrect="off"
+          autocapitalize="off"
+          autocomplete="email"
+          {% if form.errors %}
+            aria-invalid="true"
+            aria-describedby="RecoverEmail-email-error"
+            autofocus
+          {% endif %}
+          placeholder="Email address"
+        >
+      
+
+      <button class="button">
+        {{ 'customer.login_page.submit' | t }}
+      </button>
+
+      <input type="hidden" name="return_to" value="{{ routes.account_login_url }}#success" />
+      
+      <a href="{{ routes.account_login_url }}#login" class="recover-password-link">
+        {{ 'customer.login_page.cancel' | t }}
+      </a>
+    {%- endform -%}
+
+  </div>
+
+</div>
+ </div>
+       
+     </div>
+<div></div>
+<div id="login">
+  <div class="customer-page-inner">
+     <div class="customer-image">
+        {%- if section.settings.image != blank -%}
+            {{
+              section.settings.image | 
+              image_url: width: img.width | 
+              image_tag: widths: '640, 650, 700, 750, 800, 900, 1000', 
+              fetchpriority: 'auto', 
+              class:'image-desktop'
+            }}
+        {%- endif -%}
+         {%- if section.settings.image_mobile != blank -%}
+            {{
+              section.settings.image_mobile | 
+              image_url: width: img.width | 
+              image_tag: widths: '640, 650, 700, 750, 800, 900, 1000', 
+              fetchpriority: 'auto', 
+              class:'image-mobile'
+            }}
+        {%- endif -%}
+       </div>
+
+    <div class="customer-text">
+      <div class="customer-text-inner login section-{{ section.id }}-padding">
+ 
+        <h1  tabindex="-1">
+    {{ 'customer.login_page.title' | t }}
+  </h1>
+
+  {%- if section.settings.description != blank -%}  
+     <div class="description">{{ section.settings.description }}</div>
+  {%- endif -%}
+              
+  
+    {%- if recover_success == true -%}
+      <h3 class="form__message" tabindex="-1" autofocus>
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 13 13">
+          <path d="M6.5 12.35C9.73087 12.35 12.35 9.73086 12.35 6.5C12.35 3.26913 9.73087 0.65 6.5 0.65C3.26913 0.65 0.65 3.26913 0.65 6.5C0.65 9.73086 3.26913 12.35 6.5 12.35Z" fill="#428445" stroke="white" stroke-width="0.7"/>
+          <path d="M5.53271 8.66357L9.25213 4.68197" stroke="white"/>
+          <path d="M4.10645 6.7688L6.13766 8.62553" stroke="white">
+        </svg>
+        {{ 'customer.recover_password.success' | t }}
+      </h3>
+    {%- endif -%}
+    {%- form 'customer_login', novalidate: 'novalidate' -%}
+
+      
+       <input type="hidden" name="checkout_url" value="/pages/checklogin" />
+     
+      
+      {%- if form.errors -%}
+        <h2 class="form__message" tabindex="-1" autofocus>
+          <span class="visually-hidden">{{ 'accessibility.error' | t }} </span>
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 13 13">
+            <circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/>
+            <circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/>
+            <path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/>
+            <path d="M5.87413 3.17832H5.51535L5.52424 3.537L5.6245 7.58083L5.63296 7.92216H5.97439H7.02713H7.36856L7.37702 7.58083L7.47728 3.537L7.48617 3.17832H7.12739H5.87413ZM6.50076 10.0109C7.06121 10.0109 7.5317 9.57872 7.5317 9.00504C7.5317 8.43137 7.06121 7.99918 6.50076 7.99918C5.94031 7.99918 5.46982 8.43137 5.46982 9.00504C5.46982 9.57872 5.94031 10.0109 6.50076 10.0109Z" fill="white" stroke="#EB001B" stroke-width="0.7">
+          </svg>
+          {{ 'templates.contact.form.error_heading' | t }}
+        </h2>
+        {{ form.errors | default_errors }}
+      {%- endif -%}
+
+            
+     {%- unless section.settings.enable_shop_login_button -%}
+          {%- if shop.features.login_with_shop_classic_customer_accounts? -%}
+            <section name="sign-in-with-shop-provider">
+              {{ shop | login_button: hide_button: hide_shop_login_button }}
+                <p>
+                  {{ 'customer.login_page.alternate_provider_separator' | t }}
+                </p>
+            </section>
+          {%- endif -%}
+    {%- endunless -%}
+
+
+       {%- assign emailFromUrl = '' -%}
+        {%- assign orderString = '' -%}
+        
+        {%- assign page_url = content_for_header | split:'"pageurl":"' | last | split:'"' | first | split: request.host | last | replace:'\/','/' | replace:'%20',' ' | replace:'\u0026','&'  -%}
+  
+      {% assign param = blank %}
+       
+        {%- for i in (1..1) -%}
+          {%- unless page_url contains "?" -%}{% break %}{%- endunless -%}
+          {%- assign query_string = page_url | split:'?' | last -%}
+          {%- assign qry_parts= query_string | split:'&' -%}
+        
+          {%- for part in qry_parts -%}
+            {%- assign key_and_value = part | split:'=' -%}
+            {%- if key_and_value.size > 1 -%}
+              
+              {% if key_and_value[0] == 'email' %}
+               {%- assign emailFromUrl = key_and_value[1] | strip | replace: '%40', '@' -%}
+              {% endif %}
+        
+              {% if key_and_value[0] == 'order' %}
+               {%- assign orderString = key_and_value[1] | strip -%}
+              {% endif %}
+              
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endfor -%}
+
+    
+      
+        <input
+          type="email"
+          name="customer[email]"
+          id="CustomerEmail"
+          autocomplete="email"
+          autocorrect="off"
+          autocapitalize="off"
+          value="{% if orderString != blank and emailFromUrl != blank %}{{ emailFromUrl }}{% endif %}"
+          {% if form.errors contains 'form' %}
+            aria-invalid="true"
+          {% endif %}
+          placeholder="{{ 'customer.login_page.email' | t }}"
+        >
+        
+     
+
+      {%- if form.password_needed -%}
+        
+          <input
+            type="password"
+            value=""
+            name="customer[password]"
+            id="CustomerPassword"
+            autocomplete="current-password"
+            {% if form.errors contains 'form' %}
+              aria-invalid="true"
+            {% endif %}
+            placeholder="{{ 'customer.login_page.password' | t }}"
+          >
+          
+       
+
+       
+      {%- endif -%}
+
+      <button class="button">
+        {{ 'customer.login_page.sign_in' | t }}
+      </button>
+     
+ <a href="{{ routes.account_login_url }}#recover" class="recover-password-link">
+          {{ 'customer.login_page.forgot_password' | t }}
+        </a>
+      
+     
+    {%- endform -%}
+
+
+  {%- if shop.checkout.guest_login -%}
+    <div>
+      <hr>
+      <h2>{{ 'customer.login_page.guest_title' | t }}</h2>
+
+      {%- form 'guest_login' -%}
+        <button class="button">
+          {{ 'customer.login_page.guest_continue' | t }}
+        </button>
+      {%- endform -%}
+    </div>
+  {%- endif -%}
+              
+    </div>
+  </div>
+    
+  </div>
+  
+</div>
+
+
+              
+              
+   </div>
+</div>
+{% if template.name == "page" %}
+  
+
+<script>
+// Function to get query parameters from the URL
+function getQueryParam(param) {
+    return new URLSearchParams(window.location.search).get(param);
+}
+
+// Function to set the email in the input field once it's available
+function setEmailInInput() {
+    const emailInput = document.querySelector("#inputblock .fieldx__input");
+
+    if (emailInput) {
+        const email = getQueryParam('email');
+        if (email) {
+            emailInput.value = email;
+
+            // Remove the email parameter from the URL and update without reloading
+            const urlParams = new URLSearchParams(window.location.search);
+            urlParams.delete('email');
+            const newUrl = window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : '');
+
+            window.history.replaceState({}, document.title, newUrl);
+        }
+        return true; // Success: email input found and updated
+    }
+    return false; // Input field not found yet
+}
+
+// Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Retry mechanism in case the input field is loaded dynamically
+    const intervalId = setInterval(function() {
+        if (setEmailInInput()) {
+            clearInterval(intervalId); // Stop checking once the input is found and updated
+        }
+    }, 100); // Check every 100 milliseconds
+});
+
+     
+</script>
+{% endif %}  
+{% schema %}
+{
+  "name": "t:sections.main-login.name",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image for desktop"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image for mobile"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "header",
+      "content": "RECOVER"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_recover",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "RECOVER SUCCESS"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_success",
+      "label": "Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_shop_login_button",
+      "label": "t:sections.main-login.shop_login_button.enable",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

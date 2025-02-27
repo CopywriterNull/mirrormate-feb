@@ -1,0 +1,165 @@
+{% if section.settings.main_background_color != blank or section.settings.main_quote_text != blank or section.settings.main_quote_author != blank or section.settings.main_quote_author_designation != blank or section.settings.main_left_top_image != blank or section.settings.main_left_bottom_image != blank or section.settings.main_right_top_image != blank or section.settings.main_right_bottom_image %}
+<div class="Index_quote_images_main_new" style="background: {{ section.settings.main_background_color }};">
+  <div class="page-width">
+    {% if section.settings.main_left_top_image != blank %}
+      <div class="Index_quote_image_main Index_quote_left_top_image">
+        {{
+            section.settings.main_left_top_image | 
+            image_url: width: img.width | 
+            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+            fetchpriority: 'auto', 
+            class:'quote_image_new'
+         }}
+      </div>
+    {% endif %}
+    {% if section.settings.main_left_bottom_image != blank %}
+      <div class="Index_quote_image_main Index_quote_left_bottom_image">
+        {{
+            section.settings.main_left_bottom_image | 
+            image_url: width: img.width | 
+            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+            fetchpriority: 'auto', 
+            class:'quote_image_new'
+         }}
+      </div>
+    {% endif %}
+    {% if section.settings.main_right_top_image != blank %}
+      <div class="Index_quote_image_main Index_quote_right_top_image">
+        {{
+            section.settings.main_right_top_image | 
+            image_url: width: img.width | 
+            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+            fetchpriority: 'auto', 
+            class:'quote_image_new'
+         }}
+      </div>
+    {% endif %}
+    {% if section.settings.main_right_bottom_image != blank %}
+      <div class="Index_quote_image_main Index_quote_right_bottom_image">
+        {{
+            section.settings.main_right_bottom_image | 
+            image_url: width: img.width | 
+            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+            fetchpriority: 'auto', 
+            class:'quote_image_new'
+         }}
+      </div>
+    {% endif %}
+    <div class="Index_quote_images_inner_new">
+      {% if section.settings.main_quote_text != blank or section.settings.main_quote_author != blank or section.settings.main_quote_author_designation != blank %}
+        <div class="Index_quote_images_text_sides">
+          <div class="Index_quote_images_text_sides_inner">
+            {% if section.settings.main_quote_text != blank %}
+              <div class="Index_quote_text_main">
+                <div class="Index_quote_text_main_icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="31" height="24" viewBox="0 0 31 24" fill="none">
+    <path d="M10.9166 0L12.6309 2.23602C7.56254 5.36646 5.62465 8.49689 5.62465 13.3416C6.44452 12.9689 7.56254 12.7453 8.53148 12.7453C11.2892 12.7453 13.3017 15.205 13.3017 18.2609C13.3017 21.5404 10.693 24 7.33893 24C3.23956 24 0.630859 20.7205 0.630859 15.5031C0.630859 9.3913 3.91036 3.65217 10.9166 0ZM27.9849 0L29.6246 2.23602C24.6309 5.36646 22.6184 8.49689 22.6184 13.3416C23.4383 12.9689 24.5563 12.7453 25.5253 12.7453C28.283 12.7453 30.37 15.205 30.37 18.2609C30.37 21.5404 27.7613 24 24.3327 24C20.3079 24 17.6992 20.7205 17.6992 15.5031C17.6992 9.3913 20.9042 3.65217 27.9849 0Z" fill="#2D4256"></path>
+    </svg>
+                </div>
+                <div class="Index_quote_text_only Index_quote_text">
+                  <h4>
+                    {{ section.settings.main_quote_text }}
+                  </h4>
+                </div>
+              </div>
+            {% endif %}
+            {% if section.settings.main_quote_author_image != blank or section.settings.main_quote_author != blank or section.settings.main_quote_author_designation != blank %}
+              <div class="Index_quote_author_information">
+                {% if section.settings.main_quote_author_image != blank %}
+                  <div class="Index_quote_author_image">
+                     {{
+                        section.settings.main_quote_author_image | 
+                        image_url: width: img.width | 
+                        image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                        fetchpriority: 'auto', 
+                        class:'author_image'
+                     }}
+                  </div>
+                {% endif %}
+                {% if section.settings.main_quote_author != blank %}
+                  <div class="Index_quote_author_name">
+                    <h5> 
+                      - {{ section.settings.main_quote_author }}
+                    </h5>
+                  </div>
+                {% endif %}
+                {% if section.settings.main_quote_author_designation != blank %}
+                  <div class="Index_quote_author_designation Index_meet_image_all_text_sides_innerright_infos_new">
+                    <p> 
+                      {{ section.settings.main_quote_author_designation }}
+                    </p>
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>    
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  
+</div>
+{% endif %}
+  
+{% schema %}
+  {
+    "name": "Index Quote Images",
+    "class": "Index_quote_images_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "textarea",
+        "id": "main_quote_text",
+        "label": "Add Main Quote Text",
+        "default": "“Every frame is custom made to order, ensuring ,<span>unparalleled quality</span> and a personal touch.”"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_quote_author_image",
+        "label": "Add Main Quote Author Image",
+      },
+      {
+        "type": "text",
+        "id": "main_quote_author",
+        "label": "Add Main Quote Author",
+        "default": "Kevin Button"
+      },
+      {
+        "type": "text",
+        "id": "main_quote_author_designation",
+        "label": "Add Main Quote Author designation",
+        "default": "Founder"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_left_top_image",
+        "label": "Add Left Top Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_left_bottom_image",
+        "label": "Add Left Bottom Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_right_top_image",
+        "label": "Add Right Top Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_right_bottom_image",
+        "label": "Add Right Bottom Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Index Quote with Images"
+      }
+    ]
+  }
+{% endschema %}

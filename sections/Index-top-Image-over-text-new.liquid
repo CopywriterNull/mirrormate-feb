@@ -1,0 +1,346 @@
+{%- if section.settings.main_custom_review_text != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_link != blank or section.blocks.size > 0 or section.settings.main_desktop_image_1 != blank or section.settings.main_desktop_image_2 != blank or section.settings.main_mobile_image_1 != blank or section.settings.main_mobile_image_2 != blank -%}
+  <div class="Index_top_Image_over_text_main_new Index_top_Image_over_text_main_new_{{ section.id }}" style="background: {{ section.settings.main_background_color }};">
+    <style>
+      @media(min-width:750px) and (max-width:9999px){
+        .Index_top_Image_over_text_main_new_{{ section.id }} {}
+        .Index_top_Image_over_text_main_new_{{ section.id }} .Index_top_Image_over_text_sides_innerleft_1_texts_review_new svg path{ fill:{{ section.settings.main_text_color }}; }
+        .Index_top_Image_over_text_main_new_{{ section.id }} .Index_top_Image_over_text_sides_innerleft_1_texts_review_new p{ color:{{ section.settings.main_text_color }}; }
+        .Index_top_Image_over_text_main_new_{{ section.id }} .Index_top_Image_over_text_sides_innerleft_1_texts_title_new h2{ color:{{ section.settings.main_text_color }}; }
+        .Index_top_Image_over_text_main_new_{{ section.id }} .Index_top_Image_over_text_sides_innerleft_1_texts_infos_new p{ color:{{ section.settings.main_text_color }}; }
+      }
+    </style>
+    <div class="Index_top_Image_over_text_inner_new">
+      <div class="Index_top_Image_over_text_sides_new">
+        {%- if section.settings.main_custom_review_text != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_link != blank or section.blocks.size > 0 -%}
+          
+            <div class="Index_top_Image_over_text_sides_innerleft_new">
+              {%- if section.settings.main_custom_review_text != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_link != blank -%}
+                <div class="Index_top_Image_over_text_sides_innerleft_1_new">
+                  <div class="Index_top_Image_over_text_sides_innerleft_1_texts_new">
+                    {%- if section.settings.main_custom_review_text != blank or section.settings.main_custom_review_mobile_text != blank -%}
+                      <div class="Index_top_Image_over_text_sides_innerleft_1_texts_review_new">
+                        <svg width="65" height="13" viewBox="0 0 65 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g clip-path="url(#clip0_6_2233)">
+                          <path d="M6.37081 9.73996C6.45026 9.69201 6.54973 9.69201 6.62918 9.73996L9.70074 11.5938C9.89007 11.7081 10.1236 11.5384 10.0734 11.323L9.25828 7.82894C9.23719 7.73857 9.2679 7.64395 9.33805 7.58319L12.0521 5.23197C12.2193 5.08717 12.1299 4.8126 11.9096 4.79391L8.33621 4.49074C8.24382 4.4829 8.16335 4.42457 8.12717 4.33919L6.73017 1.04309C6.64403 0.839835 6.35596 0.839835 6.26982 1.04309L4.87283 4.33919C4.83664 4.42457 4.75618 4.4829 4.66378 4.49074L1.09041 4.79391C0.870051 4.8126 0.780699 5.08717 0.947848 5.23197L3.66195 7.58319C3.73209 7.64395 3.7628 7.73857 3.74172 7.82894L2.9266 11.323C2.87636 11.5384 3.10992 11.7081 3.29925 11.5938L6.37081 9.73996Z" fill="#2D4256"/>
+                          </g>
+                          <g clip-path="url(#clip1_6_2233)">
+                          <path d="M19.3708 9.73996C19.4503 9.69201 19.5497 9.69201 19.6292 9.73996L22.7007 11.5938C22.8901 11.7081 23.1236 11.5384 23.0734 11.323L22.2583 7.82894C22.2372 7.73857 22.2679 7.64395 22.338 7.58319L25.0521 5.23197C25.2193 5.08717 25.1299 4.8126 24.9096 4.79391L21.3362 4.49074C21.2438 4.4829 21.1633 4.42457 21.1272 4.33919L19.7302 1.04309C19.644 0.839835 19.356 0.839835 19.2698 1.04309L17.8728 4.33919C17.8366 4.42457 17.7562 4.4829 17.6638 4.49074L14.0904 4.79391C13.8701 4.8126 13.7807 5.08717 13.9478 5.23197L16.6619 7.58319C16.7321 7.64395 16.7628 7.73857 16.7417 7.82894L15.9266 11.323C15.8764 11.5384 16.1099 11.7081 16.2992 11.5938L19.3708 9.73996Z" fill="#2D4256"/>
+                          </g>
+                          <g clip-path="url(#clip2_6_2233)">
+                          <path d="M32.3708 9.73996C32.4503 9.69201 32.5497 9.69201 32.6292 9.73996L35.7007 11.5938C35.8901 11.7081 36.1236 11.5384 36.0734 11.323L35.2583 7.82894C35.2372 7.73857 35.2679 7.64395 35.338 7.58319L38.0521 5.23197C38.2193 5.08717 38.1299 4.8126 37.9096 4.79391L34.3362 4.49074C34.2438 4.4829 34.1633 4.42457 34.1272 4.33919L32.7302 1.04309C32.644 0.839835 32.356 0.839835 32.2698 1.04309L30.8728 4.33919C30.8366 4.42457 30.7562 4.4829 30.6638 4.49074L27.0904 4.79391C26.8701 4.8126 26.7807 5.08717 26.9478 5.23197L29.6619 7.58319C29.7321 7.64395 29.7628 7.73857 29.7417 7.82894L28.9266 11.323C28.8764 11.5384 29.1099 11.7081 29.2992 11.5938L32.3708 9.73996Z" fill="#2D4256"/>
+                          </g>
+                          <g clip-path="url(#clip3_6_2233)">
+                          <path d="M45.3708 9.73996C45.4503 9.69201 45.5497 9.69201 45.6292 9.73996L48.7007 11.5938C48.8901 11.7081 49.1236 11.5384 49.0734 11.323L48.2583 7.82894C48.2372 7.73857 48.2679 7.64395 48.338 7.58319L51.0521 5.23197C51.2193 5.08717 51.1299 4.8126 50.9096 4.79391L47.3362 4.49074C47.2438 4.4829 47.1633 4.42457 47.1272 4.33919L45.7302 1.04309C45.644 0.839835 45.356 0.839835 45.2698 1.04309L43.8728 4.33919C43.8366 4.42457 43.7562 4.4829 43.6638 4.49074L40.0904 4.79391C39.8701 4.8126 39.7807 5.08717 39.9478 5.23197L42.6619 7.58319C42.7321 7.64395 42.7628 7.73857 42.7417 7.82894L41.9266 11.323C41.8764 11.5384 42.1099 11.7081 42.2992 11.5938L45.3708 9.73996Z" fill="#2D4256"/>
+                          </g>
+                          <g clip-path="url(#clip4_6_2233)">
+                          <path d="M58.3708 9.73996C58.4503 9.69201 58.5497 9.69201 58.6292 9.73996L61.7007 11.5938C61.8901 11.7081 62.1236 11.5384 62.0734 11.323L61.2583 7.82894C61.2372 7.73857 61.2679 7.64395 61.338 7.58319L64.0521 5.23197C64.2193 5.08717 64.1299 4.8126 63.9096 4.79391L60.3362 4.49074C60.2438 4.4829 60.1633 4.42457 60.1272 4.33919L58.7302 1.04309C58.644 0.839835 58.356 0.839835 58.2698 1.04309L56.8728 4.33919C56.8366 4.42457 56.7562 4.4829 56.6638 4.49074L53.0904 4.79391C52.8701 4.8126 52.7807 5.08717 52.9478 5.23197L55.6619 7.58319C55.7321 7.64395 55.7628 7.73857 55.7417 7.82894L54.9266 11.323C54.8764 11.5384 55.1099 11.7081 55.2992 11.5938L58.3708 9.73996Z" fill="#2D4256"/>
+                          </g>
+                          <defs>
+                          <clipPath id="clip0_6_2233">
+                          <rect width="12" height="12" fill="white" transform="translate(0.5 0.5)"/>
+                          </clipPath>
+                          <clipPath id="clip1_6_2233">
+                          <rect width="12" height="12" fill="white" transform="translate(13.5 0.5)"/>
+                          </clipPath>
+                          <clipPath id="clip2_6_2233">
+                          <rect width="12" height="12" fill="white" transform="translate(26.5 0.5)"/>
+                          </clipPath>
+                          <clipPath id="clip3_6_2233">
+                          <rect width="12" height="12" fill="white" transform="translate(39.5 0.5)"/>
+                          </clipPath>
+                          <clipPath id="clip4_6_2233">
+                          <rect width="12" height="12" fill="white" transform="translate(52.5 0.5)"/>
+                          </clipPath>
+                          </defs>
+                        </svg>
+
+                        
+                        {%- if section.settings.main_custom_review_text != blank or section.settings.main_custom_review_mobile_text != blank -%}
+                          <span class="desktop_only">{{ section.settings.main_custom_review_text }}</span>
+                          <span class="mobile_only">{{ section.settings.main_custom_review_mobile_text }}</span>
+                        {%- endif -%}
+                      </div>
+                    {%- endif -%}
+                    {%- if section.settings.main_heading_text != blank -%}
+                      <div class="Common_title_new Index_top_Image_over_text_sides_innerleft_1_texts_title_new">
+                        <h2>{{ section.settings.main_heading_text }}</h2>
+                      </div>
+                    {%- endif -%}
+                    {%- if section.settings.main_information_text != blank -%}
+                      <div class="Index_top_Image_over_text_sides_innerleft_1_texts_infos_new">
+                        {{ section.settings.main_information_text }}
+                      </div>
+                    {%- endif -%}
+                    {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                      <div class="Index_top_Image_over_text_sides_innerleft_1_texts_button_new desktop_only">
+                        <a href="{{ section.settings.main_button_link }}" class="button {% if section.settings.main_white_button == true %}button_white_new{% endif %}">
+                          {{ section.settings.main_button_text }}  
+                        </a>
+                      </div>
+                    {%- endif -%}
+                    {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                      <div class="Index_top_Image_over_text_sides_innerleft_1_texts_button_new mobile_only">
+                        <a href="{{ section.settings.main_button_link }}" class="button">
+                          {{ section.settings.main_button_text }}  
+                        </a>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if section.blocks.size > 0 -%}
+                <div class="Index_top_Image_over_text_sides_innerleft_2_new">
+                  <div class="Index_top_Image_over_text_sides_innerleft_2_loops_new">
+                    {%- for block in section.blocks -%}
+                      {%- if block.settings.icons != blank and block.settings.title != blank -%}
+                        <div class="Index_top_Image_over_text_sides_innerleft_2_loops_mainboxs_new">
+                          <div class="Index_top_Image_over_text_sides_innerleft_2_loops_innerboxs_new">
+                            {%- if block.settings.icons != blank -%}
+                              <div class="Index_top_Image_over_text_sides_innerleft_2_loops_innerboxs_mainlogo_new">
+                                <div class="Index_top_Image_over_text_sides_innerleft_2_loops_innerboxs_innerlogo_new">
+                                  {{
+                                    block.settings.icons | 
+                                    image_url: width: img.width | 
+                                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                    fetchpriority: 'auto', 
+                                    class:'Icon_image_new'
+                                  }}
+                                </div>
+                              </div>
+                            {%- endif -%}
+                            {%- if block.settings.title != blank -%}
+                              <div class="Index_top_Image_over_text_sides_innerleft_2_loops_innerboxs_maintext_new">
+                                <div class="Index_top_Image_over_text_sides_innerleft_2_loops_innerboxs_innertext_new">
+                                  {{ block.settings.title }}
+                                </div>
+                              </div>
+                            {%- endif -%}
+                          </div>
+                        </div>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          
+        {%- endif -%}
+        {%- if section.settings.main_desktop_image_1 != blank or section.settings.main_desktop_image_2 != blank or section.settings.main_mobile_image_1 != blank or section.settings.main_mobile_image_2 != blank -%}
+          <div class="Index_top_Image_over_text_sides_mainright_new" data-aos="fade-in">
+            <div class="Index_top_Image_over_text_sides_innerright_new">
+              {%- if section.settings.main_desktop_image_1 != blank and section.settings.main_desktop_image_2 != blank -%}
+                <div class="Index_top_Image_over_text_sides_innerright_maindesktop_new">
+                  <div class="Index_top_Image_over_text_sides_innerright_innerdesktop_new">
+                    {%- if section.settings.main_desktop_image_1 != blank -%}
+                      {{
+                        section.settings.main_desktop_image_1 | 
+                        image_url: width: img.width | 
+                        image_tag: 
+                          widths: '375, 550, 750, 1100, 1500, 2200, 3000',
+                          sizes: '(min-width: 1200px) 1100px, (min-width: 750px) 750px, calc(100vw - 30px)',
+                          class: 'Full_image_1_new'
+                      }}
+                    {%- endif -%}
+                    {%- if section.settings.main_desktop_image_2 != blank -%}
+                      {{
+                        section.settings.main_desktop_image_2 | 
+                        image_url: width: img.width | 
+                        image_tag: 
+                          widths: '375, 550, 750, 1100, 1500, 2200, 3000',
+                          sizes: '(min-width: 1200px) 1100px, (min-width: 750px) 750px, calc(100vw - 30px)',
+                          class: 'Full_image_2_new'
+                      }}
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if section.settings.main_mobile_image_1 != blank and section.settings.main_mobile_image_2 != blank -%}
+                <div class="Index_top_Image_over_text_sides_innerright_mainmobile_new">
+                  <div class="Index_top_Image_over_text_sides_innerright_innermobile_new">
+                    {%- if section.settings.main_mobile_image_1 != blank -%}
+                      {{
+                        section.settings.main_mobile_image_1 | 
+                        image_url: width: img.width | 
+                        image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                        fetchpriority: 'auto', 
+                        class:'Full_image_1_new'
+                      }}
+                    {%- endif -%}
+                    {%- if section.settings.main_mobile_image_2 != blank -%}
+                      {{
+                        section.settings.main_mobile_image_2 | 
+                        image_url: width: img.width | 
+                        image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                        fetchpriority: 'auto', 
+                        class:'Full_image_2_new'
+                      }}
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+            {%- if section.settings.main_outside_custom_logo != blank or section.settings.main_inside_custom_logo != blank -%}
+              <div class="Index_top_Image_over_text_sides_mainright_mainoverlay_new">
+                <div class="Index_top_Image_over_text_sides_mainright_inneroverlay_new">
+                  {%- if section.settings.main_outside_custom_logo != blank -%}
+                    <div class="Index_top_Image_over_text_sides_mainright_inneroverlay_mainoutside_new">
+                      <div class="Index_top_Image_over_text_sides_mainright_inneroverlay_inneroutside_new">
+                        {{
+                          section.settings.main_outside_custom_logo | 
+                          image_url: width: img.width | 
+                          image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                          fetchpriority: 'auto', 
+                          class:'Full_image_new spin'
+                        }}
+                      </div>
+                    </div>
+                  {%- endif -%}
+                  {%- if section.settings.main_inside_custom_logo != blank -%}
+                    <div class="Index_top_Image_over_text_sides_mainright_inneroverlay_maininside_new">
+                      <div class="Index_top_Image_over_text_sides_mainright_inneroverlay_innerinside_new">
+                        {{
+                          section.settings.main_inside_custom_logo | 
+                          image_url: width: img.width | 
+                          image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                          fetchpriority: 'auto', 
+                          class:'Full_image_new'
+                        }}
+                      </div>
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}  
+
+{% schema %}
+  {
+    "name": "Index Top Image Over Text",
+    "class": "Index_top_Image_over_text_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "main_text_color",
+        "label": "Add Main Text Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "richtext",
+        "id": "main_custom_review_text",
+        "label": "Add Main Custom Review Text",
+        "default": "<p>Over 9102+ 5-star reviews</p>"
+      },
+      {
+        "type": "richtext",
+        "id": "main_custom_review_mobile_text",
+        "label": "Add Main Custom Review Mobile Text",
+        "default": "<p>9102+ 5-star reviews</p>"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Transform Your <br>Bathroom Mirror"
+      },
+      {
+        "type": "richtext",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "<p>Add a beautiful finish to your mirror in less than <br>30 minutes with our easy-install frame kits.</p>"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "Shop Now"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      },
+      {
+        "type": "checkbox",
+        "id": "main_white_button",
+        "label": "White Button"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_desktop_image_1",
+        "label": "Add Main Desktop Image-1"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_mobile_image_1",
+        "label": "Add Main Mobile Image-1"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_desktop_image_2",
+        "label": "Add Main Desktop Image-2"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_mobile_image_2",
+        "label": "Add Main Mobile Image-2"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_outside_custom_logo",
+        "label": "Add Main Outside Custom Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_inside_custom_logo",
+        "label": "Add Main Inside Custom Logo"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "information",
+        "name": "Information",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "icons",
+            "label": "Add Main Custom Image"
+          },
+          {
+            "type": "richtext",
+            "id": "title",
+            "label": "Add Main Custom Texts",
+            "default": "<p>Information</p>"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Index Top Image Over Text",
+        "blocks": [
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

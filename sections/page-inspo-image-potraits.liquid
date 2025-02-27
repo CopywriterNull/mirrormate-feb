@@ -1,0 +1,236 @@
+{% if section.settings.main_image != blank or section.settings.main_mp4_video != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_link != blank or section.settings.main_button_text != blank or section.settings.left_top_potrait_image != blank or section.settings.left_bottom_potrait_image != blank or section.settings.right_top_potrait_image != blank or section.settings.right_bottom_potrait_image != blank %}
+  <div class="Page_inspo_image_potraits_main Page_inspo_image_potraits_main_{{ section.id }}" style="background-color: {{ section.settings.main_background_color }}">
+    <div class="page-width">
+      <div class="Page_inspo_image_potrait_parent">
+          {% if section.settings.left_top_potrait_image != blank %}
+            <div class="Page_inspo_single_image_potrait_parent left_top_potrait">
+              <div class="Page_inspo_single_image_potrait_inner">
+                {{
+                  section.settings.left_top_potrait_image | 
+                  image_url: width: img.width | 
+                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                  fetchpriority: 'auto', 
+                  class:'left_top_potrait'
+                }}
+              </div>
+            </div>
+          {% endif %}
+          {% if section.settings.left_bottom_potrait_image != blank %}
+            <div class="Page_inspo_single_image_potrait_parent left_bottom_potrait">
+              <div class="Page_inspo_single_image_potrait_inner">
+                {{
+                  section.settings.left_bottom_potrait_image | 
+                  image_url: width: img.width | 
+                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                  fetchpriority: 'auto', 
+                  class:'left_bottom_potrait'
+                }}
+              </div>
+            </div>
+          {% endif %}
+          {% if section.settings.right_top_potrait_image != blank %}
+            <div class="Page_inspo_single_image_potrait_parent right_top_potrait">
+              <div class="Page_inspo_single_image_potrait_inner">
+                {{
+                  section.settings.right_top_potrait_image | 
+                  image_url: width: img.width | 
+                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                  fetchpriority: 'auto', 
+                  class:'right_top_potrait'
+                }}
+              </div>
+            </div>
+          {% endif %}
+          {% if section.settings.right_bottom_potrait_image != blank %}
+            <div class="Page_inspo_single_image_potrait_parent right_bottom_potrait">
+              <div class="Page_inspo_single_image_potrait_inner">
+                {{
+                  section.settings.right_bottom_potrait_image | 
+                  image_url: width: img.width | 
+                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                  fetchpriority: 'auto', 
+                  class:'right_bottom_potrait'
+                }}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      <div class="Page_inspo_image_potraits_inner">
+        {% if section.settings.main_image != blank or section.settings.main_mp4_video != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_link != blank or section.settings.main_button_text != blank %}
+          <div class="Page_inspo_image_potraits_text_main">
+            {% if section.settings.main_image != blank or section.settings.main_mp4_video != blank %}
+              {%- if section.settings.main_mp4_video != blank -%}
+                <div class="Page_inspo_image_potraits_text_main_video_image">
+                          {{ section.settings.main_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                        </div>
+              {% else %}  
+                {%- if section.settings.main_image != blank -%}
+                  <div class="Page_inspo_image_potraits_text_main_video_image">
+                            {%- if section.settings.main_image != blank -%}
+                              {{
+                                section.settings.main_desktop_image | 
+                                image_url: width: img.width | 
+                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                fetchpriority: 'auto', 
+                                class:'main_image'
+                              }}
+                            {%- endif -%}
+                          </div>
+                {%- endif -%}
+              {%- endif -%}
+            {% endif %}
+            {%- if section.settings.main_heading_text != blank -%}
+              <div class="Common_title_new Page_inspo_image_potraits_text_main_heading_text">
+                <h2>{{ section.settings.main_heading_text }}</h2>
+              </div>
+            {%- endif -%}
+            {%- if section.settings.main_information_text != blank -%}
+              <div class="Page_inspo_image_potraits_text_main_information_text Index_meet_image_all_text_sides_innerright_infos_new">
+                {{ section.settings.main_information_text }}
+              </div>
+            {%- endif -%}
+            {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+              <div class="Page_inspo_image_potraits_text_main_button_parent">
+                <a href="{{ section.settings.main_button_link }}" class="button">
+                  {{ section.settings.main_button_text }}  
+                </a>
+              </div>
+            {%- endif -%}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+<style>
+  .Page_inspo_image_potraits_main { padding: 151px 0; position: relative; }
+  .Page_inspo_image_potraits_text_main { max-width: 588px; width: 100%; margin: 0 auto; text-align: center; }
+  .Page_inspo_image_potraits_text_main_video_image { max-width: 164px; width: 100%; aspect-ratio: 1; margin: 0 auto;  }
+  .Page_inspo_image_potraits_text_main_video_image video, .Page_inspo_image_potraits_text_main_video_image img { width: 100%; height: 100% !important; border-radius: 8px; display: block; object-fit: cover; }
+  .Page_inspo_image_potraits_text_main_heading_text, .Page_inspo_image_potraits_text_main_button_parent { padding-top: 32px; }
+  .Page_inspo_image_potraits_text_main_information_text { padding-top: 16px; width: 63.096%; margin: 0 auto; }
+  .Page_inspo_single_image_potrait_parent { padding: 12px 12px 32px;  position: absolute; background-color: #FFF; width: 260px; border-radius: 4px; }
+  .Page_inspo_single_image_potrait_inner { aspect-ratio: 0.95545; }
+  .Page_inspo_single_image_potrait_inner img { rotate: 0deg; width: 100%; height: 100% !important; display: block; object-fit: cover; border-radius: 2px; }
+  
+  /* .left_top_potrait { rotate: -5.39deg; top: 102.57px; left: 76.76px; } */
+  .left_top_potrait { rotate: -5.39deg; top: 15%; left: 5.2%; }
+  
+  /* .left_bottom_potrait { rotate: 4.87deg; bottom: 118.4px; left: 164.31px; } */
+  .left_bottom_potrait { rotate: 4.87deg; bottom: 17.13%; left: 11.42%; }
+  
+  /* .right_top_potrait { rotate: -5.31deg; top: 99.41px; right: 49.02px;  } */
+  .right_top_potrait { rotate: -5.31deg; top: 14.4%; right: 3.42%;  }
+  
+  /* .right_bottom_potrait { rotate: 3.41deg; bottom: 121.51px; right: 148.5px; } */
+  .right_bottom_potrait { rotate: 3.41deg; bottom: 17.6%; right: 10.3%; }
+
+  @media (max-width: 1280px){
+    .Page_inspo_image_potraits_main { padding: 120px 0; }
+    .Page_inspo_single_image_potrait_parent { width: 200px; }
+    .left_top_potrait { left: 3.2%; }
+    .left_bottom_potrait { left: 8.42%; }
+    .right_bottom_potrait { right: 7.3%; }
+  }
+
+  @media (max-width: 989px){
+    .Page_inspo_image_potraits_main { padding: 80px 0; }
+    .Page_inspo_single_image_potrait_parent { width: 160px; }
+    .Page_inspo_image_potraits_text_main { max-width: 323px; }
+    .Page_inspo_image_potraits_text_main_video_image { max-width: 120px; }
+  }
+
+  @media (max-width: 749px){
+    .Page_inspo_image_potraits_main { padding: 56px 0; }
+    .Page_inspo_image_potraits_text_main_video_image { display: none; }
+    .Page_inspo_image_potraits_text_main { max-width: 100%; }
+    .Page_inspo_image_potraits_text_main_information_text { padding-top: 12px; width: 100%; }
+    .Page_inspo_image_potrait_parent { position: relative; padding: 0 4.67px; width: 75%;  height: 100%; padding-bottom: 46%; margin: 0 auto; }
+    .Page_inspo_single_image_potrait_parent { padding: 8px 8px 24px; width: 42.15%; }
+    .right_bottom_potrait { display: none; }
+    .left_top_potrait { left: 4.67px; top: 0; }
+    .right_top_potrait { rotate: 6.92deg; top: 6px; right: 4.67px; }
+    .left_bottom_potrait { rotate: 1.66deg; bottom: 0; left: 30%; z-index: 1; }   
+  }
+
+  @media (max-width: 480px){
+    .Page_inspo_image_potrait_parent { position: relative; padding: 0 4.67px; width: 100%;  height: 100%; padding-bottom: 63.787%; margin: 0 auto; }
+    .Page_inspo_image_potraits_text_main_heading_text, .Page_inspo_image_potraits_text_main_button_parent { padding-top: 24px; }
+  }
+  
+</style>
+  
+{% schema %}
+  {
+    "name": "Page Inspo Image Potraits",
+    "class": "Page_inspo_image_potraits",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "video",
+        "id": "main_mp4_video",
+        "label": "Add Main MP4 Video"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_image",
+        "label": "Add Main Image"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Need Inspo?"
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "<p>Check out our gallery of <span>customer transformations</span> to see our frames in real bathrooms!</p>"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "View the gallery"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      },
+      {
+        "type": "image_picker",
+        "id": "left_top_potrait_image",
+        "label": "Add Left Top Potrait Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "left_bottom_potrait_image",
+        "label": "Add Left Bottom Potrait Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "right_top_potrait_image",
+        "label": "Add Right Top Potrait Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "right_bottom_potrait_image",
+        "label": "Add Right Bottom Potrait Image"
+      },
+    ],
+    "presets": [
+      {
+        "name": "Page Inspo Image Potraits",
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,80 @@
+{{ "sticky-addtocart-button.css" | asset_url | stylesheet_tag }}
+<div class="sticky-addtocart-button">
+  <div class="page-width">
+    <div class="main-grid">
+      <div class="sticky_addtocart_left_new">
+        <div class="sticky_addtocart_img_new">
+          <img src="
+            {% if product.metafields.custom.swatch_image != blank %}
+              {{ product.metafields.custom.swatch_image.value | img_url:'200x' }}
+            {% else %}
+              {{ product.featured_image | img_url:'200x' }}
+            {% endif %}
+            " alt="" width="" height="" />
+        </div>
+        <div class="sticky_addtocart_title_new">
+          <h2>{{ product.title }}</h2>
+          <div class="sticky_addtocart_price_new">
+            <div id="price2-{{ section.id }}" role="status">
+              {% render 'price', product: product, price_class: '', use_variant: true, show_compare_at_price: true %}   
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sticky_addtocart_right_new">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'default_meta_product' -%}
+              {%- if product.metafields.custom.product_default_meta_selected != blank -%}
+                {%- assign product_default_meta_selected = product.metafields.custom.product_default_meta_selected.value -%}
+                {%- if product_default_meta_selected.featured_image != blank or block.settings.main_heading_text != blank or block.settings.main_desktop_detail_text != blank or block.settings.main_mobile_detail_text != blank -%}
+                  {% if product_default_meta_selected.available %}
+                    <product-form>
+                      {%- form 'product',
+                        product,
+                        novalidate: 'novalidate'
+                      -%}
+                        <input
+                          type="hidden"
+                          name="id"
+                          value="{{ product_default_meta_selected.selected_or_first_available_variant.id }}"
+                        >
+                        <div class="sample_button_new">
+                          <button type="submit" class="button button_border_new">
+                            {%- render 'loading-spinner' -%}
+                            <span>Get {{ product_default_meta_selected.price | money_without_trailing_zeros }} Sample</span>
+                          </button>
+                        </div> 
+                      {% endform %}
+                    </product-form>
+                  {% endif %}
+                {%- endif -%}
+              {%- endif -%}
+            {%- when 'frame_button' -%}
+              <div class="frame_button_new">
+                {%- render 'frame-button', requestType: "product", frameType: "regular", enableLoading: false, btnLabel: "start framing", buttonClass:"button" -%}
+              </div>
+            {%- when 'sample_meta_product' -%}
+              {%- if product.metafields.custom.product_sample_meta_selected != blank -%}
+                {%- assign product_sample_meta_selected = product.metafields.custom.product_sample_meta_selected.value -%}
+                {%- if product_sample_meta_selected.featured_image != blank or block.settings.main_heading_text != blank or block.settings.main_information_text != blank or block.settings.main_button_text != blank -%}
+                  <div class="sample_button_new sample_button_new_samplePDP">
+                    {%- if product_sample_meta_selected.url != blank -%}
+                      <a href="{{ product_sample_meta_selected.url }}">
+                        {%- if block.settings.main_button_text != blank -%}
+                          <div class=" Sample_meta_product_innerright_links_new button button_border_new">
+                            {{ block.settings.main_button_text }}
+                          </div>
+                        {%- endif -%}
+                      </a>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              {%- endif -%}
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

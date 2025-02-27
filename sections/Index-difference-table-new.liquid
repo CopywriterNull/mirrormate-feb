@@ -1,0 +1,510 @@
+{%- if section.settings.main_mp4_video != blank or section.settings.main_desktop_image != blank or section.settings.main_mobile_image != blank or section.settings.main_outside_custom_logo != blank or section.settings.main_inside_custom_logo != blank or section.settings.main_sub_heading_text != blank or section.settings.main_heading_text != blank or section.blocks.size > 0 or section.settings.main_button_link != blank -%}
+  <div class="Index_difference_table_main_new" style="background: {{ section.settings.main_background_color }};">
+    <div class="page-width">
+      <div class="Index_difference_table_inner_new">
+        {%- if section.settings.main_mp4_video != blank or section.settings.main_desktop_image != blank or section.settings.main_mobile_image != blank or section.settings.main_outside_custom_logo != blank or section.settings.main_inside_custom_logo != blank or section.settings.main_sub_heading_text != blank or section.settings.main_heading_text != blank or section.blocks.size > 0 -%}
+          <div class="Index_difference_table_mainsides_new">
+            <div class="Index_difference_table_innersides_new">
+              {%- if section.settings.main_mp4_video != blank or section.settings.main_desktop_image != blank or section.settings.main_mobile_image != blank or section.settings.main_outside_custom_logo != blank or section.settings.main_inside_custom_logo != blank -%}
+                <div class="Index_difference_table_innersides_mainleft_new" data-aos="fade-right">
+                  <div class="Index_difference_table_innersides_innerleft_new">
+                    {%- if section.settings.main_mp4_video != blank or section.settings.main_desktop_image != blank or section.settings.main_mobile_image != blank -%}
+                      <div class="Index_difference_table_innersides_innerleft_mainstatic_new">
+                        <div class="Index_difference_table_innersides_innerleft_innerstatic_new">
+                          {%- if section.settings.main_mp4_video != blank -%}
+                            <div class="Index_difference_table_innersides_innerleft_innerstatic_videoimage_new">
+                              {{ section.settings.main_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                            </div>
+                          {% else %}  
+                            {%- if section.settings.main_desktop_image != blank and section.settings.main_mobile_image != blank -%}
+                              <div class="Index_difference_table_innersides_innerleft_innerstatic_videoimage_new">
+                                {%- if section.settings.main_desktop_image != blank -%}
+                                  {{
+                                    section.settings.main_desktop_image | 
+                                    image_url: width: img.width | 
+                                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                    fetchpriority: 'auto', 
+                                    class:'desktop_image_new'
+                                  }}
+                                {%- endif -%}
+                                {%- if section.settings.main_mobile_image != blank -%}
+                                  {{
+                                    section.settings.main_mobile_image | 
+                                    image_url: width: img.width | 
+                                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                    fetchpriority: 'auto', 
+                                    class:'mobile_image_new'
+                                  }}
+                                {%- endif -%}
+                              </div>
+                            {%- endif -%}
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    {%- endif -%}
+                    {%- if section.settings.main_outside_custom_logo != blank or section.settings.main_inside_custom_logo != blank -%}
+                      <div class="Index_difference_table_innersides_innerleft_mainoverlay_new">
+                        <div class="Index_difference_table_innersides_innerleft_inneroverlay_new">
+                          {%- if section.settings.main_outside_custom_logo != blank and section.settings.main_outside_custom_logo_mobile != blank -%}
+                            <div class="Index_difference_table_innersides_innerleft_inneroverlay_mainoutside_new">
+                              <div class="Index_difference_table_innersides_innerleft_inneroverlay_inneroutside_new">
+                                {{
+                                  section.settings.main_outside_custom_logo | 
+                                  image_url: width: img.width | 
+                                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                  fetchpriority: 'auto', 
+                                  class:'desktop_image_new spin'
+                                }}
+                                {{
+                                  section.settings.main_outside_custom_logo_mobile | 
+                                  image_url: width: img.width | 
+                                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                  fetchpriority: 'auto', 
+                                  class:'mobile_image_new spin'
+                                }}
+                              </div>
+                            </div>
+                          {%- endif -%}
+                          {%- if section.settings.main_inside_custom_logo != blank and section.settings.main_inside_custom_logo_mobile != blank -%}
+                            <div class="Index_difference_table_innersides_innerleft_inneroverlay_maininside_new">
+                              <div class="Index_difference_table_innersides_innerleft_inneroverlay_innerinside_new">
+                                {{
+                                  section.settings.main_inside_custom_logo | 
+                                  image_url: width: img.width | 
+                                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                  fetchpriority: 'auto', 
+                                  class:'desktop_image_new'
+                                }}
+                                {{
+                                  section.settings.main_inside_custom_logo_mobile | 
+                                  image_url: width: img.width | 
+                                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                  fetchpriority: 'auto', 
+                                  class:'mobile_image_new'
+                                }}
+                              </div>
+                            </div>
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if section.settings.main_sub_heading_text != blank or section.settings.main_heading_text != blank or section.blocks.size > 0 -%}
+                <div class="Index_difference_table_innersides_mainright_new" data-aos="fade-in">
+                  <div class="Index_difference_table_innersides_innerright_new">
+                    {%- if section.settings.main_sub_heading_text != blank or section.settings.main_heading_text != blank -%}
+                      <div class="Index_difference_table_innersides_innerright_1_new">
+                        <div class="Index_difference_table_innersides_innerright_1_boths_new">
+                          {%- if section.settings.main_sub_heading_text != blank -%}
+                            <div class="Index_difference_table_innersides_innerright_1_boths_texts_new">
+                              <h5>{{ section.settings.main_sub_heading_text }}</h5>
+                            </div>
+                          {%- endif -%}
+                          {%- if section.settings.main_heading_text != blank -%}
+                            <div class="Common_title_new Index_difference_table_innersides_innerright_1_boths_title_new">
+                              <h3>{{ section.settings.main_heading_text }}</h3>
+                            </div>
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    {%- endif -%}
+                    {%- if section.blocks.size > 0 -%}
+                      <div class="Index_difference_table_innersides_innerright_2_new">
+                        <div class="Index_difference_table_innersides_innerright_2_table_new">
+                          {%- if section.settings.main_left_detail_text_1 != blank or section.settings.main_left_detail_text_2 != blank or section.settings.main_left_detail_text_3 != blank or section.settings.main_left_detail_text_4 != blank or section.settings.main_left_detail_text_5 != blank or section.settings.main_left_detail_text_6 != blank -%}
+                            <div class="Index_difference_table_innersides_innerright_2_table_mainleft_new">
+                              <div class="Index_difference_table_innersides_innerright_2_table_innerleft_new">
+                                <div class="Index_difference_table_innersides_innerright_2_table_innerleft_maintitle_new">
+                                  <div class="Index_difference_table_innersides_innerright_2_table_innerleft_innertitle_new">
+
+                                  </div>
+                                </div>
+                                {%- if section.settings.main_left_detail_text_1 != blank -%}
+                                  <div class="Index_difference_table_innersides_innerright_2_table_innerleft_mainlists_new">
+                                    <div class="Index_difference_table_innersides_innerright_2_table_innerleft_innerlists_new">
+                                      {{ section.settings.main_left_detail_text_1 }}
+                                    </div>
+                                  </div>
+                                {%- endif -%}
+                                {%- if section.settings.main_left_detail_text_2 != blank -%}
+                                  <div class="Index_difference_table_innersides_innerright_2_table_innerleft_mainlists_new">
+                                    <div class="Index_difference_table_innersides_innerright_2_table_innerleft_innerlists_new">
+                                      {{ section.settings.main_left_detail_text_2 }}
+                                    </div>
+                                  </div>
+                                {%- endif -%}
+                                {%- if section.settings.main_left_detail_text_3 != blank -%}
+                                  <div class="Index_difference_table_innersides_innerright_2_table_innerleft_mainlists_new">
+                                    <div class="Index_difference_table_innersides_innerright_2_table_innerleft_innerlists_new">
+                                      {{ section.settings.main_left_detail_text_3 }}
+                                    </div>
+                                  </div>
+                                {%- endif -%}
+                                {%- if section.settings.main_left_detail_text_4 != blank -%}
+                                  <div class="Index_difference_table_innersides_innerright_2_table_innerleft_mainlists_new">
+                                    <div class="Index_difference_table_innersides_innerright_2_table_innerleft_innerlists_new">
+                                      {{ section.settings.main_left_detail_text_4 }}
+                                    </div>
+                                  </div>
+                                {%- endif -%}
+                                {%- if section.settings.main_left_detail_text_5 != blank -%}
+                                  <div class="Index_difference_table_innersides_innerright_2_table_innerleft_mainlists_new">
+                                    <div class="Index_difference_table_innersides_innerright_2_table_innerleft_innerlists_new">
+                                      {{ section.settings.main_left_detail_text_5 }}
+                                    </div>
+                                  </div>
+                                {%- endif -%}
+                                {%- if section.settings.main_left_detail_text_6 != blank -%}
+                                  <div class="Index_difference_table_innersides_innerright_2_table_innerleft_mainlists_new">
+                                    <div class="Index_difference_table_innersides_innerright_2_table_innerleft_innerlists_new">
+                                      {{ section.settings.main_left_detail_text_6 }}
+                                    </div>
+                                  </div>
+                                {%- endif -%}
+                              </div>
+                            </div>
+                          {%- endif -%}
+                          {%- if section.blocks.size > 0 -%}
+                            <div class="Index_difference_table_innersides_innerright_2_table_mainright_new">
+                              <div class="Index_difference_table_innersides_innerright_2_table_innerright_new">
+                                {%- if section.blocks.size > 0 -%}
+                                  <div class="Index_difference_table_innersides_innerright_2_table_innerright_mainstatic_new">
+                                    <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerstatic_new">
+                                      {%- for block in section.blocks limit: 1 -%}
+                                        {%- if block.settings.title != blank or block.settings.inner_information_text_1 != blank or block.settings.inner_information_text_2 != blank or block.settings.inner_information_text_3 != blank or block.settings.inner_information_text_4 != blank or block.settings.inner_information_text_5 != blank or block.settings.inner_information_text_6 != blank -%}
+                                          <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerstatic_mainboxs_new">
+                                            <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerstatic_innerboxs_new">
+                                              {%- if block.settings.title != blank -%}
+                                                <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerstatic_innerboxs_maintitle_new">
+                                                  <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerstatic_innerboxs_innertitle_new">
+                                                    {{ block.settings.title }}
+                                                  </div>
+                                                </div>
+                                              {%- endif -%}
+                                              {%- if block.settings.inner_information_text_1 != blank -%}
+                                                <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerstatic_innerboxs_maininfos_new">
+                                                  <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerstatic_innerboxs_innerinfos_new">
+                                                    {{ block.settings.inner_information_text_1 }}
+                                                  </div>
+                                                </div>
+                                              {%- endif -%}
+                                              {%- if block.settings.inner_information_text_2 != blank -%}
+                                                <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerstatic_innerboxs_maininfos_new">
+                                                  <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerstatic_innerboxs_innerinfos_new">
+                                                    {{ block.settings.inner_information_text_2 }}
+                                                  </div>
+                                                </div>
+                                              {%- endif -%}
+                                              {%- if block.settings.inner_information_text_3 != blank -%}
+                                                <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerstatic_innerboxs_maininfos_new">
+                                                  <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerstatic_innerboxs_innerinfos_new">
+                                                    {{ block.settings.inner_information_text_3 }}
+                                                  </div>
+                                                </div>
+                                              {%- endif -%}
+                                              {%- if block.settings.inner_information_text_4 != blank -%}
+                                                <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerstatic_innerboxs_maininfos_new">
+                                                  <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerstatic_innerboxs_innerinfos_new">
+                                                    {{ block.settings.inner_information_text_4 }}
+                                                  </div>
+                                                </div>
+                                              {%- endif -%}
+                                              {%- if block.settings.inner_information_text_5 != blank -%}
+                                                <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerstatic_innerboxs_maininfos_new">
+                                                  <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerstatic_innerboxs_innerinfos_new">
+                                                    {{ block.settings.inner_information_text_5 }}
+                                                  </div>
+                                                </div>
+                                              {%- endif -%}
+                                              {%- if block.settings.inner_information_text_6 != blank -%}
+                                                <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerstatic_innerboxs_maininfos_new">
+                                                  <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerstatic_innerboxs_innerinfos_new">
+                                                    {{ block.settings.inner_information_text_6 }}
+                                                  </div>
+                                                </div>
+                                              {%- endif -%}
+                                            </div>
+                                          </div>
+                                        {%- endif -%}  
+                                      {%- endfor -%}
+                                    </div>
+                                  </div>
+                                {%- endif -%}
+                                {%- if section.blocks.size > 0 -%}
+                                  <div class="Index_difference_table_innersides_innerright_2_table_innerright_mainloops_new">
+                                    <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerloops_new">
+                                      <div class="swiper Index_difference_table_slider">
+                                        <div class="swiper-wrapper">
+                                          {%- for block in section.blocks offset: 1 -%}
+                                            {%- if block.settings.title != blank or block.settings.inner_information_text_1 != blank or block.settings.inner_information_text_2 != blank or block.settings.inner_information_text_3 != blank or block.settings.inner_information_text_4 != blank or block.settings.inner_information_text_5 != blank or block.settings.inner_information_text_6 != blank -%}
+                                              <div class="swiper-slide Index_difference_table_innersides_innerright_2_table_innerright_innerloops_mainboxs_new">
+                                                <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerloops_innerboxs_new">
+                                                  {%- if block.settings.title != blank -%}
+                                                    <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerloops_innerboxs_maintitle_new">
+                                                      <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerloops_innerboxs_innertitle_new">
+                                                        {{ block.settings.title }}
+                                                      </div>
+                                                    </div>
+                                                  {%- endif -%}
+                                                  {%- if block.settings.inner_information_text_1 != blank -%}
+                                                    <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerloops_innerboxs_maininfos_new">
+                                                      <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerloops_innerboxs_innerinfos_new">
+                                                        {{ block.settings.inner_information_text_1 }}
+                                                      </div>
+                                                    </div>
+                                                  {%- endif -%}
+                                                  {%- if block.settings.inner_information_text_2 != blank -%}
+                                                    <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerloops_innerboxs_maininfos_new">
+                                                      <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerloops_innerboxs_innerinfos_new">
+                                                        {{ block.settings.inner_information_text_2 }}
+                                                      </div>
+                                                    </div>
+                                                  {%- endif -%}
+                                                  {%- if block.settings.inner_information_text_3 != blank -%}
+                                                    <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerloops_innerboxs_maininfos_new">
+                                                      <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerloops_innerboxs_innerinfos_new">
+                                                        {{ block.settings.inner_information_text_3 }}
+                                                      </div>
+                                                    </div>
+                                                  {%- endif -%}
+                                                  {%- if block.settings.inner_information_text_4 != blank -%}
+                                                    <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerloops_innerboxs_maininfos_new">
+                                                      <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerloops_innerboxs_innerinfos_new">
+                                                        {{ block.settings.inner_information_text_4 }}
+                                                      </div>
+                                                    </div>
+                                                  {%- endif -%}
+                                                  {%- if block.settings.inner_information_text_5 != blank -%}
+                                                    <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerloops_innerboxs_maininfos_new">
+                                                      <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerloops_innerboxs_innerinfos_new">
+                                                        {{ block.settings.inner_information_text_5 }}
+                                                      </div>
+                                                    </div>
+                                                  {%- endif -%}
+                                                  {%- if block.settings.inner_information_text_6 != blank -%}
+                                                    <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerloops_innerboxs_maininfos_new">
+                                                      <div class="Index_difference_table_innersides_innerright_2_table_innerright_innerloops_innerboxs_innerinfos_new">
+                                                        {{ block.settings.inner_information_text_6 }}
+                                                      </div>
+                                                    </div>
+                                                  {%- endif -%}
+                                                </div>
+                                              </div>
+                                            {%- endif -%}
+                                          {%- endfor -%}
+                                        </div>
+                                        
+                                      </div>
+                                    </div>
+                                  </div>
+                                {%- endif -%}
+                              </div>
+                            </div>
+                          {%- endif -%}
+                        </div>
+                        <div class="swiper-pagination-difference"></div>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+          <div class="Index_difference_table_mainbutton_new" data-aos="fade-in">
+            <div class="Index_difference_table_innerbutton_new">
+              <a href="{{ section.settings.main_button_link }}" class="button">
+                {{ section.settings.main_button_text }}  
+              </a>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Index Difference Table",
+    "class": "Index_difference_table_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "video",
+        "id": "main_mp4_video",
+        "label": "Add Main MP4 Video"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_desktop_image",
+        "label": "Add Main Desktop Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_mobile_image",
+        "label": "Add Main Mobile Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_outside_custom_logo",
+        "label": "Add Main Outside Custom Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_outside_custom_logo_mobile",
+        "label": "Add Main Outside Custom Logo Mobile"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_inside_custom_logo",
+        "label": "Add Main Inside Custom Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_inside_custom_logo_mobile",
+        "label": "Add Main Inside Custom Logo Mobile"
+      },
+      {
+        "type": "textarea",
+        "id": "main_sub_heading_text",
+        "label": "Add Main Sub Heading Text",
+        "default": "Us VS. The Rest"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "The MirrorMate<br>Difference"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "Shop All Frames"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      },
+      {
+        "type": "richtext",
+        "id": "main_left_detail_text_1",
+        "label": "Add Main Left Detail Text-1",
+        "default": "<p>Lorem Ipsum is simply dummy</p>"
+      },
+      {
+        "type": "richtext",
+        "id": "main_left_detail_text_2",
+        "label": "Add Main Left Detail Text-2",
+        "default": "<p>Lorem Ipsum is simply dummy</p>"
+      },
+      {
+        "type": "richtext",
+        "id": "main_left_detail_text_3",
+        "label": "Add Main Left Detail Text-3",
+        "default": "<p>Lorem Ipsum is simply dummy</p>"
+      },
+      {
+        "type": "richtext",
+        "id": "main_left_detail_text_4",
+        "label": "Add Main Left Detail Text-4",
+        "default": "<p>Lorem Ipsum is simply dummy</p>"
+      },
+      {
+        "type": "richtext",
+        "id": "main_left_detail_text_5",
+        "label": "Add Main Left Detail Text-5",
+        "default": "<p>Lorem Ipsum is simply dummy</p>"
+      },
+      {
+        "type": "richtext",
+        "id": "main_left_detail_text_6",
+        "label": "Add Main Left Detail Text-6",
+        "default": "<p>Lorem Ipsum is simply dummy</p>"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "information",
+        "name": "Information",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Add Inner Heading Text",
+            "default": "Heading"
+          },
+          {
+            "type": "textarea",
+            "id": "inner_information_text_1",
+            "label": "Add Inner Information Text-1",
+            "default": "Information"
+          },
+          {
+            "type": "textarea",
+            "id": "inner_information_text_2",
+            "label": "Add Inner Information Text-2",
+            "default": "Information"
+          },
+          {
+            "type": "textarea",
+            "id": "inner_information_text_3",
+            "label": "Add Inner Information Text-3",
+            "default": "Information"
+          },
+          {
+            "type": "textarea",
+            "id": "inner_information_text_4",
+            "label": "Add Inner Information Text-4",
+            "default": "Information"
+          },
+          {
+            "type": "textarea",
+            "id": "inner_information_text_5",
+            "label": "Add Inner Information Text-5",
+            "default": "Information"
+          },
+          {
+            "type": "textarea",
+            "id": "inner_information_text_6",
+            "label": "Add Inner Information Text-6",
+            "default": "Information"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Index Difference Table",
+        "blocks": [
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

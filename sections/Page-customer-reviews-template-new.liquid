@@ -1,0 +1,39 @@
+{%- if section.settings.main_heading_text != blank -%}
+  <div class="Page_customer_reviews_template_main_new" style="background: {{ section.settings.main_background_color }};">
+    <div class="page-width">
+      <div class="Page_customer_reviews_template_inner_new">
+        {%- if section.settings.main_heading_text != blank -%}
+          <div class="Page_customer_reviews_template_maintitle_new">
+            <div class="Common_title_new Page_customer_reviews_template_innertitle_new">
+              <h1>{{ section.settings.main_heading_text }}</h1>
+            </div>
+          </div>
+        {%- endif -%}
+        <div class="Page_customer_reviews_box_new">
+          {% render 'okendo-reviews-widget', product: product %}
+        </div>
+      </div>
+    </div>
+  </div>  
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Customer Reviews Template",
+    "class": "Page_customer_reviews_template_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Customer Reviews"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,267 @@
+{{ "Page_affiliate_community.css" | asset_url | stylesheet_tag }}
+
+{%- if section.blocks.size > 0 -%}
+  <div class="Index_custom_instagram_main_new Page_affiliate_community_main_section" style="background: {{ section.settings.main_background_color }};">
+    <div class="page-width">
+      <div class="Index_custom_instagram_inner_new" data-aos="fade-in">
+        {%- if section.settings.main_desktop_heading_text != blank or section.settings.main_button_link != blank -%}
+          <div class="Index_custom_instagram_maindesktop_new">
+            <div class="Index_custom_instagram_innerdesktop_new">
+              {%- if section.settings.main_desktop_heading_text != blank -%}
+                <div class="Index_custom_instagram_innerdesktop_mainleft_new">
+                  <div class="Common_title_new Index_custom_instagram_innerdesktop_innerleft_new">
+                    <h2>{{ section.settings.main_desktop_heading_text }}</h2>
+                  </div>  
+                </div>
+              {%- endif -%}
+              {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                <div class="Index_custom_instagram_innerdesktop_mainright_new">
+                  <div class="Index_custom_instagram_innerdesktop_innerright_new">
+                    <a href="{{ section.settings.main_button_link }}" class="button">
+                      {{ section.settings.main_button_text }}
+                    </a>
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.main_mobile_heading_text != blank -%}
+          <div class="Index_custom_instagram_maintitle_new">
+            <div class="Common_title_new Index_custom_instagram_innertitle_new">
+              <h2>{{ section.settings.main_mobile_heading_text }}</h2>
+            </div>  
+          </div>
+        {%- endif -%}
+        {%- if section.blocks.size > 0 -%}
+          <div class="Index_custom_instagram_mainloops_new">
+            <div class="Index_custom_instagram_innerloops_new">
+              <div class="swiper Index_instagram_slider_affiliate video_play_list_new">
+                <div class="swiper-wrapper {% if section.blocks.size > 3 %}center-align-disable{% endif %}">
+                  {%- for block in section.blocks -%}
+                    {%- if block.settings.main_mp4_video != blank or block.settings.main_desktop_image != blank or block.settings.main_mobile_image != blank or block.settings.main_product_selected != blank -%}
+                      
+                      <div class="swiper-slide Index_custom_instagram_innerloops_mainboxs_new">
+                        {%- if block.settings.insta-link != blank -%}
+                          <a target="_blank" href="{{ block.settings.insta-link }}">
+                        {% endif %}
+                        {%- if block.settings.insta-link != blank -%}
+                          </a>
+                        {% endif %}
+                        <div class="Index_custom_instagram_innerloops_innerboxs_new">
+                          {%- if block.settings.main_mp4_video != blank or block.settings.main_desktop_image != blank or block.settings.main_mobile_image != blank -%}
+                            <div class="Index_custom_instagram_innerloops_innerboxs_mainboths_new">
+                              
+                                  <div class="Index_custom_instagram_innerloops_innerboxs_innerboths_new mute_unmute_video_main_new">
+                                    {%- if block.settings.main_mp4_video != blank -%}
+                                      <div class="mute_video_main_new">
+                                        <div class="mute_video active">
+                                          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g clip-path="url(#clip0_6021_17261)">
+                                            <mask id="mask0_6021_17261" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48">
+                                            <path d="M48 0H0V48H48V0Z" fill="white"/>
+                                            </mask>
+                                            <g mask="url(#mask0_6021_17261)">
+                                            <circle cx="24" cy="24" r="24" fill="white"/>
+                                            <mask id="mask1_6021_17261" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="12" y="11" width="24" height="25">
+                                            <path d="M36 11.25H12V35.25H36V11.25Z" fill="white"/>
+                                            </mask>
+                                            <g mask="url(#mask1_6021_17261)">
+                                            <path d="M29.5488 26.8C30.3305 26.0202 30.8309 25.0028 30.9713 23.9076C31.1117 22.8125 30.8841 21.7017 30.3243 20.75" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"/>
+                                            <path d="M32.3496 29.6C33.8136 28.1262 34.7254 26.1933 34.9317 24.1262C35.1381 22.0592 34.6264 19.9841 33.4826 18.25" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"/>
+                                            <path d="M19.5 27.75H15C14.4696 27.75 13.9609 27.5393 13.5858 27.1642C13.2107 26.7891 13 26.2804 13 25.75V20.75C13 20.2196 13.2107 19.7109 13.5858 19.3358C13.9609 18.9607 14.4696 18.75 15 18.75H19.5L27 13.25V20.25" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10"/>
+                                            <path d="M27 24.25V33.25L22 29.5835" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"/>
+                                            <path d="M13.5 33.75L34.5 12.75" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"/>
+                                            </g>
+                                            </g>
+                                            </g>
+                                            <defs>
+                                            <clipPath id="clip0_6021_17261">
+                                            <rect width="48" height="48" fill="white"/>
+                                            </clipPath>
+                                            </defs>
+                                          </svg>
+                                        </div>
+                                        <div class="unmute_video">
+                                          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g clip-path="url(#clip0_6021_17280)">
+                                            <mask id="mask0_6021_17280" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48">
+                                            <path d="M48 0H0V48H48V0Z" fill="white"/>
+                                            </mask>
+                                            <g mask="url(#mask0_6021_17280)">
+                                            <circle cx="24" cy="24" r="24" fill="white"/>
+                                            <path d="M31 24H35" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"/>
+                                            <path d="M29.6504 19L33.1004 17" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"/>
+                                            <path d="M29.6504 29L33.1004 31" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"/>
+                                            <path d="M27 34L19.5 28.5H15C14.4696 28.5 13.9609 28.2893 13.5858 27.9142C13.2107 27.5391 13 27.0304 13 26.5V21.5C13 20.9696 13.2107 20.4609 13.5858 20.0858C13.9609 19.7107 14.4696 19.5 15 19.5H19.5L27 14V34Z" stroke="#2D4256" stroke-width="1.125" stroke-miterlimit="10" stroke-linecap="square"/>
+                                            </g>
+                                            </g>
+                                            <defs>
+                                            <clipPath id="clip0_6021_17280">
+                                            <rect width="48" height="48" fill="white"/>
+                                            </clipPath>
+                                            </defs>
+                                          </svg>
+                                        </div>
+                                      </div>
+                                      <div class="Index_custom_instagram_innerloops_innerboxs_innerboths_videoimage_new video_play_icon_new {% if forloop.index == 2 %}open{% endif %}">
+                                        {% if block.settings.main_mp4_video.sources[1].url != blank %}
+                                          {% assign video_url =  block.settings.main_mp4_video.sources[1].url  %}
+                                        {% elsif  block.settings.main_mp4_video.sources[0].url != blank %}
+                                          {% assign video_url =  block.settings.main_mp4_video.sources[0].url  %}
+                                        {% elsif  block.settings.main_mp4_video.sources[2].url != blank %}
+                                          {% assign video_url =  block.settings.main_mp4_video.sources[2].url  %}
+                                        {% endif %}
+                                        {% if forloop.index == 2 %}
+                                          {{ block.settings.main_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                        {% else %}
+                                          <video playsinline="playsinline" loop="loop" muted="muted" preload="metadata" poster="{{ block.settings.main_mp4_video.preview_image | image_url}}" video_url="{{ video_url }}"></video>
+                                        {% endif %}
+                                        <svg class="play_icon" {% if forloop.index == 2 %}style="display:none;"{% endif %} width="57" height="56" viewBox="0 0 57 56" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#filter0_b_4619_26012)"><rect x="0.5" width="56" height="56" rx="28" fill="black" fill-opacity="0.12"/><path d="M21.5 15.75V40.25L42.5 28L21.5 15.75Z" fill="white"/></g><defs><filter id="filter0_b_4619_26012" x="-22.5" y="-23" width="102" height="102" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feGaussianBlur in="BackgroundImageFix" stdDeviation="11.5"/><feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_4619_26012"/><feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_4619_26012" result="shape"/></filter></defs></svg>
+                                      </div>
+                                    {% else %}  
+                                      {%- if block.settings.main_desktop_image != blank and block.settings.main_mobile_image != blank -%}
+                                        <div class="Index_custom_instagram_innerloops_innerboxs_innerboths_videoimage_new">
+                                          {%- if block.settings.main_desktop_image != blank -%}
+                                            {{
+                                              block.settings.main_desktop_image | 
+                                              image_url: width: img.width | 
+                                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                              fetchpriority: 'auto', 
+                                              class:'desktop_image_new'
+                                            }}
+                                          {%- endif -%}
+                                          {%- if block.settings.main_mobile_image != blank -%}
+                                            {{
+                                              block.settings.main_mobile_image | 
+                                              image_url: width: img.width | 
+                                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                              fetchpriority: 'auto', 
+                                              class:'mobile_image_new'
+                                            }}
+                                          {%- endif -%}
+                                        </div>
+                                      {%- endif -%}
+                                    {%- endif -%}
+                                  </div>
+                              
+                            </div>
+                          {%- endif -%}
+                  
+                            <div class="Index_custom_instagram_innerloops_innerboxs_mainicons_new">
+                              <div class="Index_custom_instagram_innerloops_innerboxs_innericons_new">
+                                {% if block.settings.insta-image != blank and block.settings.insta-name != blank %}
+                                 <img src="{{ block.settings.insta-image | img_url: 'master' }}">
+                                 
+                                  {% if block.settings.insta-name != blank %}
+                                    <p>{{ block.settings.insta-name }}</p>
+                                  {% endif %}
+                                {% endif %}
+                              </div>
+                            </div>
+        
+                        </div>
+                         
+                      </div>
+                     
+                    {%- endif -%}  
+                  {%- endfor -%}  
+                </div>
+                <div class="swiper-scrollbar"></div>
+              </div>
+            </div>
+          </div>
+        {%- endif -%}  
+        {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+          <div class="Index_custom_instagram_mainbutton_new">
+            <div class="Index_custom_instagram_innerbutton_new">
+              <a href="{{ section.settings.main_button_link }}" class="button">
+                {{ section.settings.main_button_text }}
+              </a>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Page Affiliate Community",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#2D4256"
+      },
+      {
+        "type": "textarea",
+        "id": "main_desktop_heading_text",
+        "label": "Add Main Desktop Heading Text",
+        "default": "From The Community"
+      },
+      {
+        "type": "textarea",
+        "id": "main_mobile_heading_text",
+        "label": "Add Main Mobile Heading Text",
+        "default": "From The Community"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "information",
+        "name": "Information",
+        "settings": [
+          {
+            "type": "video",
+            "id": "main_mp4_video",
+            "label": "Add Main MP4 Video"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_desktop_image",
+            "label": "Add Main Desktop Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_mobile_image",
+            "label": "Add Main Mobile Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "insta-image",
+            "label": "Instagram Image"
+          },
+           {
+            "type": "text",
+            "id": "insta-name",
+            "label": "Instagram ID"
+          },
+          {
+            "type": "url",
+            "id": "insta-link",
+            "label": "Instagram Link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Page Affiliate Community",
+        "blocks": [
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

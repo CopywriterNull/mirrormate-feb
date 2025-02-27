@@ -1,0 +1,286 @@
+<style>
+  .Page_3_column_cards_main_{{ section.id }} { padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; }
+</style>
+{% if section.settings.main_subheading_text != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_link != blank or section.settings.main_link_text != blank or section.blocks.size > 0 or section.settings.main_button_link != blank or section.settings.main_button_text != blank %}
+  <div class="Page_3_column_cards_main Page_3_column_cards_main_v2 {{ section.settings.custom_class }} Page_3_column_cards_main_{{ section.id }}" style="background-color: {{ section.settings.main_background_color }}" data-aos-easing="linear">
+    <div class="page-width">
+      <div class="Page_3_column_cards_inner">
+        {% if section.settings.main_subheading_text != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_link != blank or section.settings.main_link_text != blank %}
+          <div class="Page_3_column_cards_heading_part">
+            {% if section.settings.main_subheading_text != blank %}
+              <div class="Page_3_column_cards_main_v2_subheading_text">
+                <p>
+                  {{ section.settings.main_subheading_text }}
+                </p>
+              </div>
+            {% endif %}
+            {% if section.settings.main_heading_text != blank %}
+              <div class="Page_3_column_cards_main_v2_heading_text Common_title_new">
+                <h2>
+                  {{ section.settings.main_heading_text }}
+                </h2>
+              </div>
+            {% endif %}
+            {% if section.settings.main_information_text != blank %}
+              <div class="Page_3_column_cards_main_v2_information_text">
+                {{ section.settings.main_information_text }}
+              </div>
+            {% endif %}
+            {% if section.settings.main_link != blank and section.settings.main_link_text != blank %}
+              <div class="Page_3_column_cards_main_v2_link Common_link">
+                <a href="{{ section.settings.main_link }}">
+                  {{ section.settings.main_link_text }}
+                </a>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+        {% if section.blocks.size > 0  %}
+          <div class="Page_3_column_cards_grid"  data-aos="fade-up" data-aos-delay="500">
+            {% for block in section.blocks %}
+              {% if block.type == "column-card" %}
+                {% if block.settings.card_title != blank or block.settings.card_description != blank or block.settings.card_link != blank or block.settings.card_link_text != blank or block.settings.card_image != blank %}
+                  <div class="column_card" style="background-color: {{ block.settings.card_background_color }}">
+                    <div class="column_card_inner">
+                      {% if block.settings.card_image != blank %}
+                        <div class="column_card_image">
+                          {{
+                              block.settings.card_image | 
+                              image_url: width: img.width | 
+                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                              fetchpriority: 'auto', 
+                              class:'card_image'
+                            }}
+                        </div>
+                      {% endif %}
+                      {% if block.settings.card_title != blank or block.settings.card_description != blank or block.settings.card_link != blank or block.settings.card_link_text != blank %}
+                        <div class="column_card_information">
+                          {% if block.settings.card_title != blank %}
+                            <div class="column_card_title">
+                              <h5>
+                                {{ block.settings.card_title }}
+                              </h5>
+                            </div>
+                          {% endif %}
+                          {% if block.settings.card_description != blank %}
+                            <div class="column_card_description">
+                              {{ block.settings.card_description }}
+                            </div>
+                          {% endif %}
+                          {% if block.settings.card_link != blank and block.settings.card_link_text != blank %}
+                            <div class="column_card_link">
+                              <a href="{{ block.settings.card_link }}">
+                                {{ block.settings.card_link_text }}
+                              </a>
+                            </div>
+                          {% endif %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+        {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+          <div class="Page_3_column_cards_main_v2_button">
+            <a href="{{ section.settings.main_button_link }}" class="button">
+              {{ section.settings.main_button_text }}  
+            </a>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{% endif %}
+<style>
+  /* .Page_3_column_cards_main { padding: 96px 0; } */
+  .Page_3_column_cards_main_v2 .Page_3_column_cards_grid { padding-top: 40px; }
+  .Page_3_column_cards_grid { display: flex; flex-wrap: wrap; gap: 16px; }
+  .Page_3_column_cards_grid .column_card { width: calc(33.33% - 11px); border-radius: 12px; overflow: hidden; }
+  .Page_3_column_cards_grid .column_card_information { padding: 20px 24px 24px; }
+  .Page_3_column_cards_grid .column_card_title h5 { font-size: 24px; line-height: 120%; letter-spacing: -0.2px; color: #2D4256; margin: 0; }
+  .Page_3_column_cards_grid .column_card_description { padding-top: 8px; }
+  .Page_3_column_cards_grid .column_card_description p, .Page_3_column_cards_grid .column_card_link a { color: #2D4256; font-size: 16px; line-height: 135%; font-weight: 400; margin: 0; }
+  .Page_3_column_cards_grid .column_card_link { padding-top: 20px; }
+  .Page_3_column_cards_grid .column_card_link a { position: relative; text-transform: uppercase; font-weight: 700; letter-spacing: 0.32px; }
+  .Page_3_column_cards_grid .column_card_link a:before {  content: ""; width: 100%; height: 2px; top: 100%; left: 0; background-color: #2D4256; }
+  .Page_3_column_cards_grid .column_card_image { aspect-ratio: 1.54145; }
+  .Page_3_column_cards_grid .column_card_image img { display: block; height: 100% !important; width: 100%; object-fit: cover; }
+  .Page_3_column_cards_heading_part { text-align: center; margin: 0 auto; max-width: 794px; width: 100%; }
+  .Page_3_column_cards_main_v2_subheading_text { padding-bottom: 16px; }
+  .Page_3_column_cards_main_v2_subheading_text p { font-size: 16px; text-transform: uppercase; margin: 0; font-weight: 600; line-height: 135%; letter-spacing: 0.32px; color: #2D4256; }
+  .Page_3_column_cards_main_v2_information_text { padding-top: 16px; }
+  .Page_3_column_cards_main_v2_information_text p { font-size: 16px; margin: 0; line-height: 135%; color: #2D4256; }
+  .Page_3_column_cards_main_v2_link { padding-top: 18.5px; }
+  .Page_3_column_cards_main_v2_link a { position: relative;  }
+  .Page_3_column_cards_main_v2_link a:before { content: ""; position: absolute; width: 100%; height: 2px; left: 0; bottom: -2px; background-color: #2D4256; }
+  .Page_3_column_cards_main_v2_button { padding-top: 40px; text-align: center; }
+  .Page_3_column_cards_main_v2_button .button { max-width: 300px; width: 100%; }
+
+  .Page_3_column_cards_main_v2.cabinetmate_3_column_card_main .Page_3_column_cards_main_v2_heading_text h2 { line-height: 106%; }
+
+  .Page_3_column_cards_main_v2.business_program_3_column_card_main .column_card_information { padding: 24px; }
+  
+  @media (max-width:989px){
+    .Page_3_column_cards_main { padding: 56px 0; }
+    .Page_3_column_cards_grid .column_card { border-radius: 8px; }
+    .Page_3_column_cards_grid .column_card_information {  padding: 16px !important; }
+    .Page_3_column_cards_grid .column_card_link { padding-top: 16px; }
+    .Page_3_column_cards_grid .column_card_title h5 { font-size: 20px; }
+  }
+
+  @media (max-width: 749px){
+    .Page_3_column_cards_grid { gap: 24px; }
+    .Page_3_column_cards_grid .column_card { width: 100%; }
+    .Page_3_column_cards_grid .column_card_image { aspect-ratio: 1.58014; }
+    .Page_3_column_cards_main_v2 .Page_3_column_cards_grid, .Page_3_column_cards_main_v2_button { padding-top: 24px; }
+    .Page_3_column_cards_main_v2_subheading_text p { font-size: 14px; }
+    .Page_3_column_cards_main_v2_information_text { padding-top: 12px; }
+    .Page_3_column_cards_main_v2_link { padding-bottom: 14.5px; }
+    
+    .Page_3_column_cards_main_v2.cabinetmate_3_column_card_main .column_card_image { aspect-ratio: 1.675; }
+
+    .Page_3_column_cards_main_v2.business_program_3_column_card_main { padding: 32px 0 56px; }
+  }
+  
+</style>
+
+{% schema %}
+  {
+    "name": "3 Column Cards V2",
+    "class": "Page_3_column_cards_section_v2",
+    "settings": [
+      {
+        "type": "text",
+        "id": "custom_class",
+        "label": "Add Custom Class"
+      },
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.padding.section_padding_heading"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 89
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 90
+      },
+      {
+        "type": "textarea",
+        "id": "main_subheading_text",
+        "label": "Add Main Sub Heading Text",
+        "default": "what’s included"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Custom Cabinet Refacing Kits Ship in 5 Days + Include:"
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "<p>Get discounted pricing on MirrorMate frame kits when you buy in bulk.</p>"
+      },
+      {
+        "type": "text",
+        "id": "main_link_text",
+        "label": "learn more",
+        "default": "Have an account? Sign in here"
+      },
+      {
+        "type": "url",
+        "id": "main_link",
+        "label": "Add Link",
+        "default": "/"
+      },    
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "Contact us"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      },
+    ],
+    "blocks":[
+      {
+        "type": "column-card",
+        "name": "Column Card",
+        "settings": [
+          {
+            "type": "color",
+            "id": "card_background_color",
+            "label": "Add Card Background Color",
+            "default": "#F6F3F2"
+          },
+          {
+            "type": "image_picker",
+            "id": "card_image",
+            "label": "Card Image"
+          },
+          {
+            "type": "textarea",
+            "id": "card_title",
+            "label": "Add Card Title",
+            "default": "Easy to measure"
+          },
+          {
+            "type": "textarea",
+            "id": "card_description",
+            "label": "Add Card Description",
+            "default": "<p>Once you select your desired style, it’s time to measure your mirror. Just grab a tape measure and start our 3-minute measuring process.</p>"
+          },
+          {
+            "type": "text",
+            "id": "card_link_text",
+            "label": "learn more",
+            "default": "learn more"
+          },
+          {
+            "type": "url",
+            "id": "card_link",
+            "label": "Add Card Link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Page 3 Column Cards Section V2",
+        "blocks": [
+          {
+            "type": "column-card"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

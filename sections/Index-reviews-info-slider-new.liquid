@@ -1,0 +1,424 @@
+{%- if section.settings.main_review_detail_text_1 != blank or section.settings.main_review_detail_text_2 != blank or section.settings.main_heading_text != blank or section.settings.main_button_link != blank or section.blocks.size > 0 -%}
+  <div class="Index_reviews_info_slider_main_new {{ section.settings.customClass }}" style="background: {{ section.settings.main_background_color }};">
+      <div class="Index_reviews_info_slider_inner_new">
+        {%- if section.settings.main_review_detail_text_1 != blank or section.settings.main_review_detail_text_2 != blank or section.settings.main_heading_text != blank or section.settings.main_button_link != blank or section.blocks.size > 0 -%}
+          <div class="Index_reviews_info_slider_mainside_new">
+            <div class="Index_reviews_info_slider_innerside_new">
+              {%- if section.settings.main_review_detail_text_1 != blank or section.settings.main_review_detail_text_2 != blank or section.settings.main_heading_text != blank or section.settings.main_button_link != blank -%}
+                <div class="Index_reviews_info_slider_innerside_mainleft_new" data-aos="fade-right">
+                  <div class="Index_reviews_info_slider_innerside_innerleft_new">
+                    <div class="Index_reviews_info_slider_innerside_innerleft_1_new">
+                      <div class="Index_reviews_info_slider_innerside_innerleft_1_icons_new">
+                        <svg width="87" height="16" viewBox="0 0 87 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_20_5824)"><path d="M8.66125 12.32C8.76718 12.256 8.89981 12.256 9.00574 12.32L13.1012 14.7918C13.3536 14.9442 13.665 14.7178 13.598 14.4307L12.5112 9.77193C12.4831 9.65144 12.524 9.52528 12.6176 9.44426L16.2364 6.30929C16.4592 6.11623 16.3401 5.75014 16.0463 5.72521L11.2818 5.32099C11.1586 5.31054 11.0513 5.23276 11.0031 5.11893L9.1404 0.724122C9.02554 0.453113 8.64145 0.453114 8.52659 0.724123L6.66393 5.11893C6.61569 5.23276 6.5084 5.31054 6.38521 5.32099L1.62071 5.72521C1.3269 5.75014 1.20776 6.11623 1.43063 6.3093L5.04943 9.44426C5.14295 9.52528 5.1839 9.65144 5.15579 9.77193L4.06897 14.4307C4.00198 14.7178 4.31339 14.9442 4.56583 14.7918L8.66125 12.32Z" fill="#2D4256"/></g><g clip-path="url(#clip1_20_5824)"><path d="M25.9947 12.32C26.1007 12.256 26.2333 12.256 26.3392 12.32L30.4347 14.7918C30.6871 14.9442 30.9985 14.7178 30.9315 14.4307L29.8447 9.77193C29.8166 9.65144 29.8575 9.52528 29.9511 9.44426L33.5699 6.30929C33.7927 6.11623 33.6736 5.75014 33.3798 5.72521L28.6153 5.32099C28.4921 5.31054 28.3848 5.23276 28.3366 5.11893L26.4739 0.724122C26.359 0.453113 25.9749 0.453114 25.8601 0.724123L23.9974 5.11893C23.9492 5.23276 23.8419 5.31054 23.7187 5.32099L18.9542 5.72521C18.6604 5.75014 18.5413 6.11623 18.7641 6.3093L22.3829 9.44426C22.4764 9.52528 22.5174 9.65144 22.4893 9.77193L21.4025 14.4307C21.3355 14.7178 21.6469 14.9442 21.8993 14.7918L25.9947 12.32Z" fill="#2D4256"/></g><g clip-path="url(#clip2_20_5824)"><path d="M43.3278 12.32C43.4337 12.256 43.5663 12.256 43.6722 12.32L47.7677 14.7918C48.0201 14.9442 48.3315 14.7178 48.2645 14.4307L47.1777 9.77193C47.1496 9.65144 47.1905 9.52528 47.2841 9.44426L50.9029 6.30929C51.1257 6.11623 51.0066 5.75014 50.7128 5.72521L45.9483 5.32099C45.8251 5.31054 45.7178 5.23276 45.6696 5.11893L43.8069 0.724122C43.692 0.453113 43.308 0.453114 43.1931 0.724123L41.3304 5.11893C41.2822 5.23276 41.1749 5.31054 41.0517 5.32099L36.2872 5.72521C35.9934 5.75014 35.8743 6.11623 36.0971 6.3093L39.7159 9.44426C39.8095 9.52528 39.8504 9.65144 39.8223 9.77193L38.7355 14.4307C38.6685 14.7178 38.9799 14.9442 39.2323 14.7918L43.3278 12.32Z" fill="#2D4256"/></g><g clip-path="url(#clip3_20_5824)"><path d="M60.6613 12.32C60.7672 12.256 60.8998 12.256 61.0057 12.32L65.1012 14.7918C65.3536 14.9442 65.665 14.7178 65.598 14.4307L64.5112 9.77193C64.4831 9.65144 64.524 9.52528 64.6176 9.44426L68.2364 6.30929C68.4592 6.11623 68.3401 5.75014 68.0463 5.72521L63.2818 5.32099C63.1586 5.31054 63.0513 5.23276 63.0031 5.11893L61.1404 0.724122C61.0255 0.453113 60.6415 0.453114 60.5266 0.724123L58.6639 5.11893C58.6157 5.23276 58.5084 5.31054 58.3852 5.32099L53.6207 5.72521C53.3269 5.75014 53.2078 6.11623 53.4306 6.3093L57.0494 9.44426C57.1429 9.52528 57.1839 9.65144 57.1558 9.77193L56.069 14.4307C56.002 14.7178 56.3134 14.9442 56.5658 14.7918L60.6613 12.32Z" fill="#2D4256"/></g><g clip-path="url(#clip4_20_5824)"><path d="M77.9947 12.32C78.1007 12.256 78.2333 12.256 78.3392 12.32L82.4347 14.7918C82.6871 14.9442 82.9985 14.7178 82.9315 14.4307L81.8447 9.77193C81.8166 9.65144 81.8575 9.52528 81.9511 9.44426L85.5699 6.30929C85.7927 6.11623 85.6736 5.75014 85.3798 5.72521L80.6153 5.32099C80.4921 5.31054 80.3848 5.23276 80.3366 5.11893L78.4739 0.724122C78.359 0.453113 77.9749 0.453114 77.8601 0.724123L75.9974 5.11893C75.9492 5.23276 75.8419 5.31054 75.7187 5.32099L70.9542 5.72521C70.6604 5.75014 70.5413 6.11623 70.7641 6.3093L74.3829 9.44426C74.4764 9.52528 74.5174 9.65144 74.4893 9.77193L73.4025 14.4307C73.3355 14.7178 73.6469 14.9442 73.8993 14.7918L77.9947 12.32Z" fill="#2D4256"/></g><defs><clipPath id="clip0_20_5824"><rect width="16" height="16" fill="white" transform="translate(0.833496)"/></clipPath><clipPath id="clip1_20_5824"><rect width="16" height="16" fill="white" transform="translate(18.167)"/></clipPath><clipPath id="clip2_20_5824"><rect width="16" height="16" fill="white" transform="translate(35.5)"/></clipPath><clipPath id="clip3_20_5824"><rect width="16" height="16" fill="white" transform="translate(52.8335)"/></clipPath><clipPath id="clip4_20_5824"><rect width="16" height="16" fill="white" transform="translate(70.167)"/></clipPath></defs></svg>
+                      </div>
+                    </div>
+                    {%- if section.settings.main_review_detail_text_1 != blank or section.settings.main_review_detail_text_2 != blank or section.settings.main_heading_text != blank -%}
+                      <div class="Index_reviews_info_slider_innerside_innerleft_2_new">
+                        <div class="Index_reviews_info_slider_innerside_innerleft_2_boths_new">
+                          {%- if section.settings.main_review_detail_text_1 != blank and section.settings.main_review_detail_text_2 != blank -%}
+                            <div class="Index_reviews_info_slider_innerside_innerleft_2_boths_mainreview_new">
+                              <div class="Index_reviews_info_slider_innerside_innerleft_2_boths_innerreview_new">
+                                {%- if section.settings.main_custom_image_1 != blank -%}
+                                  {{
+                                    section.settings.main_custom_image_1 | 
+                                    image_url: width: img.width | 
+                                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                    fetchpriority: 'auto', 
+                                    class:'Icon_image_1_new'
+                                  }}
+                                {%- endif -%}
+                                {%- if section.settings.main_review_detail_text_1 != blank -%}
+                                  {{ section.settings.main_review_detail_text_1 }}
+                                {%- endif -%}
+                                {%- if section.settings.main_custom_image_2 != blank -%}
+                                  {{
+                                    section.settings.main_custom_image_2 | 
+                                    image_url: width: img.width | 
+                                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                    fetchpriority: 'auto', 
+                                    class:'Icon_image_2_new'
+                                  }}
+                                {%- endif -%}
+                                {%- if section.settings.main_review_detail_text_2 != blank -%}
+                                  <span>{{ section.settings.main_review_detail_text_2 }}</span>
+                                {%- endif -%}
+                              </div>  
+                            </div>
+                          {%- endif -%}
+                          {%- if section.settings.main_heading_text != blank -%}
+                            <div class="Index_reviews_info_slider_innerside_innerleft_2_boths_maintitle_new">
+                              <div class="Common_title_new Index_reviews_info_slider_innerside_innerleft_2_boths_innertitle_new">
+                                <h3>{{ section.settings.main_heading_text }}</h3>
+                              </div>  
+                            </div>
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    {%- endif -%}
+                    {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                      <div class="Index_reviews_info_slider_innerside_innerleft_3_new">
+                        <div class="Index_reviews_info_slider_innerside_innerleft_3_button_new">
+                          <a href="{{ section.settings.main_button_link }}" class="button">
+                            {{ section.settings.main_button_text }}
+                          </a>
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if section.blocks.size > 0 -%}
+                <div class="Index_reviews_info_slider_innerside_mainright_new" data-aos="fade-in">
+                  <div class="Index_reviews_info_slider_innerside_innerright_new">
+                    <div class="swiper Index_review_slider">
+                      <div class="swiper-wrapper">
+                        {%- for block in section.blocks -%}
+                          {%- case block.type -%}
+                            {%- when 'author_detail' -%}
+                              {%- if block.settings.main_mp4_video != blank or block.settings.main_desktop_image != blank or block.settings.main_mobile_image != blank or block.settings.title != blank or block.settings.main_information_text != blank or block.settings.main_author_text != blank -%}
+                                <div class="swiper-slide Index_reviews_info_slider_innerside_innerright_1_new">
+                                  <div class="Index_reviews_info_slider_innerside_innerright_1_boxs_new">
+                                    <div>
+                                      {%- if block.settings.main_mp4_video != blank or block.settings.main_desktop_image != blank or block.settings.main_mobile_image != blank -%}
+                                        <div class="Index_reviews_info_slider_innerside_innerright_1_boxs_mainboths_new">
+                                          <div class="Index_reviews_info_slider_innerside_innerright_1_boxs_innerboths_new">
+                                            {%- if block.settings.main_mp4_video != blank -%}
+                                              <div class="Index_reviews_info_slider_innerside_innerright_1_boxs_innerboths_videoimage_new">
+                                                {{ block.settings.main_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true, class: 'lazyload' }}
+                                              </div>
+                                            {% else %}  
+                                              {%- if block.settings.main_desktop_image != blank and block.settings.main_mobile_image != blank -%}
+                                                <div class="Index_reviews_info_slider_innerside_innerright_1_boxs_innerboths_videoimage_new">
+                                                  {%- if block.settings.main_desktop_image != blank -%}
+                                                    {{
+                                                      block.settings.main_desktop_image | 
+                                                      image_url: width: img.width | 
+                                                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                      fetchpriority: 'auto', 
+                                                      class:'desktop_image_new lazyload'
+                                                    }}
+                                                  {%- endif -%}
+                                                  {%- if block.settings.main_mobile_image != blank -%}
+                                                    {{
+                                                      block.settings.main_mobile_image | 
+                                                      image_url: width: img.width | 
+                                                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                      fetchpriority: 'auto', 
+                                                      class:'mobile_image_new lazyload'
+                                                    }}
+                                                  {%- endif -%}
+                                                </div>
+                                              {%- endif -%}
+                                            {%- endif -%}
+                                          </div>
+                                        </div>
+                                      {%- endif -%}
+                                      {%- if block.settings.title != blank or block.settings.main_information_text != blank or block.settings.main_author_text != blank -%}
+                                        <div class="Index_reviews_info_slider_innerside_innerright_1_boxs_maindetail_new">
+                                          <div class="Index_reviews_info_slider_innerside_innerright_1_boxs_innerdetail_new">
+                                            {%- if block.settings.title != blank -%}
+                                              <div class="Index_reviews_info_slider_innerside_innerright_1_boxs_innerdetail_title_new">
+                                                <h3>{{ block.settings.title }}</h3>
+                                              </div>
+                                            {%- endif -%}
+                                            {%- if block.settings.main_information_text != blank -%}
+                                              <div class="Index_reviews_info_slider_innerside_innerright_1_boxs_innerdetail_infos_new">
+                                                {{ block.settings.main_information_text }}
+                                              </div>
+                                            {%- endif -%}
+                                            {%- if block.settings.main_author_text != blank -%}
+                                              <div class="Index_reviews_info_slider_innerside_innerright_1_boxs_innerdetail_texts_new">
+                                                {{ block.settings.main_author_text }}
+                                              </div>
+                                            {%- endif -%}
+                                          </div>
+                                        </div>
+                                      {%- endif -%}
+                                    </div>
+                                    {%- if block.settings.main_product_selected != blank -%}
+                                      {%- assign Product_Selected = all_products[block.settings.main_product_selected] -%}
+                                      <div class="Index_reviews_info_slider_innerside_innerright_1_boxs_mainproduct_new">
+                                        <a href="{{ Product_Selected.url }}">
+                                          <div class="Index_reviews_info_slider_innerside_innerright_1_boxs_innerproduct_new">
+                                            {%- if block.settings.main_custom_image != blank or Product_Selected.featured_image != blank -%}
+                                              <div class="Index_reviews_info_slider_innerside_innerright_1_boxs_innerproduct_mainimage_new">
+                                                <div class="Index_reviews_info_slider_innerside_innerright_1_boxs_innerproduct_innerimage_new">
+                                                  {%- if block.settings.main_custom_image != blank -%}
+                                                    {{
+                                                      block.settings.main_custom_image | 
+                                                      image_url: width: img.width | 
+                                                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                      fetchpriority: 'auto', 
+                                                      class:'Product_image_new lazyload'
+                                                    }}
+                                                  {%- else -%}
+                                                    {{
+                                                      Product_Selected.featured_image | 
+                                                      image_url: width: img.width | 
+                                                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                      fetchpriority: 'auto', 
+                                                      class:'Product_image_new lazyload'
+                                                    }}
+                                                  {%- endif -%}
+                                                </div>
+                                              </div>
+                                            {%- endif -%}
+                                            {%- if Product_Selected.title != blank -%}
+                                              <div class="Index_reviews_info_slider_innerside_innerright_1_boxs_innerproduct_maintitle_new">
+                                                <div class="Index_reviews_info_slider_innerside_innerright_1_boxs_innerproduct_innertitle_new">
+                                                  {{ Product_Selected.title }}
+                                                </div>
+                                              </div>
+                                            {%- endif -%}
+                                          </div>
+                                        </a>
+                                      </div>
+                                    {%- endif -%}
+                                  </div>
+                                </div>
+                              {%- endif -%}
+    
+                            {%- when 'video_or_image' -%}
+                              {%- if block.settings.main_mp4_video != blank or block.settings.main_desktop_image != blank or block.settings.main_mobile_image != blank -%}
+                                <div class="swiper-slide Index_reviews_info_slider_innerside_innerright_2_new">
+                                  <div class="Index_reviews_info_slider_innerside_innerright_2_mainboxs_new">
+                                    {%- if block.settings.main_redirect_link != blank -%}
+                                      <a href="{{ block.settings.main_redirect_link }}">
+                                    {%- endif -%}
+                                        <div class="Index_reviews_info_slider_innerside_innerright_2_innerboxs_new">
+                                          {%- if block.settings.main_mp4_video != blank -%}
+                                            <div class="Index_reviews_info_slider_innerside_innerright_2_innerboxs_videoimage_new">
+                                              {{ block.settings.main_mp4_video | video_tag: 
+                                                image_size: 'master',
+                                                controls: false,
+                                                autoplay: true,
+                                                loop: true,
+                                                preload: "none",
+                                                playsinline: true,
+                                                muted: true,
+                                                loading: "lazy",
+                                                class: 'lazyload'
+                                              }}
+                                            </div>
+                                          {% else %}  
+                                            {%- if block.settings.main_desktop_image != blank and block.settings.main_mobile_image != blank -%}
+                                              <div class="Index_reviews_info_slider_innerside_innerright_2_innerboxs_videoimage_new">
+                                                {%- if block.settings.main_desktop_image != blank -%}
+                                                  {{
+                                                    block.settings.main_desktop_image | 
+                                                    image_url: width: img.width | 
+                                                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                    fetchpriority: 'auto', 
+                                                    class:'desktop_image_new'
+                                                  }}
+                                                {%- endif -%}
+                                                {%- if block.settings.main_mobile_image != blank -%}
+                                                  {{
+                                                    block.settings.main_mobile_image | 
+                                                    image_url: width: img.width | 
+                                                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                    fetchpriority: 'auto', 
+                                                    class:'mobile_image_new'
+                                                  }}
+                                                {%- endif -%}
+                                              </div>
+                                            {%- endif -%}
+                                          {%- endif -%}
+                                        </div>
+                                    {%- if block.settings.main_redirect_link != blank -%}
+                                      </a>
+                                    {%- endif -%}
+                                  </div>
+                                </div>
+                              {%- endif -%}
+                          {%- endcase -%}
+                        {%- endfor -%}
+                      </div>
+                      <div class="swiper-button-prev">
+                        <svg width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9 18.5L1 9.89115L9 1.5" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
+                      <div class="swiper-button-next">
+                        <svg width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1 1.5L9 10.1089L1 18.5" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
+                      <div class="swiper-scrollbar"></div>
+                    </div>
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+          <div class="Index_reviews_info_slider_mainbutton_new">
+            <div class="Index_reviews_info_slider_innerbutton_new">
+              <a href="{{ section.settings.main_button_link }}" class="button">
+                {{ section.settings.main_button_text }}
+              </a>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+  </div>
+{%- endif -%}  
+
+{% schema %}
+  {
+    "name": "Index Reviews Info Slider",
+    "class": "Index_reviews_info_slider_new",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "customClass",
+        "label": "Add Custom Class",
+        "info": "LP_reviews_info_slider_new"
+      },
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_custom_image_1",
+        "label": "Add Main Custom Image-1"
+      },
+      {
+        "type": "richtext",
+        "id": "main_review_detail_text_1",
+        "label": "Add Main Review Detail Text-1",
+        "default": "<p><strong>Top Quality Score  •  4.8/5<strong></p>"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_custom_image_2",
+        "label": "Add Main Custom Image-2"
+      },
+      {
+        "type": "textarea",
+        "id": "main_review_detail_text_2",
+        "label": "Add Main Review Detail Text-2",
+        "default": "(1,110)"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Over 450,000+<br>Frames Sold"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "Read All Reviews"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "author_detail",
+        "name": "Author Detail",
+        "settings": [
+          {
+            "type": "video",
+            "id": "main_mp4_video",
+            "label": "Add Main MP4 Video"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_desktop_image",
+            "label": "Add Main Desktop Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_mobile_image",
+            "label": "Add Main Mobile Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Add Main Heading Text",
+            "default": "Heading"
+          },
+          {
+            "type": "richtext",
+            "id": "main_information_text",
+            "label": "Add Main Information Text",
+            "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>"
+          },
+          {
+            "type": "text",
+            "id": "main_author_text",
+            "label": "Add Main Author Text",
+            "default": "Author A."
+          },
+          {
+            "type": "product",
+            "id": "main_product_selected",
+            "label": "Add Main Product Selected"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_custom_image",
+            "label": "Add Main Custom Image",
+            "info": "Note: If you need custom product image."
+          }
+        ]
+      },
+      {
+        "type": "video_or_image",
+        "name": "Video OR Image",
+        "settings": [
+          {
+            "type": "video",
+            "id": "main_mp4_video",
+            "label": "Add Main MP4 Video"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_desktop_image",
+            "label": "Add Main Desktop Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_mobile_image",
+            "label": "Add Main Mobile Image"
+          },
+          {
+            "type": "url",
+            "id": "main_redirect_link",
+            "label": "Add Main Redirect Link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Index Reviews Info Slider",
+        "blocks": [
+          {
+            "type": "author_detail"
+          },
+          {
+            "type": "video_or_image"
+          },
+          {
+            "type": "author_detail"
+          },
+          {
+            "type": "video_or_image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

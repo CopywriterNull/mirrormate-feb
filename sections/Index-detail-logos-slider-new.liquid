@@ -1,0 +1,160 @@
+{%- if section.blocks.size > 0 -%}
+  <div class="Index_detail_logos_slider_main_new" style="background: {{ section.settings.main_background_color }};">
+    <div class="page-width">
+      <div class="Index_detail_logos_slider_inner_new" data-aos="fade-in">
+        {%- if section.settings.main_mobile_video != blank or section.settings.main_mobile_image != blank -%}
+          <div class="Index_detail_logos_slider_mainmobile_new">
+            <div class="Index_detail_logos_slider_innermobile_new">
+              {%- if section.settings.main_mobile_video != blank -%}
+                <div class="Index_detail_logos_slider_innermobile_videoimage_new">
+                  {{ section.settings.main_mobile_video | video_tag: class: 'Full_video_new', image_size: 'master', controls: false, autoplay: true, loop: true }}
+                </div>
+              {% else %}  
+                {%- if section.settings.main_mobile_image != blank -%}
+                  <div class="Index_detail_logos_slider_innermobile_videoimage_new">
+                    {{
+                      section.settings.main_mobile_image | 
+                      image_url: width: img.width | 
+                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                      fetchpriority: 'auto', 
+                      class:'Full_image_new'
+                    }}
+                  </div>
+                {%- endif -%}
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.main_heading_text != blank -%}
+          <div class="Index_detail_logos_slider_maintitle_new">
+            <div class="Index_detail_logos_slider_innertitle_new">
+              <h4>{{ section.settings.main_heading_text }}</h4>
+            </div>
+          </div>
+        {%- endif -%}
+        {%- if section.blocks.size > 0 -%}
+          <div class="Index_detail_logos_slider_mainparts_new">
+            <div class="Index_detail_logos_slider_innerparts_new">
+              {%- if section.blocks.size > 0 -%}
+                <div class="Index_detail_logos_slider_innerparts_1_new">
+                  <div class="Index_detail_logos_slider_innerparts_1_loops_new">
+                    <div class="swiper Index_logos_slider">
+                      <div class="swiper-wrapper">
+                        {%- for block in section.blocks -%}
+                          {%- if block.settings.title != blank -%}
+                            <div class="swiper-slide Index_detail_logos_slider_innerparts_1_loops_mainboxs_new">
+                              <div class="Index_detail_logos_slider_innerparts_1_loops_innerboxs_new">
+                                {{ block.settings.title }}
+                              </div>
+                            </div>
+                          {%- endif -%}  
+                        {%- endfor -%}  
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if section.blocks.size > 0 -%}
+                <div class="Index_detail_logos_slider_innerparts_2_new">
+                  <div class="Index_detail_logos_slider_innerparts_2_loops_new">
+                    <div thumbsSlider class="swiper Index_logos_thumb_slider">
+                      <div class="swiper-wrapper">
+                        {%- for block in section.blocks -%}
+                          {%- if block.settings.main_custom_image != blank -%}
+                            <div class="swiper-slide Index_detail_logos_slider_innerparts_2_loops_mainboxs_new">
+                              <div class="Index_detail_logos_slider_innerparts_2_loops_innerboxs_new">
+                                {{
+                                  block.settings.main_custom_image | 
+                                  image_url: width: img.width | 
+                                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                  fetchpriority: 'auto', 
+                                  class:'Logo_image_new'
+                                }}
+                              </div>
+                            </div>
+                          {%- endif -%}  
+                        {%- endfor -%}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}  
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Index Detail Logos Slider",
+    "class": "Index_detail_logos_slider_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#2D4256"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "In The Press"
+      },
+      {
+        "type": "video",
+        "id": "main_mobile_video",
+        "label": "Add Main Mobile Video"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_mobile_image",
+        "label": "Add Main Mobile Image"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "information",
+        "name": "Information",
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "title",
+            "label": "Add Main Information Text",
+            "default": "<p>“Lorem Ipsum is simply dummy text of the printing and typesetting industry.”</p>"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_custom_image",
+            "label": "Add Main Custom Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Index Detail Logos Slider",
+        "blocks": [
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

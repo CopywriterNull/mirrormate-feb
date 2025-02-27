@@ -1,0 +1,30 @@
+.dealer_resources_sec_grid{display:flex;justify-content:space-between;}
+.dealer_resources_sec_left_side_image_slide{ display:flex;justify-content:space-between;width: 66.266%;flex-wrap: nowrap;overflow: hidden;overflow-x: auto;column-gap: 16px;text-wrap: nowrap;}
+.dealer_resources_sec_left_side_image_slide_images{width:100%;min-width:282px;display:flex;flex-direction:column;}
+.dealer_resources_sec_left_side_image_slide_images a{ text-decoration:none; }
+.dealer_resources_sec_left_side_image_slide_images_view{position:relative;width:100%;height:0;overflow:hidden;padding-bottom:200px;border-radius:8px;max-width:282px;}
+.dealer_resources_sec_left_side_image_slide_images_view img{position:absolute;left:0;right:0;width:100%;height:100%!important;object-fit:cover;}
+.dealer_resources_sec_left_side_image_content h2{font-size: 14px;font-weight: 600;line-height: 135%;letter-spacing: 0.02em;text-align: left;font-family:var(--font-body-family);text-transform:uppercase;margin:8px 0 0;}
+.dealer_resources_sec_right_side_content_wrapper{width:24.097%;}
+.dealer_resources_sec_right_side_content_heading h2{margin:0 0 16px;font-size: 24px;font-style: normal;font-weight: 500;line-height: 120%;letter-spacing: -0.2px;}
+.dealer_resources_sec_right_side_content_list_items ul{padding:0;margin:0;}
+.dealer_resources_sec_right_side_content_list_items li{list-style:none;font-size: 16px;font-family:var(--font-body-family);font-style: normal;font-weight: 400;line-height: 135%;text-decoration-line: underline;text-decoration-thickness:0.5px;text-underline-offset:3px;}
+.dealer_resources_sec_right_side_content_list_items li a{text-decoration:none;color:inherit;}
+.dealer_resources_sec_right_side_content_list_items li:not(:last-child){margin-bottom:8px;}
+.dealer_resources_sec_left_side_image_slide::-webkit-scrollbar {display: none;}
+.dealer_resources_sec_left_side_image_content{text-wrap:wrap;}
+@media(max-width:750px){
+  .dealer_resources_sec_grid{justify-content: flex-start;flex-direction: column;}
+  .dealer_resources_sec_left_side_image_slide{width:100%;}
+  .dealer_resources_sec_right_side_content_wrapper {width: 100%;}
+  .dealer_resources_sec_main_wrapper{padding-top:40px!important;padding-bottom:40px!important;}
+  .dealer_resources_sec_right_side_content_list_items{margin-top:32px;}
+  .dealer_resources_sec_right_side_content_heading h2{font-size: 32px;line-height: 115%;letter-spacing: -0.1px;margin:0 0 24px;}
+  .dealer_resources_sec_main_wrapper .page-width{ padding-right: 0 !important;}
+}
+@media(max-width:450px){
+  .dealer_resources_sec_left_side_image_slide_images_view{max-width:153px;}
+  .dealer_resources_sec_left_side_image_slide_images{min-width:153px;}
+  .dealer_resources_sec_left_side_image_slide_images_view{padding-bottom: 150px;}
+  
+}

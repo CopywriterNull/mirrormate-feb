@@ -1,0 +1,80 @@
+<div class="frame-grid clips-step" js-channels-step data-step="{% if user_type == "r" %}5{% else %}3{% endif %}" js-frame-step>
+    <div class="alpha">
+        <div class="img-wrap">
+            {% if product.metafields.custom.clip_step_image != blank %}
+                <img src="{{ product.metafields.custom.clip_step_image | image_url: width: '800x' }}" alt="{{ product.metafields.custom.clip_step_image.alt }}">
+            {% else %}
+                {{ 'image' | placeholder_svg_tag: 'placeholder__svg' }}
+            {% endif %}
+        </div>
+    </div>
+    <div class="beta" data-scrollable>
+        <div class="meta-contents mob-contents-left">
+            <h2 class="frame-title">Does your mirror have any clips or channels?</h2>
+            <p class="frame-text">Select the sides of your mirror with clips or metal channels. (If you don't have any just click continue).
+                {% if hasClipsStepDrawer %}
+                    <span class="trigger-btn" js-trigger-btn data-trigger-id="Clips-Drawer">Why do we need this info?</span>
+                {% endif %}
+            </p>
+            <span class="parametes-heading hide-desktop">Select all that apply</span>
+            <div class="space-around clip-parameters">
+                <div class="frame-box">
+                    <div class="box-img">
+                        <img src="{{ "frame-box.png" | file_img_url }}" alt="">
+                    </div>
+                    <div class="rest-parameter top-parameter" js-clip-field>
+                        <span class="parametes-heading hide-mobile">Select all that apply</span>
+                        <label class="clip-field">
+                            <input type="checkbox" class="hide-field" js-clip-input-field data-clip="top">
+                            <div class="checkbox">
+                                <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="checkbox-label">Top</div>
+                        </label>
+                        <input type="hidden" name="properties[_clips_channels_top]" data-name="properties[_clips_channels_top]" data-oversize-name="items[0][properties][_clips_channels_top]" form="{{ formId }}" value="No">
+                    </div>
+                    <div class="rest-parameter right-parameter" js-clip-field>
+                        <label class="clip-field">
+                            <input type="checkbox" class="hide-field" js-clip-input-field data-clip="right">
+                            <div class="checkbox">
+                                <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="checkbox-label">Right</div>
+                        </label>
+                        <input type="hidden" name="properties[_clips_channels_right]" data-name="properties[_clips_channels_right]" data-oversize-name="items[0][properties][_clips_channels_right]" form="{{ formId }}" value="No">
+                    </div>
+                    <div class="rest-parameter bottom-parameter" js-clip-field>
+                        <label class="clip-field">
+                            <input type="checkbox" class="hide-field" js-clip-input-field data-clip="bottom">
+                            <div class="checkbox">
+                                <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="checkbox-label">Bottom</div>
+                        </label>
+                        <input type="hidden" name="properties[_clips_channels_bottom]" data-name="properties[_clips_channels_bottom]" data-oversize-name="items[0][properties][_clips_channels_bottom]" form="{{ formId }}" value="No">
+                    </div>
+                    <div class="rest-parameter left-parameter" js-clip-field>
+                        <label class="clip-field">
+                            <input type="checkbox" class="hide-field" js-clip-input-field data-clip="left">
+                            <div class="checkbox">
+                                <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 4L4.5 7.5L11 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div class="checkbox-label">Left</div>
+                        </label>
+                        <input type="hidden" name="properties[_clips_channels_left]" data-name="properties[_clips_channels_left]" data-oversize-name="items[0][properties][_clips_channels_left]" form="{{ formId }}" value="No">
+                    </div>
+                </div>
+            </div>
+            <div class="continue-btn" is="optional" js-continue-btn>continue</div>
+            <span class="gap-bottom hide-mobile"></span>
+        </div>
+    </div>
+</div>

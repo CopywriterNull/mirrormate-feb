@@ -1,0 +1,577 @@
+.hb_collection_fitler__row {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+  padding: 9px 16px;
+  border: 1px solid #3E556933;
+  border-radius: 90px;
+  cursor: pointer;
+}
+.hb_collection_filter__icon {
+  max-width: 20px;
+  aspect-ratio: 1;
+  display: block;
+  margin-right: 8px;
+}
+.hb_collection_filter__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.hb_collection_filter .facets__heading {
+  margin: 0;
+  font-family: var(--TokensFontFont-Body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.35;
+  color: #2D4256;
+}
+.hb_collection_filter__item--count {
+  font-family: var(--TokensFontFont-Body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.35;
+  color: #2D4256;
+  margin-left: 5px;
+}
+.hb_collection_filter .facets__summary {
+  margin-bottom: 0;
+}
+.hb_collection_filter .facets__summary:hover .facets__summary-label {
+  text-decoration: none;
+  text-underline-offset: unset;
+}
+.hb_collection_filter .facets__disclosure {
+  margin-right: 8px;
+  border: 1px solid #3E556933;
+  border-radius: 90px;
+}
+.hb_collection_filter .facets__summary {
+  padding: 9px 16px;
+}
+.hb_collection_filter .caption-large div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hb_collection_filter .facets__display:focus-visible {
+  outline: none;
+  border: none;
+
+}
+.hb_collection_filter .active-facets__button-inner {
+  background-color: #F6F3F2;
+  font-family: var(--TokensFontFont-Body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 21.6px;
+  text-align: center;
+  border: unset;
+  box-shadow: unset;
+  padding: 9px 16px;
+  text-transform: math-auto;
+}
+.hb_collection_filter .active-facets__button-inner:hover {
+  background-color: #f6f3f2;
+  outline: none;
+  box-shadow: none;
+}
+
+.hb_collection_filter .facets-layout-list--text input[type='checkbox'] {
+  position: absolute;
+  opacity: 1;
+  width: 100%;
+  max-width: 2rem;
+  height: 2rem;
+  top: 50%;
+  right: 0; 
+  left: unset;
+  transform: translateY(-50%);
+  z-index: 1;
+  margin: 0;
+  accent-color: #2D4256;
+  appearance: auto !important;
+  -webkit-appearance: auto !important;
+}
+
+.hb_collection_filter .facets-layout-grid input[type='checkbox'],
+.hb_collection_filter .facets-layout-list--swatch input[type='checkbox'] {
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  transform: translateY(-50%);
+  z-index: 1;
+  margin: 0;
+  opacity: 1;
+  width: 100%;
+  max-width: 20px;
+  height: 20px;
+  accent-color: #2D4256;
+}
+.hb_collection_filter .facets__wrapper:has(.selected) .hb_collection_fitler__row {
+  border: 1.5px solid #2D4256;
+  background-color: #F6F3F2;
+}
+.hb_collection_filter .facets__disclosure[open] .icon-caret {
+  transform:rotate(180deg);
+}
+.hb_collection_filter .mobile-facets__details[open] .mobile-facets__arrow {
+  transform:rotate(180deg);
+}
+.hb_collection_filter .mobile-facets__details.hb-hide {
+  display: none;
+}
+.hb_collection_filter .product-count__text {
+  display: none;
+}
+.hb_collection_filter .facet-filters.sorting {
+  display: none;
+}
+.hb_collection_filter .swatch {
+  border-radius: 4px;
+}
+.hb_collection_filter .facets__wrapper  {
+  row-gap: 9px;
+}
+.hb_collection_filter .facets__list {
+  padding: 1.6rem;
+}
+.hb_collection_filter .facets__item {
+  margin: 0 0 12px;
+  position: relative;
+}
+.hb_collection_filter .facets__item:last-child {
+  margin: 0 ;
+}
+.hb_collection_filter .facet-checkbox__text {
+  font-size: 16px;
+  font-weight: 400;
+  text-align: left; 
+  color: #3E5569;
+  text-transform: capitalize;
+  line-height: 1.35;
+  letter-spacing: 0px;
+}
+.hb_collection_filter .facet-checkbox {
+  padding: 0;
+}
+.hb_collection_filter .facet-checkbox input {
+  display: none;
+}
+.hb_collection_filter .mobile-facets__clear-wrapper {
+  display: none !important;
+}
+.hb_collection_filter .mobile-facets__summary svg {
+  margin-left: unset;
+}
+.hb_collection_filter .mobile-facets__summary > div {
+  justify-content: space-between;
+}
+.hb_collection_filter input.mobile-facets__checkbox {
+  appearance: auto !important;
+  -webkit-appearance: auto !important;
+}
+.hb_collection_filter .mobile-facets__arrow,
+.hb_collection_filter .mobile-facets__summary .icon-caret {
+  margin: unset;
+}
+.hb_collection_filter .mobile-facets__footer > * + * {
+  margin: 0px;
+}
+.hb_collection_filter button.button.button--primary {
+  width: 100%;
+  max-width: 100%;
+  min-width: unset !important;
+  visibility: visible;
+}
+.hb_collection_filter .facets__display,
+.hb_collection_filter .parent-display {
+  border-radius: 12px;
+}
+.hb_collection_filter .check_icon {
+  max-width: 20px;
+  flex: 20px;
+  border: 1.5px solid #3E556980;
+  border-radius: 4px;
+  height: 20px;
+  margin-right: 12px;
+  position: relative;
+}
+.hb_collection_filter input[checked] + .check_icon {
+  background-color: #2D4256;
+}
+.hb_collection_filter .facet-checkbox .check_icon .icon-checkmark {
+  visibility: hidden;
+  position: absolute;
+  left: 50%;
+  z-index: 5;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.hb_collection_filter .facet-checkbox input[checked] + .check_icon .icon-checkmark {
+  visibility: visible;
+}
+.hb_collection_filter .active-facets__button-wrapper {
+  display: none;
+}
+.hb_collection_filter .active-facets__button svg {
+  margin-top: .5rem;
+  width: 1.6rem;
+  height: 1.6rem;
+}
+.hb_collection_filter .facets-layout-list .facets__label:hover .facet-checkbox__text-label {
+  text-decoration: unset;
+}
+.hb_collection_filter .mobile-facets__checkbox {
+  display: none;
+}
+.hb_collection_filter .mobile-facets__item .facets__label {
+  display: flex;
+  justify-content: space-between;
+}
+.hb_collection_filter .hb_filter_label-wrapper {
+  display: flex;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.hb_collection_filter .mobile-facets__clear,
+.hb_collection_filter .mobile-facets__submenu .mobile-facets__footer,
+.hb_collection_filter .mobile-facets__close-button   {
+  display: none;
+}
+.hb_collection_filter .js details[open].menu-opening > .mobile-facets__submenu {
+  transform: unset;
+  visibility: unset;
+}
+.hb_collection_filter .mobile-facets__submenu {
+  transform: unset;
+  visibility: unset;
+  position: unset;
+}
+.hb_collection_filter .mobile-facets__inner {
+  width: 100%;
+  max-width: 100%;
+}
+.hb_collection_filter .mobile-facets__list {
+  padding: 0 20px 16px;
+}
+.hb_collection_filter .mobile-facets__label {
+  position: relative;
+  padding: 0;
+}
+.hb_collection_filter .mobile-facets__summary {
+  padding: 16px 20px;
+  opacity: 1;
+  visibility: visible;
+}
+.hb_collection_filter .mobile-facets__details {
+  border-bottom: 1px solid #3E556933;
+}
+.hb_collection_filter .mobile-facets__details:last-child {
+  border-bottom: none;
+}
+.hb_collection_filter .mobile-facets__label .border-class {
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  margin-right: 0;
+  flex-shrink: 0;
+  color: #FFF;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 4px;
+  display: none;
+}
+.hb_collection_filter .mobile-facets__label:has(input[type='checkbox']:checked) .border-class {
+  background-color: #2D4256;
+}
+.mobile-facets__label .icon-checkmark {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0px;
+  max-width: 1.2rem;
+  visibility: hidden;
+  height: 1.2rem;
+  width: 100%;
+  display: none;
+}
+.hb_collection_filter .mobile-facets__label .icon-checkmark {
+  visibility: hidden;
+  position: absolute;
+  left: 50%;
+  z-index: 5;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+}
+.hb_collection_filter .mobile-facets__label input[checked] ~ .check_icon .icon-checkmark {
+  visibility: visible;
+}
+.hb_collection_filter .mobile-facets__label input[checked] ~ .check_icon {
+  background-color: #2D4256;
+}
+.hb_collection_filter .mobile-facets__count {
+  display: none;
+}
+.hb_collection_filter .mobile-facets__header {
+  padding: 14.2px 20px;
+}
+.hb_collection_filter .mobile-facets__close {
+  max-width: 24px;
+  height: 24px;
+  width: 100%;
+  top: 20px;
+  right: 20px;
+}
+.hb_collection_filter .mobile-facets__heading {
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+  text-align: left;
+  padding: 3px 0;
+}
+.hb_collection_filter .mobile-facets__main {
+  padding: 4px 0 0;
+}
+.hb_collection_filter .mobile-facets__summary > div > span {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+  text-align: left;
+  font-family: var(--font-heading-family);
+}
+.hb_collection_filter .mobile-facets__open-label  {
+  display: none;
+}
+.hb_collection_filter .mobile-facets__open {
+  border: 1px solid var(--Tokens-Stroke-Stroke-light, #3E556933);
+  border-radius: 80px;
+  padding: 4px 11px;
+}
+.hb_collection_filter .active-facets.active-facets-mobile{
+  display: none;
+}
+.hb_collection_filter .mobile-facets__open{
+  display: none;
+}
+.hb_collection_filter .mobile-facets__footer{
+  width: 100%;
+  margin-left: unset;
+}
+.hb_collection_filter .mobile-facets__wrapper .mobile-facets {
+  width: 100%;
+  left: auto;
+  max-width: 544px;
+}
+.hb_collection_filter .js .mobile-facets .submenu-open {
+  visibility: visible;
+}
+.hb_collection_filter .mobile-facets .list-menu__item {
+  margin: 0 0 12px;
+}
+.hb_collection_filter .mobile-facets__header {
+  border-bottom: 1px solid rgba(62, 85, 105, .2) !important;
+}
+.hb_collection_filter .mobile-facets  .check_icon {
+  margin-right: 0;
+}
+.hb_collection_filter .mobile-facets {
+  background-color: transparent;
+}
+.hb_collection_filter .mobile-facets__wrapper .disclosure-has-popup[open]>summary:before {
+  background: #00000066;
+}
+.hb_color_filter-drawer.hb_color_filter .check_icon {
+  display: block;
+}
+.hb_collection_filter .hb_color_filter-drawer .facet-checkbox__text {
+  margin-right: auto;
+}
+.js .mobile-facets__wrapper .mobile-facets .submenu-open {
+  visibility: visible;
+}
+@media screen and (max-width: 767px) {
+  .hb_collection_filter .list-menu__item {
+    margin: 0 0 12px;
+  }
+  .hb_collection_filter .list-menu__item:last-child {
+    margin: 0;
+  }
+  .hb_collection_filter .swatch {
+    border-radius: 4px;
+  }
+  .hb_collection_filter .swatch-input-wrapper {
+    position: unset;
+  }
+  .hb_collection_filter .facets-layout-grid input[type='checkbox'], 
+  .hb_collection_filter .facets-layout-list--swatch input[type='checkbox'] {
+    position: absolute;
+    right: 0px;
+  }
+  .hb_collection_filter .facets-layout-list--text input[type='checkbox'] {
+    border: 0;
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    right: 0rem;
+    opacity: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0;
+    margin: 0;
+    accent-color: #2D4256;
+    
+  }
+  .hb_collection_filter .facets-layout-list--swatch .facets__label {
+    gap: 12px;
+  }
+  .hb_collection_filter .swatch-input-wrapper {
+    position: relative;
+  }
+  .hb_collection_filter .check_icon {
+    margin-right: 0;
+    order: 2;
+  }
+  .hb_collection_filter .facet-checkbox__text{
+    order: 1;
+  }
+
+  .hb_collection_fitler__row {
+    max-width: fit-content;
+    flex: fit-content;
+    min-width: fit-content;
+  }
+  .hb_collection_fitler__row .facets__heading {
+    display: none;
+  }
+  .hb_collection_filter .facets__wrapper {
+    flex-wrap: nowrap;
+    overflow:hidden;
+  }
+  .hb_collection_filter .active-facets__button {
+    padding: 1rem .4rem;
+  }
+  
+  .hb_collection_filter .facets.small-hide{
+    display: block !important;
+  }
+  
+  .hb_collection_filter .facets__summary {
+    padding: 5px 12px;
+  }
+  .hb_collection_filter .caption-large div {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+  }
+  .hb_collection_filter .disclosure-has-popup {
+    position: unset;
+  }
+
+  .hb_collection_filter .facets__display{
+    position: fixed;
+    top: unset;
+    transition: all .5s ease-in-out;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    border-radius: 1.2rem 1.2rem 0 0;
+    padding: 2rem;
+  }
+  
+  .hb_facet_content--header {
+    padding: unset;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.4rem;
+  }
+  .hb_collection_filter .facets__list {
+    padding:unset;
+    margin-bottom: 3rem;
+  }
+  .hb_facet_content--cross-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .hb_facet_content--cross-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+  .hb_collection_filter .hb_facet_filter-label{
+    font-size: 2.4rem;
+    font-weight: 500;
+    font-family: var(--font-heading-family);
+    margin: unset;
+  }
+  .hb_collection_filter .facets__disclosure[open] .facets__display,
+  .hb_collection_filter .facets__disclosure-vertical[open] .facets__display-vertical {
+    animation: unset;
+  }
+  .hb_collection_filter .facets__form {
+      grid-template-columns: unset;
+  }
+  .hb_collection_filter .facets__price {
+    padding: unset;
+    margin-bottom: 2.4rem;
+  }
+  .hb_collection_filter .facets__disclosure[open] .facets__display{
+    bottom: 0;
+  }
+  .hb_collection_filter .facet-checkbox__text{
+    order: 1;
+  }
+  .hb_collection_filter .facet-checkbox {
+    justify-content: space-between;
+    align-items: center;
+  }
+  .hb_collection_filter .facet-checkbox__text-label_count_new{
+    display: none;
+  }
+  .hb_collection_filter .hb_filter_label-wrapper {
+    overflow: auto;
+  }
+  .hb_collection_filter .active-facets__button-inner {
+    font-size: 14px;
+    padding: 5px 12px;
+  }
+  .hb_collection_filter .active-facets__button svg{
+    margin-top: 0.15rem;
+  }
+  .hb_collection_filter .facets__disclosure {
+    margin-right: 4px;
+    min-width: fit-content;
+  }
+  .hb_collection_fitler__row {
+    margin-right: 4px;
+    padding: 5px 12px;
+  }
+   .template-inspiration .facets-wrapper {
+    margin-right: -20px;
+    margin-top: 20px;
+  }
+  .hb_collection_filter .loading__spinner{
+    display:none;
+  }
+  .hb_collection_filter .mobile-facets__wrapper .mobile-facets {
+    width: 100%;
+    left: 0;
+    max-width: unset;
+  }
+}

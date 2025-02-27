@@ -1,0 +1,133 @@
+<div class="Collection_template_inner_new">
+    {%- if collection.metafields.custom.collection_banner_desktop_video_or_image.value != blank -%}
+      <div class="Collection_template_maindesktop_new desktop_only">
+        <div class="Collection_template_innerdesktop_new">
+          {%- if collection.metafields.custom.collection_banner_desktop_video_or_image.value contains "files" -%}
+            <div class="Collection_template_innerdesktop_imagevideo_new">
+              {{
+                collection.metafields.custom.collection_banner_desktop_video_or_image.value | 
+                image_url: width: img.width | 
+                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                fetchpriority: 'auto', 
+                class:'Static_image_new'
+              }}
+            </div>
+          {%- else -%}
+            <div class="Collection_template_innerdesktop_imagevideo_new">
+              {{ collection.metafields.custom.collection_banner_desktop_video_or_image.value | video_tag: class:'Static_video_new', image_size: 'master', controls: false, autoplay: true, loop: true }}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+    {%- if collection.metafields.custom.collection_banner_mobile_video_or_image.value != blank -%}
+      <div class="Collection_template_mainmobile_new mobile_only">
+        <div class="Collection_template_innermobile_new">
+          {%- if collection.metafields.custom.collection_banner_mobile_video_or_image.value contains "files" -%}
+            <div class="Collection_template_innermobile_imagevideo_new">
+              {{
+                collection.metafields.custom.collection_banner_mobile_video_or_image.value | 
+                image_url: width: img.width | 
+                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                fetchpriority: 'auto', 
+                class:'Static_image_new'
+              }}
+            </div>
+          {%- else -%}
+            <div class="Collection_template_innermobile_imagevideo_new">
+              {{ collection.metafields.custom.collection_banner_mobile_video_or_image.value | video_tag: class:'Static_video_new', image_size: 'master', controls: false, autoplay: true, loop: true }}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+    {%- if collection.title != blank or collection.description != blank or collection.metafields.custom.collection_shortcut_reference != blank -%}
+      <div class="Collection_template_mainsides_new">
+        <div class="page-width">
+          <div class="Collection_template_innersides_new">
+            {%- if collection.title != blank or collection.description != blank or collection.metafields.custom.collection_small_description != blank -%}
+              <div class="Collection_template_innersides_mainleft_new">
+                <div class="Collection_template_innersides_innerleft_new">
+                  {%- if collection.title != blank -%}
+                    <div class="Common_title_new Collection_template_innersides_innerleft_title_new">
+                      <h1>{{ collection.title }}</h1>
+                    </div>
+                  {%- endif -%}
+                  {%- if collection.description != blank or collection.metafields.custom.collection_small_description != blank -%}
+                    {% assign user_type = customer.metafields.SAGE.PriceLevel | downcase %}
+
+                    {% if user_type == '' or user_type == '-' or user_type == 'none' %}
+                      {% assign user_type = "r" %}
+                    {% endif %}
+
+                    <div class="Collection_template_innersides_innerleft_infos_new">
+                      {% if collection.metafields.custom.collection_small_description != blank %}
+                        {{ collection.metafields.custom.collection_small_description | metafield_tag }}
+                      {% else %}
+                        {% unless template.suffix == "multi-order-form" %}
+                          {{ collection.description }}
+                        {% endunless %}
+                      {% endif %}
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+
+  {%- comment -%}
+            {%- if collection.metafields.custom.collection_shortcut_reference != blank -%}
+              <div class="Collection_template_innersides_mainright_new">
+                <div class="Collection_template_innersides_innerright_new">
+                  <div class="swiper Collection_list_slider">
+                    <div class="swiper-wrapper"> 
+                      {%- for link in linklists[collection.metafields.custom.collection_shortcut_reference].links -%}
+                        {% assign handle = link.url | split: '/' %}
+                        {% assign collectionHandleIndex = handle.size | minus: 1 %}
+                        {% assign subCollection = collections[handle[collectionHandleIndex]] %}
+                        <div class="swiper-slide Collection_template_innersides_innerright_mainboxs_new">
+                          <a href="{% if collection.url == subCollection.url %}{{ section.settings.return_url }}{% else %}{{ subCollection.url }}{% endif %}" class="{% if collection.url == subCollection.url %} active{% endif %}" js-sub-collection-item data-collection-handle="{{ subCollection.handle }}">
+                            <div class="Collection_template_innersides_innerright_innerboxs_new">
+                              {%- if subCollection.metafields.custom.collection_shortcut_reference_image_or_video.value != blank -%}
+                                <div class="Collection_template_innersides_innerright_innerboxs_mainboths_new">
+                                  <div class="Collection_template_innersides_innerright_innerboxs_innerboths_new">
+                                    {%- if subCollection.metafields.custom.collection_shortcut_reference_image_or_video.value contains "files" -%}
+                                      <div class="Collection_template_innersides_innerright_innerboxs_innerboths_imagevideo_new">
+                                        {{
+                                          subCollection.metafields.custom.collection_shortcut_reference_image_or_video.value | 
+                                          image_url: width: img.width | 
+                                          image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                          fetchpriority: 'auto', 
+                                          class:'Static_image_new'
+                                        }}
+                                      </div>
+                                    {%- else -%}
+                                      <div class="Collection_template_innersides_innerright_innerboxs_innerboths_imagevideo_new">
+                                        {{ subCollection.metafields.custom.collection_shortcut_reference_image_or_video.value | video_tag: class:'Static_video_new', image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                      </div>
+                                    {%- endif -%}
+                                  </div>
+                                </div>
+                              {%- endif -%}
+                              {%- if link.title != blank -%}
+                                <div class="Collection_template_innersides_innerright_innerboxs_maintitle_new">
+                                  <div class="Collection_template_innersides_innerright_innerboxs_innertitle_new">
+                                    {{ link.title }}
+                                  </div>
+                                </div>
+                              {%- endif -%}
+                            </div>
+                          </a>
+                        </div>
+                      {%- endfor -%}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+  {%- endcomment -%}
+
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>

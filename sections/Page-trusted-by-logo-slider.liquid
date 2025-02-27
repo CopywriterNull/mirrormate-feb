@@ -1,0 +1,114 @@
+{% if section.settings.main_heading_text != blank or section.settings.main_bottom_text != blank or section.blocks.size > 0 %}
+  <div class="Page_trusted_by_logo_slider_section Page_trusted_by_logo_slider_section_{{ section.id }} {{ section.settings.custom_class }}" style="background-color: {{ section.settings.main_background_color }}">
+    <div class="page-width">
+      <div class="Page_trusted_by_logo_slider_inner">
+        {%- if section.settings.main_heading_text != blank -%}
+          <div class="Page_trusted_by_logo_slider_main_heading_text">
+            <h5>{{ section.settings.main_heading_text }}</h5>
+          </div>
+        {%- endif -%}
+        {% if section.blocks.size > 0 %}
+          <div class="Page_trusted_by_logo_slider_main">
+            <div class="Page_trusted_by_logo_slider swiper">
+              <div class="swiper-wrapper">
+                {% for block in section.blocks %}
+                  {% if block.type == "logo-image" %}
+                    {% if block.settings.logo != blank %}
+                      <div class="Page_trusted_by_logo_image swiper-slide">
+                        {{
+                          block.settings.logo | 
+                          image_url: width: img.width | 
+                          image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                          fetchpriority: 'auto', 
+                          class:'logo_image'
+                        }}
+                      </div>
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.main_bottom_text != blank -%}
+          <div class="Page_trusted_by_logo_slider_main_bottom_text">
+            <p>{{ section.settings.main_bottom_text }}</p>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+<style>
+  .Page_trusted_by_logo_slider_section { padding: 48px 0; }
+  .Page_trusted_by_logo_slider_section .page-width { padding: 0 74px !important; }
+  .Page_trusted_by_logo_slider_inner { text-align: center; }
+  .Page_trusted_by_logo_slider_main_heading_text h5 { font-family: var(--font-body-family); text-transform: uppercase; font-size: 16px; font-weight: 600; line-height: 135%; margin:0; color: #2D4256; letter-spacing: 0.28px; }
+  .Page_trusted_by_logo_slider_main, .Page_trusted_by_logo_slider_main_bottom_text { padding-top: 24px; }
+  .Page_trusted_by_logo_slider .swiper-wrapper { transition-timing-function : linear; }
+  .Page_trusted_by_logo_slider_main_bottom_text p { font-family: 14px; color: #2D4256; margin: 0; font-weight: 400; line-height: 135%; }
+  .Page_trusted_by_logo_image img { display: block; width: 100%; height: 100% !important; object-fit: cover; }
+  
+  @media (max-width: 1439px){
+    .Page_trusted_by_logo_slider_section .page-width { padding: 0 20px !important; }
+  }
+
+  @media (max-width: 749px){
+    .Page_trusted_by_logo_slider_section { padidng: 32px 0; }
+    .Page_trusted_by_logo_slider_section .page-width { padding: 0!important; }
+    .Page_trusted_by_logo_slider_main_heading_text, .Page_trusted_by_logo_slider_main_bottom_text { padding: 0 20px; }
+    .Page_trusted_by_logo_slider_main, .Page_trusted_by_logo_slider_main_bottom_text { padding-top: 20px; }
+  }
+
+</style>
+
+{% schema %}
+  {
+    "name": "Page Trusted Logo Slider",
+    "class": "Page_trusted_logo_slider",
+    "settings": [
+      {
+        "type": "text",
+        "id": "custom_class",
+        "label": "Add Custom Class"
+      },
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Trusted by"
+      },
+      {
+        "type": "textarea",
+        "id": "main_bottom_text",
+        "label": "Add Main Bottom Text",
+        "default": "(and hundreds more!)"
+      },
+    ],
+    "blocks": [
+      {
+        "type": "logo-image",
+        "name": "Logo",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Add Logo"
+          },
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Page Trusted By Logo Slider" 
+      }
+    ]
+  }
+{% endschema %}

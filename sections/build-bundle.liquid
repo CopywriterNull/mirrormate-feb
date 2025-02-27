@@ -1,0 +1,593 @@
+{{ 'build-bundle.css' | asset_url | stylesheet_tag }}
+
+<div class="hb_bundle {{ template.suffix }}">
+    <bundle-builder>
+        <div class="hb_bundle--title-wrap medium-hide large-up-hide">
+            <h1 class="hb_bundle--title">
+                {% if section.settings.title != blank %}
+                    {{ section.settings.title }}
+                {% else %}
+                    Build a Samples Bundle
+                {% endif %}
+            </h1>
+            <div class="hb_bundle--price-wrap">
+                <div class="hb_bundle--price-discounded"js-product-price>$0</div>
+                <div class="hb_bundle--price-compare" js-product-compare-price>$0</div>
+            </div>
+            <div class="hb_bundle--message-wrap mobile">
+                <div class="hb_bundle--message-inner">
+                    <div class="hb_bundle--congrates-message hidden" js-bundle-completed-msg="">
+                        🎉 <b>Congrats!</b> You’re getting your 5th sample FREE
+                    </div>
+                    <div class="hb_bundle--message" js-bundle-processing-msg="">Add <b><span js-remaining-count="">5</span> more</b> samples to get you’re 5th FREE!</div>
+                </div>
+                <div class="hb_bundle--message-bars" js-complete-progress-bar>
+                    
+                </div>
+            </div>
+            
+            <div class="hb_bundle--beta-card-wrapper" js-selection-box-list="">
+            </div>
+            
+            <div class="adding_box_button hidden" js-bundle-addtocart-btn="">
+                <button class="add_to_cart button" type="submit">
+                    <span js-bundle-atc-btn-span="" class="bundle__atcbtn-content">
+                        ADD TO CART – <span js-product-price="">$0.00</span> <span class="compare-price" js-product-compare-price="">$0.00</span>
+                    </span>
+                    <div class="loading__spinner">
+                        <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                        <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                        </svg>
+                    </div>
+                </button>
+            </div>
+            <div class="adding_box_button" js-selection-count-wrapper="">
+                <button class="add_box button"><span js-selection-count="">0/5</span> <span js-atc-btn-text="">selected</span></button>
+            </div>
+        </div>
+        <div class="page-width">
+            <div class="hb_bundle--beta-inner mobile-addtobox-wrap medium-hide large-up-hide">
+                    <div class="hb_bundle--message-wrap">
+                        <div class="hb_bundle--message-inner">
+                            <div class="hb_bundle--congrates-message hidden" js-bundle-completed-msg="">
+                                🎉 <b>Congrats!</b> You’re getting your 5th sample FREE
+                            </div>
+                            <div class="hb_bundle--message" js-bundle-processing-msg="">Add <b><span js-remaining-count="">5</span> more</b> samples to get you’re 5th FREE!</div>
+                        </div>
+                    <div class="hb_bundle--message-bars" js-complete-progress-bar>
+                        
+                    </div>
+                </div>
+                <div class="adding_box_button" js-selection-count-wrapper="">
+                    <button class="add_box button" js-selection-count-btn><span js-selection-count="">0/5</span> <span js-atc-btn-text="" >selected</span></button>
+                </div>
+                <div class="adding_box_button hidden" js-selection-count-btn-wrapper>
+                    <button class="add_to_cart button" type="submit" js-selection-count-btn>
+                        <span  class="bundle__atcbtn-content">
+                            View my bundle
+                        </span>
+                        <div class="shevron-up">
+                            <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11 6L6 1.55556L1 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <div class="hb_bundle--wrap">
+                <div class="hb_bundle--alpha">
+                    <h1 class="hb_bundle--title small-hide">
+                        {% if section.settings.title != blank %}
+                            {{ section.settings.title }}
+                        {% else %}
+                            Build a Samples Bundle
+                        {% endif %}
+                    </h1>
+
+                    {% assign collection_list = section.settings.choose_collection %}
+                    {% comment %}
+                    
+                    <div class="hb_bundle--collection-tabs">
+                        {% for collection in collection_list %}
+                            <div class="hb_bundle--collection-tab {% if forloop.first %} active {% endif %}" js-collection-links>
+                                {% if collection.metafields.custom.bundle_page_label != blank %}
+                                    {{ collection.metafields.custom.bundle_page_label }}
+                                {% else %}
+                                    {{ collection.title }}
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% endcomment %}
+
+                    {% comment %}
+                    {% for collection in collection_list %}
+                        {% paginate collection.products by 1000 %}
+                        <ul class="product-grid{% if forloop.first%} active {% endif %}" js-collection-contents>      
+                            {% for product in collection.products %}
+                                {% if product.available and section.settings.choose_product.id != product.id  %}
+                                <li class="grid__item" 
+                                js-product-wrapper
+                                data-product-id="{{ product.first_available_variant.id }}"
+                                data-product-title="{{ product.title }}"
+                                data-product-image-url="{{product.featured_image |  image_url: width:'200x' }}"
+                                data-product-price="{{ product.price }}"
+                                data-product-compare-price="{{ product.compare_at_price }}"                                >
+                                    {% render 'card-product',
+                                    card_product: product,
+                                    media_aspect_ratio: section.settings.image_ratio,
+                                    image_shape: section.settings.image_shape,
+                                    show_secondary_image: section.settings.show_secondary_image,
+                                    show_vendor: section.settings.show_vendor,
+                                    show_rating: section.settings.show_rating,
+                                    skip_styles: skip_card_product_styles,
+                                    section_id: section.id,
+                                    quick_add: section.settings.quick_add
+                                    %}
+                                    <div class="card_grid_btn_new">
+                                        <div class="add-to-bundle-button" js-select-product-btn="">ADD TO BUNDLE</div>
+                                       <div class="quantity-selector" js-select-product-quantity="">
+                                            <div class="quantity-selector-in">
+                                                <button class="quantity-decrease quantity-btn" js-quantity-decrement="">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                     <path d="M9.71231 5.62491H2.28769" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+                                                </button>
+                                                <input js-quantity-input="" type="number" class="quantity__input" name="quantity" data-min="1" min="0" step="1" value="0">
+                                                <button class="quantity-increase quantity-btn" js-quantity-increment="">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M9.71231 5.62491H2.28769" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M6 1.9126V9.33722" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endif %}
+                            {% endfor %}  
+                        </ul>
+                        {% endpaginate %}
+                    {% endfor %}
+                    {% endcomment %}
+
+                    <div class="bundle_menu_new">
+                      <div class="bundle_menu_in_filter_new">
+                        <span class="bundle_menu_in_filter_link_new">
+                          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.7096 9.99999H7.4138M3.77964 9.99999H2.29297M3.77964 9.99999C3.77964 9.51818 3.97103 9.0561 4.31172 8.71541C4.65242 8.37472 5.11449 8.18332 5.5963 8.18332C6.07811 8.18332 6.54019 8.37472 6.88088 8.71541C7.22157 9.0561 7.41297 9.51818 7.41297 9.99999C7.41297 10.4818 7.22157 10.9439 6.88088 11.2846C6.54019 11.6253 6.07811 11.8167 5.5963 11.8167C5.11449 11.8167 4.65242 11.6253 4.31172 11.2846C3.97103 10.9439 3.77964 10.4818 3.77964 9.99999ZM17.7096 15.5058H12.9196M12.9196 15.5058C12.9196 15.9877 12.7278 16.4503 12.387 16.7911C12.0462 17.1319 11.5841 17.3233 11.1021 17.3233C10.6203 17.3233 10.1582 17.1311 9.81756 16.7904C9.47687 16.4497 9.28547 15.9876 9.28547 15.5058M12.9196 15.5058C12.9196 15.0239 12.7278 14.5621 12.387 14.2214C12.0462 13.8806 11.5841 13.6892 11.1021 13.6892C10.6203 13.6892 10.1582 13.8806 9.81756 14.2212C9.47687 14.5619 9.28547 15.024 9.28547 15.5058M9.28547 15.5058H2.29297M17.7096 4.49416H15.1221M11.488 4.49416H2.29297M11.488 4.49416C11.488 4.01235 11.6794 3.55027 12.0201 3.20958C12.3607 2.86889 12.8228 2.67749 13.3046 2.67749C13.5432 2.67749 13.7794 2.72448 13.9998 2.81578C14.2203 2.90707 14.4205 3.04089 14.5892 3.20958C14.7579 3.37827 14.8917 3.57854 14.983 3.79895C15.0743 4.01936 15.1213 4.25559 15.1213 4.49416C15.1213 4.73272 15.0743 4.96896 14.983 5.18937C14.8917 5.40977 14.7579 5.61004 14.5892 5.77873C14.4205 5.94743 14.2203 6.08124 13.9998 6.17254C13.7794 6.26383 13.5432 6.31082 13.3046 6.31082C12.8228 6.31082 12.3607 6.11943 12.0201 5.77873C11.6794 5.43804 11.488 4.97597 11.488 4.49416Z" stroke="#2D4256" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
+                          </svg>
+                          Filter
+                        </span>
+                      </div>
+                      <div class="bundle_menu_dropdown_link_new active" js-collection-links></div>
+                      {%- for link in section.settings.bundle_menu.links -%}
+                        <div class="bundle_menu_in_new">
+                          <div class="bundle_menu_overlay_new"> </div>
+                          <a href="javascript:void(0)" class="bundle_menu_in_link_new">{{ link.title }} <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 1.11768L4.94877 4.88238L1 1.11768" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                          <div class="bundle_menu_dropdown_new">
+                            <div class="bundle_menu_dropdown_mobile_new">
+                              {{ link.title }}<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_6_4030)"><path d="M19.0713 4.92896L4.92915 19.0711" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/><path d="M19.0708 19.0711L4.92871 4.92896" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/></g><defs><clipPath id="clip0_6_4030"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>
+                            </div>
+                            {%- for childlink in link.links -%}
+                              <div class="bundle_menu_dropdown_link_new" js-collection-links>{{ childlink.title }}</div>
+                            {% endfor %}
+                          </div>
+                        </div>
+                      {%- endfor -%}
+                    </div>
+
+                    <!-- Default Collection  --> 
+                    {% assign collection = section.settings.default_collection %}
+                    {% paginate collection.products by 500 %}
+                      <div class="product_grid_main active" js-collection-contents>
+                        <ul class="product-grid active">
+                          {% for product in collection.products %}
+                              {% if product.available %}
+                              <li class="grid__item" 
+                              js-product-wrapper
+                              data-product-id="{{ product.first_available_variant.id }}"
+                              data-product-title="{{ product.title }}"
+                              data-product-image-url="{{product.featured_image |  image_url: width:'200x' }}"
+                              data-product-price="{{ product.price }}"
+                              data-product-compare-price="{{ product.compare_at_price }}"                                >
+                                  {% render 'card-product',
+                                  card_product: product,
+                                  media_aspect_ratio: section.settings.image_ratio,
+                                  image_shape: section.settings.image_shape,
+                                  show_secondary_image: section.settings.show_secondary_image,
+                                  show_vendor: section.settings.show_vendor,
+                                  show_rating: section.settings.show_rating,
+                                  skip_styles: skip_card_product_styles,
+                                  section_id: section.id,
+                                  quick_add: section.settings.quick_add
+                                  %}
+                                  <div class="card_grid_btn_new">
+                                      <div class="add-to-bundle-button" js-select-product-btn="">ADD TO BUNDLE</div>
+                                     <div class="quantity-selector" js-select-product-quantity="">
+                                          <div class="quantity-selector-in">
+                                              <button class="quantity-decrease quantity-btn" js-quantity-decrement="">
+                                                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                   <path d="M9.71231 5.62491H2.28769" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                  </svg>
+                                              </button>
+                                              <input js-quantity-input="" type="number" class="quantity__input" name="quantity" data-min="1" min="0" step="1" value="0">
+                                              <button class="quantity-increase quantity-btn" js-quantity-increment="">
+                                                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                      <path d="M9.71231 5.62491H2.28769" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                      <path d="M6 1.9126V9.33722" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                  </svg>
+                                              </button>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </li>
+                              {% endif %}
+                          {% endfor %}  
+                        </ul>
+                        {% comment %}
+                        {%- if paginate.pages > 1 -%}
+                          {% render 'pagination', paginate: paginate, anchor: '' %}
+                        {%- endif -%}
+                        {% endcomment %}
+                      </div>
+                    {% endpaginate %}
+                            
+                    {%- for link in linklists[section.settings.bundle_menu].links -%}
+
+                      {%- for childlink in link.links -%}
+
+                        {% assign handle = childlink.url | split: '/' %}
+                        {% assign collectionHandleIndex = handle.size | minus: 1 %}
+                        {% assign subCollection = collections[handle[collectionHandleIndex]] %}
+                        {% paginate subCollection.products by 500 %}
+                          <ul class="product-grid" js-collection-contents>      
+                            {% for product in subCollection.products %}
+                              {% if product.available and section.settings.choose_product.id != product.id  %}
+                                <li class="grid__item" 
+                                js-product-wrapper
+                                data-product-id="{{ product.first_available_variant.id }}"
+                                data-product-title="{{ product.title }}"
+                                data-product-image-url="{{product.featured_image |  image_url: width:'200x' }}"
+                                data-product-price="{{ product.price }}"
+                                data-product-compare-price="{{ product.compare_at_price }}"                                >
+                                    {% render 'card-product',
+                                    card_product: product,
+                                    media_aspect_ratio: section.settings.image_ratio,
+                                    image_shape: section.settings.image_shape,
+                                    show_secondary_image: section.settings.show_secondary_image,
+                                    show_vendor: section.settings.show_vendor,
+                                    show_rating: section.settings.show_rating,
+                                    skip_styles: skip_card_product_styles,
+                                    section_id: section.id,
+                                    quick_add: section.settings.quick_add
+                                    %}
+                                    <div class="card_grid_btn_new">
+                                        <div class="add-to-bundle-button" js-select-product-btn="">ADD TO BUNDLE</div>
+                                       <div class="quantity-selector" js-select-product-quantity="">
+                                            <div class="quantity-selector-in">
+                                                <button class="quantity-decrease quantity-btn" js-quantity-decrement="">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                     <path d="M9.71231 5.62491H2.28769" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+                                                </button>
+                                                <input js-quantity-input="" type="number" class="quantity__input" name="quantity" data-min="1" min="0" step="1" value="0">
+                                                <button class="quantity-increase quantity-btn" js-quantity-increment="">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M9.71231 5.62491H2.28769" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M6 1.9126V9.33722" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                              {% endif %}
+                            {% endfor %}  
+                          </ul>
+                        {% endpaginate %}
+                        
+                      {% endfor %}
+                    {% endfor %}
+                </div>
+                <div class="hb_bundle--beta">
+                    <div class="hb_bundle--beta-inner">
+                        <div class="hb_bundle--beta-cross-icon medium-hide large-up-hide" js-selection-box-closs-icon>
+                            <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_2860_18436)">
+                                <path d="M15.8926 4.60742L4.10747 16.3925" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                                <path d="M15.8925 16.3925L4.10742 4.60742" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/>
+                                </g>
+                                <defs>
+                                <clipPath id="clip0_2860_18436">
+                                <rect width="20" height="20" fill="white" transform="translate(0 0.5)"/>
+                                </clipPath>
+                                </defs>
+                            </svg>
+                        </div>
+                        <h4 class="hb_bundle--beta-title">
+                            Your Samples
+                        </h4>
+                        <div class="hb_bundle--message-wrap mobile">
+                            <div class="hb_bundle--message-inner">
+                                <div class="hb_bundle--congrates-message hidden" js-bundle-completed-msg="">
+                                    🎉 <b>Congrats!</b> You’re getting your 5th sample FREE
+                                </div>
+                                <div class="hb_bundle--message" js-bundle-processing-msg="">Add <b><span js-remaining-count="">5</span> more</b> samples to get you’re 5th FREE!</div>
+                            </div>
+                            <div class="hb_bundle--message-bars" js-complete-progress-bar>
+                                
+                            </div>
+                        </div>
+                        <div class="hb_bundle--price-wrap small-hide">
+                            <div class="hb_bundle--price-discounded" js-product-price>$0</div>
+                            <div class="hb_bundle--price-compare" js-product-compare-price>$0</div>
+                        </div>
+                        <div class="hb_bundle--beta-card-wrapper" js-selection-box-list>
+                        </div>
+                        <div class="hb_bundle--message-wrap desktop">
+                            <div class="hb_bundle--message-inner">
+                                <div class="hb_bundle--congrates-message hidden" js-bundle-completed-msg>
+                                    🎉 <b>Congrats!</b> You’re getting your 5th sample FREE
+                                </div>
+                                <div class="hb_bundle--message" js-bundle-processing-msg>Add <b><span js-remaining-count>4</span> more</b> samples to get you’re 5th FREE!</div>
+                            </div>
+                            <div class="hb_bundle--message-bars" js-complete-progress-bar>
+                                
+                            </div>
+                        </div>
+                        <div class="adding_box_button" js-selection-count-wrapper="">
+                            <button class="add_box button"><span js-selection-count="">0/5</span> <span js-atc-btn-text="">selected</span></button>
+                        </div>
+                        <div class="adding_box_button hidden" js-bundle-addtocart-btn="">
+                            <button class="add_to_cart button" type="submit">
+                                <span js-bundle-atc-btn-span="" class="bundle__atcbtn-content">
+                                    ADD TO CART – <span js-product-price="">$0.00</span> <span class="compare-price" js-product-compare-price="">$0.00</span>
+                                </span>
+                                <div class="loading__spinner">
+                                    <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                    <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                                    </svg>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </bundle-builder>
+</div>
+
+
+{%- if section.blocks.size > 0 -%}
+    <div style="display: none !important;">
+    {%- for block in section.blocks -%}
+        {%- if block.settings.main_desktop_video != blank or block.settings.main_mobile_video != blank or block.settings.main_desktop_image != blank or block.settings.main_mobile_image != blank -%}
+        <li js-hb-product-card js-hb-custom-banner data-mobile-position="{{ block.settings.mobile_position }}" data-desktop-position="{{ block.settings.desktop_position }}" class="grid__item Collection_template_rightside_innerloop_mainboxs_new{% unless block.settings.title != blank and block.settings.main_information_text != blank and block.settings.main_button_text != blank %} Collection_template_rightside_innerloop_mainboxs_onlybanner_new{% endunless %}">
+            {%- if block.settings.main_button_link != blank -%}
+            <a href="{{ block.settings.main_button_link }}">
+            {%- endif -%}
+                <div class="Collection_template_rightside_innerloop_innerboxs_new">
+                {%- if block.settings.main_desktop_video != blank or block.settings.main_mobile_video != blank or block.settings.main_desktop_image != blank or block.settings.main_mobile_image != blank -%}
+                    <div class="Collection_template_rightside_innerloop_innerboxs_mainboths_new">
+                    <div class="Collection_template_rightside_innerloop_innerboxs_innerboths_new">
+                        {%- if block.settings.main_desktop_video != blank and block.settings.main_mobile_video != blank -%}
+                        <div class="Collection_template_rightside_innerloop_innerboxs_innerboths_videoimage_new">
+                            {%- if block.settings.main_desktop_video != blank -%}
+                            {{ block.settings.main_desktop_video | video_tag: class:'desktop_image_new', image_size: 'master', controls: false, autoplay: true, loop: true }}
+                            {%- endif -%}
+                            {%- if block.settings.main_mobile_video != blank -%}
+                            {{ block.settings.main_mobile_video | video_tag: class:'mobile_image_new', image_size: 'master', controls: false, autoplay: true, loop: true }}
+                            {%- endif -%}
+                        </div>
+                        {% else %}  
+                        {%- if block.settings.main_desktop_image != blank and block.settings.main_mobile_image != blank -%}
+                            <div class="Collection_template_rightside_innerloop_innerboxs_innerboths_videoimage_new">
+                            {%- if block.settings.main_desktop_image != blank -%}
+                                {{
+                                block.settings.main_desktop_image | 
+                                image_url: width: img.width | 
+                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                fetchpriority: 'auto', 
+                                class:'desktop_image_new'
+                                }}
+                            {%- endif -%}
+                            {%- if block.settings.main_mobile_image != blank -%}
+                                {{
+                                block.settings.main_mobile_image | 
+                                image_url: width: img.width | 
+                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                fetchpriority: 'auto', 
+                                class:'mobile_image_new'
+                                }}
+                            {%- endif -%}
+                            </div>
+                        {%- endif -%}
+                        {%- endif -%}
+                    </div>
+                    </div>
+                {%- endif -%}
+                {%- if block.settings.title != blank or block.settings.main_information_text != blank or block.settings.main_button_text != blank -%}
+                    <div class="Collection_template_rightside_innerloop_innerboxs_maintexts_new">
+                    <div class="Collection_template_rightside_innerloop_innerboxs_innertexts_new">
+                        {%- if block.settings.title != blank -%}
+                        <div class="Common_title_new Collection_template_rightside_innerloop_innerboxs_innertexts_title_new">
+                            <h2>{{ block.settings.title }}</h2>
+                        </div>
+                        {%- endif -%}
+                        {%- if block.settings.main_information_text != blank -%}
+                        <div class="Collection_template_rightside_innerloop_innerboxs_innertexts_infos_new">
+                            {{ block.settings.main_information_text }}
+                        </div>
+                        {%- endif -%}
+                        {%- if block.settings.main_button_text != blank -%}
+                        <div class="Collection_template_rightside_innerloop_innerboxs_innertexts_button_new">
+                            {{ block.settings.main_button_text }}
+                        </div>
+                        {%- endif -%}
+                    </div>
+                    </div>
+                {%- endif -%}
+                </div>
+            {%- if block.settings.main_button_link != blank -%}
+            </a>
+            {%- endif -%}
+        </li>
+        {%- endif -%}  
+    {%- endfor -%}
+    </div>
+{%- endif -%}
+
+
+{% comment %} <script>
+  window.hbGiftProduct = {};
+
+  {% assign gift_product = section.settings.choose_product %}
+
+  hbGiftProduct['title'] = "{{ gift_product.title }}";
+  hbGiftProduct['id'] = {{ gift_product.selected_or_first_available_variant.id }};
+  hbGiftProduct['imageUrl'] = "{{ gift_product.featured_image | image_url: width: 533 }}";
+  hbGiftProduct['benefit'] = "";
+  hbGiftProduct['price'] = {{ gift_product.price  }};
+  hbGiftProduct['quantity'] = 1;
+  hbGiftProduct['comparePrice'] = "{{ gift_product.compare_at_price | money_without_currency }}";
+
+</script>  {% endcomment %}
+
+<script src="{{ 'build-bundle.js' | asset_url }}" defer="defer"></script>
+
+<script>
+  (() => {
+
+    function customBannerInject() {
+      
+      const customBanners = document.querySelectorAll('[js-hb-custom-banner]');
+      const collections = document.querySelectorAll('[js-collection-contents]');
+      customBanners.forEach(banner => {
+        const desktopPosition = banner.dataset.desktopPosition;
+        const mobilePosition = banner.dataset.mobilePosition;
+
+        if(window.innerWidth > 750) {
+          collections.forEach(hbCollection => {
+            if(hbCollection.querySelectorAll('[js-product-wrapper]')[desktopPosition - 1]) {
+                hbCollection.querySelectorAll('[js-product-wrapper]')[desktopPosition - 1].insertAdjacentElement('beforebegin', banner.cloneNode(true));
+            }
+          })
+          
+        } else {
+          collections.forEach(hbCollection => {
+            if(hbCollection.querySelectorAll('[js-product-wrapper]')[mobilePosition - 1]) {
+                hbCollection.querySelectorAll('[js-product-wrapper]')[mobilePosition - 1].insertAdjacentElement('beforebegin', banner.cloneNode(true));
+            }
+          })
+          
+        }
+        
+      })
+    }
+    customBannerInject()
+    document.addEventListener('customBannerInject:init', customBannerInject)
+  })()
+</script>
+
+{% schema %}
+    {
+        "name": "Build A Bundle",
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Headings"
+            },
+            {
+                "type": "collection",
+                "id": "default_collection",
+                "label": "Please Select Default Collections"
+            },
+            {
+              "type": "link_list",
+              "id": "bundle_menu",
+              "label": "Select Menu"
+            },
+            {
+                "type": "collection_list",
+                "id": "choose_collection",
+                "label": "Please Select Collections"
+            },
+            {
+                "type": "product",
+                "id": "choose_product",
+                "label": "Choose Product"
+            },
+          {
+            "type": "checkbox",
+            "id": "show_secondary_image",
+            "default": false,
+            "label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
+          },
+        ],
+        "blocks": [
+            {
+            "type": "information",
+            "name": "Information",
+                "settings": [
+                    {
+                    "type": "video",
+                    "id": "main_desktop_video",
+                    "label": "Add Main Desktop Video"
+                    },
+                    {
+                    "type": "number",
+                    "label": "Desktop Position",
+                    "id": "desktop_position"
+                    },
+                    {
+                    "type": "video",
+                    "id": "main_mobile_video",
+                    "label": "Add Main Mobile Video"
+                    },
+                    {
+                    "type": "number",
+                    "label": "Mobile Position",
+                    "id": "mobile_position"
+                    },
+                    {
+                    "type": "image_picker",
+                    "id": "main_desktop_image",
+                    "label": "Add Main Desktop Image"
+                    },
+                    {
+                    "type": "image_picker",
+                    "id": "main_mobile_image",
+                    "label": "Add Main Mobile Image"
+                    },
+                    {
+                    "type": "textarea",
+                    "id": "title",
+                    "label": "Add Main Heading Text",
+                    "default": "Lorem Ipsum is simply dummy"
+                    },
+                    {
+                    "type": "richtext",
+                    "id": "main_information_text",
+                    "label": "Add Main Information Text",
+                    "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>"
+                    },
+                    {
+                    "type": "text",
+                    "id": "main_button_text",
+                    "label": "Add Main Button Text",
+                    "default": "Shop Samples"
+                    },
+                    {
+                    "type": "url",
+                    "id": "main_button_link",
+                    "label": "Add Main Button Link",
+                    "default": "/"
+                    }
+                ]
+            }
+        ],
+        "presets": [{"name": "Build A Bundle"}]
+    }
+{% endschema %}

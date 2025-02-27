@@ -1,0 +1,407 @@
+{% if section.settings.main_heading_text != blank or section.settings.main_background_color != blank %}
+  <div class="Index_additional_resources_main_new" style="{% if section.settings.main_background_color %} background-color: {{ section.settings.main_background_color }}{% endif %}"> 
+    <div class="page-width">
+      <div class="Index_additional_resources_inner_new">
+        {% if section.settings.main_heading_text != blank %}
+          <div class="Index_additional_reosurces_heading">
+            <h3>
+              {{ section.settings.main_heading_text }}
+            </h3>
+          </div>
+        {% endif %}
+        {%- if section.blocks.size > 0 -%}
+          <div class="Index_additional_resources_parent">
+            {%- for block in section.blocks -%}
+              {% if block.type == "video" %}
+                {% if block.settings.icon_image != blank or block.settings.resource_heading != blank or block.settings.resource_information_text != blank or block.settings.resource_video != blank or block.settings.resource_video_text != blank %}
+                  <div class="Index_additional_resource_card" style="background-color: {{ block.settings.main_card_background_color }}">
+                    <div class="Index_additional_resource_card_inner">
+                      {% if block.settings.icon_image != blank %}
+                        <div class="Index_additional_resource_iconbox"  style="background-color: {{ block.settings.icon_box_color }}">
+                          <div class="upper_vector">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.33398 12.8333V2.22217C1.33398 1.94603 1.55784 1.72217 1.83399 1.72217L12.4451 1.72219" stroke="#2D4256" stroke-width="2" stroke-linecap="round"></path>
+</svg>
+
+                          </div>
+                          <div class="lower_vector">
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.1113 1.72214L12.1113 12.3333C12.1113 12.6094 11.8875 12.8333 11.6113 12.8333L1.00022 12.8332" stroke="#2D4256" stroke-width="2" stroke-linecap="round"></path>
+</svg>
+
+                        </div>
+                          <div class="Index_additional_resource_icon_image"> 
+                            {{
+                                block.settings.icon_image | 
+                                image_url: width: img.width | 
+                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                fetchpriority: 'auto', 
+                                class:'icon_img'
+                              }}
+                          </div>
+                        </div>
+                      {% endif %}
+                      {% if block.settings.resource_heading != blank or block.settings.resource_information_text != blank or block.settings.resource_video != blank or block.settings.resource_video_text != blank %}
+                        <div class="Index_additional_resource_card_content">
+                          {% if block.settings.resource_heading != blank %}
+                            <div class="Index_additional_resource_card_heading Common_subtitle_new">
+                              <span>
+                                {{ block.settings.resource_heading }}
+                              </span>
+                            </div>
+                          {% endif %}
+                          {% if block.settings.resource_information_text != blank %}
+                            <div class="Index_additional_resource_card_information_text Index_meet_image_all_text_sides_innerright_infos_new">
+                                {{ block.settings.resource_information_text }}
+                            </div>
+                          {% endif %}
+                          {% if block.settings.resource_video != blank or block.settings.resource_video_text != blank %}
+                            <div class="Index_additional_card_link_text resource_video Common_link" >
+                              <span class="card_link_text" data-video-url="{{ block.settings.youtube-video }}">
+                                {{ block.settings.resource_video_text }}
+                              </span>
+                              <span class="card_link">
+                                {% if block.settings.youtube-video != blank %}
+                                  <iframe js-pop-iframe-video width="800px" height="400px" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                  
+                                {% else %}
+                                  {{ block.settings.resource_video | video_tag: image_size: 'master', controls: true, autoplay: false, loop: false }}
+                                {% endif %}
+                                <span class="close_popup">
+                                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" width="800px" height="800px" viewBox="0 0 32 32" version="1.1">
+    
+    <title>cross-circle</title>
+    <desc>Created with Sketch Beta.</desc>
+    <defs>
+
+</defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Icon-Set-Filled" sketch:type="MSLayerGroup" transform="translate(-570.000000, -1089.000000)" fill="#FFFFFF">
+            <path d="M591.657,1109.24 C592.048,1109.63 592.048,1110.27 591.657,1110.66 C591.267,1111.05 590.633,1111.05 590.242,1110.66 L586.006,1106.42 L581.74,1110.69 C581.346,1111.08 580.708,1111.08 580.314,1110.69 C579.921,1110.29 579.921,1109.65 580.314,1109.26 L584.58,1104.99 L580.344,1100.76 C579.953,1100.37 579.953,1099.73 580.344,1099.34 C580.733,1098.95 581.367,1098.95 581.758,1099.34 L585.994,1103.58 L590.292,1099.28 C590.686,1098.89 591.323,1098.89 591.717,1099.28 C592.11,1099.68 592.11,1100.31 591.717,1100.71 L587.42,1105.01 L591.657,1109.24 L591.657,1109.24 Z M586,1089 C577.163,1089 570,1096.16 570,1105 C570,1113.84 577.163,1121 586,1121 C594.837,1121 602,1113.84 602,1105 C602,1096.16 594.837,1089 586,1089 L586,1089 Z" id="cross-circle" sketch:type="MSShapeGroup">
+
+</path>
+        </g>
+    </g>
+</svg>
+                                </span>
+                              </span>
+                            </div>
+                          {% endif %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endif %}
+              {% endif %}
+              {% if block.type == "download" %}
+                {% if block.settings.icon_image != blank or block.settings.resource_heading != blank or block.settings.resource_information_text != blank or block.settings.installation_instructions != blank or block.settings.installation_text != blank %}
+                  <div class="Index_additional_resource_card"  style="background-color: {{ block.settings.main_card_background_color }}">
+                    <div class="Index_additional_resource_card_inner">
+                      {% if block.settings.icon_image != blank %}
+                        <div class="Index_additional_resource_iconbox" style="background-color: {{ block.settings.icon_box_color }}">
+                          <div class="upper_vector">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.33398 12.8333V2.22217C1.33398 1.94603 1.55784 1.72217 1.83399 1.72217L12.4451 1.72219" stroke="#2D4256" stroke-width="2" stroke-linecap="round"></path>
+</svg>
+
+                          </div>
+                          <div class="lower_vector">
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.1113 1.72214L12.1113 12.3333C12.1113 12.6094 11.8875 12.8333 11.6113 12.8333L1.00022 12.8332" stroke="#2D4256" stroke-width="2" stroke-linecap="round"></path>
+</svg>
+
+                        </div>
+                          <div class="Index_additional_resource_icon_image"> 
+                            {{
+                                block.settings.icon_image | 
+                                image_url: width: img.width | 
+                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                fetchpriority: 'auto', 
+                                class:'icon_img'
+                              }}
+                          </div>
+                        </div>
+                      {% endif %}
+                      {% if block.settings.resource_heading != blank or block.settings.resource_information_text != blank or block.settings.resource_video != blank or block.settings.resource_video_text != blank %}
+                        <div class="Index_additional_resource_card_content">
+                          {% if block.settings.resource_heading != blank %}
+                            <div class="Index_additional_resource_card_heading Common_subtitle_new">
+                              <span>
+                                {{ block.settings.resource_heading }}
+                              </span>
+                            </div>
+                          {% endif %}
+                          {% if block.settings.resource_information_text != blank %}
+                            <div class="Index_additional_resource_card_information_text Index_meet_image_all_text_sides_innerright_infos_new">
+                                {{ block.settings.resource_information_text }}
+                            </div>
+                          {% endif %}
+                          {% if block.settings.installation_instructions != blank or block.settings.installation_text != blank %}
+                            <div class="Index_additional_card_link_text Common_link">
+                              <a target="_blank" href="{{ block.settings.installation_instructions }}" class="card_link_text">
+                                {{ block.settings.installation_text }}
+                              </a>
+                            </div>
+                          {% endif %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endif %}
+              {% endif %}
+              {% if block.type == "contact" %}
+                {% if block.settings.icon_image != blank or block.settings.resource_heading != blank or block.settings.resource_information_text != blank or block.settings.contact_url != blank or block.settings.contact_text != blank %}
+                  <div class="Index_additional_resource_card"  style="background-color: {{ block.settings.main_card_background_color }}">
+                    <div class="Index_additional_resource_card_inner">
+                      {% if block.settings.icon_image != blank %}
+                        <div class="Index_additional_resource_iconbox" style="background-color: {{ block.settings.icon_box_color }}">
+                          <div class="upper_vector">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.33398 12.8333V2.22217C1.33398 1.94603 1.55784 1.72217 1.83399 1.72217L12.4451 1.72219" stroke="#2D4256" stroke-width="2" stroke-linecap="round"></path>
+</svg>
+
+                          </div>
+                          <div class="lower_vector">
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.1113 1.72214L12.1113 12.3333C12.1113 12.6094 11.8875 12.8333 11.6113 12.8333L1.00022 12.8332" stroke="#2D4256" stroke-width="2" stroke-linecap="round"></path>
+</svg>
+
+                        </div>
+                          <div class="Index_additional_resource_icon_image"> 
+                            {{
+                                block.settings.icon_image | 
+                                image_url: width: img.width | 
+                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                fetchpriority: 'auto', 
+                                class:'icon_img'
+                              }}
+                          </div>
+                        </div>
+                      {% endif %}
+                      {% if block.settings.resource_heading != blank or block.settings.resource_information_text != blank or block.settings.resource_video != blank or block.settings.resource_video_text != blank %}
+                        <div class="Index_additional_resource_card_content">
+                          {% if block.settings.resource_heading != blank %}
+                            <div class="Index_additional_resource_card_heading Common_subtitle_new">
+                              <span>
+                                {{ block.settings.resource_heading }}
+                              </span>
+                            </div>
+                          {% endif %}
+                          {% if block.settings.resource_information_text != blank %}
+                            <div class="Index_additional_resource_card_information_text Index_meet_image_all_text_sides_innerright_infos_new">
+                                {{ block.settings.resource_information_text }}
+                            </div>
+                          {% endif %}
+                          {% if block.settings.contact_url != blank or block.settings.contact_text != blank %}
+                            <div class="Index_additional_card_link_text Common_link">
+                              <a target="_blank" href="{{ block.settings.contact_url }}" class="card_link_text">
+                                {{ block.settings.contact_text }}
+                              </a>
+                            </div>
+                          {% endif %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endif %}
+              {% endif %}
+            {%- endfor -%}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+
+<style>
+  @media (max-width: 640px){
+    .resource_video iframe { height: 300px; }
+  }
+</style>
+
+
+{% schema %}
+  {
+    "name": "Index Additional Resource",
+    "class": "Index_additional_resources_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Additional resources" 
+      }
+    ],
+    "blocks": [
+      {
+        "type": "video",
+        "name": "video",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "color",
+            "id": "main_card_background_color",
+            "label": "Add Main Card Background Color",
+            "default": "#FFF"
+          },
+          {
+            "type": "image_picker",
+            "id": "icon_image",
+            "label": "Add Icon image"
+          },
+          {
+            "type": "color",
+            "id": "icon_box_color",
+            "label": "Add Icon Box Color",
+            "default": "#F6F3F2"
+          },
+          {
+            "type": "text",
+            "id": "resource_heading",
+            "label": "Add Heading",
+            "default": "video tutorial"
+          },
+          {
+            "type": "richtext",
+            "id": "resource_information_text",
+            "label": "Add Information Text",
+            "default": "<p>Watch a quick 1 min video on how to measure your mirror</p>"
+          },
+           {
+            "type": "text", 
+            "id": "youtube-video",
+            "label": "Add Youtube Video"
+          }, 
+          {
+            "type": "video", 
+            "id": "resource_video",
+            "label": "Add Resource Video"
+          }, 
+          {
+            "type": "text",
+            "id": "resource_video_text",
+            "label": "Add Resource Video Text",
+            "default": "Watch the video"
+          }
+        ]
+      },
+      {
+        "type": "download",
+        "name": "download",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "color",
+            "id": "main_card_background_color",
+            "label": "Add Main Card Background Color",
+            "default": "#FFF"
+          },
+          {
+            "type": "image_picker",
+            "id": "icon_image",
+            "label": "Add Icon image"
+          },
+          {
+            "type": "color",
+            "id": "icon_box_color",
+            "label": "Add Icon Box Color",
+            "default": "#F6F3F2"
+          },
+          {
+            "type": "text",
+            "id": "resource_heading",
+            "label": "Add Heading",
+            "default": "installation instructions"
+          },
+          {
+            "type": "richtext",
+            "id": "resource_information_text",
+            "label": "Add Information Text",
+            "default": "<p>View and print our detailed measurement instructions</p>"
+          },
+          {
+            "type": "url",
+            "id": "installation_instructions",
+            "label": "Add Installation Instructions Link"
+          },
+          {
+            "type": "text",
+            "id": "installation_text",
+            "label": "Add Installetion Text",
+            "default": "download instructions"
+          }
+        ]
+      },
+      {
+        "type": "contact",
+        "name": "contact",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "color",
+            "id": "main_card_background_color",
+            "label": "Add Main Card Background Color",
+            "default": "#FFF"
+          },
+          {
+            "type": "image_picker",
+            "id": "icon_image",
+            "label": "Add Icon image"
+          },
+          {
+            "type": "color",
+            "id": "icon_box_color",
+            "label": "Add Icon Box Color",
+            "default": "#F6F3F2"
+          },
+          {
+            "type": "text",
+            "id": "resource_heading",
+            "label": "Add Heading",
+            "default": "Need halp?"
+          },
+          {
+            "type": "richtext",
+            "id": "resource_information_text",
+            "label": "Add Information Text",
+           },
+          {
+            "type": "url",
+            "id": "contact_url",
+            "label": "Add Contact URL"
+          },
+          {
+            "type": "text",
+            "id": "contact_text",
+            "label": "Add Contact Text",
+            "default": "Contact Us"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      { 
+        "name": "Index Additional Resource",
+        "blocks": [
+          {
+            "type": "video"
+          },
+          {
+            "type": "download"
+          },
+          {
+            "type": "contact"
+          }
+        ]
+      },
+      
+    ]
+  }
+{% endschema %}

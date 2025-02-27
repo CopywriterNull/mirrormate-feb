@@ -1,0 +1,218 @@
+{%- if section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_link != blank -%}
+  <div class="Index_story_image_all_text_main_new Index_meet_image_all_text_main_new {{ section.settings.custom_class_name }}" style="background: {{ section.settings.main_background_color }};">
+    <div class="page-width">
+      <div class="Index_meet_image_all_text_inner_new">
+        <div class="Index_meet_image_all_text_sides_new">
+          {%- if section.blocks.size > 0 -%}
+            <div class="Index_meet_image_all_text_sides_mainleft_new" data-aos="fade-right" data-aos-delay="500">
+              <div class="Index_meet_image_all_text_sides_innerleft_new"> 
+                {%- for block in section.blocks -%}
+                  {% if block.type == "image_video_block" %}
+                    <div class="Index_story_image_video_block {% if block.settings.remove_image_custom_logo_mobile == true %} empty_block_mobile {% endif %}">
+                      {%- if block.settings.main_mp4_video != blank or block.settings.main_desktop_image != blank or block.settings.main_mobile_image != blank -%}
+                        <div class="Index_meet_image_all_text_sides_innerleft_mainstatic_new">
+                        <div class="Index_meet_image_all_text_sides_innerleft_innerstatic_new">
+                          {%- if block.settings.main_mp4_video != blank -%}
+                            <div class="Index_meet_image_all_text_sides_innerleft_innerstatic_videoimage_new">
+                              {{ block.settings.main_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                            </div>
+                          {% else %}  
+                            {%- if block.settings.main_desktop_image != blank or block.settings.main_mobile_image != blank -%}
+                              <div class="Index_meet_image_all_text_sides_innerleft_innerstatic_videoimage_new">
+                                {%- if block.settings.main_desktop_image != blank -%}
+                                  {{
+                                    block.settings.main_desktop_image | 
+                                    image_url: width: img.width | 
+                                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                    fetchpriority: 'auto', 
+                                    class:'desktop_image_new'
+                                  }}
+                                {%- endif -%}
+                                {%- if block.settings.main_mobile_image != blank -%}
+                                  {{
+                                    block.settings.main_mobile_image | 
+                                    image_url: width: img.width | 
+                                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                    fetchpriority: 'auto', 
+                                    class:'mobile_image_new'
+                                  }}
+                                {%- endif -%}
+                              </div>
+                            {%- endif -%}
+                          {%- endif -%}
+                        </div>
+                      </div>
+                      {%- endif -%}
+                      {%- if block.settings.main_outside_custom_logo != blank or block.settings.main_inside_custom_logo != blank -%}
+                        <div class="Index_meet_image_all_text_sides_innerleft_mainoverlay_new {% if block.settings.custom_logo_only_mobile == true %} custom_logo_mobile {% endif %}">
+                          <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_new">
+                            {%- if block.settings.main_outside_custom_logo != blank -%}
+                              <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_mainoutside_new">
+                                <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_inneroutside_new">
+                                  {{
+                                    block.settings.main_outside_custom_logo | 
+                                    image_url: width: img.width | 
+                                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                    fetchpriority: 'auto', 
+                                    class:'Full_image_new spin'
+                                  }}
+                                </div>
+                              </div>
+                            {%- endif -%}
+                            {%- if block.settings.main_inside_custom_logo != blank -%}
+                              <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_maininside_new">
+                                <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_innerinside_new">
+                                  {{
+                                    block.settings.main_inside_custom_logo | 
+                                    image_url: width: img.width | 
+                                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                    fetchpriority: 'auto', 
+                                    class:'Full_image_new'
+                                  }}
+                                </div>
+                              </div>
+                            {%- endif -%}
+                          </div>
+                        </div>
+                      {%- endif -%}
+                    </div>                    
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          {%- endif -%}
+          {%- if section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_link != blank -%}
+            <div class="Index_meet_image_all_text_sides_mainright_new" data-aos="fade-in" data-aos-delay="500">
+              <div class="Index_meet_image_all_text_sides_innerright_new">
+                {%- if section.settings.main_heading_text != blank -%}
+                  <div class="Common_title_new Index_meet_image_all_text_sides_innerright_title_new">
+                    <h2>{{ section.settings.main_heading_text }}</h2>
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.main_information_text != blank -%}
+                  <div class="Index_meet_image_all_text_sides_innerright_infos_new desktop_only">
+                    {{ section.settings.main_information_text }}
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.main_information_mobile_text != blank -%}
+                  <div class="Index_meet_image_all_text_sides_innerright_infos_new mobile_only {{ section.settings.padding_class_name }}">
+                    {{ section.settings.main_information_mobile_text }}
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                  <div class="Index_meet_image_all_text_sides_innerright_button_new">
+                    <a href="{{ section.settings.main_button_link }}" class="button">
+                      {{ section.settings.main_button_text }}  
+                    </a>
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+
+{% schema %}
+  {
+    "name": "Index Story Image Text",
+    "class": "Index_story_image_all_text_new",
+    "settings": [
+      {
+        "type": "text",
+        "id": "custom_class_name",
+        "label": "Custom Class Name"
+      },
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Hear Our Story"
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "<p>20 years ago, MirrorMate was invented as a DIY frame kit that helps homeowners easily and affordably add a frame to their existing, wall-mounted mirror.</p><p><span>Crafted with pride in Charlotte, North Carolina,</span> each frame is made to order, ensuring unparalleled quality and a personal touch. As pioneers and leaders in the mirror framing industry, we are excited to enhance your space with a beautifully crafted frame that you'll absolutely love.</p>"
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_mobile_text",
+        "label": "Add Main Information Mobile Text",
+        "default": "<p>20 years ago, MirrorMate was invented as a DIY frame kit that helps homeowners easily and affordably add a frame to their existing, wall-mounted mirror.</p><p>Our frames are crafted with pride in <span>Charlotte, North Carolina,</span> each frame is made to order, ensuring unparalleled quality and a personal touch. As pioneers and leaders in the mirror framing industry, we are excited to enhance your space with a beautifully crafted frame that you'll absolutely love.</p>"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "Shop frame kits"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      },
+    ],
+    "blocks": [
+      {
+        "type": "image_video_block",
+        "name": "Image Video Block",
+        "limit": 2,
+        "settings": [
+          {
+            "type": "video",
+            "id": "main_mp4_video",
+            "label": "Add Main MP4 Video"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_desktop_image",
+            "label": "Add Main Desktop Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_mobile_image",
+            "label": "Add Main Mobile Image"
+          },
+          {
+            "type": "checkbox",
+            "id": "custom_logo_only_mobile",
+            "label": "Want Custom Logo only in Mobile",
+            "default": false
+          },
+          {
+            "type": "checkbox",
+            "id": "remove_image_custom_logo_mobile",
+            "label": "Remove Image & Custom Logo in Mobile",
+            "default": false
+          },
+          {
+            "type": "image_picker",
+            "id": "main_outside_custom_logo",
+            "label": "Add Main Outside Custom Logo"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_inside_custom_logo",
+            "label": "Add Main Inside Custom Logo"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Index Story Image All Text"
+      }
+    ]
+  }
+{% endschema %}

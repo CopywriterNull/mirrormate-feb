@@ -1,0 +1,280 @@
+{%- if section.settings.main_mp4_video != blank or section.settings.main_desktop_image != blank or section.settings.main_mobile_image != blank or section.settings.main_outside_custom_logo != blank or section.settings.main_inside_custom_logo != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_link != blank -%}
+  <div class="Index_meet_image_all_text_main_new {{ section.settings.custom_class }} {% if section.settings.keep_content_left == true %} Index_content_left {% endif %}" style="background: {{ section.settings.main_background_color }};">
+    <div class="page-width">
+      <div class="Index_meet_image_all_text_inner_new">
+        <div class="Index_meet_image_all_text_sides_new">
+          {%- if section.settings.main_mp4_video != blank or section.settings.main_desktop_image != blank or section.settings.main_mobile_image != blank or section.settings.main_outside_custom_logo != blank or section.settings.main_inside_custom_logo != blank -%}
+            <div class="Index_meet_image_all_text_sides_mainleft_new" data-aos="fade-right" data-aos-delay="500">
+              <div class="Index_meet_image_all_text_sides_innerleft_new">
+                {%- if section.settings.main_mp4_video != blank or section.settings.main_desktop_image != blank or section.settings.main_mobile_image != blank -%}
+                  <div class="Index_meet_image_all_text_sides_innerleft_mainstatic_new">
+                    {% if section.settings.main_subtext != blank %}
+                      <div class="Index_meet_image_all_text_sides_innerright_subtext Common_subtext_new mobile_only">
+                        <span>
+                          {{ section.settings.main_subtext }}
+                        </span>
+                      </div>
+                    {% endif %}
+                    <div class="Index_meet_image_all_text_sides_innerleft_innerstatic_new">
+                      {%- if section.settings.main_mp4_video != blank -%}
+                        <div class="Index_meet_image_all_text_sides_innerleft_innerstatic_videoimage_new">
+                          {{ section.settings.main_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                        </div>
+                      {% else %}  
+                        {%- if section.settings.main_desktop_image != blank and section.settings.main_mobile_image != blank -%}
+                          <div class="Index_meet_image_all_text_sides_innerleft_innerstatic_videoimage_new">
+                            {%- if section.settings.main_desktop_image != blank -%}
+                              {{
+                                section.settings.main_desktop_image | 
+                                image_url: width: img.width | 
+                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                fetchpriority: 'auto', 
+                                class:'desktop_image_new'
+                              }}
+                            {%- endif -%}
+                            {%- if section.settings.main_mobile_image != blank -%}
+                              {{
+                                section.settings.main_mobile_image | 
+                                image_url: width: img.width | 
+                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                fetchpriority: 'auto', 
+                                class:'mobile_image_new'
+                              }}
+                            {%- endif -%}
+                          </div>
+                        {%- endif -%}
+                      {%- endif -%}
+                    </div>
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.main_outside_custom_logo != blank or section.settings.main_inside_custom_logo != blank -%}
+                  <div class="Index_meet_image_all_text_sides_innerleft_mainoverlay_new">
+                    <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_new  {% if section.settings.keep_background_color_outside_custom_logo == true %}custom_logo_background{% endif %}">
+                      {%- if section.settings.main_outside_custom_logo != blank -%}
+                        <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_mainoutside_new">
+                          <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_inneroutside_new">
+                            {{
+                              section.settings.main_outside_custom_logo | 
+                              image_url: width: img.width | 
+                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                              fetchpriority: 'auto', 
+                              class:'Full_image_new spin'
+                            }}
+                          </div>
+                        </div>
+                      {%- endif -%}
+                      {%- if section.settings.main_inside_custom_logo != blank -%}
+                        <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_maininside_new">
+                          <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_innerinside_new">
+                            {{
+                              section.settings.main_inside_custom_logo | 
+                              image_url: width: img.width | 
+                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                              fetchpriority: 'auto', 
+                              class:'Full_image_new'
+                            }}
+                          </div>
+                        </div>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+          {%- if section.settings.main_subeading_text != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_link != blank -%}
+            <div class="Index_meet_image_all_text_sides_mainright_new" data-aos="fade-in" data-aos-delay="500">
+              <div class="Index_meet_image_all_text_sides_innerright_new">
+                {% if section.settings.main_subtext != blank %}
+                  <div class="Index_meet_image_all_text_sides_innerright_subtext Common_subtext_new desktop_only">
+                    <span>
+                      {{ section.settings.main_subtext }}
+                    </span>
+                  </div>
+                {% endif %}
+                {%- if section.settings.main_subeading_text != blank -%}
+                  <div class="Index_meet_image_all_text_sides_innerright_subtitle_new">
+                    <h5>{{ section.settings.main_subeading_text }}</h5>
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.main_heading_text != blank -%}
+                  <div class="Common_title_new Index_meet_image_all_text_sides_innerright_title_new">
+                    <h3>{{ section.settings.main_heading_text }}</h3>
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.main_information_text != blank -%}
+                  <div class="Index_meet_image_all_text_sides_innerright_infos_new desktop_only">
+                    {{ section.settings.main_information_text }}
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.main_information_mobile_text != blank -%}
+                  <div class="Index_meet_image_all_text_sides_innerright_infos_new mobile_only">
+                    {{ section.settings.main_information_mobile_text }}
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                  <div class="Index_meet_image_all_text_sides_innerright_button_new">
+                    <a href="{{ section.settings.main_button_link }}" class="button">
+                      {{ section.settings.main_button_text }}  
+                    </a>
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+<style>
+  .Index_meet_image_all_text_sides_innerleft_inneroverlay_new.custom_logo_background  { background-color: #5B80A1; border-radius: 50%; padding: 6px; }
+  .Index_meet_image_all_text_sides_innerright_subtitle_new { padding-bottom: 16px; }
+  .Index_meet_image_all_text_sides_innerright_subtitle_new h5 { font-family: var(--font-body-family); text-transform: uppercase; font-size: 14px; font-weight: 600; line-height: 135%; margin:0; color: #2D4256; letter-spacing: 0.28px; }
+
+  .Index_meet_image_all_text_main_new.multifamily_frames { padding-top: 24px; }
+  .Index_meet_image_all_text_main_new.multifamily_frames .Index_meet_image_all_text_sides_innerleft_mainoverlay_new { left: 64px; width: 100px; background: transparent;  }
+  .Index_meet_image_all_text_main_new.multifamily_frames .Index_meet_image_all_text_sides_innerleft_inneroverlay_new.custom_logo_background { padding; 0; }
+  .Index_meet_image_all_text_main_new.multifamily_frames .Index_meet_image_all_text_sides_innerright_new { max-width: 78.263%; }
+  .Index_meet_image_all_text_main_new.multifamily_frames .Index_meet_image_all_text_sides_innerleft_inneroverlay_maininside_new { width: 38.72px; }
+
+  .Index_meet_image_all_text_main_new.our_story .Index_meet_image_all_text_sides_mainleft_new { width: 47.038%; }
+  .Index_meet_image_all_text_main_new.our_story .Index_meet_image_all_text_sides_innerright_new { max-width: 62.466%; }
+  .Index_meet_image_all_text_main_new.our_story .Index_meet_image_all_text_sides_innerleft_inneroverlay_new.custom_logo_background { background-color: #FFF; padding: 0; }
+  .Index_meet_image_all_text_main_new.our_story .Index_meet_image_all_text_sides_innerleft_mainoverlay_new { background-color: #FFF; }
+
+  
+  @media (max-width: 1080px){
+    .Index_meet_image_all_text_main_new.our_story .Index_meet_image_all_text_sides_innerright_new { max-width: 85%; }
+    
+  }
+
+  @media (min-width: 750px) and (max-width: 900px){
+    .Index_meet_image_all_text_main_new.multifamily_frames { padding-top: 60px; }
+  }
+
+  @media (min-width: 901px) and (max-width: 1439px){
+    .Index_meet_image_all_text_main_new.multifamily_frames { padding-top: 0px; }
+  }
+  
+  @media (max-width: 749px){
+
+  .Index_meet_image_all_text_sides_innerright_subtitle_new { padding-bottom: 12px; }
+
+  .Index_meet_image_all_text_main_new.multifamily_frames { padding-top:56px; }
+  .Index_meet_image_all_text_main_new.multifamily_frames .Index_meet_image_all_text_sides_innerleft_mainoverlay_new { left: 19px; }
+  .Index_meet_image_all_text_main_new.multifamily_frames .Index_meet_image_all_text_sides_mainright_new { padding-top: 24px; }
+  .Index_meet_image_all_text_main_new.multifamily_frames .Index_meet_image_all_text_sides_innerright_infos_new { padding-top: 16px; }
+
+
+    .Index_meet_image_all_text_main_new.our_story .Index_meet_image_all_text_sides_mainleft_new { width: 100%; }
+    .Index_meet_image_all_text_main_new.our_story .Index_meet_image_all_text_sides_innerleft_mainoverlay_new { display: none; }
+    .Index_meet_image_all_text_main_new.our_story .Index_meet_image_all_text_sides_mainright_new { padding-top: 24px; }
+    .Index_meet_image_all_text_main_new.our_story .Index_meet_image_all_text_sides_innerright_infos_new { padding-top: 16px; }
+    .Index_meet_image_all_text_main_new.our_story .Index_meet_image_all_text_sides_innerleft_innerstatic_videoimage_new { aspect-ratio: 1.1964; }
+    .Index_meet_image_all_text_main_new.our_story .Index_meet_image_all_text_sides_innerleft_innerstatic_videoimage_new img,
+    .Index_meet_image_all_text_main_new.our_story .Index_meet_image_all_text_sides_innerleft_innerstatic_videoimage_new video { height: 100% !important; object-fit: cover; }
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Index Meet Image All Text",
+    "class": "Index_meet_image_all_text_new",
+    "settings": [
+      {
+        "type": "text",
+        "id": "custom_class",
+        "label": "Add Custom Class"
+      },
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "video",
+        "id": "main_mp4_video",
+        "label": "Add Main MP4 Video"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_desktop_image",
+        "label": "Add Main Desktop Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_mobile_image",
+        "label": "Add Main Mobile Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_outside_custom_logo",
+        "label": "Add Main Outside Custom Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_inside_custom_logo",
+        "label": "Add Main Inside Custom Logo"
+      },
+      {
+        "type": "checkbox",
+        "id": "keep_background_color_outside_custom_logo",
+        "label": "Keep background Color outside the custom logo?",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "keep_content_left",
+        "label": "Keep content on the left side?"
+      },
+      {
+        "type": "text",
+        "id": "main_subtext",
+        "label": "Add Sub Text"
+      },
+      {
+        "type": "textarea",
+        "id": "main_subeading_text",
+        "label": "Add Main Sub Heading Text"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Meet Our Team"
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "<p>20 years ago, MirrorMate was invented as a DIY frame kit that helps homeowners easily and affordably add a frame to their existing, wall-mounted mirror.</p><p><span>Crafted with pride in Charlotte, North Carolina,</span> each frame is made to order, ensuring unparalleled quality and a personal touch. As pioneers and leaders in the mirror framing industry, we are excited to enhance your space with a beautifully crafted frame that you'll absolutely love.</p>"
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_mobile_text",
+        "label": "Add Main Information Mobile Text",
+        "default": "<p>20 years ago, MirrorMate was invented as a DIY frame kit that helps homeowners easily and affordably add a frame to their existing, wall-mounted mirror.</p><p>Our frames are crafted with pride in <span>Charlotte, North Carolina,</span> each frame is made to order, ensuring unparalleled quality and a personal touch. As pioneers and leaders in the mirror framing industry, we are excited to enhance your space with a beautifully crafted frame that you'll absolutely love.</p>"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "About Us"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Index Meet Image All Text"
+      }
+    ]
+  }
+{% endschema %}

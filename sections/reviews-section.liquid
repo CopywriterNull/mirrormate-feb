@@ -1,0 +1,197 @@
+{{ 'units_renovated_sec_new.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+{% if section.settings.bgimg_mobile != blank %}
+  .units_renovated_main_wrapper{background:url({{ section.settings.bgimg_mobile | img_url:'master' }}) center no-repeat;background-size:100%;}
+ {% endif %}
+
+    @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  {% if section.settings.bgimg != blank %}
+  .units_renovated_main_wrapper.reviews_section_main{background:url({{ section.settings.bgimg | img_url:'master' }}) center no-repeat; background-size: cover; }
+ {% endif %}
+  }
+      
+
+  .reviews_section_main .page-width { padding: 0 168px !important; }
+  .reviews_section_main .units_renovated_reviewer_designation_outer { display: flex; gap: 4px; align-items: center; }
+  .reviews_section_main .units_renovated_reviewer_designation_outer .units_renovated_reviewer_designation { padding-top: 0; }
+  .reviews_section_main .verfied_icon svg { display: block; }
+  .reviews_section_main .units_renovated_reviewer_information { display: flex; gap: 12px; align-items: center; justify-content: center; }
+  .reviews_section_main .units_renovated_main_wrapper .units_renovated_review_image { aspect-ratio: 1.37967; }
+
+     @media (max-width: 1439px){
+     .reviews_section_main .page-width { padding: 0 20px !important; }
+  }
+
+    @media (max-width: 990px){
+      .reviews_section_main { padding: 55px 0 57px; }
+     .units_renovated_main_wrapper.reviews_section_main  {background-size:cover;}  
+  .reviews_section_main .page-width{padding-right:0!important;}
+  .units_renovated_main_wrapper.reviews_section_main .swiper-scrollbar{right:20px!important;}
+    }
+  
+{%- endstyle -%}
+ {% if section.settings.main_heading != blank or section.blocks.size > 0 %}
+<div class="units_renovated_main_wrapper reviews_section_main section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
+ <div class="page-width">
+   {% if section.settings.main_heading != blank %}
+   <div class="units_renovated_main_heading Common_title_new">
+     <h3>{{ section.settings.main_heading }}</h3>
+   </div>
+   {% endif %}
+{% if section.blocks.size > 0 %}
+   <div class="swiper renovated_slider">
+     <div class="swiper-wrapper">
+   {% for block in section.blocks %}
+  <div class="swiper-slide">
+    <div class="units_renovated_review_wrapper">
+      {% if block.settings.review_image != blank %}
+      <div class="units_renovated_review_image">
+        <img src="{{ block.settings.review_image | img_url:'master' }}" />
+      </div>
+        {% endif %}
+      <div class="units_renovated_review_content_sec">
+        {% if block.settings.review_show == true %}
+        <div class="units_renovated_review_count">
+          <svg width="74" height="15" viewBox="0 0 74 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.74163 11.3449C6.90053 11.249 7.09947 11.249 7.25837 11.3449L10.3115 13.1877C10.6902 13.4162 11.1573 13.0767 11.0568 12.646L10.2466 9.1729C10.2044 8.99215 10.2658 8.80292 10.4061 8.68139L13.1043 6.34394C13.4386 6.05434 13.2599 5.50521 12.8192 5.46782L9.26743 5.16649C9.08264 5.15081 8.92171 5.03414 8.84934 4.86339L7.46036 1.58618C7.28807 1.17967 6.71193 1.17967 6.53964 1.58618L5.15066 4.86339C5.07829 5.03414 4.91736 5.15081 4.73257 5.16649L1.18081 5.46782C0.740101 5.50521 0.561398 6.05434 0.895697 6.34394L3.5939 8.68139C3.73418 8.80292 3.7956 8.99215 3.75344 9.1729L2.94321 12.646C2.84273 13.0767 3.30984 13.4162 3.6885 13.1877L6.74163 11.3449Z" fill="#2D4256"></path>
+<path d="M21.7416 11.3449C21.9005 11.249 22.0995 11.249 22.2584 11.3449L25.3115 13.1877C25.6902 13.4162 26.1573 13.0767 26.0568 12.646L25.2466 9.1729C25.2044 8.99215 25.2658 8.80292 25.4061 8.68139L28.1043 6.34394C28.4386 6.05434 28.2599 5.50521 27.8192 5.46782L24.2674 5.16649C24.0826 5.15081 23.9217 5.03414 23.8493 4.86339L22.4604 1.58618C22.2881 1.17967 21.7119 1.17967 21.5396 1.58618L20.1507 4.86339C20.0783 5.03414 19.9174 5.15081 19.7326 5.16649L16.1808 5.46782C15.7401 5.50521 15.5614 6.05434 15.8957 6.34394L18.5939 8.68139C18.7342 8.80292 18.7956 8.99215 18.7534 9.1729L17.9432 12.646C17.8427 13.0767 18.3098 13.4162 18.6885 13.1877L21.7416 11.3449Z" fill="#2D4256"></path>
+<path d="M36.7416 11.3449C36.9005 11.249 37.0995 11.249 37.2584 11.3449L40.3115 13.1877C40.6902 13.4162 41.1573 13.0767 41.0568 12.646L40.2466 9.1729C40.2044 8.99215 40.2658 8.80292 40.4061 8.68139L43.1043 6.34394C43.4386 6.05434 43.2599 5.50521 42.8192 5.46782L39.2674 5.16649C39.0826 5.15081 38.9217 5.03414 38.8493 4.86339L37.4604 1.58618C37.2881 1.17967 36.7119 1.17967 36.5396 1.58618L35.1507 4.86339C35.0783 5.03414 34.9174 5.15081 34.7326 5.16649L31.1808 5.46782C30.7401 5.50521 30.5614 6.05434 30.8957 6.34394L33.5939 8.68139C33.7342 8.80292 33.7956 8.99215 33.7534 9.1729L32.9432 12.646C32.8427 13.0767 33.3098 13.4162 33.6885 13.1877L36.7416 11.3449Z" fill="#2D4256"></path>
+<path d="M51.7416 11.3449C51.9005 11.249 52.0995 11.249 52.2584 11.3449L55.3115 13.1877C55.6902 13.4162 56.1573 13.0767 56.0568 12.646L55.2466 9.1729C55.2044 8.99215 55.2658 8.80292 55.4061 8.68139L58.1043 6.34394C58.4386 6.05434 58.2599 5.50521 57.8192 5.46782L54.2674 5.16649C54.0826 5.15081 53.9217 5.03414 53.8493 4.86339L52.4604 1.58618C52.2881 1.17967 51.7119 1.17967 51.5396 1.58618L50.1507 4.86339C50.0783 5.03414 49.9174 5.15081 49.7326 5.16649L46.1808 5.46782C45.7401 5.50521 45.5614 6.05434 45.8957 6.34394L48.5939 8.68139C48.7342 8.80292 48.7956 8.99215 48.7534 9.1729L47.9432 12.646C47.8427 13.0767 48.3098 13.4162 48.6885 13.1877L51.7416 11.3449Z" fill="#2D4256"></path>
+<path d="M66.7416 11.3449C66.9005 11.249 67.0995 11.249 67.2584 11.3449L70.3115 13.1877C70.6902 13.4162 71.1573 13.0767 71.0568 12.646L70.2466 9.1729C70.2044 8.99215 70.2658 8.80292 70.4061 8.68139L73.1043 6.34394C73.4386 6.05434 73.2599 5.50521 72.8192 5.46782L69.2674 5.16649C69.0826 5.15081 68.9217 5.03414 68.8493 4.86339L67.4604 1.58618C67.2881 1.17967 66.7119 1.17967 66.5396 1.58618L65.1507 4.86339C65.0783 5.03414 64.9174 5.15081 64.7326 5.16649L61.1808 5.46782C60.7401 5.50521 60.5614 6.05434 60.8957 6.34394L63.5939 8.68139C63.7342 8.80292 63.7956 8.99215 63.7534 9.1729L62.9432 12.646C62.8427 13.0767 63.3098 13.4162 63.6885 13.1877L66.7416 11.3449Z" fill="#2D4256"></path>
+</svg>
+        </div>
+          {% endif %}
+        {% if block.settings.review_title != blank %}
+          <div class="units_renovated_review_title"><h4>{{ block.settings.review_title }}</h4></div>
+        {% endif %}
+         {% if block.settings.review_description!= blank %}
+          <div class="units_renovated_review_description">{{ block.settings.review_description }}</div>
+        {% endif %}
+        <div class="units_renovated_reviewer_information">
+          {% if block.settings.reviewer_name != blank %}
+            <div class="units_renovated_reviewer_name">{{ block.settings.reviewer_name }}</div>
+          {% endif %}
+          {% if block.settings.reviewer_designation != blank %}
+            <div class="units_renovated_reviewer_designation_outer">
+            <div class="verfied_icon">
+              <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.667 5.16675L7.00033 11.8334L3.66699 8.50008" stroke="#2D4256" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </div>
+            <div class="units_renovated_reviewer_designation">        
+              {{ block.settings.reviewer_designation }}
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+   {% endfor %}
+     </div>
+     <div class="swiper-scrollbar"></div>
+   </div>
+  {% endif %}
+ </div>
+</div>
+   {% endif %}
+{% schema %}
+  {
+    "name": "Reviews Section",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "bgimg",
+        "label": "Background Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "bgimg_mobile",
+        "label": "Background Mobile Image"
+      },
+    {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+      {
+        "type": "text",
+        "id": "main_heading",
+        "label": "Main Heading"
+      },
+     {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 96
+    }
+    ],
+    "blocks": [
+      {
+        "type": "review",
+        "name": "Review",
+        "settings": [
+      {
+        "type": "image_picker",
+        "id": "review_image",
+        "label": "Review Image"
+      },
+          {
+            "type": "checkbox",
+            "id": "review_show",
+            "label": "Show Rating",
+            "default":false
+          },
+          {
+            "type": "text",
+            "id": "review_title",
+            "label": "Review Heading"
+          },
+           {
+            "type": "richtext",
+            "id": "review_description",
+            "label": "Review Description"
+          },
+          {
+            "type": "text",
+            "id": "reviewer_name",
+            "label": "Reviewer Name"
+          },
+          {
+            "type": "text",
+            "id": "reviewer_designation",
+            "label": "Reviewer Designation"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Reviews Section"
+      }
+    ]
+  }
+{% endschema %}

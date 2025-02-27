@@ -1,0 +1,182 @@
+{% if section.settings.custom_class_name != blank or section.settings.image_on_right != blank or section.settings.image_video_size != blank or section.settings.main_background_color != blank or section.settings.main_desktop_image != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_mobile_image != blank or section.settings.main_mp4_video != blank %}
+  <div class="Index_form_image_banner_main_new Page_find_us_form_image_banner_main_new {% if section.settings.image_on_right == true %} Index_form_image_banner_image_right {% endif %} {{ section.settings.custom_class_name }}" style="background-color: {{ section.settings.main_background_color }}">
+    <div class="page-width">
+      <div class="Index_form_image_banner_inner_new">
+        <div class="Index_form_image_banner_sides {% if section.settings.image_on_right == true %} flex_row_reverse {% endif %} {% if section.settings.show_image_on_top_mobile %} column_mobile_image_top {% endif %}">
+          {% if section.settings.image_video_size != blank or section.settings.main_desktop_image != blank or section.settings.main_mobile_image != blank or section.settings.main_mp4_video != blank %}
+            <div class="Index_form_image_banner_leftmain {% if section.settings.image_video_size == 'medium' %} image_video_medium {% elsif section.settings.image_video_size == 'large' %} image_video_large {% endif %}">
+              <div class="Index_form_image_banner_leftinner">
+                <div class="Index_form_image_video_main">
+                {% if section.settings.show_image_in_mobile == true %}
+                  <div class="Index_form_image_main mobile_only medium-hide large-up-hide">
+                    {% if section.settings.main_mobile_image %}
+                        <div class="Index_form_image_main_inner mobile_only lage-up-hide medium-hide">
+                          {{
+                            section.settings.main_mobile_image | 
+                            image_url: width: img.width | 
+                            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                            fetchpriority: 'auto', 
+                            class:'mobile_image_new'
+                          }}
+                        </div>
+                      {% endif %}
+                  </div>
+                {% endif %}
+                {% if section.settings.main_mp4_video != blank %}
+                  <div class="Index_form_video_main {% if section.settings.show_image_in_mobile == true %} small-hide {% endif %}">
+                    {{ section.settings.main_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                  </div>
+                {% else %}
+                  {% if section.settings.main_desktop_image != blank or section.settings.main_mobile_image %}
+                    <div class="Index_form_image_main {% if section.settings.show_image_in_mobile == true %} small-hide {% endif %}">
+                      {% if section.settings.main_desktop_image != blank %}
+                        <div class="Index_form_image_main_inner desktop_only {% if section.settings.main_mobile_image != blank %} small-hide{% endif %}">
+                          {{
+                            section.settings.main_desktop_image | 
+                            image_url: width: img.width | 
+                            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                            fetchpriority: 'auto', 
+                            class:'desktop_image_new'
+                          }}
+                        </div>
+                      {% endif %}
+                      {% if section.settings.main_mobile_image %}
+                        <div class="Index_form_image_main_inner mobile_only lage-up-hide medium-hide">
+                          {{
+                            section.settings.main_mobile_image | 
+                            image_url: width: img.width | 
+                            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                            fetchpriority: 'auto', 
+                            class:'mobile_image_new'
+                          }}
+                        </div>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+          {% if section.settings.main_heading_text != blank or section.settings.main_information_text != blank %}
+            <div class="Index_form_image_banner_rightmain">
+              <div class="Index_form_image_banner_rightinner">
+                 
+                {% if section.settings.main_heading_text != blank %}
+                <div class="Index_form_image_banner_heading_text Common_title_new">
+                  <h2>{{ section.settings.main_heading_text }}</h2>
+                </div>
+                {% endif %}
+                {% if section.settings.main_information_text != blank %}
+                <div class="Index_form_image_banner_information_text Index_meet_image_all_text_sides_innerright_infos_new">
+                  {{ section.settings.main_information_text }}
+                </div>
+                {% endif %}
+                <div class="Common_title_new">
+                  <h2><br>Form will come!!</h2>
+                </div>
+                {% if section.settings.form_below_text != blank %}
+                <div class="Index_form_image_banner_form_below_text Index_meet_image_all_text_sides_innerright_infos_new">
+                  {{ section.settings.form_below_text }}
+                </div>
+                {% endif %}
+                
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+  
+{% schema %} 
+  {
+    "name": "Page Find Us Form Banner",
+    "class": "Page_find_us_form_image_banner_new",
+    "settings": [
+      {
+        "type": "text",
+        "id": "custom_class_name",
+        "label": "Custom Class Name"
+      },
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Contact us"
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "<p>Thanks for your interest in helping us grow MirrorMate! We're excited to partner with you to promote our products. Please fill out your info below, and we <span>will be in touch shortly </span> with approval for your account.</p>"
+      },
+      {
+        "type": "textarea",
+        "id": "form_below_text",
+        "label": "Add Text below the Form",
+        "default": "<p>We typically respond within <span>1 business day</span></p>"
+      },
+      {
+      "type": "select",
+      "id": "image_video_size",
+      "options": [
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        },
+      ],
+      "label": "Select Image Video Size"
+    },
+      {
+        "type": "video",
+        "id": "main_mp4_video",
+        "label": "Add Main MP4 Video"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_desktop_image",
+        "label": "Add Main Desktop Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_mobile_image",
+        "label": "Add Main Mobile Image"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_image_in_mobile",
+        "label": "Show Image insted of video in mobile?",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "image_on_right",
+        "label": "Main Image on the Right side?",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_image_on_top_mobile",
+        "label": "Show Image or video on the Top in mobile?",
+        "default": false
+      },
+    ],
+    "presets": [
+      {
+        "name": "Page Find Us Form Image Banner"
+      }
+    ]
+  }
+{% endschema %}

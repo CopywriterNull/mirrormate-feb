@@ -1,0 +1,565 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_4KPDHU": {
+      "type": "image-banner",
+      "custom_css": [
+        "@media (max-width: 480px) {.banner__media {height: 200px; }}"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/Shop_All_Page_-_Header_image-v2_1.png",
+        "image_overlay_opacity": 0,
+        "image_height": "small",
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
+    },
+    "page_faqs_section_v2_h6MAgz": {
+      "type": "Page-faqs-section-v2",
+      "blocks": {
+        "faq_C63WPk": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Our Product",
+            "faq_sub_category_name": "General",
+            "title": "Can I order samples?",
+            "infos": "<p>We encourage you to order samples to see how the frame looks in your bathroom. Samples can be ordered <a href=\"/collections/samples\">here</a>.</p>"
+          }
+        },
+        "faq_MpEAkn": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Our Product",
+            "faq_sub_category_name": "General",
+            "title": "How does the product work?",
+            "infos": "<p>The frame attaches directly to the existing, wall-mounted mirror so you don’t need space around it for the frame. It is also why it works even if your mirror sits on a backsplash or runs into a wall. </p>\n<p>The frame tapes onto the glass with professional grade, double-side 3M tape – guaranteed to last in the bath. If your mirror is attached with clips, no worries! There is a recess in the back of the frame that allows it to fit over the clips. No other frame or store-bought trim has this!</p>"
+          }
+        },
+        "faq_MUqETa": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Our Product",
+            "faq_sub_category_name": "General",
+            "title": "How does the frame attach to the mirror?",
+            "infos": "<p>The frame is pre-taped with professional-grade 3M tape and guaranteed to last in the bath.</p>"
+          }
+        },
+        "faq_haym6x": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Our Product",
+            "faq_sub_category_name": "General",
+            "title": "What is the frame made of?",
+            "infos": "<p>The vast majority of our frames are made of MDF (Medium Density Fiberboard), an environmentally-responsible, strong, non-warping wood-base. They are then finished with a moisture-impervious decorative wrap and seal. There are a few select styles with a base composite of wood. Each product page provides the exact base composite of that style.</p>"
+          }
+        },
+        "faq_Yk8EjB": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Our Product",
+            "faq_sub_category_name": "General",
+            "title": "Will I see the mirror edge under the frame from the side?",
+            "infos": "<p>Where there is space we extend the frame beyond the mirror up to 5/8 inch – to create the illusion that the raw edge of the mirror is covered. If your mirror has zero clearance on a side then we do not extend the frame on that side and the frame will be flush with the edge of the mirror. Please note - our frames DO NOT wrap around the edge of the mirror.</p>"
+          }
+        },
+        "faq_3J8kAJ": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Our Product",
+            "faq_sub_category_name": "General",
+            "title": "Why should I buy a MirrorMate frame instead of a complete framed mirror?",
+            "infos": "<p>MirrorMate frames are less expensive than most new framed mirrors and they don’t require that you remove your existing mirror. This is especially good news if your existing mirrors are glued to the wall, since removing them may damage the wall, and if they break, may cause injury. The additional time and cost of repairing the wall, plus disposal of mirrors into a landfill make MirrorMate frames even more cost-effective. MirrorMate frames are easy to install, requiring no special tools or skills. They work with any rectangular-shaped mirror and are available in a variety of styles to fit any décor.</p>"
+          }
+        },
+        "faq_GbeMNC": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Our Product",
+            "faq_sub_category_name": "General",
+            "title": "Do you sell mirrors too?",
+            "infos": "<p>No. Our frames are for pre-existing, wall-mounted mirrors.</p>"
+          }
+        },
+        "faq_yqHL6D": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Our Product",
+            "faq_sub_category_name": "Will it work for me? Yes!",
+            "title": "Will it work if my mirror rests on a backsplash or is next to a wall?",
+            "infos": "<p>Yes. MirrorMate frames are designed to be used with most plate glass mirrors, even if the mirror sits on a backsplash or runs into a wall. No space is needed around your mirror because the frame attaches directly to the glass.</p>"
+          }
+        },
+        "faq_BFRHec": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Our Product",
+            "faq_sub_category_name": "Will it work for me? Yes!",
+            "title": "I have large plastic clips. How does it work with the clips holding my mirror?",
+            "infos": "<p>MirrorMate frames are specially designed to cover and hide the clips and channels holding your existing mirror. The patented frames work seamlessly with almost all clips, with the exception of large plastic clips that are both 1” wide and 1” long. In this case, you will indicate this when placing an order and we will send replacement clips. If your clips are plastic, but smaller than 1” you should not need replacement clips.</p>"
+          }
+        },
+        "faq_AFhx3y": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Our Product",
+            "faq_sub_category_name": "Will it work for me? Yes!",
+            "title": "Will MirrorMate frames work on beveled mirrors?",
+            "infos": "<p>Yes, but your bevel must be 1” wide or less. We recommend selecting a frame that is 3” wide or more for beveled mirrors. Shop 3” wide frames <a href=\"/collections/3\">here</a> and over 3” wide <a href=\"/collections/over-3\">here</a>.</p>"
+          }
+        },
+        "faq_eTJi3U": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Our Product",
+            "faq_sub_category_name": "Will it work for me? Yes!",
+            "title": "Will your product work on medicine cabinets?",
+            "infos": "<p>Most likely! Review our <a href=\"/pages/medicine-cabinets\">Medicine Cabinet page</a> or call us with any questions.</p>"
+          }
+        },
+        "faq_VrJFMA": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Our Product",
+            "faq_sub_category_name": "Will it work for me? Yes!",
+            "title": "I have two (or three!) mirrors that meet at a corner. Can they be framed?",
+            "infos": "<p>Absolutely! We refer to these as bi-fold and tri-fold mirrors. Contact customer service at <a href=\"mailto:info@mirrormate.com\">info@mirrormate.com</a> for details on ordering.</p>"
+          }
+        },
+        "faq_nbHhiV": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Our Product",
+            "faq_sub_category_name": "Will it work for me? Yes!",
+            "title": "What if I need a frame for a mirror longer than 100 inches?",
+            "infos": "<p>Some frames can be made to accommodate mirrors up to 142 inches. On these styles there will be a diagonal middle splice joining two pieces. <a href=\"/pages/large-or-unusual\">See chart</a> for details on which frame styles can accommodate longer lengths. Frames for mirrors 90\" or longer will incur <a href=\"/pages/shipping#anchor-fees\"> additional fees.</a></p>"
+          }
+        },
+        "faq_8K6xkG": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Measurement",
+            "faq_sub_category_name": "",
+            "title": "Will it work if my mirror rests on a backsplash or is next to a wall?",
+            "infos": "<p>Yes. MirrorMate frames are designed to be used with most plate glass mirrors, even if the mirror sits on a backsplash or runs into a wall. No space is needed around your mirror because the frame attaches directly to the glass.</p>"
+          }
+        },
+        "faq_z9kMCF": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Measurement",
+            "faq_sub_category_name": "",
+            "title": "What is the difference between channels and clips?",
+            "infos": "<p>A channel is a j-shaped piece of metal that usually runs the width of the mirror on the bottom and the mirror sits in this channel. Clips come in a variety of styles. You will usually find 2-3 clips on the top and bottom of your mirror. Occasionally they will be on the side. It is best to remove clips from the side of your mirror. The clips can be metal or plastic. MirrorMate frames are designed to cover both the channel and the clips.</p>"
+          }
+        },
+        "faq_KUVW8T": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Measurement",
+            "faq_sub_category_name": "",
+            "title": "How thick are the frames? I have a faucet/light fixture/medicine cabinet close to my mirror.",
+            "infos": "<p>Each product page provides dimensions of the frame. we offer samples if you’d like to see how the frame fits in your space.</p>"
+          }
+        },
+        "faq_4hdnE9": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Measurement",
+            "faq_sub_category_name": "",
+            "title": "Do you include clips or metal strip in the measurement of the mirror size?",
+            "infos": "<p>Include the strip in your measurement as the mirror is actually sitting in it. Do not include the clips in your measurement.</p>"
+          }
+        },
+        "faq_BawCF7": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Measurement",
+            "faq_sub_category_name": "",
+            "title": "Do I round up or down if a measurement is between 1/8th of an inch?",
+            "infos": "<p>You should <a href=\"/pages/measure\">round down</a> to the nearest 1/8 of an inch.</p>"
+          }
+        },
+        "faq_W47TdA": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Installation",
+            "faq_sub_category_name": "",
+            "title": "Is the frame removable?",
+            "infos": "<p>Yes. If the frame must come off we recommend using dental floss or fishing line to separate the foam tape from the mirror. We suggest you use Goof-Off, or a citrus-based cleaner to remove the rest of the tape from the surface of the mirror. Please understand that we cannot guarantee that your frame would be usable should you choose to remove it. E-mail <a href=\"mailto:info@mirrormate.com\">info@mirrormate.com</a> for removal instructions. It will be necessary for us to send you replacement tape and placement corners.</p>"
+          }
+        },
+        "faq_ew8EfP": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Installation",
+            "faq_sub_category_name": "",
+            "title": "How can I install a frame if there is a medicine cabinet or towel bar in the way?",
+            "infos": "<p>If a towel bar, medicine chest or any other obstacle protrudes near the mirror, it may be necessary to remove, install the frame and reattach. Please call us for further information we would be delighted to assist.</p>"
+          }
+        },
+        "faq_T9cGcd": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Installation",
+            "faq_sub_category_name": "",
+            "title": "How do I care for my MirrorMate frame?",
+            "infos": "<p>All it takes to keep your frame looking good as new is simple dusting, or a light wiping with a cloth or paper towel that’s slightly dampened with water. Easy as that!\nPlease keep in mind, the frames are made of wood and wood-based materials, like your bathroom vanity or other furniture. Therefore, we recommend avoiding the use of harsh chemicals and excessive scrubbing. It’s also best to spray glass cleaner directly on a cloth and then wipe down the mirror, instead of spraying the mirror directly. Unfortunately, frames that exhibit damage from harsh cleaners or scrubbing will not be covered by our guarantee.</p>"
+          }
+        },
+        "faq_THXehi": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "faq_category_name": "FAQs",
+            "faq_sub_category_name": "Spacial cases",
+            "title": "What if my mirror is extra large (over 100” long)?",
+            "infos": "<p>Some frames can be made to accommodate mirrors up to 142 inches. On these styles there will be a diagonal middle splice joining two pieces. <a href=\"/pages/large-or-unusual\">See chart</a> for details on which frame styles can accommodate longer lengths. Frames for mirrors 90\" or longer will incur <a href=\"/pages/shipping#anchor-fees\">additional fees</a>.</p>"
+          }
+        },
+        "faq_agXW4k": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "FAQs",
+            "faq_sub_category_name": "Special cases",
+            "title": "What if my mirror is extra large (over 100” long)?",
+            "infos": "<p>Some of our frame styles can be made to accommodate mirrors up to 142 inches. On these styles there will be a splice - a diagonal cut in the middle of the frame where two pieces will be joined to create one long frame piece. <a href=\"/pages/large-or-unusual\">See this chart</a> for details on which frame styles can accommodate. Frames for mirrors 90\" or longer will incur an additional fee for shipping and handling. If you have questions, don’t hesitate to email or call us at <a href=\"mailto:info@mirrormate.com\">info@mirrormate.com</a> or <a href=\"tel:866-304-6283\">866-304-6283.</a></p>"
+          }
+        },
+        "faq_xCa3j4": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "faq_category_name": "FAQs",
+            "faq_sub_category_name": "Special cases",
+            "title": "What if I have a towel bar, overhanging lights, or medicine cabinet on an adjacent wall?",
+            "infos": "<p>Answer</p>"
+          }
+        },
+        "faq_Wq6XzX": {
+          "type": "faq",
+          "disabled": true,
+          "settings": {
+            "faq_category_name": "FAQs",
+            "faq_sub_category_name": "Special cases",
+            "title": "Can I frame a medicine cabinet?",
+            "infos": "<p>Answer</p>"
+          }
+        },
+        "faq_qy4jK4": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "FAQs",
+            "faq_sub_category_name": "Special cases",
+            "title": "Can I frame a beveled mirror?",
+            "infos": "<p>Yes! As long as your bevel is 1” wide or less, our frames will work. We recommend selecting a frame that is 3” wide or more for beveled mirrors. Shop 3” wide frames here and over 3” wide here. On the special instructions section of the order process, please write: MY MIRROR IS BEVELED.</p>"
+          }
+        },
+        "faq_BTABTe": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "FAQs",
+            "faq_sub_category_name": "Special cases",
+            "title": "Can I frame a medicine cabinet?",
+            "infos": "<p>Yes! You Can Frame That <a href=\"/pages/medicine-cabinets\">Medicine Cabinet</a> (well, most of them, anyway)! If you have a surface mounted (flush against the wall) medicine cabinet you’re interested in framing, just give us a call at <a href=\"tel:866-304-6283\">866-304-6283</a> and we’ll walk you through the order process.</p>"
+          }
+        },
+        "faq_hJHDA8": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "FAQs",
+            "faq_sub_category_name": "Special cases",
+            "title": "Can I frame a mirror with outlets/rosettes?",
+            "infos": "<p>Probably! The solution for this issue depends on where the outlets or rosettes are located and therefore requires a more personalized approach. If your mirror has an outlet or rosettes inside the glass, please give us a call at <a href=\"tel:866-304-6283\">866-304-6283</a> and we’ll work through it. If you can, please send a picture of the mirror to <a href=\"mailto:info@mirrormate.com\">info@mirrormate.com.</a></p>"
+          }
+        },
+        "faq_qmqL9i": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "FAQs",
+            "faq_sub_category_name": "Special cases",
+            "title": "Can I frame a bi-fold or tri-fold mirror?",
+            "infos": "<p>Yes! When framed these large mirrors look stunning. For installation, you’ll need to do some additional cuts to abut the frames as they turn around the interior corners. Because of the additional work, our online ordering process will not work for these types of mirror frames, and they will need to be ordered manually by submitting the below forms via email to <a href=\"mailto:info@mirrormate.com\">info@mirrormate.com</a>. Please use the forms below to send us your measurements. We will then call you back to confirm your information and give you pricing.</p>\n<ul>\n<li><a href=\"https://cdn.shopify.com/s/files/1/0090/5183/2386/files/BifoldMirrorOrderForm_04.15.15.pdf\">Bifold order form</a></li>\n<li><a href=\"https://cdn.shopify.com/s/files/1/0090/5183/2386/files/TrifoldMirrorOrderForm_04.07.15.pdf\">Trifold order form</a></li>\n<li><a href=\"https://youtu.be/rJJEPhrWC-w\">Bi-Fold Installation Video</a></li>\n</ul>"
+          }
+        },
+        "faq_Trgpmp": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "FAQs",
+            "faq_sub_category_name": "Special cases",
+            "title": "What if I have a towel bar, overhanging lights, or medicine cabinet on an adjacent wall?",
+            "infos": "<p>We can usually make this work! But these potential obstacles can make installation a bit trickier. In these instances, we recommend ordering samples first. Once you receive your samples, slide the sample onto the surface of your mirror with the recess on the back side toward the outside of the mirror. Then, open that cabinet door, or see if the overhanging lights hit any part of the frame sample. If it looks like the frame will fit, but the obstacles will prevent a straight-on installation, call us at <a href=\"tel:866-304-6283\">866-304-6283</a>. We have plenty of tips!</p>"
+          }
+        },
+        "faq_3W4NTG": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "FAQs",
+            "faq_sub_category_name": "Mirrormate for business",
+            "title": "Do you offer a dealer/trade program?",
+            "infos": "<p>We do offer a program for the trades, including designers, glass shops and more. You can apply to the program <a href=\"/pages/dealer\">here.</a></p>"
+          }
+        },
+        "faq_KYy73W": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "FAQs",
+            "faq_sub_category_name": "Mirrormate for business",
+            "title": "Do you offer quantity discounts?",
+            "infos": "<p>Yes, for orders of 10 or more frames. Contact <a href=\"mailto:multifamily@mirrormate.com\">multifamily@mirrormate.com</a> for commercial properties, or <a href=\"mailto:dealer@mirrormate.com\">dealer@mirrormate.com</a> to become a dealer/wholesaler.</p>"
+          }
+        },
+        "faq_cjEw8k": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Pricing",
+            "faq_sub_category_name": "",
+            "title": "How are your frames priced?",
+            "infos": "<p>Our frames are priced based on the width of your mirror. For your exact price choose a frame style and add your frame’s specific measurements.</p>\n<p>Have and unusual mirror (XXL, Bi-Fold, Beveled, etc.)? Check out are extra long style chart here.</p>\n<div class=\"table_div\">\n<table>\n<tbody>\n<tr>\n<th>\n</th>\n<th>\n<img src=\"https://cdn.shopify.com/s/files/1/0090/5183/2386/files/Frame_1000004314_d4523d7b-88a8-493a-b518-2b32f06964e6.png?v=1726471496\" alt=\"frame\">\n<h6>\nPowder Room\n</h6>\n<p>\n(up to 2 ft wide)\n</p>\n</th>\n<th>\n<img src=\"https://cdn.shopify.com/s/files/1/0090/5183/2386/files/Frame_1000005557_aef75c00-c103-4291-a506-7ec1bc49e6a6.png?v=1726471497\" alt=\"frame\">\n<h6>\nSingle Vanity\n</h6>\n<p>\n(up to 4 ft wide)\n</p>\n</th>\n<th>\n<img src=\"https://cdn.shopify.com/s/files/1/0090/5183/2386/files/Frame_1000004314.png?v=1726471490\" alt=\"frame\">\n<h6>\nDouble Vanity\n</h6>\n<p>\n(up to 6 ft wide)\n</p>\n</th>\n<th>\n<img src=\"https://cdn.shopify.com/s/files/1/0090/5183/2386/files/Frame_1000005557.png?v=1726471486\" alt=\"frame\">\n<h6>\nXL Vanity\n</h6>\n<p>\n(widths 6 ft+)\n</p>\n</th>\n</tr>\n<tr>\n<td class=\"bold\">\nSimple\n</td>\n<td>\n$99\n</td>\n<td>\n$185\n</td>\n<td>\n$225\n</td>\n<td>\n$260\n</td>\n</tr>\n<tr>\n<td class=\"bold\">\nClassic\n</td>\n<td>\n$120\n</td>\n<td>\n$210\n</td>\n<td>\n$260\n</td>\n<td>\n$290\n</td>\n</tr>\n<tr>\n<td class=\"bold\">\nDecorative\n</td>\n<td>\n$140\n</td>\n<td>\n$240\n</td>\n<td>\n$280\n</td>\n<td>\n$320\n</td>\n</tr>\n</tbody>\n</table>\n</div>"
+          }
+        },
+        "faq_rWXNgw": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Pricing",
+            "faq_sub_category_name": "",
+            "title": "Do you offer any quantity discounts?",
+            "infos": "<p>Yes, for orders of 10 or more frames. Contact <a href=\"mailto:multifamily@mirrormate.com\">multifamily@mirrormate.com?</a> for commercial properties, or <a href=\"mailto:dealer@mirrormate.com\">dealer@mirrormate.com</a> to become a dealer/wholesaler.</p>"
+          }
+        },
+        "faq_YdycdU": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Shipping",
+            "faq_sub_category_name": "",
+            "title": "What is your shipping policy?",
+            "infos": "<p>We hold all orders for 24 hours to allow for changes or cancellations. Frames usually ship within 7 business days via FedEx ground (except during sales) from our facility in Charlotte, NC.</p>\n<p>FedEx 2-Day Air orders go to the front of our production line and are typically shipped on the second business day. While the shipping is expedited, unfortunately FedEx does not currently guarantee the delivery date.</p>\n<p>For Mirrors 90\" or longer, we charge a $99 handling fee.</p>\n<table class=\"shipping_table\">\n<tbody>\n<tr>\n<th>Product</th>\n<th>Shipping Type</th>\n<th>Criteria</th>\n<th>Rate</th>\n</tr>\n<tr>\n<td>\n<h6>Frames</h6>\n</td>\n<td>Ground</td>\n<td>Per Order</td>\n<td>$9.99</td>\n</tr>\n<tr>\n<td>\n<h6>Frames</h6>\n</td>\n<td>2nd Day Air</td>\n<td>Powder Room(Per 2 Frames)</td>\n<td>$40</td>\n</tr>\n<tr>\n<td> </td>\n<td> </td>\n<td>Single Vanity(Per 2 Frames)</td>\n<td>$50</td>\n</tr>\n<tr>\n<td> </td>\n<td> </td>\n<td>Double Vanity(Per 2 Frames)</td>\n<td>$75</td>\n</tr>\n<tr>\n<td> </td>\n<td> </td>\n<td>XL Vanity</td>\n<td>No 2nd Day Air</td>\n</tr>\n<tr>\n<td>\n<h6>Sample</h6>\n</td>\n<td>Ground</td>\n<td>Any Quantity</td>\n<td>Free</td>\n</tr>\n<tr>\n<td>\n<h6>Sample</h6>\n</td>\n<td>2nd Day Air</td>\n<td>Per 3 Samples(Multiples of 3)</td>\n<td>$15</td>\n</tr>\n</tbody>\n</table>"
+          }
+        },
+        "faq_pqXnHU": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Shipping",
+            "faq_sub_category_name": "",
+            "title": "Do you ship internationally?",
+            "infos": "<p>No, unfortunately we only ship to the continental United States.</p>"
+          }
+        },
+        "faq_TgnRxR": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Shipping",
+            "faq_sub_category_name": "",
+            "title": "What is the shipping cost for samples?",
+            "infos": "<ul>\n<li>\nSamples are $2 per sample ordered and usually ship within 2 business days via US Postal Service.\n</li>\n<li class=\"bold\">\nGround shipping is free.\n</li>\n<li>\nSecond Day Air Option - We can ship in 1 business day within the Continental United States. Cost is $15 for every 3 samples ordered. $15.00 for up to 3 samples, $30.00 for 4-6 samples, etc.\n</li>\n</ul>"
+          }
+        },
+        "faq_hFyLkq": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Shipping",
+            "faq_sub_category_name": "",
+            "title": "How do you price your shipping rates?",
+            "infos": "<p>Our shipping rates include only the direct shipping cost charged by our carrier -- and most of the time, we charge you less. If you have any questions, please call us toll-free at 1-866-304-6283. Thank you!</p>"
+          }
+        },
+        "faq_GYiBzh": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Guarantee",
+            "faq_sub_category_name": "",
+            "title": "Do you offer a guarantee?",
+            "infos": "<p>Yes, if your custom frame doesn't fit we'll replace it—guaranteed. Our frames even come with a 5-year warranty against warping and finish degradation, and are returnable within 30 days of purchase.</p>"
+          }
+        },
+        "faq_EtPDnt": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Guarantee",
+            "faq_sub_category_name": "",
+            "title": "What does the guarantee cover?",
+            "infos": "<p>The frames must be in original condition and unassembled. Due to the custom nature of our product, we cannot accept returns of oversize frames (those 91 inches or longer). See our return policy for more information.</p>"
+          }
+        },
+        "faq_WCpJWP": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Product care",
+            "faq_sub_category_name": "",
+            "title": "Will it last in the bathroom?",
+            "infos": "<p>MirrorMate’s high-quality frames are durability tested and made for the bath. They’ve been used for more than 2 decades, even in such high traffic settings as hotels – and have stood the test of time.</p>\n<p>We’re so sure of it, we guaranteed the frames to last. See our guarantee for details.</p>"
+          }
+        },
+        "faq_tLqFcw": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Product care",
+            "faq_sub_category_name": "",
+            "title": "How do I maintain my frame?",
+            "infos": "<p>All it takes to keep your frame looking good as new is simple dusting, or a light wiping with a cloth or paper towel that’s slightly dampened with water.  Easy as that!</p>\n<p>\nPlease keep in mind, the frames are made of wood and wood-based materials, like your bathroom vanity or other furniture. Therefore, we recommend avoiding the use of harsh chemicals and excessive scrubbing. It’s also best to spray glass cleaner directly on a cloth and then wipe down the mirror, instead of spraying the mirror directly. Frames that exhibit damage from harsh cleaners or scrubbing will not be covered by our guarantee.</p>"
+          }
+        },
+        "faq_wDd6AW": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Product care",
+            "faq_sub_category_name": "",
+            "title": "What if I’m repainting my bathroom?",
+            "infos": "<p>Repainting the bathroom? We recommend painting prior to the frame installation. If you’re painting after your frame is up, simply use a steady hand around the frame. You’ll want to avoid painter’s tape on the frame as it can remove the finish.</p>"
+          }
+        },
+        "faq_ddrQQC": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Product care",
+            "faq_sub_category_name": "",
+            "title": "How do I remove the frame?",
+            "infos": "<p>To remove your frame from the mirror, please follow the instructions below:</p>\n<ol>\n<li>\nGrab a friend to assist with removal. They will hold the frame and support it while you detach the frame from the mirror.\n</li>\n<li>\nTo detach the frame, run dental floss or fishing line between the frame and mirror. This will split the foam tape and allow the frame to separate from the mirror.</li>\n<li>Once the frame is removed, clean the remaining tape from the mirror with a scrapper or razor blade.\n</li>\n<li>\nFinish removing any residue with a Goo Be Gone.\n</li>\n</ol>"
+          }
+        },
+        "faq_a9Uip6": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Product care",
+            "faq_sub_category_name": "",
+            "title": "How do I re-install a removed frame?",
+            "infos": "<p>To re-install a frame that has been removed:</p>\n<ol>\n<li>\nUse a putty knife, if necessary, to remove any old tape residue from the back of the frame.</li>\n<li>\nCall customer service at <a href=\"tel:866-304-6283\">866-304-6283</a> to request our professional-grade tape and placement blocks to use for re-application.\n</li>\n<li>\nRe-apply the new tape on the back of the frame as close to where the old tape was.</li>\n<li>\nRe-install the frame per the installation instructions.</li>\n</ol>"
+          }
+        },
+        "faq_jqrytr": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Returns",
+            "faq_sub_category_name": "",
+            "title": "What is your return policy?",
+            "infos": "<p>The number one priority at MirrorMate® is to delight customers with our product and service. We offer the ability to return most frames within 30 days of purchase. The frames must be in original condition and unassembled. Due to the custom nature of our product, we cannot accept returns of oversize frames (those 91 inches or longer). </p>\n<p>See our answer to “How do I initiate a return?”  for restocking fees and our return process.\n</p>\n<p>\nNOTE: Commercial customers may not return frames for reasons other than damage or defect. We will work with you, however, to make sure you are happy!</p>"
+          }
+        },
+        "faq_RdnFjT": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Returns",
+            "faq_sub_category_name": "",
+            "title": "How do I initiate a return?",
+            "infos": "<p>To initiate the return/exchange process, please contact us within 30 days of purchase at <a href=\"tel:704-814-0855\">704-814-0855</a> or email us at <a href=\"mailto:info@mirrormate.com\">info@mirrormate.com</a>.</p>\n<p class=\"bold\">\nPlease provide us with:\n</p>\n<ul>\n<li>\nYour name and contact info\n</li>\n<li>\nOrder number\n</li>\n<li>\nIf you ordered more than one frame, which frame(s) is damaged or defective, or which you would like to return.\n</li>\n<li>\nYour preferred method of contact\n</li>\n</ul>\n<p>\nMirrorMate® will send you a prepaid return label and return instructions via email. You should use the original box/packing material to return your unassembled frame and tape the box securely. While we do everything we can at MirrorMate® to minimize waste, the custom-cut dimensions of our frames often require disposal of returns. As such, we charge a 15% fee to cover handling and restocking/disposition of returns. Once we receive and inspect your return (within 72 hours of receipt), you will be refunded the amount you paid for your frame(s), less your original shipping costs, return shipping costs (same as the original shipping costs) and a 15% restocking and disposition fee. Your refund will be processed on your original credit card within 7 days. Please note that depending on your credit card company, it may take an additional 2-10 business days to post returns to your account.\n</p>"
+          }
+        },
+        "faq_7wkenM": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Returns",
+            "faq_sub_category_name": "",
+            "title": "How do I avoid a return?",
+            "infos": "<p>Order samples to be sure of your choice. Do not depend on your computer monitor to select color, since monitors show colors differently and we cannot guarantee that the displayed image will match exactly to the physical product.</p>\n<p>\nCheck your order confirmation. If you see an error or wish to cancel or change your order without being charged a restocking fee, please contact us within 24 hours of placing your order.\n</p>"
+          }
+        },
+        "faq_KLzwrg": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Returns",
+            "faq_sub_category_name": "",
+            "title": "How do I cancel an order?",
+            "infos": "<p>You may cancel your order via email or phone with full refund within 24 hours from when you placed the order. Cancellations after the 24 hours are not guaranteed, but will be honored if we have not processed the order.</p>"
+          }
+        },
+        "faq_M3c3GH": {
+          "type": "faq",
+          "settings": {
+            "faq_category_name": "Returns",
+            "faq_sub_category_name": "",
+            "title": "What if my frame is damaged?",
+            "infos": "<p>If You See a Frame Defect: We carefully inspect each frame individually before it leaves the shop, but in the rare instance a defect is noted, please notify us within two business days. Email a picture of the frame defect along with your order number to <a href=\"mailto:info@mirrormate.com\">info@mirrormate.com</a>. We will be more than happy to assist you with a replacement. Due to out of stock situations, we cannot guarantee an exact replacement if you notify us beyond the two business days.</p>\n<p><span class=\"bold\">\nIf the Box and Frame are Damaged:</span> Please tell us if the outside of your box is damaged and your frame is damaged. Please do not discard the box or packing materials for 15 days. Because Federal Express policy allows us only 48 hours to report shipping damage, we cannot guarantee your frame will be replaced at no charge unless you notify us within this time frame and retain the frame and packing material.\n</p>\n<p>\nEmail us a picture of the box damage and the frame damage along with your order number to <a href=\"mailto:info@mirrormate.com\">info@mirrormate.com</a>. We will be in touch with you to initiate a replacement.\n</p>\n<p>\n<span class=\"bold\">For Palletized Shipments</span>, contact us immediately if you see damage.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_C63WPk",
+        "faq_MpEAkn",
+        "faq_MUqETa",
+        "faq_haym6x",
+        "faq_Yk8EjB",
+        "faq_3J8kAJ",
+        "faq_GbeMNC",
+        "faq_yqHL6D",
+        "faq_BFRHec",
+        "faq_AFhx3y",
+        "faq_eTJi3U",
+        "faq_VrJFMA",
+        "faq_nbHhiV",
+        "faq_8K6xkG",
+        "faq_z9kMCF",
+        "faq_KUVW8T",
+        "faq_4hdnE9",
+        "faq_BawCF7",
+        "faq_W47TdA",
+        "faq_ew8EfP",
+        "faq_T9cGcd",
+        "faq_THXehi",
+        "faq_agXW4k",
+        "faq_xCa3j4",
+        "faq_Wq6XzX",
+        "faq_qy4jK4",
+        "faq_BTABTe",
+        "faq_hJHDA8",
+        "faq_qmqL9i",
+        "faq_Trgpmp",
+        "faq_3W4NTG",
+        "faq_KYy73W",
+        "faq_cjEw8k",
+        "faq_rWXNgw",
+        "faq_YdycdU",
+        "faq_pqXnHU",
+        "faq_TgnRxR",
+        "faq_hFyLkq",
+        "faq_GYiBzh",
+        "faq_EtPDnt",
+        "faq_WCpJWP",
+        "faq_tLqFcw",
+        "faq_wDd6AW",
+        "faq_ddrQQC",
+        "faq_a9Uip6",
+        "faq_jqrytr",
+        "faq_RdnFjT",
+        "faq_7wkenM",
+        "faq_KLzwrg",
+        "faq_M3c3GH"
+      ],
+      "settings": {
+        "main_background_color": "#ffffff",
+        "main_heading_text": "Frequently Asked Questions",
+        "left_box_background_color": "#f6f3f2",
+        "left_box_title": "Choose a topic",
+        "left_box_bottom_text": "<p>If our FAQs don’t answer your question, feel free to <a href=\"/pages/contact-us\" title=\"Contact Us\">contact us</a>.</p>",
+        "main_faq_category_1": "Our Product",
+        "main_faq_category_1_subcategory_1": "General",
+        "main_faq_category_1_subcategory_2": "Will it work for me? Yes!",
+        "main_faq_category_1_subcategory_3": "Special cases",
+        "main_faq_category_1_subcategory_4": "Mirrormate for business",
+        "main_faq_category_7": "Measurement",
+        "main_faq_category_8": "Installation",
+        "main_faq_category_2": "Pricing",
+        "main_faq_category_3": "Shipping",
+        "main_faq_category_4": "Guarantee",
+        "main_faq_category_5": "Product care",
+        "main_faq_category_6": "Returns"
+      }
+    }
+  },
+  "order": [
+    "image_banner_4KPDHU",
+    "page_faqs_section_v2_h6MAgz"
+  ]
+}

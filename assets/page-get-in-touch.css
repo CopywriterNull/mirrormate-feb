@@ -1,0 +1,42 @@
+.Page_get_in_touch_main { padding: 56px 0; }
+.Page_get_in_touch_sides { display: flex; align-items: center; gap: 30px; justify-content: space-between; }
+.Page_get_in_touch_leftmain { width: 100%; max-width: 569px }
+.Page_get_in_touch_rightmain { width: 100%; max-width: 336px;  }
+.Page_get_in_touch_left_main_heading_text h4 { font-size: 32px; font-weight: 500; margin: 0; line-height: 115%; letter-spacing: -0.1px; color: #2D4256; }
+.Page_get_in_touch_left_main_information_text { padding-top: 12px; }
+.Page_get_in_touch_left_main_contact_parent { padding-top: 24px; display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+.Page_get_in_touch_left_main_contact { display: flex; gap: 12px; align-items: center; }
+.Page_get_in_touch_left_main_contact_icon_parent { width: 40px; height: 40px; border-radius: 44px; background-color: #FFF; display: flex; align-items: center; justify-content: center; }
+.Page_get_in_touch_left_main_contact_icon_parent img { width: 24px; height: 24px; display: block; }
+.Page_get_in_touch_left_main_information_text p, .Page_get_in_touch_left_main_contact_link a { color: #2d4256; font-size: 16px; font-weight: 400; line-height: 135%;  margin: 0; font-family: var(--font-body-family); }
+.Page_get_in_touch_left_main_information_text p strong { font-weight: 600; }
+.Page_get_in_touch_rightinner { text-align: center; }
+.Page_get_in_touch_right_form_title h5 { font-size: 20px; font-weight: 500; margin: 0; line-height: 120%; letter-spacing: -0.2px; color: #2D4256; }
+.Page_get_in_touch_newsletter_form { padding-top: 16px; }
+.Page_get_in_touch_newsletter_form .field__input { min-width: 100% !important; border-radius: 80px; color: #2D4256; border: 1.5px solid #2D4256;
+    font-size: 16px; font-weight: 600; line-height: 135%; letter-spacing: .32px; width: 100%; padding: 5px 35px 6px 30px; height: 48px;
+    background: #FFF;; margin: 0; }
+.Page_get_in_touch_newsletter_form .field label { display: none; }
+.Page_get_in_touch_newsletter_form .field__input::placeholder { opacity:1; text-transform: uppercase; color: #2D4256; font-size: 16px; font-weight: 600; line-height: 135%; letter-spacing: .32px; }
+.Page_get_in_touch_newsletter_form .field:before, .Page_get_in_touch_newsletter_form .field:after { display: none; }
+.Page_get_in_touch_newsletter_form button svg path { stroke}
+.Page_get_in_touch_right_form_bottom_text { padding-top: 12px; }
+.Page_get_in_touch_right_form_bottom_text p { color: rgba(45,66,86,0.7); font-size: 12px; font-weight: 400; line-height: 135%;  margin: 0; font-family: var(--font-body-family);  }
+
+@media (min-width: 1500px){
+  .Page_get_in_touch_leftmain { width: 50%; max-width: 100%; }
+  .Page_get_in_touch_rightmain { width: 29.526%; max-width: 100%; }
+}
+
+@media (max-width: 991px){
+  .Page_get_in_touch_left_main_heading_part { text-align: center; }
+  .Page_get_in_touch_sides { flex-direction: column; align-items: center; gap: 30px; }
+  .Page_get_in_touch_leftmain, .Page_get_in_touch_rightmain { width: 100%; max-width: 100%; }
+  .Page_get_in_touch_left_main_contact_parent { padding-top: 16px; flex-direction: column; gap: 16px; text-align: center;}
+}
+
+@media (max-width: 749px){
+  .Page_get_in_touch_rightmain { display: none; }
+  .Page_get_in_touch_left_main_heading_part { text-align: left; }
+  .Page_get_in_touch_left_main_contact_parent { align-items: start; text-align: left; }
+}

@@ -1,0 +1,119 @@
+{% if section.settings.bottom_right_image != blank or section.settings.left_top_image != blank or section.settings.main_background_color != blank or section.settings.main_button_link != blank or section.settings.main_button_text != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_sub_text != blank %}
+  <div class="Index_buy_pay_banner_main_new" style="background-color: {{ section.settings.main_background_color }};">
+    <div class="page-width">
+      
+      {% if section.settings.bottom_right_image != blank %}
+        <div class="Index_buy_pay_banner_image Index_buy_pay_banner_bottom_right_image">
+        {{
+            section.settings.bottom_right_image | 
+            image_url: width: img.width | 
+            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+            fetchpriority: 'auto', 
+            class:'quote_image_new'
+         }}
+      </div>
+      {% endif %}
+      <div class="Index_buy_pay_banner_inner_new">
+        {% if section.settings.main_button_link != blank or section.settings.main_button_text != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_sub_text != blank %}
+          <div class="Index_buy_pay_banner_text_main">
+            <div class="Index_buy_pay_banner_text_inner">
+              {%- if section.settings.main_sub_text != blank -%}
+                  <div class="Common_subtitle_new Index_buy_pay_banner_sub_text">
+                    <span>{{ section.settings.main_sub_text }}</span>
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.main_heading_text != blank -%}
+                  <div class="Common_title_new Index_buy_pay_banner_heading_text">
+                    <h2>{{ section.settings.main_heading_text }}</h2>
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.main_information_text != blank -%}
+                  <div class="Index_meet_image_all_text_sides_innerright_infos_new Index_buy_pay_banner_information_text">
+                    {{ section.settings.main_information_text }}
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                  <div class="Index_buy_pay_banner_button_new">
+                    <a href="{{ section.settings.main_button_link }}" class="button">
+                      {{ section.settings.main_button_text }}  
+                    </a>
+                  </div>
+                {%- endif -%}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+      {% if section.settings.left_top_image != blank %}
+        <div class="Index_buy_pay_banner_image Index_buy_pay_banner_top_left_image">
+        {{
+            section.settings.left_top_image | 
+            image_url: width: img.width | 
+            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+            fetchpriority: 'auto', 
+            class:'quote_image_new'
+         }}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+  
+{% schema %}
+  {
+    "name": "Index Buy Pay Banner",
+    "class": "Index_buy_pay_banner_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "text",
+        "id": "main_sub_text",
+        "label": "Add Main Sub Text",
+        "default": "buy now pay later"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Frame Now, Pay Later With PayPal's Pay in 4"
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "<p>Looking for a payment plan? Select PayPal's Pay Later option at checkout.</p>"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "Shop Now"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      },
+      {
+        "type": "image_picker",
+        "id": "left_top_image",
+        "label": "Add Left Top Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "bottom_right_image",
+        "label": "Add Bottom Right Image"
+      },
+    ],
+     "presets": [
+      {
+        "name": "Index Buy Pay Banner"
+      }
+    ]
+  }
+{% endschema %}

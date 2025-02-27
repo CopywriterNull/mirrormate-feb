@@ -1,0 +1,94 @@
+{%- if section.settings.main_heading_text != blank or section.settings.main_button_link != blank -%}
+  <div class="Article_related_blogs_main_new" style="background: {{ section.settings.main_background_color }};">
+    <div class="page-width">
+      <div class="Article_related_blogs_inner_new"  data-aos="fade-in">
+        {%- if section.settings.main_heading_text != blank or section.settings.main_button_link != blank -%}
+          <div class="Article_related_blogs_mainboth_new">
+            <div class="Article_related_blogs_innerboth_new">
+              {%- if section.settings.main_heading_text != blank -%}
+                <div class="Article_related_blogs_innerboth_maintitle_new">
+                  <div class="Common_title_new Article_related_blogs_innerboth_innertitle_new">
+                    <h3>{{ section.settings.main_heading_text }}</h3>
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                <div class="Article_related_blogs_innerboth_mainbutton_new desktop_only">
+                  <div class="Article_related_blogs_innerboth_innerbutton_new">
+                    <a href="{{ section.settings.main_button_link }}" class="button">
+                      {{ section.settings.main_button_text }}
+                    </a>
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+        {%- assign counter = 0 -%}
+        <div class="Article_related_blogs_mainloop_new">
+          <div class="Article_related_blogs_innerloop_new">
+            {%- for article in blog.articles -%}
+              {%- assign Request_path = request.path | split: '/' | last -%}
+              {%- assign Article_path = article.handle | split: '/' | last -%}
+              {%- unless Request_path == Article_path -%}
+                {% assign counter = counter | plus: 1 %}
+                {% if counter <= 3 %}
+                  {%- if article.image != blank or article.title != blank or article.excerpt.size > 0 or article.content.size > 0 or article.tags.size > 0 -%}
+                    {%- render 'Blog-article-grid-item-new', article: article -%}
+                  {%- endif -%}
+                {% endif %}
+              {%- endunless -%}
+            {%- endfor -%}  
+          </div>
+        </div>
+        {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+          <div class="Article_related_blogs_innerboth_mainbutton_new mobile_only">
+            <div class="Article_related_blogs_innerboth_innerbutton_new">
+              <a href="{{ section.settings.main_button_link }}" class="button">
+                {{ section.settings.main_button_text }}
+              </a>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Article Related Blogs New",
+    "class": "Article_related_blogs_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "More Articles You’ll Love"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "View All Articles"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Article Related Blogs New"
+      }
+    ]
+  }
+{% endschema %}

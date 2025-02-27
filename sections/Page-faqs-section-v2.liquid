@@ -1,0 +1,568 @@
+{% if section.settings.main_background_color != blank or section.settings.main_heading_text != blank or section.settings.left_box_title != blank or section.settings.left_box_background_color != blank or section.settings.left_box_bottom_text != blank %}
+<div class="Page_faq_section_v2_main" style="background-color: {{ section.settings.main_background_color }}">
+  <div class="page-width">
+    <div class="Page_faq_section_v2_inner">
+      {% if section.settings.main_heading_text != blank %}
+        <div class="Page_faq_section_v2_main_heading_text Common_title_new">
+          <h1>
+            {{ section.settings.main_heading_text }}
+          </h1>
+        </div>
+      {% endif %}
+      <div class="Page_faq_section_v2_sides_main">
+        <div class="Page_faq_section_v2_sides_inner">
+          {% if section.blocks.size > 0 or section.settings.left_box_background_color != blank or section.settings.left_box_bottom_text != blank or section.settings.left_box_title != blank %}
+            <div class="Page_faq_section_v2_leftmain">
+              <div class="Page_faq_section_v2_leftinner">  
+            <div class="responsive_sticky_tab" style="background-color: {{ section.settings.left_box_background_color }}">
+                    {% if section.settings.left_box_title != blank %}
+                      <div class="responsive_sticky_tab_box">
+                        <p>
+                          {{ section.settings.left_box_title }}
+                        </p>
+                      </div>
+                    {% endif %}
+                  </div>
+                <div class="Page_faq_section_v2_left_box_main" style="background-color: {{ section.settings.left_box_background_color }}">
+  
+            <div class="Page_faq_section_v2_left_box_inner">
+                    {% if section.settings.left_box_title != blank %}
+                      <div class="Page_faq_section_v2_left_box_title">
+                        <h2>
+                          {{ section.settings.left_box_title }}
+                        </h2>
+                      </div>
+                    {% endif %}
+                    <div class="close">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_3787_24467)">
+                        <path d="M19.0713 4.92969L4.92915 19.0718" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"></path>
+                        <path d="M19.0708 19.0718L4.92871 4.92969" stroke="#2D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"></path>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_3787_24467">
+                        <rect width="24" height="24" fill="white"></rect>
+                        </clipPath>
+                        </defs>
+                      </svg>
+                    </div>
+                    {% if section.blocks.size > 0 %}
+                      <div class="Page_faq_section_v2_left_topics_tab_main">
+                        <div class="Page_faq_section_v2_left_topics_tab_inner">
+                          <ul>
+                            <li class="topic_tab" data-tab="id_{{ section.settings.main_faq_category_1 | downcase | replace: " ", "_" }}">
+                                  <p>
+                                    {{ section.settings.main_faq_category_1 }}
+                                  </p>
+                                </li>
+                            <li class="topic_tab" data-tab="id_{{ section.settings.main_faq_category_7 | downcase | replace: " ", "_" }}">
+                                  <p>
+                                    {{ section.settings.main_faq_category_7 }}
+                                  </p>
+                                </li>
+                            <li class="topic_tab" data-tab="id_{{ section.settings.main_faq_category_8 | downcase | replace: " ", "_" }}">
+                                  <p>
+                                    {{ section.settings.main_faq_category_8 }}
+                                  </p>
+                                </li>
+                            <li class="topic_tab" data-tab="id_{{ section.settings.main_faq_category_2 | downcase | replace: " ", "_" }}">
+                                  <p>
+                                    {{ section.settings.main_faq_category_2 }}
+                                  </p>
+                                </li>
+                            <li class="topic_tab" data-tab="id_{{ section.settings.main_faq_category_3 | downcase | replace: " ", "_" }}">
+                                  <p>
+                                    {{ section.settings.main_faq_category_3 }}
+                                  </p>
+                                </li>
+                            <li class="topic_tab" data-tab="id_{{ section.settings.main_faq_category_4 | downcase | replace: " ", "_" }}">
+                                  <p>
+                                    {{ section.settings.main_faq_category_4 }}
+                                  </p>
+                                </li>
+                            <li class="topic_tab" data-tab="id_{{ section.settings.main_faq_category_5 | downcase | replace: " ", "_" }}">
+                                  <p>
+                                    {{ section.settings.main_faq_category_5 }}
+                                  </p>
+                                </li>
+                            <li class="topic_tab" data-tab="id_{{ section.settings.main_faq_category_6 | downcase | replace: " ", "_" }}">
+                                  <p>
+                                    {{ section.settings.main_faq_category_6 }}
+                                  </p>
+                                </li>
+                          </ul>
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if section.settings.left_box_bottom_text != blank %}
+                      <div class="Page_faq_section_v2_left_box_bottom_text Index_meet_image_all_text_sides_innerright_infos_new">
+                        {{ section.settings.left_box_bottom_text }}
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          {% endif %}
+          <div class="Page_faq_section_v2_rightmain">
+            <div class="Page_faq_section_v2_rightinner">
+              {% if section.settings.left_box_bottom_text != blank or section.settings.main_faq_category_1 != blank or section.settings.main_faq_category_2 != blank or section.settings.main_faq_category_3 != blank or section.settings.main_faq_category_4 != blank or section.settings.main_faq_category_5 != blank or section.settings.main_faq_category_6 != blank %}
+            <div class="responsive_upper_tab_parent">
+              {% if section.settings.left_box_bottom_text != blank %}
+                  <div class="Page_faq_section_v2_left_box_bottom_text Index_meet_image_all_text_sides_innerright_infos_new">
+                      {{ section.settings.left_box_bottom_text }}
+                  </div>
+                {% endif %}
+              <ul>
+                {% if section.settings.main_faq_category_1 %}
+                            <li class="topic_tab" data-tab="id_{{ section.settings.main_faq_category_1 | downcase | replace: " ", "_" }}">
+                                  <p>
+                                    {{ section.settings.main_faq_category_1 }}
+                                  </p>
+                                </li>
+                {% endif %}
+
+                {% if section.settings.main_faq_category_7 %}
+                            <li class="topic_tab" data-tab="id_{{ section.settings.main_faq_category_7 | downcase | replace: " ", "_" }}">
+                                  <p>
+                                    {{ section.settings.main_faq_category_7 }}
+                                  </p>
+                                </li>
+                {% endif %}
+                {% if section.settings.main_faq_category_8 %}
+                            <li class="topic_tab" data-tab="id_{{ section.settings.main_faq_category_8 | downcase | replace: " ", "_" }}">
+                                  <p>
+                                    {{ section.settings.main_faq_category_8 }}
+                                  </p>
+                                </li>
+                {% endif %}
+                {% if section.settings.main_faq_category_2 %}
+                            <li class="topic_tab" data-tab="id_{{ section.settings.main_faq_category_2 | downcase | replace: " ", "_" }}">
+                                  <p>
+                                    {{ section.settings.main_faq_category_2 }}
+                                  </p>
+                                </li>
+                {% endif %}
+                {% if section.settings.main_faq_category_3 %}
+                            <li class="topic_tab" data-tab="id_{{ section.settings.main_faq_category_3 | downcase | replace: " ", "_" }}">
+                                  <p>
+                                    {{ section.settings.main_faq_category_3 }}
+                                  </p>
+                                </li>
+                {% endif %}
+                {% if section.settings.main_faq_category_4 %}
+                            <li class="topic_tab" data-tab="id_{{ section.settings.main_faq_category_4 | downcase | replace: " ", "_" }}">
+                                  <p>
+                                    {{ section.settings.main_faq_category_4 }}
+                                  </p>
+                                </li>
+                {% endif %}
+                {% if section.settings.main_faq_category_5 %}
+                            <li class="topic_tab" data-tab="id_{{ section.settings.main_faq_category_5 | downcase | replace: " ", "_" }}">
+                                  <p>
+                                    {{ section.settings.main_faq_category_5 }}
+                                  </p>
+                                </li>
+                  {% endif %}
+                {% if section.settings.main_faq_category_6 %}
+                            <li class="topic_tab" data-tab="id_{{ section.settings.main_faq_category_6 | downcase | replace: " ", "_" }}">
+                                  <p>
+                                    {{ section.settings.main_faq_category_6 }}
+                                  </p>
+                                </li>
+                  {% endif %}
+                          </ul>
+              
+            </div>
+              {% endif %}
+              <div class="Page_faq_section_v2_right_faqs_main accordion">
+                {% for main_category in (1..8) %}
+                  {% capture main_id %}main_faq_category_{{ main_category }}{% endcapture %}
+                  {% assign main_category_name = section.settings[main_id] %}
+                  <div class="Page_faq_section_v2_right_faqs_category_main" id="id_{{ main_category_name | downcase | replace: " ", "_" }}">
+                    
+                      <div class="faq_category faq_title">
+                        <h2>{{ main_category_name }}</h2>
+                      </div>
+                      {% if main_category == 1 %}
+                        <div class="Page_faq_section_v2_right_faqs_sub_category_main">
+                        {% for sub_category in (1..4) %}
+
+                          <div class="Page_faq_section_v2_right_faqs_sub_category">
+                               {% capture sub_category_id %}main_faq_category_1_subcategory_{{ sub_category }}{% endcapture %}
+                               {% assign sub_name = section.settings[sub_category_id] %}
+                               <div class="faq_sub_category">
+                                  <div class="faq_subtitle">
+                                  <h2>
+                                    {{ sub_name }}
+                                  </h2>
+                              </div>
+                              </div>
+                               {% if section.blocks.size  > 0 %}
+                                 <div class="faqs_accordian_main">
+                                   <ul class="list-unstyled">
+                                   {% for block in section.blocks %}
+                                     {% if block.type == "faq" %}
+                                      {%- if block.settings.title != blank and block.settings.infos != blank -%}
+                                        {% if block.settings.faq_sub_category_name == sub_name %}
+                                        <li{% if forloop.first %} class="open"{% endif %}>
+                                          {%- if block.settings.title != blank -%}
+                                            <div class="question Index_meet_image_all_text_sides_innerright_infos_new">
+                                              <h3><p>{{ block.settings.title }}</p></h3>
+                                            </div>
+                                          {%- endif -%}
+                                          {%- if block.settings.infos != blank -%}
+                                            <div class="answer Index_meet_image_all_text_sides_innerright_infos_new"{% if forloop.first %} style="display:block;"{% endif %}>
+                                              {{ block.settings.infos }}
+                                            </div>
+                                          {%- endif -%}
+                                        </li>
+                                        {% endif %}
+                                      {%- endif -%}  
+                                     {% endif %}
+                                   {% endfor %}
+                                   </ul>
+                                 </div>
+                               {% endif %}
+                            </div>
+                        {% endfor %}
+                        </div>
+                      {% else %}
+                        {% if section.blocks.size  > 0 %}
+                                 <div class="faqs_accordian_main">
+                                   <ul class="list-unstyled">
+                                   {% for block in section.blocks %}
+                                     {% if block.type == "faq" %}
+                                      {%- if block.settings.title != blank and block.settings.infos != blank -%}
+                                        {% if block.settings.faq_category_name == main_category_name %}
+                                        <li{% if forloop.first %} class="open"{% endif %}>
+                                          {%- if block.settings.title != blank -%}
+                                            <div class="question Index_meet_image_all_text_sides_innerright_infos_new">
+                                              <h3><p>{{ block.settings.title }}</p></h3>
+                                            </div>
+                                          {%- endif -%}
+                                          {%- if block.settings.infos != blank -%}
+                                            <div class="answer Index_meet_image_all_text_sides_innerright_infos_new"{% if forloop.first %} style="display:block;"{% endif %}>
+                                              {{ block.settings.infos }}
+                                            </div>
+                                          {%- endif -%}
+                                        </li>
+                                        {% endif %}
+                                      {%- endif -%}  
+                                     {% endif %}
+                                   {% endfor %}
+                                   </ul>
+                                 </div>
+                               {% endif %}
+                      {% endif %}
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<style>
+  .Page_faq_section_v2_main { padding: 56px 0 96px; }
+  .Page_faq_section_v2_main_heading_text { text-align: center; }
+  .Page_faq_section_v2_sides_main { max-width: 1104px; width: 100%; margin: 0 auto; padding-top: 48px;}
+  .Page_faq_section_v2_sides_inner { display: flex; gap: 48px; }
+  .Page_faq_section_v2_leftmain { max-width: 336px; width: 100%; }
+  .Page_faq_section_v2_leftinner { position: sticky; top: 100px; }
+  .Page_faq_section_v2_rightmain { width: calc(100% - 384px);}
+  .responsive_upper_tab_parent { display: none; }
+  .responsive_sticky_tab { display: none; }
+  .Page_faq_section_v2_left_box_main { padding: 32px 24px; border-radius: 12px; text-align: center; }
+  .Page_faq_section_v2_left_topics_tab_main { padding-top: 24px; }
+  .Page_faq_section_v2_left_box_title h2 { margin: 0; font-size: 20px; font-weight: 500; line-height: 120%; letter-spacing: -.2px; font-family: var(--font-heading-family); }
+  .Page_faq_section_v2_main ul { list-style: none; padding:0; margin: 0; }
+  .Page_faq_section_v2_main li.topic_tab a, .Page_faq_section_v2_main li.topic_tab p { margin: 0; display: block; padding: 10.5px; text-decoration: none; letter-spacing: 0.28px;
+    font-family: var(--font-body-family); font-size: 14px; font-weight: 600; line-height: 135%; color: #2D4256; text-transform: uppercase; }
+  .Page_faq_section_v2_main li.topic_tab{ cursor: pointer; background: #fff;  border: 1.5px solid #2D4256; border-radius: 32px; text-align: center; }
+  .Page_faq_section_v2_main li.topic_tab:not(:last-child) { margin-bottom: 8px; }
+  .Page_faq_section_v2_main li.topic_tab.active { pointer-events: none; }
+  .Page_faq_section_v2_main li.topic_tab.active a, .Page_faq_section_v2_main li.topic_tab.active p { color: #FFF; background-color: #2D4256; border-radius: 32px; }
+  /* .Page_faq_section_v2_right_faqs_main .faq_subtitle { padding-top: 32px; } */
+  .Page_faq_section_v2_right_faqs_main .faq_subtitle h5 { margin: 0; font-size: 20px; font-weight: 500; line-height: 120%; letter-spacing: -.2px; font-family: var(--font-heading-family); }
+  .Page_faq_section_v2_right_faqs_main .faq_subtitle h2 { margin: 0; font-size: 20px; font-weight: 500; line-height: 120%; letter-spacing: -.2px; font-family: var(--font-heading-family); }
+  .Page_faq_section_v2_right_faqs_main ul>li .question h2 p { margin: 0; padding: 0; font-weight: 600; line-height: 125%; }
+  .Page_faq_section_v2_right_faqs_main ul>li .question h3 p { margin: 0; padding: 0; font-weight: 600; line-height: 125%; }
+  .Page_faq_section_v2_right_faqs_main .faqs_accordian_main li:first-child { padding-top: 24px; }
+  .Page_faq_section_v2_right_faqs_category_main { display: none; }
+  /* .Page_faq_section_v2_right_faqs_category_main:first-child { display: block; } */
+  .Page_faq_section_v2_right_faqs_category_main.active_faq { display: block; }
+  .Page_faq_section_v2_right_faqs_main .Page_faq_section_v2_right_faqs_sub_category_main { padding-top: 32px; }
+  .Page_faq_section_v2_right_faqs_main .Page_faq_section_v2_right_faqs_sub_category:not(:first-child) { padding-top: 48px; }
+  .Page_faq_section_v2_right_faqs_main ul>li { padding: 16px 0; border-bottom: 1px solid #3E556933; }
+  .Page_faq_section_v2_right_faqs_main ul>li .question { padding: 0; position: relative; cursor: pointer; }
+  .Page_faq_section_v2_right_faqs_main .question h2 { margin: 0px 40px 0px 0px; }
+  .Page_faq_section_v2_right_faqs_main .question h3 { margin: 0px 40px 0px 0px; }
+  .Page_faq_section_v2_right_faqs_main .question:before { transition: all 0.5s ease; content: ''; position: absolute;
+    background: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(%23clip0_3787_23291)"><path d="M8 1.33203V14.6654" stroke="%232D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/><path d="M14.6668 8H1.3335" stroke="%232D4256" stroke-width="2" stroke-linecap="square" stroke-linejoin="round"/></g><defs><clipPath id="clip0_3787_23291"><rect width="16" height="16" fill="white"/></clipPath></defs></svg>');
+    background-repeat: no-repeat; background-size: contain; top: 0; right: 0; width: 16px; height: 16px; }
+  .Page_faq_section_v2_right_faqs_main li.open .question:before {
+    background: url('data:image/svg+xml,<svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(%23clip0_3787_23169)"><path d="M15.1668 8H1.8335" stroke="%232D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_3787_23169"><rect width="16" height="16" fill="white" transform="translate(0.5)"/></clipPath></defs></svg>'); }
+  .Page_faq_section_v2_right_faqs_main .faq_title h2 { font-family: var(--font-heading-family); margin: 0; font-size: 32px; letter-spacing: -0.1px;
+    color: #2D4256; font-weight: 500; line-height: 115%; text-align: left; text-transform: none; }
+  .Page_faq_section_v2_right_faqs_main li .answer .table_div { overflow-x: scroll;  padding: 1px; }
+  .Page_faq_section_v2_right_faqs_main li .answer table td, .Page_faq_section_v2_right_faqs_main li .answer table th {
+    border: 1px solid #D8DDE1 !important; padding: 12px; }
+  .Page_faq_section_v2_right_faqs_main li .answer table img { width: 42px; height: 42px !important;  display: block; margin: 0 auto 10px; }
+  .Page_faq_section_v2_right_faqs_main li .answer table h6 { font-size: 14px; font-weight: 600; line-height: 135%; color: #2D4256; margin: 0; text-align: center;}
+  .Page_faq_section_v2_right_faqs_main li .answer table th p { text-align: center; font-size: 12px; font-weight: 400; line-height: 135%; color: #2D4256;
+    padding-top: 2px !important; }
+  .Page_faq_section_v2_right_faqs_main li .answer table td p { padding-top: 2px !important; }
+  .Page_faq_section_v2_right_faqs_main li .answer table td.bold {  font-weight: 700 !important;  text-align: left;  padding: 12px 8px !important; }
+  .Page_faq_section_v2_right_faqs_main li .answer table td { font-size: 14px; font-weight: 400; line-height: 135%; color: #2D4256; margin: 0; }
+  .Page_faq_section_v2_right_faqs_main li .answer table.shipping_table th { padding: 12px; font-size: 14px; font-weight: 600;
+    line-height: 135%; color: #2D4256; margin: 0; }
+  .Page_faq_section_v2_right_faqs_main li .answer table { width: 100%; text-align: center; margin-top: 16px; border-collapse: collapse;}
+  .Page_faq_section_v2_right_faqs_main li .answer table.shipping_table td:first-child { text-align: left; padding: 12px 5px 11px 8px; }
+  .Page_faq_section_v2_right_faqs_main li .answer { padding-top: 16px; margin-top: 0;}
+  .Page_faq_section_v2_right_faqs_main li .answer ul { list-style: disc; padding-left: 24px; }
+  .Page_faq_section_v2_right_faqs_main li .answer p, .Page_faq_section_v2_right_faqs_main li .answer li { border-bottom: none; color: #2D4256; font-size: 16px;
+    font-weight: 400; line-height: 135%; margin: 0; padding-bottom: 16px; font-family: var(--font-body-family); padding: 0; margin: 0;}
+  .Page_faq_section_v2_right_faqs_main li .answer span { padding: 0; }
+  .Page_faq_section_v2_right_faqs_main li .answer p:not(:first-child) { padding-top: 16px; }
+  .Page_faq_section_v2_right_faqs_main li .answer ol { padding-left: 20px; }
+  .Page_faq_section_v2_right_faqs_main li .answer li:first-child { padding-top: 0;}
+  .Page_faq_section_v2_right_faqs_main li .answer * + ol, .Page_faq_section_v2_right_faqs_main li .answer * + ul { padding-top: 8px; }
+  .Page_faq_section_v2_main .close { display: none; position: absolute; }
+
+  
+  @media(max-width:1080px){
+    .Page_faq_section_v2_sides_inner { gap: 30px; }
+    .Page_faq_section_v2_leftmain { width: 35%; max-width: 100%; }
+    .Page_faq_section_v2_rightmain { width: 65%; }
+  }
+
+  @media(max-width:768px){
+    .Page_faq_section_v2_main { padding: 24px 0 56px; }
+    .Page_faq_section_v2_main .page-width { padding: 0 !important; }
+    .Page_faq_section_v2_main_heading_text { padding: 0 19.5px; }
+    .Page_faq_section_v2_sides_inner { flex-direction: column; }
+    .Page_faq_section_v2_rightmain { padding: 0 19.5px; }
+    .Page_faq_section_v2_leftmain, .Page_faq_section_v2_rightmain { width: 100%; }
+    .Page_faq_section_v2_leftmain { position: fixed; bottom: 0; z-index: 3; }
+    .Page_faq_section_v2_leftinner { position: unset; }
+    .Page_faq_section_v2_sides_main { padding: 0; }
+    .Page_faq_section_v2_left_box_main { padding: 20px; }
+    .Page_faq_section_v2_left_box_bottom_text { padding-top: 24px; }
+    .Page_faq_section_v2_main .close { display: block; top: 0; right: 0; cursor: pointer; width: 24px; height: 24px; }
+    .Page_faq_section_v2_main .close svg { width: 100%; height: 100%; display: block; }
+    .Page_faq_section_v2_left_box_title { padding-top: 24px; }
+    .responsive_sticky_tab { display: block; padding: 20px; }
+    .responsive_sticky_tab_box { cursor: pointer; background: #fff; border: 1.5px solid #2D4256; border-radius: 32px; text-align: center; }
+    .responsive_sticky_tab_box p { margin: 0; display: block; padding: 10.5px; text-decoration: none; letter-spacing: 0.28px;
+    font-family: var(--font-body-family); font-size: 14px; font-weight: 600; line-height: 135%; color: #2D4256; text-transform: uppercase; }
+    .Page_faq_section_v2_left_box_main { display: none; }
+    .Page_faq_section_v2_left_box_inner { position: relative; }
+    .responsive_upper_tab_parent { display: block ; padding: 12px 0 32px; }
+    .responsive_upper_tab_parent .Page_faq_section_v2_left_box_bottom_text { text-align: center; padding-top: 0; }
+    .responsive_upper_tab_parent ul { padding-top: 24px; display: flex; gap: 16px; flex-wrap: wrap; }
+    .responsive_upper_tab_parent ul li { width: calc(33.33% - 11px); margin: 0 !important; }
+    .Page_faq_section_v2_right_faqs_main .Page_faq_section_v2_right_faqs_sub_category_main { padding-top: 24px; }
+    .Page_faq_section_v2_right_faqs_main li .answer .table_div table { width: max-content; }
+  }
+
+  @media(max-width: 575px){
+    .responsive_upper_tab_parent ul { gap: 8px; }
+    .responsive_upper_tab_parent ul li { width: calc(50% - 4px);}
+  }
+    
+</style>
+
+<script>
+  
+</script>
+
+{% schema %}
+  {
+    "name": "FAQ Section Main V2",
+    "class": "Page_faqs_section_v2",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "text",
+        "id": "main_heading_text",
+        "label": "Add Main Heading text",
+        "default": "Frequently Asked Questions"
+      },
+      {
+        "type": "header",
+        "content": "Left Box Content"
+      },
+      {
+        "type": "color",
+        "id": "left_box_background_color",
+        "label": "Add Left Box Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "text",
+        "id": "left_box_title",
+        "label": "Add Left Box Title",
+        "default": "Choose a topic"
+      },
+      {
+        "type": "richtext",
+        "id": "left_box_bottom_text",
+        "label": "Add Left Box Bottom Text",
+        "default": "<p>If our FAQs don’t answer your question, feel free to contact us."
+      },
+      {
+        "type": "text",
+        "id": "main_faq_category_1",
+        "label": "Add Main FAQ Category 1",
+        "default": "FAQs"
+      },
+      {
+        "type": "text",
+        "id": "main_faq_category_1_subcategory_1",
+        "label": "Add Sub Category 1",
+        "default": "General"
+      },
+      {
+        "type": "text",
+        "id": "main_faq_category_1_subcategory_2",
+        "label": "Add Sub Category 2",
+        "default": "Will it work for me? Yes!"
+      },
+      {
+        "type": "text",
+        "id": "main_faq_category_1_subcategory_3",
+        "label": "Add Sub Category 3",
+        "default": "Special cases"
+      },
+      {
+        "type": "text",
+        "id": "main_faq_category_1_subcategory_4", 
+        "label": "Add Sub Category 4",
+        "default": "Mirrormate for business"
+      },
+      {
+        "type": "text",
+        "id": "main_faq_category_7",
+        "label": "Add Main FAQ Category 7",
+        "default": "Measurement"
+      },
+      {
+        "type": "text",
+        "id": "main_faq_category_8",
+        "label": "Add Main FAQ Category 8",
+        "default": "Installation"
+      },
+      {
+        "type": "text",
+        "id": "main_faq_category_2",
+        "label": "Add Main FAQ Category 2",
+        "default": "Pricing"
+      },
+      {
+        "type": "text",
+        "id": "main_faq_category_3",
+        "label": "Add Main FAQ Category 3",
+        "default": "Shipping"
+      },
+      {
+        "type": "text",
+        "id": "main_faq_category_4",
+        "label": "Add Main FAQ Category 4",
+        "default": "Guarantee"
+      },
+      {
+        "type": "text",
+        "id": "main_faq_category_5",
+        "label": "Add Main FAQ Category 5",
+        "default": "Product care"
+      },
+      {
+        "type": "text",
+        "id": "main_faq_category_6",
+        "label": "Add Main FAQ Category 6",
+        "default": "Returns"
+      },
+    ],
+    "blocks":[
+      {
+        "type": "faq-title",
+        "name": "Faq Title",
+        "settings": [
+          {
+            "type": "text",
+            "id": "faq_title",
+            "label": "Add Faq Title",
+            "default": "FAQs"
+          },
+        ]
+      },
+      {
+        "type": "faq-sub-title",
+        "name": "Faq Sub Title",
+        "settings": [
+          {
+            "type": "text",
+            "id": "faq_sub_title",
+            "label": "Add Faq Sub Title",
+            "default": "General"
+          },
+        ]
+      },
+      {
+        "type": "faq",
+        "name":"FAQ",
+        "settings": [
+          {
+            "type": "text",
+            "id": "faq_category_name",
+            "label": "Add Main FAQ Category Name",
+          },
+          {
+            "type": "text",
+            "id": "faq_sub_category_name",
+            "label": "Add FAQ Sub Category Name",
+          },
+           {
+              "type": "textarea",
+              "id": "title",
+              "label": "Add Main Question Text",
+              "default": "Lorem Ipsum is simply dummy?"
+            },
+           {
+              "type": "html",
+              "id": "infos",
+              "label": "Add Main Answer Text",
+              "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>"
+           }
+         ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "FAQ Section Main V2",
+        "blocks": [
+          {
+            "type": "faq-title"
+          },
+          {
+            "type": "faq-sub-title"
+          },
+          {
+            "type": "faq"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

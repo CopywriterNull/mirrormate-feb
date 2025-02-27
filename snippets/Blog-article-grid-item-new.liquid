@@ -1,0 +1,59 @@
+{%- if article.image != blank or article.title != blank or article.excerpt.size > 0 or article.content.size > 0 or article.tags.size > 0 -%}
+  <div class="Blog_article_grid_item_main_new">
+    <div class="Blog_article_grid_item_inner_new">
+      <a href="{{ article.url }}">
+        <div class="Blog_article_grid_item_detail_new">
+          {%- if article.image != blank -%}
+            <div class="Blog_article_grid_item_detail_mainimage_new">
+              <div class="Blog_article_grid_item_detail_innerimage_new">
+                {{
+                  article.image | 
+                  image_url: width: img.width | 
+                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                  fetchpriority: 'auto', 
+                  class:'Article_image_new'
+                }}
+              </div>
+            </div>
+          {%- endif -%}
+          {%- if article.title != blank or article.excerpt.size > 0 or article.content.size > 0 -%}
+            <div class="Blog_article_grid_item_detail_mainboths_new">
+              <div class="Blog_article_grid_item_detail_innerboths_new">
+                {%- if article.title != blank -%}
+                  <div class="Blog_article_grid_item_detail_innerboths_title_new">
+                    <h3>{{ article.title }}</h3>
+                  </div>
+                {%- endif -%}
+                {%- if article.excerpt.size > 0 or article.content.size > 0 -%}
+                  <div class="Blog_article_grid_item_detail_innerboths_infos_new">
+                    {%- if article.excerpt.size > 0 -%}
+                      {{ article.excerpt | strip_html | truncatewords: 30 }}
+                    {%- else -%}
+                      {{ article.content | strip_html | truncatewords: 30 }}
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+                <div class="Blog_article_grid_item_detail_innerboths_mainsides_new">
+                  <div class="Blog_article_grid_item_detail_innerboths_innersides_new">
+                    <div class="Blog_article_grid_item_detail_innerboths_innersides_leftpart_new">
+                      <span>Read Post</span>
+                    </div>
+                    {%- if article.tags.size > 0 -%}
+                      <div class="Blog_article_grid_item_detail_innerboths_innersides_rightpart_new">
+                        {%- for tag in article.tags limit: 1 -%}
+                          <div class="Blog_article_grid_item_detail_innerboths_innersides_rightpart_tagslist_new">
+                            {{ tag }}
+                          </div>
+                        {%- endfor -%}
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+      </a>
+    </div>
+  </div>
+{%- endif -%}

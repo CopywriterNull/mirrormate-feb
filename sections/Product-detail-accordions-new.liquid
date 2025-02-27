@@ -1,0 +1,258 @@
+<div js-product-details-accordions-section data-section="{{ section.id }}">
+  {%- if section.blocks.size > 0 or section.settings.main_details_text != blank or section.settings.main_heading_text != blank -%}
+    <div class="Product_detail_accordions_main_new {{ section.settings.custom_class }} {% if section.settings.image_on_right == true %} Product_detail_accordions_right_new {% endif %}" style="background: {{ section.settings.main_background_color }};">
+      <div class="page-width">
+        <div class="Product_detail_accordions_inner_new" data-aos="fade-in" data-aos-delay="200" >
+          {%- if section.settings.main_details_text != blank or section.settings.main_heading_text != blank -%}
+            <div class="Product_detail_accordions_mainboths_new">
+              <div class="Product_detail_accordions_innerboths_new">
+                {%- if section.settings.main_details_text != blank -%}
+                  <div class="Product_detail_accordions_innerboths_texts_new">
+                    <h5>{{ section.settings.main_details_text }}</h5>
+                  </div>
+                {%- endif -%}
+                {%- if section.settings.main_heading_text != blank -%}
+                  <div class="Common_title_new Product_detail_accordions_innerboths_title_new">
+                    <h2>{{ section.settings.main_heading_text }}</h2>
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+          {%- if section.blocks.size > 0 -%}
+            <div class="Product_detail_accordions_mainsides_new">
+              <div class="Product_detail_accordions_innersides_new">
+                {%- if section.blocks.size > 0 -%}
+                  <div class="Product_detail_accordions_innersides_mainleft_new">
+                    <div class="Product_detail_accordions_innersides_innerleft_new">
+                      <div class="accordion">
+                        <ul class="list-unstyled">
+                          {%- for block in section.blocks -%}
+                            {%- if block.settings.title != blank and block.settings.main_information_text != blank -%}
+                              <li{% if forloop.first %} class="open"{% endif %}>
+                                {%- if block.settings.title != blank -%}
+                                  <div class="question product_acc_new" acc_id="acc_{{ block.id | replace: '-', '_' }}_{{ forloop.index0 }}">
+                                    <div class="Product_detail_accordions_innersides_innerleft_question_new">
+                                      {%- if block.settings.main_custom_image != blank -%}
+                                        <div class="Product_detail_accordions_innersides_innerleft_question_icons_new">
+                                          {{
+                                            block.settings.main_custom_image | 
+                                            image_url: width: img.width | 
+                                            image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                            fetchpriority: 'auto', 
+                                            class:'Icon_image_new'
+                                          }}
+                                        </div>
+                                      {%- endif -%}
+                                      {%- if block.settings.title != blank -%}
+                                        <div class="Product_detail_accordions_innersides_innerleft_question_title_new">
+                                          <h3>{{ block.settings.title }}</h3>
+                                        </div>
+                                      {%- endif -%}
+                                    </div>  
+                                  </div>
+                                {%- endif -%}
+                                {%- if block.settings.main_information_text != blank or block.settings.main_mp4_video != blank or block.settings.main_mobile_image != blank -%}
+                                  <div class="answer"{% if forloop.first %} style="display: block;"{% endif %}>
+                                    <div class="Product_detail_accordions_innersides_innerleft_answers_new">
+                                      {%- if block.settings.main_information_text != blank -%}
+                                        <div class="Product_detail_accordions_innersides_innerleft_answers_maininfos_new">
+                                          <div class="Product_detail_accordions_innersides_innerleft_answers_innerinfos_new">
+                                            {{ block.settings.main_information_text }}
+                                          </div>
+                                        </div>
+                                      {%- endif -%}
+                                    </div>
+                                  </div>
+                                {%- endif -%}
+                              </li>
+                            {%- endif -%}
+                          {%- endfor -%}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                {%- endif -%}
+                {% if product.metafields.custom.product_crafted_for_style_and_durability_image_or_video != blank %}
+                  <div class="Product_detail_accordions_innersides_mainright_new">
+                    <div class="Product_detail_accordions_innersides_innerright_new">
+                      <div class="Product_detail_accordions_innersides_innerright_mainboxs_new">
+                        <div class="Product_detail_accordions_innersides_innerright_innerboxs_new">
+                          {%- for product_crafted_for_style_and_durability_image_or_video in product.metafields.custom.product_crafted_for_style_and_durability_image_or_video.value limit:2 -%}
+                            <div class="Product_detail_accordions_innersides_innerright_innerboxs_videoimage_new {% if forloop.length >= 2 %} {% if forloop.first %} desktop_image_new {% else %} mobile_image_new {% endif %} {% endif %}">
+                              {%- if product_crafted_for_style_and_durability_image_or_video contains "files" -%}
+                                {{
+                                  product_crafted_for_style_and_durability_image_or_video | 
+                                  image_url: width: img.width | 
+                                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                  fetchpriority: 'auto', 
+                                  class:''
+                                }}
+                              {%- else -%}
+                                {{ product_crafted_for_style_and_durability_image_or_video | video_tag: class: '', image_size: 'master', controls: false, autoplay: true, loop: true }}
+                              {%- endif -%}
+                            </div>
+                          {%- endfor -%}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% else %}
+                  {%- if section.settings.main_mp4_video != blank or section.settings.main_desktop_image != blank or section.settings.main_mobile_image != blank -%}
+                    <div class="Product_detail_accordions_innersides_mainright_new">
+                      <div class="Product_detail_accordions_innersides_innerright_new">
+                        <div class="Product_detail_accordions_innersides_innerright_mainboxs_new">
+                          <div class="Product_detail_accordions_innersides_innerright_innerboxs_new">
+                            {%- if section.settings.main_mp4_video != blank -%}
+                              <div class="Product_detail_accordions_innersides_innerright_innerboxs_videoimage_new">
+                                {{ section.settings.main_mp4_video | video_tag: class: 'desktop_image_new', image_size: 'master', controls: false, autoplay: true, loop: true }}
+                              </div>
+                            {% else %}  
+                              {%- if section.settings.main_desktop_image != blank and section.settings.main_mobile_image != blank -%}
+                                <div class="Product_detail_accordions_innersides_innerright_innerboxs_videoimage_new">
+                                  {{
+                                    section.settings.main_desktop_image | 
+                                    image_url: width: img.width | 
+                                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                    fetchpriority: 'auto', 
+                                    class:'desktop_image_new'
+                                  }}
+                                  {{
+                                    section.settings.main_mobile_image | 
+                                    image_url: width: img.width | 
+                                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                    fetchpriority: 'auto', 
+                                    class:'mobile_image_new'
+                                  }}
+                                </div>
+                              {%- endif -%}
+                            {%- endif -%}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+  {
+    "name": "Product Detail Accordions",
+    "class": "Product_detail_accordions_new",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "custom_class",
+        "label": "Add Custom Class",
+        "info": "sample_pdp_acc_new"
+      },
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "textarea",
+        "id": "main_details_text",
+        "label": "Add Main Details Text",
+        "default": "The Mirrormate Difference"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Crafted For Style<br>And Durability"
+      },
+      {
+        "type": "video",
+        "id": "main_mp4_video",
+        "label": "Add Main MP4 Video"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_desktop_image",
+        "label": "Add Main Desktop Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_mobile_image",
+        "label": "Add Main Mobile Image"
+      },
+      {
+        "type": "checkbox",
+        "id": "image_on_right",
+        "label": "Image On Right Side"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "information",
+        "name": "Information",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "main_custom_image",
+            "label": "Add Main Custom Image"
+          },
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Add Main Heading Text",
+            "default": "Heading"
+          },
+          {
+            "type": "richtext",
+            "id": "main_information_text",
+            "label": "Add Main Information Text",
+            "default": "<p>Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit.</strong> Maecenas rutrum aliquet felis vitae hendrerit. Nunc elit odio, luctus ut sapien vel, sagittis fringilla purus.</p>"
+          }/*,
+          {
+            "type": "video",
+            "id": "main_mp4_video",
+            "label": "Add Main MP4 Video"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_desktop_image",
+            "label": "Add Main Desktop Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_mobile_image",
+            "label": "Add Main Mobile Image"
+          }*/
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Product Detail Accordions",
+        "blocks": [
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

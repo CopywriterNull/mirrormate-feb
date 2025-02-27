@@ -1,0 +1,380 @@
+{%- if section.blocks.size > 0 or section.settings.main_detail_text != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank -%}
+  <div class="Index_before_after_images_main_new" id="gallery" style="background: {{ section.settings.main_background_color }};">
+    <div class="Index_before_after_images_inner_new" data-aos="fade-up">
+      {%- if section.blocks.size > 0 -%}
+        <div class="Index_before_after_images_maindesktop_new">
+          <div class="Index_before_after_images_innerdesktop_new Tabs_common_main_new">
+            {%- if section.blocks.size > 0 -%}
+              <div class="Index_before_after_images_innerdesktop_mainloop_new">
+                <div class="Index_before_after_images_innerdesktop_innerloop_new">
+                  <div class="tab">
+                    {%- for block in section.blocks -%}
+                      {%- if block.settings.main_product_selected != blank and block.settings.main_custom_image != blank -%}
+                        <button class="tablinks Tabs_common_inner_new{% if forloop.first %} active{% endif %}" tab_id="tab_{{ block.id | replace: '-', '_' }}_{{ forloop.index0 }}">
+                          <div class="Index_before_after_images_innerdesktop_innerloop_mainboxs_new">
+                            <div class="Index_before_after_images_innerdesktop_innerloop_innerboxs_new">
+                              {{
+                                block.settings.main_custom_image | 
+                                image_url: width: img.width | 
+                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                fetchpriority: 'auto', 
+                                class:'Full_box_image_new'
+                              }}
+                            </div>
+                          </div>
+                        </button>  
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+            {%- if section.blocks.size > 0 -%}
+              <div class="Index_before_after_images_innerdesktop_maintabs_new">
+                <div class="Index_before_after_images_innerdesktop_innertabs_new">
+                  {%- for block in section.blocks -%}
+                    {%- if block.settings.main_product_selected != blank and block.settings.main_custom_image != blank -%}
+                      <div class="tabcontent tab_{{ block.id | replace: '-', '_' }}_{{ forloop.index0 }}_open" {% if forloop.first %} style="display:block;"{% endif %}>
+                        <div class="Index_before_after_images_innerdesktop_innertabs_mainitems_new">
+                          <div class="Index_before_after_images_innerdesktop_innertabs_inneritems_new">
+
+                            <div class="twentytwenty-container">
+                              {%- if block.settings.main_desktop_image_1 != blank -%}
+                                {{
+                                  block.settings.main_desktop_image_1 | 
+                                  image_url: width: img.width | 
+                                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                  fetchpriority: 'auto', 
+                                  class:'Full_image_1_new'
+                                }}
+                              {%- endif -%}
+                              {%- if block.settings.main_desktop_image_2 != blank -%}
+                                {{
+                                  block.settings.main_desktop_image_2 | 
+                                  image_url: width: img.width | 
+                                  image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                  fetchpriority: 'auto', 
+                                  class:'Full_image_2_new'
+                                }}
+                              {%- endif -%} 
+                            </div>
+                            
+                            
+
+                            {% comment %}
+                            {%- if block.settings.main_desktop_image_1 != blank and block.settings.main_desktop_image_2 != blank -%}
+                              <div class="Index_before_after_images_innerdesktop_innertabs_inneritems_mainimage_new">
+                                <div class="Index_before_after_images_innerdesktop_innertabs_inneritems_innerimage_new">
+                                  {%- if block.settings.main_desktop_image_1 != blank -%}
+                                    {{
+                                      block.settings.main_desktop_image_1 | 
+                                      image_url: width: img.width | 
+                                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                      fetchpriority: 'auto', 
+                                      class:'Full_image_1_new'
+                                    }}
+                                  {%- endif -%}
+                                  {%- if block.settings.main_desktop_image_2 != blank -%}
+                                    {{
+                                      block.settings.main_desktop_image_2 | 
+                                      image_url: width: img.width | 
+                                      image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                      fetchpriority: 'auto', 
+                                      class:'Full_image_2_new'
+                                    }}
+                                  {%- endif -%}
+                                </div>
+                              </div>
+                            {%- endif -%}
+                            {% endcomment %}
+
+
+                            
+                            {%- if block.settings.main_product_selected != blank -%}
+                              {%- assign Product_Selected = all_products[block.settings.main_product_selected] -%}
+                              <div class="Index_before_after_images_innerdesktop_innertabs_inneritems_mainproduct_new">
+                                <a href="{{ Product_Selected.url }}">
+                                  <div class="Index_before_after_images_innerdesktop_innertabs_inneritems_innerproduct_new">
+                                    {%- if block.settings.main_product_image != blank or Product_Selected.featured_image != blank -%}
+                                      <div class="Index_before_after_images_innerdesktop_innertabs_inneritems_innerproduct_mainimage_new">
+                                        <div class="Index_before_after_images_innerdesktop_innertabs_inneritems_innerproduct_innerimage_new">
+                                          {%- if block.settings.main_product_image != blank -%}
+                                            {{
+                                              block.settings.main_product_image | 
+                                              image_url: width: img.width | 
+                                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                              fetchpriority: 'auto', 
+                                              class:'Product_image_new'
+                                            }}
+                                          {%- else -%}
+                                            {{
+                                              Product_Selected.featured_image | 
+                                              image_url: width: img.width | 
+                                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                              fetchpriority: 'auto', 
+                                              class:'Product_image_new'
+                                            }}
+                                          {%- endif -%}
+                                        </div>
+                                      </div>
+                                    {%- endif -%}
+                                    {%- if Product_Selected.title != blank or Product_Selected.price != blank -%}
+                                      <div class="Index_before_after_images_innerdesktop_innertabs_inneritems_innerproduct_maintexts_new">
+                                        <div class="Index_before_after_images_innerdesktop_innertabs_inneritems_innerproduct_innertexts_new">
+                                          {%- if Product_Selected.title != blank -%}
+                                            <div class="Index_before_after_images_innerdesktop_innertabs_inneritems_innerproduct_innertexts_title_new">
+                                              {{ Product_Selected.title }}
+                                            </div>
+                                          {%- endif -%}
+                                          {%- if Product_Selected.price != blank -%}
+                                            <div class="Index_before_after_images_innerdesktop_innertabs_inneritems_innerproduct_innertexts_price_new">
+                                              {% render 'price', product: Product_Selected %}
+                                            </div>
+                                          {%- endif -%}
+                                          <div class="Index_before_after_images_innerdesktop_innertabs_inneritems_innerproduct_innertexts_button_new">
+                                            Shop Now
+                                          </div>  
+                                        </div>
+                                      </div>
+                                    {%- endif -%}
+                                  </div>
+                                </a>
+                              </div>
+                            {%- endif -%}
+                          </div>
+                        </div>
+                      </div>
+                    {%- endif -%}  
+                  {%- endfor -%}
+                </div>
+              </div>
+            {%- endif -%}
+          </div>  
+        </div>
+      {%- endif -%}
+      {%- if section.blocks.size > 0 or section.settings.main_detail_text != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank -%}
+        <div class="Index_before_after_images_mainmobile_new">
+          <div class="Index_before_after_images_innermobile_new">
+            {%- if section.settings.main_detail_text != blank or section.settings.main_heading_text != blank or section.settings.main_information_text != blank -%}
+              <div class="Index_before_after_images_innermobile_maindetail_new">
+                <div class="Index_before_after_images_innermobile_innerdetail_new">
+                  {%- if section.settings.main_detail_text != blank -%}
+                    <div class="Index_before_after_images_innermobile_innerdetail_texts_new">
+                      <h3>{{ section.settings.main_detail_text }}</h3>
+                    </div>
+                  {%- endif -%}
+                  {%- if section.settings.main_heading_text != blank -%}
+                    <div class="Index_before_after_images_innermobile_innerdetail_title_new">
+                      <h3>{{ section.settings.main_heading_text }}</h3>
+                    </div>
+                  {%- endif -%}
+                  {%- if section.settings.main_information_text != blank -%}
+                    <div class="Index_before_after_images_innermobile_innerdetail_infos_new">
+                      {{ section.settings.main_information_text }}
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+            {%- if section.blocks.size > 0 -%}
+              <div class="Index_before_after_images_innermobile_mainslider_new">
+                <div class="Index_before_after_images_innermobile_innerslider_new">
+                  <div class="swiper Index_before_after_mobile_slider">
+                    <div class="swiper-wrapper">
+                      {%- for block in section.blocks -%}
+                        {%- if block.settings.main_mobile_image_1 != blank or block.settings.main_mobile_image_2 != blank or block.settings.main_product_selected != blank -%}                      
+                          <div class="swiper-slide Index_before_after_images_innermobile_mainslider_mainboxs_new">
+                            <div class="Index_before_after_images_innermobile_innerdetail_innerboxs_new">
+    
+                              <div class="twentytwenty-container">
+                                {%- if block.settings.main_mobile_image_1 != blank -%}
+                                  {{
+                                    block.settings.main_mobile_image_1 | 
+                                    image_url: width: img.width | 
+                                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                    fetchpriority: 'auto', 
+                                    class:'Full_image_1_new'
+                                  }}
+                                {%- endif -%}
+                                {%- if block.settings.main_mobile_image_2 != blank -%}
+                                  {{
+                                    block.settings.main_mobile_image_2 | 
+                                    image_url: width: img.width | 
+                                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                    fetchpriority: 'auto', 
+                                    class:'Full_image_2_new'
+                                  }}
+                                {%- endif -%} 
+                              </div>
+                              
+                              
+                              {%- if block.settings.main_product_selected != blank -%}
+                                {%- assign Product_Selected = all_products[block.settings.main_product_selected] -%}
+                                <div class="Index_before_after_images_innermobile_mainslider_innerboxs_mainproduct_new">
+                                  <a href="{{ Product_Selected.url }}">
+                                    <div class="Index_before_after_images_innermobile_mainslider_innerboxs_innerproduct_new">
+                                      {%- if block.settings.main_product_image != blank or Product_Selected.featured_image != blank -%}
+                                        <div class="Index_before_after_images_innermobile_mainslider_innerboxs_innerproduct_mainimage_new">
+                                          <div class="Index_before_after_images_innermobile_mainslider_innerboxs_innerproduct_innerimage_new">
+                                            {%- if block.settings.main_product_image != blank -%}
+                                              {{
+                                                block.settings.main_product_image | 
+                                                image_url: width: img.width | 
+                                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                fetchpriority: 'auto', 
+                                                class:'Product_image_new'
+                                              }}
+                                            {%- else -%}
+                                              {{
+                                                Product_Selected.featured_image | 
+                                                image_url: width: img.width | 
+                                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                fetchpriority: 'auto', 
+                                                class:'Product_image_new'
+                                              }}
+                                            {%- endif -%}
+                                          </div>
+                                        </div>
+                                      {%- endif -%}
+                                      {%- if Product_Selected.title != blank or Product_Selected.price != blank -%}
+                                        <div class="Index_before_after_images_innermobile_mainslider_innerboxs_innerproduct_maintexts_new">
+                                          <div class="Index_before_after_images_innermobile_mainslider_innerboxs_innerproduct_innertexts_new">
+                                            {%- if Product_Selected.title != blank -%}
+                                              <div class="Index_before_after_images_innermobile_mainslider_innerboxs_innerproduct_innertexts_title_new">
+                                                {{ Product_Selected.title }}
+                                              </div>
+                                            {%- endif -%}
+                                            {%- if Product_Selected.price != blank -%}
+                                              <div class="Index_before_after_images_innermobile_mainslider_innerboxs_innerproduct_innertexts_price_new">
+                                                {% render 'price', product: Product_Selected %}
+                                              </div>
+                                            {%- endif -%}
+                                          </div>
+                                        </div>
+                                      {%- endif -%}
+                                    </div>
+                                  </a>
+                                </div>
+                              {%- endif -%}
+                            </div>
+                          </div>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </div>
+                    <div class="swiper-button-prev">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.25 5.25L7.5 12L14.25 18.75" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                    <div class="swiper-button-next">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.75 5.25L16.5 12L9.75 18.75" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          </div>  
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Index Before After Images",
+    "class": "Index_before_after_images_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "text",
+        "id": "main_detail_text",
+        "label": "Add Main Detail Text",
+        "default": "Before And After"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Instantly Upgrade<br>Your Bathroom"
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "<p><span>The perfect facelift</span> for new construction, dated, or decaying bathroom mirrors.</p>"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "information",
+        "name": "Information",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "main_desktop_image_1",
+            "label": "Add Main Desktop Before Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_desktop_image_2",
+            "label": "Add Main Desktop After Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_mobile_image_1",
+            "label": "Add Main Mobile Before Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_mobile_image_2",
+            "label": "Add Main Mobile After Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_custom_image",
+            "label": "Add Main Custom Image"
+          },
+          {
+            "type": "product",
+            "id": "main_product_selected",
+            "label": "Add Main Product Selected"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_product_image",
+            "label": "Add Main Product Image",
+            "info": "Note: If you need custom product image."
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Index Before After Images",
+        "blocks": [
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

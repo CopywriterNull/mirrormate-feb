@@ -1,0 +1,54 @@
+{% if product.metafields.custom.measurement_faqs.value != blank %}
+    <div class="frame-faqs {{ class }}">
+        {% unless hideMainAccordion %}
+            <div class="common-faqs" js-main-accordion-item>
+                <div class="accordion-header" js-accordion-header>
+                    <div class="accordion-label">Common Measurement FAQs</div>
+                    <span class="accordion__icon">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 10.25L7.5 5.75L3 10.25" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </div>
+                <div class="accordion-panel main-accordion-panel">
+                    <div class="accordion-panel-inner main-accordion-panel-inner">
+        {% endunless %}
+                        <div class="main-custom-faqs">
+                            {% if hideMainAccordion %}
+                                <h2 class="main-title">Frequently Asked Questions</h2>
+                            {% else %}
+                                <h2 class="main-title">faqs</h2>
+                            {% endif %}
+                            <div class="sub-accordions">
+                                {% for faq in product.metafields.custom.measurement_faqs.value %}
+                                    <div class="sub-accordion">
+                                        <div class="accordion-header" js-accordion-header>
+                                            <div class="accordion-label">{{ faq.question }}</div>
+                                            <span class="accordion-icon">
+                                                <div class="plus-icon">
+                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M12.9497 7.50004H3.05025" stroke="#2D4256" stroke-width="1.5" stroke-linecap="square"/>
+                                                        <path d="M8 2.55029V12.4498" stroke="#2D4256" stroke-width="1.5" stroke-linecap="square"/>
+                                                    </svg>
+                                                </div>
+                                                <div class="minus-icon">
+                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M12.9497 7.50004H3.05025" stroke="#2D4256" stroke-width="1.5" stroke-linecap="square"/>
+                                                    </svg>
+                                                </div>
+                                            </span>
+                                        </div>
+                                        <div class="accordion-panel">
+                                            <div class="accordion-panel-inner">{{ faq.answer | metafield_tag }}</div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+        {% unless hideMainAccordion %}
+                    </div>
+                </div>
+            </div>
+        {% endunless %}
+    </div>
+{% endif %}

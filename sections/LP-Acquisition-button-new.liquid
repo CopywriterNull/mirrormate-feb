@@ -1,0 +1,55 @@
+{%- if section.settings.main_button_text != blank or section.settings.main_button_info != blank -%}
+  <div class="LP_Acquisition_button_main_new" style="background-color: {{ section.settings.main_background_color }}">
+    <div class="page-width">
+      <div class="LP_Acquisition_button_inner_new">
+        <div class="LP_Acquisition_button_detail_new">
+          {%- if section.settings.main_button_text != blank -%}
+            <div class="LP_Acquisition_button_detail_buildbutton_new">
+              <a href="#featured_product" class="button">
+                {{ section.settings.main_button_text }}  
+              </a>
+            </div>
+          {%- endif -%}
+          {%- if section.settings.main_button_info != blank -%}
+            <div class="LP_Acquisition_button_detail_ordersinfos_new">
+              {% assign days = 7 | times: 86400 %}
+              <p>{{ section.settings.main_button_info }} <strong>{{ "now" | date: "%s" | plus: days | date: "%b %d" }}</strong></p>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+  
+{% schema %}
+  {
+    "name": "LP Acquisition Button",
+    "class": "LP_Acquisition_button_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "Build My Frame"
+      },
+      {
+        "type": "textarea",
+        "id": "main_button_info",
+        "label": "Add Main Button Info",
+        "default": "Order today, ships from the U.S. by <strong>Jun 3</strong>"
+      }
+    ],
+    "presets": [
+      {
+        "name": "LP Acquisition Button"
+      }
+    ]
+  }
+{% endschema %}

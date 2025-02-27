@@ -1,0 +1,329 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "background_image_with_text_BN9bmq": {
+      "type": "background-image-with-text",
+      "blocks": {
+        "heading_pMtVGG": {
+          "type": "heading",
+          "settings": {
+            "heading": "Multifamily Kits",
+            "heading_size": "h1"
+          }
+        },
+        "text_4fAFfR": {
+          "type": "text",
+          "settings": {
+            "text": "Transform your unit's bath & kitchen with custom frame or cabinet kits.",
+            "text_style": "body"
+          }
+        },
+        "buttons_YXHTKy": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "request a quote",
+            "button_link_1": "#",
+            "button_style_secondary_1": false,
+            "remove_button_1_mobile": false,
+            "button_label_2": "create an account",
+            "button_link_2": "#",
+            "button_style_secondary_2": true,
+            "remove_button_2_mobile": false
+          }
+        },
+        "text_LbwEQ3": {
+          "type": "text",
+          "settings": {
+            "text": "<a href=\"/account/login\" title=\"/account/login\">have an account? sign in here</a>",
+            "text_style": "caption-with-letter-spacing"
+          }
+        }
+      },
+      "block_order": [
+        "heading_pMtVGG",
+        "text_4fAFfR",
+        "buttons_YXHTKy",
+        "text_LbwEQ3"
+      ],
+      "settings": {
+        "custom_class": "multifamily_kits_banner",
+        "image": "shopify://shop_images/MirrorMate-MP-006_1_b8ccd43f-84b5-4b39-b08d-3deec1bbc1be.png",
+        "image_mobile": "shopify://shop_images/Frame_1000003388.png",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "desktop_content_position": "top-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
+    },
+    "quick_install_kits_eWwjYC": {
+      "type": "quick-install-kits",
+      "settings": {
+        "bgcolor": "#ffffff",
+        "main-heading": "Our Kits Include Everything You Need for Easy Install",
+        "main_desktop_image_1": "shopify://shop_images/Frame_48097429_e4e7a37e-1b79-44db-af7f-3da066cf477c.png",
+        "subtitle": "mirrors",
+        "title": "Frame Existing Mirrors",
+        "description": "<p>Transform your unit's bath & kitchen with MirrorMate’s custom frame kits.</p>",
+        "btn_url": "#",
+        "btn_label": "learn more",
+        "main_desktop_image_12": "shopify://shop_images/Frame_1000006046.png",
+        "subtitle2": "cabinets",
+        "title2": "Reface Existing Cabinets",
+        "description2": "<p>Transform your unit's kitchen & bath with CabinetMate’s custom cabinet refacing kits.</p>",
+        "btn_url2": "#",
+        "btn_label2": "learn more",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "page_keep_images_list_text_BzeLLM": {
+      "type": "Page-keep-images-list-text",
+      "blocks": {
+        "list_text_jNqPzi": {
+          "type": "list-text",
+          "settings": {
+            "list_icon": "shopify://shop_images/swatches_1_cb262a1c-8a35-4672-95e0-6b8cd79c2ee5.svg",
+            "list_text": "Fast, easy, affordable transformation"
+          }
+        },
+        "list_text_94jHPX": {
+          "type": "list-text",
+          "settings": {
+            "list_icon": "shopify://shop_images/swatches_2.svg",
+            "list_text": "Kits include everything for easy install"
+          }
+        },
+        "list_text_TUNPjM": {
+          "type": "list-text",
+          "settings": {
+            "list_icon": "shopify://shop_images/swatches_3.svg",
+            "list_text": "Variety of colors & styles"
+          }
+        },
+        "list_text_BUGDiN": {
+          "type": "list-text",
+          "settings": {
+            "list_icon": "shopify://shop_images/swatches_4.svg",
+            "list_text": "Ships in 5 days - on the turn or in bulk"
+          }
+        },
+        "list_text_FHGNne": {
+          "type": "list-text",
+          "settings": {
+            "list_icon": "shopify://shop_images/swatches_2.png",
+            "list_text": "Custom made to fit"
+          }
+        },
+        "list_text_kjjN83": {
+          "type": "list-text",
+          "settings": {
+            "list_icon": "shopify://shop_images/swatches_6.svg",
+            "list_text": "Guaranteed for 5 years"
+          }
+        }
+      },
+      "block_order": [
+        "list_text_jNqPzi",
+        "list_text_94jHPX",
+        "list_text_TUNPjM",
+        "list_text_BUGDiN",
+        "list_text_FHGNne",
+        "list_text_kjjN83"
+      ],
+      "settings": {
+        "main_background_color": "#2d4256",
+        "left_image_1": "shopify://shop_images/MirrorMate-MP-004_1.png",
+        "left_image_2": "shopify://shop_images/Slate-Slab_c1f803f4-9e89-47d0-8733-39a6280ae41f.png",
+        "main_heading_text": "Keep What You Have",
+        "main_heading_tag": "+ UPGRADE",
+        "main_button_text_1": "reframe mirrors",
+        "main_button_link_1": "/",
+        "main_button_text_2": "reface cabinets",
+        "main_button_link_2": "/"
+      }
+    },
+    "page_trusted_by_logo_slider_NimHnC": {
+      "type": "Page-trusted-by-logo-slider",
+      "blocks": {
+        "logo_image_HUtLwf": {
+          "type": "logo-image",
+          "settings": {
+            "logo": "shopify://shop_images/balfur__beauty.png"
+          }
+        },
+        "logo_image_jB36b6": {
+          "type": "logo-image",
+          "settings": {
+            "logo": "shopify://shop_images/asset.png"
+          }
+        },
+        "logo_image_QpfBfP": {
+          "type": "logo-image",
+          "settings": {
+            "logo": "shopify://shop_images/greystar.png"
+          }
+        },
+        "logo_image_Gyn7Wa": {
+          "type": "logo-image",
+          "settings": {
+            "logo": "shopify://shop_images/cushman_walkfield.png"
+          }
+        },
+        "logo_image_hLdVrA": {
+          "type": "logo-image",
+          "settings": {
+            "logo": "shopify://shop_images/haven.png"
+          }
+        },
+        "logo_image_wJWEqP": {
+          "type": "logo-image",
+          "settings": {
+            "logo": "shopify://shop_images/Independence-realty-trust.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo_image_HUtLwf",
+        "logo_image_jB36b6",
+        "logo_image_QpfBfP",
+        "logo_image_Gyn7Wa",
+        "logo_image_hLdVrA",
+        "logo_image_wJWEqP"
+      ],
+      "settings": {
+        "custom_class": "",
+        "main_background_color": "#f6f3f2",
+        "main_heading_text": "Trusted by",
+        "main_bottom_text": "(and hundreds more!)"
+      }
+    },
+    "units_renovated_sec_new_pT8X8g": {
+      "type": "units_renovated_sec_new",
+      "blocks": {
+        "review_4UdzbT": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/grid1.jpg",
+            "review_show": true,
+            "review_title": "“A great value addition that renters love.”",
+            "review_description": "",
+            "reviewer_name": "robert",
+            "reviewer_designation": "Olympus Property Management"
+          }
+        },
+        "review_48iqeX": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/grid2.jpg",
+            "review_show": true,
+            "review_title": "“A great product with a quick installation. Great customer service and very reliable.”",
+            "review_description": "",
+            "reviewer_name": "edward",
+            "reviewer_designation": "Weidner Property Management"
+          }
+        },
+        "review_4ymDtM": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/grid3.jpg",
+            "review_show": true,
+            "review_title": "“An affordable, simple and effective way that makes a big difference. A must for all unframed mirrors.”",
+            "review_description": "",
+            "reviewer_name": "rod",
+            "reviewer_designation": "Bay Area Build and Design"
+          }
+        },
+        "review_WzNqCh": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/grid4.jpg",
+            "review_show": true,
+            "review_title": "“Their team truly puts out amazing service and a great product. Highly recommend!!!”",
+            "review_description": "",
+            "reviewer_name": "mikell kensmoe",
+            "reviewer_designation": "Miracle Method of Austin"
+          }
+        }
+      },
+      "block_order": [
+        "review_4UdzbT",
+        "review_48iqeX",
+        "review_4ymDtM",
+        "review_WzNqCh"
+      ],
+      "settings": {
+        "bgimg": "shopify://shop_images/review_bg.jpg",
+        "bgimg_mobile": "shopify://shop_images/review_bg_mobile.jpg",
+        "section_color_scheme": "",
+        "main_heading": "Over 100,000+ Units Renovated",
+        "padding_top": 105,
+        "padding_bottom": 105
+      }
+    },
+    "page_2_column_contact_cards_U6bRUw": {
+      "type": "Page-2-column-contact-cards",
+      "blocks": {
+        "contact_card_Ng4UPP": {
+          "type": "contact-card",
+          "settings": {
+            "card_background_color": "#f6f3f2",
+            "card_title": "Mirrormate",
+            "contact_number": "(704)-390-7374",
+            "contact_email": "multifamily@mirrormate.com",
+            "card_image": "shopify://shop_images/image_165.png"
+          }
+        },
+        "contact_card_RjrkYn": {
+          "type": "contact-card",
+          "settings": {
+            "card_background_color": "#f6f3f2",
+            "card_title": "Cabinetmate",
+            "contact_number": "(704) 390-7378",
+            "contact_email": "info@cabinetmate.com",
+            "card_image": "shopify://shop_images/Frame_1000005961.png"
+          }
+        }
+      },
+      "block_order": [
+        "contact_card_Ng4UPP",
+        "contact_card_RjrkYn"
+      ],
+      "settings": {
+        "main_background_color": "#ffffff",
+        "main_heading_text": "Need additional help?",
+        "main_information_text": "<p>For MirrorMate & CabinetMate quotes and free samples of frames & doors, contact Multifamily Sales:</p>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "background_image_with_text_BN9bmq",
+    "quick_install_kits_eWwjYC",
+    "page_keep_images_list_text_BzeLLM",
+    "page_trusted_by_logo_slider_NimHnC",
+    "units_renovated_sec_new_pT8X8g",
+    "page_2_column_contact_cards_U6bRUw"
+  ]
+}

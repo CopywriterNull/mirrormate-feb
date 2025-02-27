@@ -1,0 +1,443 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "index_image_video_banner_3wQM7f": {
+      "type": "Index-image-video-banner",
+      "blocks": {
+        "sub_heading_Ct4e8P": {
+          "type": "sub-heading",
+          "settings": {
+            "sub_heading": "Our Story"
+          }
+        },
+        "heading_kXGT6F": {
+          "type": "heading",
+          "settings": {
+            "heading": "Transforming Bathroom Mirrors for Over 20 Years"
+          }
+        },
+        "text_kAUk7f": {
+          "type": "text",
+          "settings": {
+            "text": "The MirrorMate DIY frame kit was invented to help homeowners easily and affordably add a frame to their existing, wall-mounted mirrors."
+          }
+        }
+      },
+      "block_order": [
+        "sub_heading_Ct4e8P",
+        "heading_kXGT6F",
+        "text_kAUk7f"
+      ],
+      "settings": {
+        "custom_class_name": "",
+        "custom_content_width_class_name": "our_story_banner",
+        "background_gradient_position": "bottom-top",
+        "main_mp4_video_desktop": "shopify://files/videos/Meet The Team Video_highres.webm",
+        "main_mp4_video_mobile": "shopify://files/videos/-60ee-4022-8e36-cf718f9ce49e (1).mp4",
+        "image_height": "large",
+        "desktop_content_position": "bottom-left",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left"
+      }
+    },
+    "index_quote_images_new_PWcWBe": {
+      "type": "Index-quote-images-new",
+      "settings": {
+        "main_background_color": "#ffffff",
+        "main_quote_text": "“Every frame is custom made to order, ensuring <span>unparalleled quality</span> and a personal touch.”",
+        "main_quote_author_image": "shopify://shop_images/image_166.png",
+        "main_quote_author": "Kevin Button",
+        "main_quote_author_designation": "Owner",
+        "main_left_top_image": "shopify://shop_images/22_5a089fd4-815c-480d-af94-721c444beca9.png",
+        "main_left_bottom_image": "shopify://shop_images/44_1972d9d3-1e86-4771-814e-0ac08f931ec7.png",
+        "main_right_top_image": "shopify://shop_images/33_9f9459b1-707c-4427-a179-2236b78942d2.png",
+        "main_right_bottom_image": "shopify://shop_images/55.png"
+      }
+    },
+    "index_marquee_detail_list_new_3tfVxC": {
+      "type": "Index-marquee-detail-list-new",
+      "blocks": {
+        "information_H4LGW4": {
+          "type": "information",
+          "settings": {
+            "title": "<p>Over 10k+ 5-Star Reviews</p>"
+          }
+        },
+        "information_pnj3Gp": {
+          "type": "information",
+          "settings": {
+            "title": "<p>5 year guarantee</p>"
+          }
+        },
+        "information_WVy8T8": {
+          "type": "information",
+          "settings": {
+            "title": "<p>Over 10k+ 5-Star Reviews</p>"
+          }
+        },
+        "information_K87bCK": {
+          "type": "information",
+          "settings": {
+            "title": "<p>5 year guarantee</p>"
+          }
+        }
+      },
+      "block_order": [
+        "information_H4LGW4",
+        "information_pnj3Gp",
+        "information_WVy8T8",
+        "information_K87bCK"
+      ],
+      "settings": {
+        "main_background_color": "#2d4256",
+        "main_information_color": "#ffffff"
+      }
+    },
+    "index_meet_image_all_text_new_nKHjyH": {
+      "type": "Index-meet-image-all-text-new",
+      "settings": {
+        "custom_class": "our_story",
+        "main_background_color": "#f6f3f2",
+        "main_desktop_image": "shopify://shop_images/Group_05_1_1_2ed02315-7392-4bc6-9b26-4f483fef8e78.png",
+        "main_mobile_image": "shopify://shop_images/Group_05_1_1_2ed02315-7392-4bc6-9b26-4f483fef8e78.png",
+        "main_outside_custom_logo": "shopify://shop_images/Vector10.svg",
+        "main_inside_custom_logo": "shopify://shop_images/vector11.svg",
+        "keep_background_color_outside_custom_logo": true,
+        "keep_content_left": false,
+        "main_subtext": "",
+        "main_subeading_text": "",
+        "main_heading_text": "Our Story",
+        "main_information_text": "<p>As pioneers and leaders in the mirror framing industry, we are excited to enhance your space with a beautifully crafted frame that you'll absolutely love.</p><p><span>We’re a small but passionate team,</span> committed to exceeding the expectations of our customers. Whether you need help choosing a style, installing your new frame, or anything else, we’re always just a phone call away. With every frame sold we welcome a new member to the MirrorMate family, and we can't wait to have you join us! </p>",
+        "main_information_mobile_text": "<p>As pioneers and leaders in the mirror framing industry, we are excited to enhance your space with a beautifully crafted frame that you'll absolutely love.</p><p><span>We’re a small but passionate team,</span> committed to exceeding the expectations of our customers. Whether you need help choosing a style, installing your new frame, or anything else, we’re always just a phone call away. With every frame sold we welcome a new member to the MirrorMate family, and we can't wait to have you join us! </p>",
+        "main_button_text": "Shop frame kits",
+        "main_button_link": "shopify://collections/build-my-frame"
+      }
+    },
+    "index_story_image_all_text_6B7fDe": {
+      "type": "Index-story_image-all-text",
+      "blocks": {
+        "image_video_block_FcHgQY": {
+          "type": "image_video_block",
+          "settings": {
+            "main_desktop_image": "shopify://shop_images/image_144.png",
+            "main_mobile_image": "shopify://shop_images/Frame_1000003326-min.jpg",
+            "custom_logo_only_mobile": true,
+            "remove_image_custom_logo_mobile": false,
+            "main_outside_custom_logo": "shopify://shop_images/Vector.svg",
+            "main_inside_custom_logo": "shopify://shop_images/icon-3.svg"
+          }
+        },
+        "image_video_block_WMiPnH": {
+          "type": "image_video_block",
+          "settings": {
+            "main_desktop_image": "shopify://shop_images/image_145_2f47695c-9d21-4930-b7a1-037cd6e2d520.png",
+            "main_mobile_image": "shopify://shop_images/Frame_1000005334-min_52c169c4-a670-4956-814a-c02d0ea6f8a3.jpg",
+            "custom_logo_only_mobile": false,
+            "remove_image_custom_logo_mobile": true,
+            "main_outside_custom_logo": "shopify://shop_images/Vector.svg",
+            "main_inside_custom_logo": "shopify://shop_images/icon-3.svg"
+          }
+        }
+      },
+      "block_order": [
+        "image_video_block_FcHgQY",
+        "image_video_block_WMiPnH"
+      ],
+      "disabled": true,
+      "settings": {
+        "custom_class_name": "",
+        "main_background_color": "#f6f3f2",
+        "main_heading_text": "Hear Our Story",
+        "main_information_text": "<p>As pioneers and leaders in the mirror framing industry, we are excited to enhance your space with a beautifully crafted frame that you'll absolutely love.</p><p><span>We’re a small but passionate team,</span> committed to exceeding the expectations of our customers. Whether you need help choosing a style, installing your new frame, or anything else, we’re always just a phone call away. With every frame sold, we welcome a new member to the MirrorMate family, and we can't wait to have you join us! </p>",
+        "main_information_mobile_text": "<p>As pioneers and leaders in the mirror framing industry, we are excited to enhance your space with a beautifully crafted frame that you'll absolutely love.</p><p><span>We’re a small but passionate team,</span> committed to exceeding the expectations of our customers. Whether you need help choosing a style, installing your new frame, or anything else, we’re always just a phone call away. With every frame sold we welcome a new member to the MirrorMate family, and we can't wait to have you join us! </p>",
+        "main_button_text": "Shop frame kits",
+        "main_button_link": "/"
+      }
+    },
+    "index_tab_content_with_image_new_4mHbN9": {
+      "type": "Index-tab-content-with-image-new",
+      "blocks": {
+        "tab_image_content_iwYjqK": {
+          "type": "tab-image-content",
+          "settings": {
+            "tab_icon_image": "shopify://shop_images/Frame_1000005964.svg",
+            "tab_sub_heading": "",
+            "tab_heading": "Designed to fit all rectangular mirrors",
+            "tab_information_text": "<p>Mirrormate frames are compatible with with almost all rectangular<br> mirrors, including those that rest on a backsplash or touch a side wall,<br> and are even designed to conceal any existing clips and channels.</p>",
+            "tab_main_image": "shopify://shop_images/img1.png",
+            "tab_main_mobile_image": "shopify://shop_images/123_9c3d9e7d-68d6-496a-a3a8-3d0687a1ea92.png"
+          }
+        },
+        "tab_image_content_D8Hcz3": {
+          "type": "tab-image-content",
+          "settings": {
+            "tab_icon_image": "shopify://shop_images/icon-5.svg",
+            "tab_sub_heading": "",
+            "tab_heading": "Easy to install (less than 30 minutes)",
+            "tab_information_text": "<p>We've all struggled with products that promise easy assembly but don't<br> deliver. Our DIY frame kits include everything you need to build your <br>frame—you just provide a small hammer. </p>",
+            "tab_main_image": "shopify://shop_images/img2.png",
+            "tab_main_mobile_image": "shopify://shop_images/Frame_1000006019.png"
+          }
+        },
+        "tab_image_content_Lc8Ef4": {
+          "type": "tab-image-content",
+          "settings": {
+            "tab_icon_image": "shopify://shop_images/icon-2.svg",
+            "tab_sub_heading": "",
+            "tab_heading": "Made from non-warping material",
+            "tab_information_text": "<p>We make our frames from an environmentally-responsible, strong, non-<br>warping wood-base, and finish them with a moisture-wicking<br> decorative wrap and seal, designed specifically for the bathroom.</p>",
+            "tab_main_image": "shopify://shop_images/img3.png"
+          }
+        },
+        "tab_image_content_WHdk4H": {
+          "type": "tab-image-content",
+          "settings": {
+            "tab_icon_image": "shopify://shop_images/icon-3.svg",
+            "tab_sub_heading": "",
+            "tab_heading": "Crafted in Charlotte, North Carolina",
+            "tab_information_text": "<p>Our frames are all made to order, built with unparalleled quality and<br> have been used for over a decade (even in high traffic settings as<br> hotels) – standing the test of time.</p>",
+            "tab_main_image": "shopify://shop_images/img4.png"
+          }
+        },
+        "tab_image_content_jnziHc": {
+          "type": "tab-image-content",
+          "settings": {
+            "tab_icon_image": "shopify://shop_images/Frame_1000005263.svg",
+            "tab_sub_heading": "",
+            "tab_heading": "Backed by a 5-year guarantee",
+            "tab_information_text": "<p>Your MirrorMate frame fits or we replace it! Plus, our frames come with <br>a 5-year warranty against warping and finish degradation, and are<br>fully returnable.</p>",
+            "tab_main_image": "shopify://shop_images/img5.png",
+            "tab_main_mobile_image": "shopify://shop_images/Frame_1000006022.png"
+          }
+        }
+      },
+      "block_order": [
+        "tab_image_content_iwYjqK",
+        "tab_image_content_D8Hcz3",
+        "tab_image_content_Lc8Ef4",
+        "tab_image_content_WHdk4H",
+        "tab_image_content_jnziHc"
+      ],
+      "settings": {
+        "main_background_color": "#ffffff",
+        "main_heading_desktop": "",
+        "main_heading_Mobile": "The MirrorMate Difference"
+      }
+    },
+    "index_detail_logos_slider_new_AEFKae": {
+      "type": "Index-detail-logos-slider-new",
+      "blocks": {
+        "information_3n7H4L": {
+          "type": "information",
+          "settings": {
+            "title": "<p>“These made-to-order frames can be installed in less than 20 minutes and you won’t even need to take the mirror off the wall.”</p>",
+            "main_custom_image": "shopify://shop_images/11.png"
+          }
+        },
+        "information_Vxi4DU": {
+          "type": "information",
+          "settings": {
+            "title": "<p>“Unlike others, these are precut and have adhesive backing so they’ll stick around your existing mirror.”</p>",
+            "main_custom_image": "shopify://shop_images/12.png"
+          }
+        },
+        "information_CgwAer": {
+          "type": "information",
+          "settings": {
+            "title": "<p>“It’s removable, but so good-looking that your landlord may ask you to leave it.”</p>",
+            "main_custom_image": "shopify://shop_images/13.png"
+          }
+        },
+        "information_tTGUgE": {
+          "type": "information",
+          "settings": {
+            "title": "<p>“Dress up an unframed, wall-mounted mirror with easy-to-install trim. Available in more than 65 styles and colors.”</p>",
+            "main_custom_image": "shopify://shop_images/14.png"
+          }
+        },
+        "information_kmMiDP": {
+          "type": "information",
+          "settings": {
+            "title": "<p>“Tired of looking at that basic bathroom mirror? The online shop MirrorMate will make a custom frame that’s ridiculously easy to install.”</p>",
+            "main_custom_image": "shopify://shop_images/15.png"
+          }
+        }
+      },
+      "block_order": [
+        "information_3n7H4L",
+        "information_Vxi4DU",
+        "information_CgwAer",
+        "information_tTGUgE",
+        "information_kmMiDP"
+      ],
+      "settings": {
+        "main_background_color": "#2d4256",
+        "main_heading_text": "In The Press"
+      }
+    },
+    "index_innovation_image_text_new_xbG8gj": {
+      "type": "Index-innovation-image-text-new",
+      "blocks": {
+        "design_frame_knNFLC": {
+          "type": "design-frame",
+          "settings": {
+            "frame_image": "shopify://shop_images/i1.png",
+            "frame_heading_text": "Conceals mirror clips or metal strip",
+            "frame_information_text": "<p>We’re the only one on the market with a patented design that allows your frames to sit snugly over metal clips or the metal strip attached to most mirrors.</p>"
+          }
+        },
+        "design_frame_YBeM4V": {
+          "type": "design-frame",
+          "settings": {
+            "frame_image": "shopify://shop_images/i2.png",
+            "frame_heading_text": "Adheres directly to your mirror",
+            "frame_information_text": "<p>Our frames stick right on to your mirror, so no complicated installation is required. Our beginner-friendly frame kits make this a true DIY project!</p>"
+          }
+        },
+        "design_frame_aj4pBE": {
+          "type": "design-frame",
+          "settings": {
+            "frame_image": "shopify://shop_images/i3.png",
+            "frame_heading_text": "No clearance required",
+            "frame_information_text": "<p>If your mirror rests up against a backsplash or a wall, don’t worry, our frames are designed so that no additional clearance is required.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "design_frame_knNFLC",
+        "design_frame_YBeM4V",
+        "design_frame_aj4pBE"
+      ],
+      "settings": {
+        "main_background_color": "#ffffff",
+        "main_image": "shopify://shop_images/image_163.png",
+        "main_sub_title": "mirrormate innovation",
+        "main_heading_text": "Our Unique <br>Patented Design",
+        "main_button_text": "Build my frame"
+      }
+    },
+    "page_get_in_touch_kPcfCQ": {
+      "type": "Page-Get-in-touch",
+      "blocks": {
+        "contact_T6ptzp": {
+          "type": "contact",
+          "settings": {
+            "contact_icon": "shopify://shop_images/icon-park-outline_message.png",
+            "contact_text": "Chat with us",
+            "contact_link": "shopify://pages/contact-us"
+          }
+        },
+        "contact_XTzcHb": {
+          "type": "contact",
+          "settings": {
+            "contact_icon": "shopify://shop_images/ph_phone-light_1713bb13-c828-4bc1-b17a-d54f9c9739d3.png",
+            "contact_text": "(866) 304-6283",
+            "contact_link": "tel:(866) 304-6283"
+          }
+        },
+        "contact_UQTjyF": {
+          "type": "contact",
+          "settings": {
+            "contact_icon": "shopify://shop_images/carbon_email.png",
+            "contact_text": "info@mirrormate.com",
+            "contact_link": "mailto:info@mirrormate.com"
+          }
+        }
+      },
+      "block_order": [
+        "contact_T6ptzp",
+        "contact_XTzcHb",
+        "contact_UQTjyF"
+      ],
+      "settings": {
+        "main_background_color": "#f6f3f2",
+        "main_heading_text": "Get in touch",
+        "main_information_text": "<p>Have a question about frames, mirrors, or something else?</p>",
+        "form_title": "Want to hear more from us?",
+        "form_bottom_text": "<p>*By completing this form you are signing up to receive our emails and can unsubscribe at any time.</p>"
+      }
+    },
+    "page_image_with_text_K73TXr": {
+      "type": "Page-image-with-text",
+      "settings": {
+        "main_desktop_image": "shopify://shop_images/1e25b8ebac936d8cee0159ae811974a7.gif",
+        "main_mobile_image": "shopify://shop_images/1e25b8ebac936d8cee0159ae811974a7.gif",
+        "main_outside_custom_logo": "shopify://shop_images/Vector_00ab749a-ce50-442e-91ea-5e1569378681.svg",
+        "main_inside_custom_logo": "shopify://shop_images/swatches_10.svg",
+        "keep_background_color_outside_custom_logo": true,
+        "review_image_desktop": "shopify://shop_images/Frame_48097882_92caa575-9b82-4a1a-a6bc-e00fe12bf784.svg",
+        "review_image_mobile": "shopify://shop_images/Frame_48097882-1.svg",
+        "review_text": "Over 9102+ 5-star reviews",
+        "main_heading_text": "Transform Your Mirror Today",
+        "main_button_text": "shop all",
+        "main_button_link": "shopify://collections/all",
+        "main_button_text_mobile": "shop all"
+      }
+    },
+    "index_image_video_banner_J6yatc": {
+      "type": "Index-image-video-banner",
+      "blocks": {
+        "review_3CmHpY": {
+          "type": "review",
+          "settings": {
+            "review_image": "shopify://shop_images/Frame_48097882_2f18e984-3c5b-484e-ad6b-d568f750f07c.svg",
+            "review_text": "Over 9102+ 5-star reviews"
+          }
+        },
+        "heading_4eyTz4": {
+          "type": "heading",
+          "settings": {
+            "heading": "Transform Your Mirror Today"
+          }
+        },
+        "buttons_xgtEry": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Shop Now",
+            "button_link_1": ""
+          }
+        }
+      },
+      "block_order": [
+        "review_3CmHpY",
+        "heading_4eyTz4",
+        "buttons_xgtEry"
+      ],
+      "disabled": true,
+      "settings": {
+        "custom_class_name": "transform_mirror",
+        "custom_content_width_class_name": "medium_content_width",
+        "background_gradient_position": "left-right",
+        "main_banner_image_desktop": "shopify://shop_images/1e25b8ebac936d8cee0159ae811974a7.gif",
+        "main_banner_image_mobile": "shopify://shop_images/mo.png",
+        "main_outside_custom_logo": "shopify://shop_images/Vector_00ab749a-ce50-442e-91ea-5e1569378681.svg",
+        "main_inside_custom_logo": "shopify://shop_images/swatches_1.svg",
+        "image_height": "large",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left"
+      }
+    }
+  },
+  "order": [
+    "index_image_video_banner_3wQM7f",
+    "index_quote_images_new_PWcWBe",
+    "index_marquee_detail_list_new_3tfVxC",
+    "index_meet_image_all_text_new_nKHjyH",
+    "index_story_image_all_text_6B7fDe",
+    "index_tab_content_with_image_new_4mHbN9",
+    "index_detail_logos_slider_new_AEFKae",
+    "index_innovation_image_text_new_xbG8gj",
+    "page_get_in_touch_kPcfCQ",
+    "page_image_with_text_K73TXr",
+    "index_image_video_banner_J6yatc"
+  ]
+}

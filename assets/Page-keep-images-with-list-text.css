@@ -1,0 +1,52 @@
+.Page_keep_images_list_text_main { padding: 96px 0; }
+.Page_keep_images_list_text_sides { display: flex; gap: 32px; justify-content: space-between; align-items: center; }
+.Page_keep_images_list_text_leftmain { width: 40.964%; }
+.Page_keep_images_list_text_rightmain { width: 51.3%; }
+.Page_keep_images_list_text_left_images_container { display: flex; gap: 16px; }
+.Page_keep_images_list_text_left_single_image { aspect-ratio: 0.93286; width: calc(50% - 8px); }
+.Page_keep_images_list_text_left_single_image img { width: 100%; height: 100% !important; object-fit: cover; display: block; border-radius: 12px; }
+.Page_keep_images_list_text_right_main_heading_parent { position: relative; width: fit-content; }
+.Page_keep_images_list_text_right_main_heading_text h2 { color: #FFF; line-height: 106%; }
+.Page_keep_images_list_text_right_main_heading_tag { position: absolute; top: -20.31px; right: -59px; rotate: 7.38deg; margin-bottom: 0; }
+.Page_keep_images_list_text_right_main_list_text_container { padding-top: 24px; display: flex; flex-wrap: wrap; gap: 12px 35px; }
+.Page_keep_images_list_text_right_main_list_text_main { display: flex; gap: 12px; align-items: center; width: calc(50% - 17.5px); }
+.Page_keep_images_list_text_right_main_list_icon { width: 32px; aspect-ratio: 1; }
+.Page_keep_images_list_text_right_main_list_icon img { width: 100%; height: 100% !important; object-fit: cover; display: block; }
+.Page_keep_images_list_text_right_main_list_text p { font-size: 16px; line-height: 125%; font-weight: 600; margin: 0; color: #FFF; } 
+.Page_keep_images_list_text_right_buttons_parent { padding-top: 32px; display: flex; gap: 12px; }
+.Page_keep_images_list_text_right_buttons_parent a { min-width: 244px; text-align: center; display: block; text-decoration: none; font-size: 16px; line-height: 135%; font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 0.32px; border-radius: 100px; }
+.Page_keep_images_list_text_right_buttons_parent .right_button_1 { background-color: #FFF; padding: 13px; color: #2D4256; }
+.Page_keep_images_list_text_right_buttons_parent .right_button_2 { background-color: transparent; padding: 11px 13px; color: #FFF; border: 2px solid #FFF; }
+
+
+@media (max-width: 1180px){
+  .Page_keep_images_list_text_rightmain { width: 55%; }
+  .Page_keep_images_list_text_left_single_image { aspect-ratio: 0.7; }
+}
+
+@media (max-width: 989px){
+  .Page_keep_images_list_text_main { padding: 56px 0; }
+  .Page_keep_images_list_text_sides { flex-direction: column; gap: 32px; }
+  .Page_keep_images_list_text_leftmain, .Page_keep_images_list_text_rightmain { width: 100%; }
+  .Page_keep_images_list_text_left_single_image { aspect-ratio: 1.3; }
+  .Page_keep_images_list_text_right_main_heading_tag { padding: 4px 8px; top: -30.03px; right: -24.14px; }
+}
+
+@media (max-width: 640px){
+  .Page_keep_images_list_text_left_images_container { gap: 12px; }
+  .Page_keep_images_list_text_left_single_image { width: calc(50% - 6px); aspect-ratio: 1.01886; }
+  .Page_keep_images_list_text_right_main_heading_text h2 { line-height: 115%; }
+  .Page_keep_images_list_text_right_main_list_text_container { padding-top: 16px; gap: 10px; }
+  .Page_keep_images_list_text_right_main_list_text_main { width: 100%; }
+  .Page_keep_images_list_text_right_main_list_icon { width: 24px; }
+  .Page_keep_images_list_text_right_main_list_text p { line-height: 135%; font-weight: 400; }
+  .Page_keep_images_list_text_right_buttons_parent { flex-direction: column; }
+  .Page_keep_images_list_text_right_buttons_parent a { min-width: 100%; }
+  .Page_keep_images_list_text_right_main_list_text_main:nth-child(1) { order: 0; }
+  .Page_keep_images_list_text_right_main_list_text_main:nth-child(2) { order: 3; }
+  .Page_keep_images_list_text_right_main_list_text_main:nth-child(3) { order: 1; }
+  .Page_keep_images_list_text_right_main_list_text_main:nth-child(4) { order: 4; }
+  .Page_keep_images_list_text_right_main_list_text_main:nth-child(5) { order: 2; }
+  .Page_keep_images_list_text_right_main_list_text_main:nth-child(6) { order: 5; }
+  
+}

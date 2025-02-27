@@ -1,0 +1,78 @@
+<product-info
+  id="MainProduct-{{ section.id }}"
+  class="section-{{ section.id }}-padding gradient"
+  data-section="{{ section.id }}"
+  data-product-id="{{ product.id }}"
+  data-update-url="true"
+  data-url="{{ product.url }}"
+>
+
+    {%- assign product_form_id = 'product-form-' | append: section.id -%}
+    <div class="hidden"> 
+        {%- unless product.has_only_default_variant -%}
+            <variant-selects
+            id="variant-selects-{{ section.id }}"
+            data-section="{{ section.id }}"
+            >
+            {%- for option in product.options_with_values -%}
+                {%- liquid
+                    assign isSizeOption = false
+                    if option.name == 'Size' or option.name == 'Price'
+                        assign isHideOption = true
+                    endif
+                    if option.name == 'Size'
+                        assign isSizeOption = true
+                    endif
+                -%}
+
+                <fieldset class="js product-form__input product-form__input--pill{% if isHideOption %} hide__option{% endif %}" {% if isSizeOption %} js-size-fieldset {% endif %}{% if option.name == 'Price' %} js-price-fieldset {% endif %} {% if option.name == 'Width' %} js-width-fieldset {% endif %}>
+                    <legend class="form__label">{{ option.name }}</legend>
+                    {% render 'product-variant-options',
+                    product: product,
+                    option: option,
+                    picker_type: 'button'
+                    %}
+                </fieldset>
+            {%- endfor -%}
+        
+            <script type="application/json" data-selected-variant>{{ product.selected_or_first_available_variant | json }}</script>
+            </variant-selects>
+        {%- endunless -%}
+    
+        {%- assign pick_up_availabilities = product.selected_or_first_available_variant.store_availabilities
+        | where: 'pick_up_enabled', true
+        -%}
+
+        <pickup-availability
+        class="product__pickup-availabilities quick-add-hidden"
+        {% if product.selected_or_first_available_variant.available and pick_up_availabilities.size > 0 %}
+            available
+        {% endif %}
+        data-root-url="{{ routes.root_url }}"
+        data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+        data-has-only-default-variant="{{ product.has_only_default_variant }}"
+        data-product-page-color-scheme="gradient color-{{ section.settings.color_scheme }}"
+        >
+        <template>
+            <pickup-availability-preview class="pickup-availability-preview">
+            {% render 'icon-unavailable' %}
+            <div class="pickup-availability-info">
+                <p class="caption-large">{{ 'products.product.pickup_availability.unavailable' | t }}</p>
+                <button class="pickup-availability-button link link--text underlined-link">
+                {{ 'products.product.pickup_availability.refresh' | t }}
+                </button>
+            </div>
+            </pickup-availability-preview>
+        </template>
+        </pickup-availability>
+
+        {% assign user_type = customer.metafields.SAGE.PriceLevel | downcase %}
+
+        {% if user_type == '' or user_type == '-' or user_type == 'none' %}
+            {% assign user_type = "r" %}
+        {% endif %}
+        {% render "build-my-frame", dataType: "product", user_type: user_type %}
+    </div>
+
+    {% render "frame-model", state: "is-open", blocks: section.blocks, sectionId: section.id, formId: product_form_id %}
+</product-info>

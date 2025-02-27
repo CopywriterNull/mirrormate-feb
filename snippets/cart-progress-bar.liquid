@@ -1,0 +1,23 @@
+{% if settings.shipping_threshold != blank %}
+    {% assign cart_total = cart.total_price | money | remove: ".00" | remove: "," | remove: cart.currency.symbol | times: 1 %}
+    {% assign shipping_threshold = settings.shipping_threshold | remove: "," | remove: cart.currency.symbol | times: 1 %}
+
+    {% if cart.empty? %}
+        {% assign threshold_label = "Order 2+ frames to unlock free shipping" %}
+        {% assign progress_percentage = 0 %}
+    {% elsif cart_total < shipping_threshold %}
+        {% assign threshold_price = shipping_threshold | minus: cart_total %}
+        {% capture threshold_label %}You are {{ cart.currency.symbol }}{{ threshold_price }} away to unlock free shipping{% endcapture %}
+        {% assign progress_percentage = cart_total | times: 100.0 | divided_by: shipping_threshold %}
+    {% elsif cart_total >= shipping_threshold %}
+        {% assign threshold_label = "🎉 CONGRATS! YOU unlocked FREE SHIPPING" %}
+        {% assign progress_percentage = 100 %}
+    {% endif %}
+
+    <div class="cart-progress-bar">
+        <div class="progress-bar-label">{{ threshold_label }}</div>
+        <div class="progress__bar">
+            <div class="progress-bar-meter" style="width: {{ progress_percentage }}%"></div>
+        </div>
+    </div>
+{% endif %}

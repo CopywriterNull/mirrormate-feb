@@ -1,0 +1,37 @@
+<div class="cart-upsell">
+    <h3 class="upsell-title">{{ title }}</h3>
+    <div class="upsell-grid">
+        {% assign counter = 0 %}
+        {% for upsell_product in upsellCollection.products %}
+            {% assign isExist = false %}
+            {% for item in cart.items %}
+                {% if item.product_id == upsell_product.id %}
+                    {% assign isExist = true %}
+                {% endif %}
+            {% endfor %}
+            
+            {% if upsell_product.available and isExist == false %}
+              {% assign counter = counter | plus: 1 %}
+              {% if counter <= 3 %}
+                <div class="upsell-item">
+                    <a href="{{ upsell_product.url }}" class="product__img">
+                        <img src="{{ upsell_product.featured_image | image_url: width: '300x' }}" alt="{{ upsell_product.featured_image.alt }}">
+                    </a>
+                    <div class="product__details">
+                        <div class="product__contents">
+                            <div class="product__reviews">
+                                {% render 'okendo-reviews-product-rating-summary', product: upsell_product %}
+                            </div>
+                            <h4 class="product_title">{{ upsell_product.title }}</h4>
+                            <span class="product__price">
+                                {% if product.price_varies %}from{% endif %} {{ upsell_product.price | money | remove: '.00' }}
+                            </span>
+                        </div>
+                        {%- render 'frame-button', requestType: "index", frameType: "regular", enableLoading: true, btnLabel: "Shop Now", product: upsell_product, class:"button_border_new" -%}
+                    </div>
+                </div>
+              {% endif %}    
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,430 @@
+{% if shop.metaobjects.build_my_frame.values_count > 0 %}
+    {% assign buildMyFrame = shop.metaobjects.build_my_frame.values | first %}
+    {% assign colorsCollection = buildMyFrame.colors.value %}
+    {% assign stylesCollection = buildMyFrame.styles.value %}
+
+    {% assign colorsFilter = "" %}
+    {% assign stylesFilter = "" %}
+
+    {% for color_product in colorsCollection.products %}
+        {% assign size_option = color_product.options_with_values | where: "name", "Size" | first %}
+
+        {% if user_type == "r" %}
+            {% assign hasRetailSize = false %}
+            {% for value in size_option.values %}
+                {% assign value_handle = value.name | handleize %}
+                {% if value_handle contains "powder" %}
+                    {% assign hasRetailSize = true %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+
+            {% if hasRetailSize %}
+                {% assign initalColorProduct = color_product %}
+                {% break %}
+            {% endif %}
+        {% else %}
+            {% assign hasLFSize = false %}
+            {% for value in size_option.values %}
+                {% assign value_handle = value.name | handleize %}
+                {% if value_handle contains "lf" %}
+                    {% assign hasLFSize = true %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+
+            {% if hasLFSize %}
+                {% assign initalColorProduct = color_product %}
+                {% break %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    {% for color_product in colorsCollection.products %}
+        {% assign swatchColor = color_product.metafields.custom.filter_swatch_color_sb | strip | handleize %}
+        {% assign size_option = color_product.options_with_values | where: "name", "Size" | first %}
+
+        {% if user_type == "r" %}
+            {% assign hasRetailSize = false %}
+            {% for value in size_option.values %}
+                {% assign value_handle = value.name | handleize %}
+                {% if value_handle contains "powder" %}
+                    {% assign hasRetailSize = true %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+
+            {% if hasRetailSize %}
+                {% unless colorsFilter contains swatchColor %}
+                    {% assign colorsFilter = colorsFilter | append: swatchColor | append: ',' %}
+                {% endunless %}
+            {% endif %}
+        {% else %}
+            {% assign hasLFSize = false %}
+            {% for value in size_option.values %}
+                {% assign value_handle = value.name | handleize %}
+                {% if value_handle contains "lf" %}
+                    {% assign hasLFSize = true %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+
+            {% if hasLFSize %}
+                {% unless colorsFilter contains swatchColor %}
+                    {% assign colorsFilter = colorsFilter | append: swatchColor | append: ',' %}
+                {% endunless %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    {% for style_product in stylesCollection.products %}
+        {% assign swatchStyle = style_product.metafields.custom.swatch_style | strip | handleize %}
+        {% assign size_option = style_product.options_with_values | where: "name", "Size" | first %}
+
+        {% if user_type == "r" %}
+            {% assign hasRetailSize = false %}
+            {% for value in size_option.values %}
+                {% assign value_handle = value.name | handleize %}
+                {% if value_handle contains "powder" %}
+                    {% assign hasRetailSize = true %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+
+            {% if hasRetailSize %}
+                {% unless stylesFilter contains swatchStyle %}
+                    {% assign stylesFilter = stylesFilter | append: swatchStyle | append: ',' %}
+                {% endunless %}
+            {% endif %}
+        {% else %}
+            {% assign hasLFSize = false %}
+            {% for value in size_option.values %}
+                {% assign value_handle = value.name | handleize %}
+                {% if value_handle contains "lf" %}
+                    {% assign hasLFSize = true %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+
+            {% if hasLFSize %}
+                {% unless stylesFilter contains swatchStyle %}
+                    {% assign stylesFilter = stylesFilter | append: swatchStyle | append: ',' %}
+                {% endunless %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    {% for style_product in stylesCollection.products %}
+        {% assign size_option = style_product.options_with_values | where: "name", "Size" | first %}
+
+        {% if user_type == "r" %}
+            {% assign hasRetailSize = false %}
+            {% for value in size_option.values %}
+                {% assign value_handle = value.name | handleize %}
+                {% if value_handle contains "powder" %}
+                    {% assign hasRetailSize = true %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+
+            {% if hasRetailSize %}
+                {% assign initalStyleProduct = style_product %}
+                {% break %}
+            {% endif %}
+        {% else %}
+            {% assign hasLFSize = false %}
+            {% for value in size_option.values %}
+                {% assign value_handle = value.name | handleize %}
+                {% if value_handle contains "lf" %}
+                    {% assign hasLFSize = true %}
+                    {% break %}
+                {% endif %}
+            {% endfor %}
+
+            {% if hasLFSize %}
+                {% assign initalStyleProduct = style_product %}
+                {% break %}
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+    {% if dataType == "product" or template.name == "product" %}
+        {% assign initalColorProduct = product %}
+        {% assign initalStyleProduct = product %}
+    {% endif %}
+
+    {% assign colorsFilter = colorsFilter | split: "," %}
+    {% assign stylesFilter = stylesFilter | split: "," %}
+
+    <div class="frame-grid build-my-frame" data-step="0" {% unless dataType == "product" %}js-frame-step {% endunless %} {% if dataType == "product" %}js-ajax-build-my-frame {% endif %} js-build-my-frame-step>
+        <div class="alpha">
+            <div class="media-gallery" js-media-gallery>
+                <div class="swiper-wrapper">
+                    {% for image in initalColorProduct.images %}
+                        <div class="media-slide swiper-slide">
+                            <div class="product__media">
+                                <img src="{{ image | image_url: width: '800x' }}" alt="{{ image.alt }}">
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="swiper-pagination hide-mobile"></div>
+                <div class="swiper-button swiper-button-next hide-mobile">
+                    <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.46875 1.5L8.52757 9.09605L1.46875 16.5" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                    
+                </div>
+                <div class="swiper-button swiper-button-prev hide-mobile">
+                    <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.53125 16.5L1.47243 8.90395L8.53125 1.5" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="beta" data-scrollable>
+            <div class="meta-contents">
+                {% if buildMyFrame.title != blank %}
+                    <h2 class="frame-title hide-mobile">{{ buildMyFrame.title }}</h2>
+                {% endif %}
+                <div class="build-frame">
+                    <div class="frame-tabs-grid">
+                        <div class="frame-tab is-active" js-frame-tab data-tab-id="Tab-Colors">
+                            <span class="tab-label">colors</span>
+                        </div>
+                        <div class="frame-tab" js-frame-tab data-tab-id="Tab-Styles">
+                            <span class="tab-label">styles</span>
+                        </div>
+                    </div>
+                    <div class="frame-tabs-panel">
+                        <div class="frame-tab-panel is-active" js-tab-panel id="Tab-Colors">
+                            <div class="frame-filters">
+                                <div class="filters-grid">
+                                    <div class="filter-item is-selected" data-filter-value="all" js-filter-item>
+                                        <span>all</span>
+                                    </div>
+                                    {% for color in colorsFilter %}
+                                        <div class="filter-item" data-filter-value="{{ color | strip | handleize }}" js-filter-item>
+                                            <span>{{ color }}</span>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {%- liquid
+                                assign user_variant = initalColorProduct.selected_or_first_available_variant
+                                for variant in initalColorProduct.variants
+                                    if user_type == "g" and variant.title contains "Gold" and variant.title contains "10LF"
+                                        assign user_variant = variant
+                                        break
+                                    endif
+                                    if user_type == "b" and variant.title contains "Base" and variant.title contains "10LF"
+                                        assign user_variant = variant
+                                        break
+                                    endif
+                                    if user_type == "s" and variant.title contains "Silver" and variant.title contains "10LF"
+                                        assign user_variant = variant
+                                        break
+                                    endif
+                                    if user_type == "v" and variant.title contains "Value" and variant.title contains "10LF"
+                                        assign user_variant = variant
+                                        break
+                                    endif
+                                endfor
+
+                                assign color_product_price = user_variant.price
+                            -%}
+                            <div class="product__rte hide-mobile">
+                                <h4 class="product--title">{{ initalColorProduct.title }}</h4>
+                                <span class="product--price">| {{ color_product_price | money | remove: '.00' }}</span>
+                            </div>
+                            <div class="frame-collection">
+                                {% for color_product in colorsCollection.products %}
+                                    {% assign size_option = color_product.options_with_values | where: "name", "Size" | first %}
+
+                                    {% if user_type == "r" %}
+                                        {% assign hasRetailSize = false %}
+                                        {% for value in size_option.values %}
+                                            {% assign value_handle = value.name | handleize %}
+                                            {% if value_handle contains "powder" %}
+                                                {% assign hasRetailSize = true %}
+                                                {% break %}
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% if hasRetailSize %}
+                                            <div class="frame-product-item{% if product.handle == color_product.handle %} is-selected{% endif %}" data-product-handle="{{ color_product.handle }}" js-swatch-item data-value="{{ color_product.metafields.custom.filter_swatch_color_sb | strip | handleize }}">
+                                                <div class="frame-product-img">
+                                                    <img src="{{ color_product.featured_image | image_url: width: '300x' }}" alt="{{ color_product.featured_image.alt }}">
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% else %}
+                                        {% assign hasLFSize = false %}
+                                        {% for value in size_option.values %}
+                                            {% assign value_handle = value.name | handleize %}
+                                            {% if value_handle contains "lf" %}
+                                                {% assign hasLFSize = true %}
+                                                {% break %}
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% if hasLFSize %}
+                                            <div class="frame-product-item{% if product.handle == color_product.handle %} is-selected{% endif %}" data-product-handle="{{ color_product.handle }}" js-swatch-item data-value="{{ color_product.metafields.custom.filter_swatch_color_sb | strip | handleize }}">
+                                                <div class="frame-product-img">
+                                                    <img src="{{ color_product.featured_image | image_url: width: '300x' }}" alt="{{ color_product.featured_image.alt }}">
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="frame-tab-panel" js-tab-panel id="Tab-Styles">
+                            <div class="frame-filters">
+                                <div class="filters-grid">
+                                    <div class="filter-item is-selected" data-filter-value="all" js-filter-item>
+                                        <span>all</span>
+                                    </div>
+                                    {% for style in stylesFilter %}
+                                        <div class="filter-item" data-filter-value="{{ style | strip | handleize }}" js-filter-item>
+                                            <span>{{ style }}</span>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="product__rte hide-mobile">
+                                {%- liquid
+                                    assign user_variant = initalStyleProduct.selected_or_first_available_variant
+                                    for variant in initalStyleProduct.variants
+                                        if user_type == "g" and variant.title contains "Gold" and variant.title contains "10LF"
+                                            assign user_variant = variant
+                                            break
+                                        endif
+                                        if user_type == "b" and variant.title contains "Base" and variant.title contains "10LF"
+                                            assign user_variant = variant
+                                            break
+                                        endif
+                                        if user_type == "s" and variant.title contains "Silver" and variant.title contains "10LF"
+                                            assign user_variant = variant
+                                            break
+                                        endif
+                                        if user_type == "v" and variant.title contains "Value" and variant.title contains "10LF"
+                                            assign user_variant = variant
+                                            break
+                                        endif
+                                    endfor
+
+                                    assign style_product_price = user_variant.price
+                                -%}
+
+                                <h4 class="product--title">{{ initalStyleProduct.title }}</h4>
+                                <span class="product--price">| {{ style_product_price | money | remove: '.00' }}</span>
+                            </div>
+                            <div class="frame-collection">
+                                {% for style_product in stylesCollection.products %}
+                                    {% assign size_option = style_product.options_with_values | where: "name", "Size" | first %}
+                                    {% if user_type == "r" %}
+                                        {% assign hasRetailSize = false %}
+                                        {% for value in size_option.values %}
+                                            {% assign value_handle = value.name | handleize %}
+                                            {% if value_handle contains "powder" %}
+                                                {% assign hasRetailSize = true %}
+                                                {% break %}
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% if hasRetailSize %}
+                                            <div class="frame-product-item{% if product.handle == style_product.handle %} is-selected{% endif %}" data-product-handle="{{ style_product.handle }}" js-swatch-item data-value="{{ style_product.metafields.custom.swatch_style | strip | handleize }}">
+                                                <div class="frame-product-img">
+                                                    <img src="{{ style_product.featured_image | image_url: width: '300x' }}" alt="{{ style_product.featured_image.alt }}">
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% else %}
+                                        {% assign hasLFSize = false %}
+                                        {% for value in size_option.values %}
+                                            {% assign value_handle = value.name | handleize %}
+                                            {% if value_handle contains "lf" %}
+                                                {% assign hasLFSize = true %}
+                                                {% break %}
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% if hasLFSize %}
+                                            <div class="frame-product-item{% if product.handle == style_product.handle %} is-selected{% endif %}" data-product-handle="{{ style_product.handle }}" js-swatch-item data-value="{{ style_product.metafields.custom.swatch_style | strip | handleize }}">
+                                                <div class="frame-product-img">
+                                                    <img src="{{ style_product.featured_image | image_url: width: '300x' }}" alt="{{ style_product.featured_image.alt }}">
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="strip-bar">
+            <div class="page-width">
+                <div class="strip-bar-grid">
+                    <div class="strip-alpha">
+                        <div class="product__swatch hide-mobile">
+                            {% if initalColorProduct.metafields.custom.swatch_image != blank %}
+                                <img src="{{ initalColorProduct.metafields.custom.swatch_image |  image_url: width: '100x' }}" alt="{{ initalColorProduct.metafields.custom.swatch_image.alt }}">
+                            {% else %}
+                                {{ 'image' | placeholder_svg_tag: 'placeholder__svg' }}
+                            {% endif %}
+                        </div>
+                        <div class="product--details">
+                            <div class="rte__grid">
+                                <h4 class="product-title">{{ initalColorProduct.title }}</h4>
+                                <span class="details-label hide-desktop" js-trigger-btn data-trigger-id="Product-Drawer">More info</span>
+                            </div>
+                            {% unless initalColorProduct.has_only_default_variant %}
+                                {%- for option in initalColorProduct.options_with_values -%}
+                                    {% unless option.name == "Size" or option.name == "Price" %}
+                                        <div class="option-select-field">
+                                            <div class="select-list" id="Option-Dropdown">
+                                                {% for value in option.values %}
+                                                    <div class="option-item{% if forloop.first %} is-selected{% endif %}" js-option-item data-option-value-id="{{ value.id }}" data-option-value="{{ value.name }}">
+                                                        <span class="option-value">{{ value.name }}</span>
+                                                        <div class="select-icon">
+                                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M1 6L4.5 9.5L11 3" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                            <div class="option-select" js-trigger-btn data-trigger-id="Option-Dropdown">
+                                                <span class="option-value" js-selected-option>{{ option.values[0].name }}</span>
+                                                <span class="select-icon">
+                                                    <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M3 3.8125L6.375 7.1875L9.75 3.8125" stroke="#2D4256" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        {% break %}
+                                    {% endunless %}
+                                {% endfor %}
+                            {% endunless %}
+                        </div>
+                    </div>
+                    <div class="strip-beta">
+                        <div class="details-grid hide-mobile" js-trigger-btn data-trigger-id="Product-Drawer">
+                            <div class="details-icon">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.86796 13.6667H10.468V8.86675H8.86796V13.6667ZM9.66796 7.26675C9.89463 7.26675 10.0848 7.18995 10.2384 7.03635C10.392 6.88275 10.4685 6.69288 10.468 6.46675C10.4674 6.24061 10.3906 6.05075 10.2376 5.89715C10.0845 5.74355 9.89463 5.66675 9.66796 5.66675C9.4413 5.66675 9.25143 5.74355 9.09836 5.89715C8.9453 6.05075 8.8685 6.24061 8.86796 6.46675C8.86743 6.69288 8.94423 6.88301 9.09836 7.03715C9.2525 7.19128 9.44236 7.26781 9.66796 7.26675ZM9.66796 17.6667C8.5613 17.6667 7.5213 17.4566 6.54797 17.0363C5.57463 16.6161 4.72797 16.0462 4.00797 15.3267C3.28797 14.6073 2.7181 13.7606 2.29837 12.7867C1.87864 11.8129 1.6685 10.7729 1.66797 9.66675C1.66744 8.56061 1.87757 7.52061 2.29837 6.54675C2.71917 5.57288 3.28904 4.72621 4.00797 4.00675C4.7269 3.28728 5.57357 2.71741 6.54797 2.29715C7.52237 1.87688 8.56237 1.66675 9.66796 1.66675C10.7736 1.66675 11.8136 1.87688 12.788 2.29715C13.7624 2.71741 14.609 3.28728 15.328 4.00675C16.0469 4.72621 16.617 5.57288 17.0384 6.54675C17.4597 7.52061 17.6696 8.56061 17.668 9.66675C17.6664 10.7729 17.4562 11.8129 17.0376 12.7867C16.6189 13.7606 16.049 14.6073 15.328 15.3267C14.6069 16.0462 13.7602 16.6163 12.788 17.0371C11.8157 17.4579 10.7757 17.6678 9.66796 17.6667ZM9.66796 16.0667C11.4546 16.0667 12.968 15.4467 14.208 14.2067C15.448 12.9667 16.068 11.4534 16.068 9.66675C16.068 7.88008 15.448 6.36675 14.208 5.12675C12.968 3.88675 11.4546 3.26675 9.66796 3.26675C7.8813 3.26675 6.36797 3.88675 5.12797 5.12675C3.88797 6.36675 3.26797 7.88008 3.26797 9.66675C3.26797 11.4534 3.88797 12.9667 5.12797 14.2067C6.36797 15.4467 7.8813 16.0667 9.66796 16.0667Z" fill="#2D4256"/>
+                                </svg>                                
+                            </div>
+                            <span class="details-label">Frame details</span>
+                        </div>
+                        <div class="continue-btn" is="optional" js-continue-btn>continue</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

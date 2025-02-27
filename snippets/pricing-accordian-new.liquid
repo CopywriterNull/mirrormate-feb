@@ -1,0 +1,108 @@
+{% assign user_type = customer.metafields.SAGE.PriceLevel | downcase %}
+{% if user_type == '' or user_type == '-' or user_type == 'none' %}
+    {% assign user_type = "r" %}
+{% endif %}
+{%- unless product.has_only_default_variant -%}
+  <div class="size-grid size_grid_new" id="{{ id }}-{{ section.id }}">
+    {%- for option in product.options_with_values -%}
+        {% if option.name == "Size" %}
+            {% for value in option.values %}
+                {% assign downcase_value = value.name | downcase %}
+                
+                {% if user_type == "r" %}
+                    {% unless downcase_value contains "lf" %}
+                        {% assign cr_variant = value.variant %}
+
+                        {% if shop.metaobjects.size_threshold.values_count > 0 %}
+                            {% for threshold in shop.metaobjects.size_threshold.values %}
+                                {% assign sizeHandle = threshold.variant_name | strip | handleize %}
+                                {% assign valueHandle = value.name | strip | handleize %}
+
+                                {% if sizeHandle == valueHandle %}
+                                    {% assign sizeThreshold = threshold %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        
+                        {% if cr_variant.metafields.custom.pricing_sample_icon != blank %}
+                            {% assign sizeImage = cr_variant.metafields.custom.pricing_sample_icon %}
+                        {% else %}
+                            {% assign sizeImage = sizeThreshold.pricing_sample_icon %}
+                        {% endif %}
+
+                        {% if cr_variant.metafields.custom.wide_feet != blank %}
+                            {% assign wideFeet = cr_variant.metafields.custom.wide_feet %}
+                        {% else %}
+                            {% assign wideFeet = sizeThreshold.fit %}
+                        {% endif %}
+
+                        <div class="size-option{% unless cr_variant.available %} disabled{% endunless %}{% if value.selected %} is-checked{% endif %}" js-size-option data-option-value-id="{{ value.id }}" data-option-value-name="{{ value.name }}">
+                            <div class="size-img">
+                                {% if sizeImage != blank %}
+                                    <img src="{{ sizeImage | image_url: width: '500x' }}" alt="{{ sizeImage.alt }}">
+                                {% else %}
+                                    {{ 'image' | placeholder_svg_tag: 'placeholder__svg' }}
+                                {% endif %}
+                            </div>
+                            <div class="size-details">
+                                <div class="size-header">
+                                    <h3 class="size-title">{{ value.name }}<span class="size-price"> – {{ cr_variant.price | money |  remove: '.00'  }}</span></h3>
+                                    {% if wideFeet != blank %}
+                                        <span class="size-meta">{{ wideFeet }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endunless %}
+                {% else %}
+                    {% if downcase_value contains "lf" %}
+                        {% assign cr_variant = value.variant %}
+
+                        {% if shop.metaobjects.size_threshold.values_count > 0 %}
+                            {% for threshold in shop.metaobjects.size_threshold.values %}
+                                {% assign sizeHandle = threshold.variant_name | strip | handleize %}
+                                {% assign valueHandle = value.name | strip | handleize %}
+
+                                {% if sizeHandle == valueHandle %}
+                                    {% assign sizeThreshold = threshold %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        
+                        {% if cr_variant.metafields.custom.pricing_sample_icon != blank %}
+                            {% assign sizeImage = cr_variant.metafields.custom.pricing_sample_icon %}
+                        {% else %}
+                            {% assign sizeImage = sizeThreshold.pricing_sample_icon %}
+                        {% endif %}
+
+                        {% if cr_variant.metafields.custom.wide_feet != blank %}
+                            {% assign wideFeet = cr_variant.metafields.custom.wide_feet %}
+                        {% else %}
+                            {% assign wideFeet = sizeThreshold.fit %}
+                        {% endif %}
+
+                        <div class="size-option{% unless cr_variant.available %} disabled{% endunless %}{% if value.selected %} is-checked{% endif %}" js-size-option data-option-value-id="{{ value.id }}" data-option-value-name="{{ value.name }}">
+                            <div class="size-img">
+                                {% if sizeImage != blank %}
+                                    <img src="{{ sizeImage | image_url: width: '500x' }}" alt="{{ sizeImage.alt }}">
+                                {% else %}
+                                    {{ 'image' | placeholder_svg_tag: 'placeholder__svg' }}
+                                {% endif %}
+                            </div>
+                            <div class="size-details">
+                              <div class="size-header">
+                                  <h3 class="size-title">{{ value.name }}<span class="size-price"> – {{ cr_variant.price | money |  remove: '.00'  }}</span></h3>
+                                  {% if wideFeet != blank %}
+                                      <span class="size-meta">{{ wideFeet }}</span>
+                                  {% endif %}
+                              </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% break %}
+        {% endif %}
+      {% endfor %}
+  </div>
+{%- endunless -%}

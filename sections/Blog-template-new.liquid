@@ -1,0 +1,86 @@
+<script src="{{ "main-blog.js" | asset_url }}" defer></script>
+
+{%- assign currentTags = current_tags | handleize -%}
+<main-blog class="main-blog Blog_template_main_new" id="Articles" style="background: {{ section.settings.main_background_color }};">
+  <div class="page-width">
+    <div class="Blog_template_inner_new" data-aos="fade-in">
+      {%- if section.settings.main_heading_text != blank -%}
+        <div class="Blog_template_maintitle_new">
+          <div class="Common_title_new Blog_template_innertitle_new">
+            <h1>{{ section.settings.main_heading_text }}</h1>
+          </div>
+        </div>
+      {%- endif -%}
+      {%- if blog.tags.size > 0 -%}
+        <div class="Blog_template_mainlists_new">
+          <div class="Blog_template_innerlists_new">
+            <div class="swiper Blog_tag_slider">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide Blog_template_innerlists_mainboxs_new">
+                  <a href="{{ blog.url }}" class="blog__tag{% if currentTags == blank %} active{% endif %}" js-tag-item>
+                    <div class="Blog_template_innerlists_innerboxs_new">
+                      All articles
+                    </div>
+                  </a>
+                </div>
+                {%- for tag in blog.all_tags -%}
+                  {% assign tag_handle = tag | handleize %}
+                  <div class="swiper-slide Blog_template_innerlists_mainboxs_new">
+                    <a href="{{ blog.url }}/tagged/{{ tag | handleize }}" class="blog__tag{% if currentTags == tag_handle %} active{% endif %}" js-tag-item>
+                      <div class="Blog_template_innerlists_innerboxs_new">
+                        {{ tag }}<br>
+                      </div>
+                    </a>
+                  </div>
+                {%- endfor -%}
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+      <div class="Blog_template_maindetail_new" js-main-blog data-section-id="{{ section.id }}">
+        <div class="Blog_template_innerdetail_new">
+          {%- paginate blog.articles by 9 -%}
+            <div class="Blog_template_innerdetail_mainloops_new">
+              <div class="Blog_template_innerdetail_innerloops_new">
+                {%- for article in blog.articles -%}
+                  {%- if article.image != blank or article.title != blank or article.excerpt.size > 0 or article.content.size > 0 or article.tags.size > 0 -%}
+                    {%- render 'Blog-article-grid-item-new', article: article -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            </div>
+            {%- if paginate.pages > 1 -%}
+              <div class="Blog_template_innerdetail_mainpaginate_new">
+                <div class="Blog_template_innerdetail_innerpaginate_new">
+                  {%- render 'pagination', paginate: paginate -%}
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endpaginate -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</main-blog>
+
+{% schema %}
+  {
+    "name": "Blog Template New",
+    "class": "Blog_template_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "All Articles"
+      }
+    ]
+  }
+{% endschema %}

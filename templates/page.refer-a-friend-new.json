@@ -1,0 +1,116 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "page_affiliate_form_image_banner_NzUbgP": {
+      "type": "Page-affiliate-form-image-banner",
+      "settings": {
+        "custom_class_name": "affiliate",
+        "main_background_color": "#ffffff",
+        "main_heading_text": "Refer a Friend",
+        "main_information_text": "<p>Share the love! Give friends $20 off their first frame, and you'll get <span>$10 for every referral,</span> (as cashback or a gift card) when they make a purchase. It's a win-win! Beautiful baths for all! :)</p>",
+        "form_below_text": "<p>By accepting this offer, you agree to the <a href=\"/pages/terms-of-services\">Terms of Service</a> and <br><a href=\"/pages/privacy-policies\">Privacy Policy.</a></p>",
+        "register_form_iframe": "<iframe id=\"affiliate-sign-up-form\" style=\"border: 0; width: 100%; height: 100vh;\" src=\"https://api.socialsnowball.io/register-form/13798/ca04eb99-0d80-407d-92ef-71aadabef728\"></iframe><script>!async function(){let e=document.querySelector(\"#affiliate-sign-up-form\");window.addEventListener(\"message\",t=>{t.origin===new URL(e.getAttribute(\"src\")).origin&&(e.style.height=t.data.height)})}();</script>",
+        "image_video_size": "medium",
+        "main_desktop_image": "shopify://shop_images/image_1761.png",
+        "main_mobile_image": "shopify://shop_images/image_1761.png",
+        "show_image_in_mobile": true,
+        "image_on_right": false,
+        "show_image_on_top_mobile": true
+      }
+    },
+    "page_image_grid_form_banner_new_CteGtL": {
+      "type": "Page-image-grid-form-banner-new",
+      "blocks": {
+        "grid_image_dekstop_k8GgrN": {
+          "type": "grid-image-dekstop",
+          "settings": {
+            "main_grid_image_desktop": "shopify://shop_images/Screen_Recording_2024-06-29_at_5.44.42_PM_1.png"
+          }
+        },
+        "grid_image_dekstop_LXLeAp": {
+          "type": "grid-image-dekstop",
+          "settings": {
+            "main_grid_image_desktop": "shopify://shop_images/image_128_34457850-6877-4d1b-ae7e-ff53170523a3.png"
+          }
+        },
+        "grid_image_dekstop_edDnqN": {
+          "type": "grid-image-dekstop",
+          "settings": {
+            "main_grid_image_desktop": "shopify://shop_images/image_162_2c93e6c0-0275-41b6-bed0-1211b81f0278.png"
+          }
+        },
+        "grid_image_dekstop_bXbLQ4": {
+          "type": "grid-image-dekstop",
+          "settings": {
+            "main_grid_image_desktop": "shopify://shop_images/Frame_1000004272_993abaa5-6a36-4bd1-aceb-e03513a67b64.png"
+          }
+        },
+        "grid_image_mobile_mk6cRb": {
+          "type": "grid-image-mobile",
+          "settings": {
+            "main_grid_image_mobile": "shopify://shop_images/image_144.png"
+          }
+        },
+        "grid_image_mobile_BDemjm": {
+          "type": "grid-image-mobile",
+          "settings": {
+            "main_mp4_video_mobile": "shopify://files/videos/-b5e2-4789-9cd7-3a7eface20b2 (1).mp4"
+          }
+        },
+        "grid_image_mobile_nRJt8T": {
+          "type": "grid-image-mobile",
+          "settings": {
+            "main_grid_image_mobile": "shopify://shop_images/Screenshot_2024-06-29_at_7.01.26_PM_1.png"
+          }
+        }
+      },
+      "block_order": [
+        "grid_image_dekstop_k8GgrN",
+        "grid_image_dekstop_LXLeAp",
+        "grid_image_dekstop_edDnqN",
+        "grid_image_dekstop_bXbLQ4",
+        "grid_image_mobile_mk6cRb",
+        "grid_image_mobile_BDemjm",
+        "grid_image_mobile_nRJt8T"
+      ],
+      "disabled": true,
+      "settings": {
+        "main_background_color": "#ffffff",
+        "main_heading_text": "Refer a Friend",
+        "main_information_text": "<p>Share the love! Give friends $20 off their first frame, and you'll get <span>$20 off your next frame</span>, when they make a purchase. It's a win-win! Beautiful baths for all! :)</p>",
+        "main_grid_image_desktop": "shopify://shop_images/image_1761.png"
+      }
+    },
+    "1729529027053568d3": {
+      "type": "apps",
+      "blocks": {
+        "snowball_affiliate_marketing_affiliate_sign_up_xRmWDi": {
+          "type": "shopify://apps/snowball-affiliate-marketing/blocks/affiliate-sign-up/6e5feda3-ec24-4171-ae41-64028b660bc7",
+          "settings": {
+            "form_id": "7eb9e0d3-48a8-49c7-95af-65d6088ffb81"
+          }
+        }
+      },
+      "block_order": [
+        "snowball_affiliate_marketing_affiliate_sign_up_xRmWDi"
+      ],
+      "disabled": true,
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "page_affiliate_form_image_banner_NzUbgP",
+    "page_image_grid_form_banner_new_CteGtL",
+    "1729529027053568d3"
+  ]
+}

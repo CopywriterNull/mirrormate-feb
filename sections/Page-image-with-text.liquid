@@ -1,0 +1,253 @@
+{% if section.settings.main_mp4_video != blank or section.settings.main_desktop_image != blank or section.settings.main_mobile_image != blank or section.settings.main_inside_custom_logo != blank or section.settings.main_outside_custom_logo != blank or section.settings.review_text != blank or section.settings.main_heading_text != blank or section.settings.main_button_link != blank or section.settings.main_button_text != blank %}
+  <div class="Page_image_with_text_main Page_image_with_text_main_{{ section.id }}">
+    <div class="page-width">
+      <div class="Page_image_with_text_inner">
+        {% if section.settings.main_mp4_video != blank or section.settings.main_desktop_image != blank or section.settings.main_mobile_image != blank or section.settings.main_inside_custom_logo != blank or section.settings.main_outside_custom_logo != blank %}
+          <div class="Page_image_with_text_inner_image_video_main_parent">
+            {%- if section.settings.main_outside_custom_logo != blank or section.settings.main_inside_custom_logo != blank -%}
+              <div class="Index_meet_image_all_text_sides_innerleft_mainoverlay_new">
+                    <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_new  {% if section.settings.keep_background_color_outside_custom_logo == true %}custom_logo_background{% endif %}">
+                      {%- if section.settings.main_outside_custom_logo != blank -%}
+                        <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_mainoutside_new">
+                          <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_inneroutside_new">
+                            {{
+                              section.settings.main_outside_custom_logo | 
+                              image_url: width: img.width | 
+                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                              fetchpriority: 'auto', 
+                              class:'Full_image_new spin'
+                            }}
+                          </div>
+                        </div>
+                      {%- endif -%}
+                      {%- if section.settings.main_inside_custom_logo != blank -%}
+                        <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_maininside_new">
+                          <div class="Index_meet_image_all_text_sides_innerleft_inneroverlay_innerinside_new">
+                            {{
+                              section.settings.main_inside_custom_logo | 
+                              image_url: width: img.width | 
+                              image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                              fetchpriority: 'auto', 
+                              class:'Full_image_new'
+                            }}
+                          </div>
+                        </div>
+                      {%- endif -%}
+                    </div>
+                  </div>
+            {%- endif -%}
+            {% if section.settings.main_mp4_video != blank or section.settings.main_desktop_image != blank %}
+              <div class="Page_image_with_text_inner_image_video_main">
+                {% if section.settings.main_mp4_video != blank %}
+                  <div class="Page_image_with_text_inner_image_video">
+                    {{ section.settings.main_mp4_video | video_tag: image_size: 'master', controls: false, autoplay: true, loop: true }}
+                  </div>
+                {% else %}
+                  {%- if section.settings.main_desktop_image != blank and section.settings.main_mobile_image != blank -%}
+                    <div class="Page_image_with_text_inner_image_video">
+                            {%- if section.settings.main_desktop_image != blank -%}
+                              {{
+                                section.settings.main_desktop_image | 
+                                image_url: width: img.width | 
+                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                fetchpriority: 'auto', 
+                                class:'desktop_image_new'
+                              }}
+                            {%- endif -%}
+                            {%- if section.settings.main_mobile_image != blank -%}
+                              {{
+                                section.settings.main_mobile_image | 
+                                image_url: width: img.width | 
+                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                fetchpriority: 'auto', 
+                                class:'mobile_image_new'
+                              }}
+                            {%- endif -%}
+                          </div>
+                  {%- endif -%}
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+        {% if section.settings.review_text != blank or section.settings.main_heading_text != blank or section.settings.main_button_link != blank or section.settings.main_button_text != blank %}
+          <div class="Page_image_with_text_inner_content_parent">
+            {% if section.settings.review_image_desktop != blank or section.settings.review_image_mobile != blank or section.settings.review_text != blank %}
+              <div class="Page_image_with_text_inner_content_review_parent">
+                {% if section.settings.review_image_desktop != blank or section.settings.review_image_mobile != blank %}
+                  <div class="Page_image_with_text_inner_content_review_image">
+                    {%- if section.settings.review_image_desktop != blank -%}
+                              {{
+                                section.settings.review_image_desktop | 
+                                image_url: width: img.width | 
+                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                fetchpriority: 'auto', 
+                                class:'desktop_image_new'
+                              }}
+                            {%- endif -%}
+                            {%- if section.settings.review_image_mobile != blank -%}
+                              {{
+                                section.settings.review_image_mobile | 
+                                image_url: width: img.width | 
+                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                fetchpriority: 'auto', 
+                                class:'mobile_image_new'
+                              }}
+                            {%- endif -%}
+                  </div>
+                {% endif %}
+                {% if section.settings.review_text != blank %}
+                  <div class="Page_image_with_text_inner_content_review_text Common_subtitle_new">
+                    <span>
+                      {{ section.settings.review_text }}
+                    </span>
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+            {% if section.settings.main_heading_text %}
+              <div class="Common_title_new Page_image_with_text_inner_content_main_heading_text">
+                <h2>{{ section.settings.main_heading_text }}</h2>
+              </div>
+            {% endif %}
+            {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+              <div class="Page_image_with_text_inner_content_main_button_parent small-hide">
+                <a href="{{ section.settings.main_button_link }}" class="button">
+                  {{ section.settings.main_button_text }}  
+                </a>
+              </div>
+            {%- endif -%}
+            {%- if section.settings.main_button_text_mobile != blank -%}
+              <div class="Page_image_with_text_inner_content_main_button_parent large-up-hide medium-hide">
+                {%- render 'frame-button', class: "button", requestType: "index", frameType: "build-frame", enableLoading: true, btnLabel: section.settings.main_button_text_mobile -%}
+              </div>
+            {%- endif -%}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+<style>
+  .Page_image_with_text_main { padding: 203px 0 202px; position: relative; }
+  .Page_image_with_text_inner_image_video_main_parent { position: absolute; height: 100%; width: 100%; top: 0; left: 0; }
+  .Page_image_with_text_inner_image_video_main, .Page_image_with_text_inner_image_video { height: 100%; }
+  .Page_image_with_text_main .Index_meet_image_all_text_sides_innerleft_mainoverlay_new { background-color: #FFF; top: -36px; left: unset; right: 65px; }
+  .Page_image_with_text_main .Index_meet_image_all_text_sides_innerleft_inneroverlay_new.custom_logo_background { background-color: transparent; padding: 0; }
+  .Page_image_with_text_inner_image_video_main img, .Page_image_with_text_inner_image_video_main video { width: 100%; height: 100% !important; object-fit: cover; } 
+  .Page_image_with_text_inner_content_parent { position: relative; max-width: 502px; width: 100%; }
+  .Page_image_with_text_inner_content_review_parent { display: flex; align-items: center; gap: 6px; }
+  .Page_image_with_text_inner_content_review_image img { width: 100%; display: block; }
+  .Page_image_with_text_inner_content_main_heading_text { padding-top: 16px; }
+  .Page_image_with_text_inner_content_main_heading_text h2, .Page_image_with_text_inner_content_review_text span { color: #FFF; }
+  .Page_image_with_text_inner_content_main_button_parent { padding-top: 32px; }
+  .Page_image_with_text_inner_content_main_button_parent .button { background-color: #FFF; color: #2D4256; min-width: 298px; border: none; }
+
+  @media (max-width: 1280px){
+    .Page_image_with_text_main { padding: 150px 0; }
+  }
+
+  @media (max-width: 989px){
+    .Page_image_with_text_inner_image_video_main img, .Page_image_with_text_inner_image_video_main video { object-position: right; }
+  }
+
+  @media (max-width: 749px){
+    .Page_image_with_text_main { padding: 0; }
+    .Page_image_with_text_main .page-width { padding: 0 !important; }
+    .Page_image_with_text_main .Index_meet_image_all_text_sides_innerleft_mainoverlay_new { top: -33.74px; right: 16.27px; }
+    .Page_image_with_text_inner_image_video_main_parent { position: unset; aspect-ratio: 1.4591; }
+    .Page_image_with_text_inner_image_video_main img, .Page_image_with_text_inner_image_video_main video { object-position: 85%; }
+    .Page_image_with_text_inner_content_parent { padding: 31px 20px 53px; text-align: center; max-width: 100%; }
+    .Page_image_with_text_inner_content_review_parent { justify-content: center; }
+    .Page_image_with_text_inner_content_main_heading_text { padding-top: 12px; }
+    .Page_image_with_text_inner_content_main_heading_text h2, .Page_image_with_text_inner_content_review_text span { color: #2D4256; }
+    .Page_image_with_text_inner_content_main_button_parent { padding-top: 24px;}
+    .Page_image_with_text_inner_content_main_button_parent .button { background-color: #2D4256; color: #FFF; min-width: 300px; border: none; }
+      
+  }
+
+</style>
+  
+{% schema %}
+  {
+    "name": "Page Image with Text",
+    "class": "Page_image_with_text",
+    "settings": [
+      {
+        "type": "video",
+        "id": "main_mp4_video",
+        "label": "Add Main MP4 Video"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_desktop_image",
+        "label": "Add Main Desktop Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_mobile_image",
+        "label": "Add Main Mobile Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_outside_custom_logo",
+        "label": "Add Main Outside Custom Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_inside_custom_logo",
+        "label": "Add Main Inside Custom Logo"
+      },
+      {
+        "type": "checkbox",
+        "id": "keep_background_color_outside_custom_logo",
+        "label": "Keep background Color outside the custom logo?",
+        "default": false
+      },
+      {
+        "type": "image_picker",
+        "id": "review_image_desktop",
+        "label": "Add Review Image Desktop"
+      },
+      {
+        "type": "image_picker",
+        "id": "review_image_mobile",
+        "label": "Add Review Image Mobile"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "review_text",
+        "label": "Add Review Text"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Meet Our Team"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "About Us"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Text"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text_mobile",
+        "label": "Add Main Button Text Mobile",
+        "default": "Build my frame"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Page Image with Text",
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,247 @@
+{% if section.settings.main_background_color != blank or section.settings.main_mobile_image != blank or section.settings.main_box_image  != blank or section.settings.main_heading_text != blank or section.settings.main_information_box_color  != blank %}
+<div class="Index_reach_us_information_main_new" style="background-color: {{ section.settings.main_background_color }}">
+  <div class="page-width">
+    <div class="Index_reach_us_information_inner_new">
+      {% if section.settings.main_box_image != blank or section.settings.main_heading_text != blank or section.settings.main_information_box_color %}
+      <div class="Index_reach_us_information_box" style="background-color: {{ section.settings.main_information_box_color }}">
+        <div class="Index_reach_us_information_box_inner">
+          {% if section.blocks.size > 0 or section.settings.main_heading_text != blank %}
+            <div class="Index_reach_us_information_box_leftmain">
+              <div class="Index_reach_us_information_box_leftinner">
+                {%- if section.settings.main_heading_text != blank -%}
+                    <div class="Index_reach_us_information_box_heading_text">
+                      <h2>{{ section.settings.main_heading_text }}</h2>
+                    </div>
+                  {%- endif -%}
+                {% if section.blocks.size > 0 %}
+                  <div class="Index_reach_us_information_box_main">
+                    <div class="Index_reach_us_single_information_box_main left_information_box">
+                      {%- for block in section.blocks -%}
+                        {% if block.type == "left-information" %}
+                          {% if block.settings.left_information_title != blank or block.settings.left_information_text != blank  %}
+                              <div class="Index_reach_us_single_information_box {{ block.settings.left-class-name }}">
+                                {% if block.settings.left_information_title != blank %}
+                                  <div class="Index_reach_us_single_information_box_title Common_subtitle_new">
+                                    <span>
+                                      {{ block.settings.left_information_title }}
+                                    </span>
+                                  </div>
+                                {% endif %}
+                                {% if block.settings.left_information_text != blank %}
+                                  <div class="Index_reach_us_single_information_box_information_text Index_meet_image_all_text_sides_innerright_infos_new">
+                                      {{ block.settings.left_information_text }}
+                                  </div>
+                                {% endif %}
+                              </div>
+                          {% endif %}
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                    <div class="Index_reach_us_single_information_box_main middle_information_box">
+                      {%- for block in section.blocks -%}
+                        {% if block.type == "middle-information" %}
+                          {% if block.settings.middle_information_title != blank or block.settings.middle_information_text != blank  %}
+                              <div class="Index_reach_us_single_information_box {{ block.settings.middle-class-name }}">
+                                {% if block.settings.middle_information_title != blank %}
+                                  <div class="Index_reach_us_single_information_box_title Common_subtitle_new">
+                                    <span>
+                                      {{ block.settings.middle_information_title }}
+                                    </span>
+                                  </div>
+                                {% endif %}
+                                {% if block.settings.middle_information_text != blank %}
+                                  <div class="Index_reach_us_single_information_box_information_text Index_meet_image_all_text_sides_innerright_infos_new">
+                                      {{ block.settings.middle_information_text }}
+                                  </div>
+                                {% endif %}
+                              </div>
+                          {% endif %}
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                    <div class="Index_reach_us_single_information_box_main right_information_box">
+                      {%- for block in section.blocks -%}
+                        {% if block.type == "right-information" %}
+                          {% if block.settings.right_information_title != blank or block.settings.right_information_text != blank  %}
+                              <div class="Index_reach_us_single_information_box {{ block.settings.right-class-name }}">
+                                {% if block.settings.right_information_title != blank %}
+                                  <div class="Index_reach_us_single_information_box_title Common_subtitle_new">
+                                    <span>
+                                      {{ block.settings.right_information_title }}
+                                    </span>
+                                  </div>
+                                {% endif %}
+                                {% if block.settings.right_information_text != blank %}
+                                  <div class="Index_reach_us_single_information_box_information_text Index_meet_image_all_text_sides_innerright_infos_new">
+                                      {{ block.settings.right_information_text }}
+                                  </div>
+                                {% endif %}
+                              </div>
+                          {% endif %}
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                    
+                    
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+          {% if section.settings.main_box_image != blank %}
+            <div class="Index_reach_us_information_box_rightmain small-hide">
+              <div class="Index_reach_us_information_box_rightinner">
+                <div class="Index_reach_us_information_box_image_main">
+                  {{
+                    section.settings.main_box_image | 
+                    image_url: width: img.width | 
+                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                    fetchpriority: 'auto', 
+                    class:'box_image_new'
+                  }}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  {% if section.settings.main_mobile_image != blank %}
+  <div class="Index_reach_us_information_box_image_main mobile_only large-up-hide medium-hide">
+                  {{
+                    section.settings.main_mobile_image | 
+                    image_url: width: img.width | 
+                    image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                    fetchpriority: 'auto', 
+                    class:'box_image_new'
+                  }}
+                </div>
+  {% endif %}
+</div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Index Reach Information",
+    "class": "Index_reach_us_information_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "main_information_box_color",
+        "label": "Add Information Box Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "How to reach us"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_box_image",
+        "label": "Add Main Box Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "main_mobile_image",
+        "label": "Add Main mobile Image"
+      },
+    ],
+    "blocks": [
+      {
+        "type": "left-information", 
+        "name": "Left Information",
+        "settings":[
+          {
+            "type": "text",
+            "id": "left-class-name",
+            "label": "Add Left Information title"
+          },
+          {
+            "type": "text",
+            "id": "left_information_title",
+            "label": "Add Left Information title",
+            "default": "Contact info"
+          },
+          {
+            "type": "richtext",
+            "id": "left_information_text",
+            "label": "Add Left Information Text",
+            "default": "<p>Email: info@mirrormate.com Toll-free phone: (866) 304-6283 Phone: (704) 814-0855 Fax: (704) 708-5365</p>"
+          },
+        ]
+      },
+      {
+        "type": "middle-information", 
+        "name": "Middle Information",
+        "settings":[
+          {
+            "type": "text",
+            "id": "middle-class-name",
+            "label": "Add Left Information title"
+          },
+          {
+            "type": "text",
+            "id": "middle_information_title",
+            "label": "Add Middle Information title",
+            "default": "Contact info"
+          },
+          {
+            "type": "richtext",
+            "id": "middle_information_text",
+            "label": "Add Middle Information Text",
+            "default": "<p>Email: info@mirrormate.com Toll-free phone: (866) 304-6283 Phone: (704) 814-0855 Fax: (704) 708-5365</p>"
+          },
+        ]
+      },
+      {
+        "type": "right-information", 
+        "name": "Right Information",
+        "settings":[
+          {
+            "type": "text",
+            "id": "right-class-name",
+            "label": "Add Left Information title"
+          },
+          {
+            "type": "text",
+            "id": "right_information_title",
+            "label": "Add Right Information title",
+            "default": "Contact info"
+          },
+          {
+            "type": "richtext",
+            "id": "right_information_text",
+            "label": "Add Right Information Text",
+            "default": "<p>Email: info@mirrormate.com Toll-free phone: (866) 304-6283 Phone: (704) 814-0855 Fax: (704) 708-5365</p>"
+          },
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Index Reach us Information",
+        "blocks": [
+          {
+            "type": "left-information"
+          },
+          {
+            "type": "middle-information"
+          },
+          {
+            "type": "right-information"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,399 @@
+{%- if section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_link != blank or section.blocks.size > 0 -%}
+  <div class="Index_review_gallery_list_main_new" style="background: {{ section.settings.main_background_color }};">
+    <div class="page-width">
+      <div class="Index_review_gallery_list_inner_new">
+        {%- if section.blocks.size > 0 -%}
+          <div class="Index_review_gallery_list_mainmobile_new" data-aos="fade-in">
+            <div class="Index_review_gallery_list_innermobile_new">
+              <div class="Index_gallery_mobile_slider">
+                <span>
+                  {%- for block in section.blocks -%}
+                    {%- if block.type == 'video_or_image' -%}
+                      {%- if block.settings.main_left_mobile_video != blank or block.settings.main_left_mobile_image != blank or block.settings.main_right_mobile_video != blank or block.settings.main_right_mobile_image != blank -%}
+                        <div class="Index_review_gallery_list_innermobile_mainboxs_new">
+                          <div class="Index_review_gallery_list_innermobile_innerboxs_new">
+                            {%- if block.settings.main_left_mobile_video != blank or block.settings.main_left_mobile_image != blank -%}
+                              <div class="Index_review_gallery_list_innermobile_innerboxs_mainboths_new Index_review_gallery_list_innermobile_innerboxs_mainboths_top_new">
+                                <div class="Index_review_gallery_list_innermobile_innerboxs_innerboths_new">
+                                  {%- if block.settings.main_left_mobile_video != blank -%}
+                                    <div class="Index_review_gallery_list_innermobile_innerboxs_innerboths_videoimage_new">
+                                      {{ block.settings.main_left_mobile_video | video_tag: class: 'Full_video_new', image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                    </div>
+                                  {% else %}  
+                                    {%- if block.settings.main_left_mobile_image != blank -%}
+                                      <div class="Index_review_gallery_list_innermobile_innerboxs_innerboths_videoimage_new">
+                                        {{
+                                          block.settings.main_left_mobile_image | 
+                                          image_url: width: img.width | 
+                                          image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                          fetchpriority: 'auto', 
+                                          class:'Full_image_new'
+                                        }}
+                                      </div>
+                                    {%- endif -%}
+                                  {%- endif -%}
+                                </div>
+                              </div>
+                            {%- endif -%}
+                            {%- if block.settings.main_right_mobile_video != blank or block.settings.main_right_mobile_image != blank -%}
+                              <div class="Index_review_gallery_list_innermobile_innerboxs_mainboths_new Index_review_gallery_list_innermobile_innerboxs_mainboths_bottom_new">
+                                <div class="Index_review_gallery_list_innermobile_innerboxs_innerboths_new">
+                                  {%- if block.settings.main_right_mobile_video != blank -%}
+                                    <div class="Index_review_gallery_list_innermobile_innerboxs_innerboths_videoimage_new">
+                                      {{ block.settings.main_right_mobile_video | video_tag: class: 'Full_video_new', image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                    </div>
+                                  {% else %}  
+                                    {%- if block.settings.main_right_mobile_image != blank -%}
+                                      <div class="Index_review_gallery_list_innermobile_innerboxs_innerboths_videoimage_new">
+                                        {{
+                                          block.settings.main_right_mobile_image | 
+                                          image_url: width: img.width | 
+                                          image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                          fetchpriority: 'auto', 
+                                          class:'Full_image_new'
+                                        }}
+                                      </div>
+                                    {%- endif -%}
+                                  {%- endif -%}
+                                </div>
+                              </div>
+                            {%- endif -%}
+                          </div>
+                        </div>
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                  {%- for block in section.blocks -%}
+                    {%- if block.type == 'video_or_image' -%}
+                      {%- if block.settings.main_left_mobile_video != blank or block.settings.main_left_mobile_image != blank or block.settings.main_right_mobile_video != blank or block.settings.main_right_mobile_image != blank -%}
+                        <div class="Index_review_gallery_list_innermobile_mainboxs_new">
+                          <div class="Index_review_gallery_list_innermobile_innerboxs_new">
+                            {%- if block.settings.main_left_mobile_video != blank or block.settings.main_left_mobile_image != blank -%}
+                              <div class="Index_review_gallery_list_innermobile_innerboxs_mainboths_new Index_review_gallery_list_innermobile_innerboxs_mainboths_top_new">
+                                <div class="Index_review_gallery_list_innermobile_innerboxs_innerboths_new">
+                                  {%- if block.settings.main_left_mobile_video != blank -%}
+                                    <div class="Index_review_gallery_list_innermobile_innerboxs_innerboths_videoimage_new">
+                                      {{ block.settings.main_left_mobile_video | video_tag: class: 'Full_video_new', image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                    </div>
+                                  {% else %}  
+                                    {%- if block.settings.main_left_mobile_image != blank -%}
+                                      <div class="Index_review_gallery_list_innermobile_innerboxs_innerboths_videoimage_new">
+                                        {{
+                                          block.settings.main_left_mobile_image | 
+                                          image_url: width: img.width | 
+                                          image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                          fetchpriority: 'auto', 
+                                          class:'Full_image_new'
+                                        }}
+                                      </div>
+                                    {%- endif -%}
+                                  {%- endif -%}
+                                </div>
+                              </div>
+                            {%- endif -%}
+                            {%- if block.settings.main_right_mobile_video != blank or block.settings.main_right_mobile_image != blank -%}
+                              <div class="Index_review_gallery_list_innermobile_innerboxs_mainboths_new Index_review_gallery_list_innermobile_innerboxs_mainboths_bottom_new">
+                                <div class="Index_review_gallery_list_innermobile_innerboxs_innerboths_new">
+                                  {%- if block.settings.main_right_mobile_video != blank -%}
+                                    <div class="Index_review_gallery_list_innermobile_innerboxs_innerboths_videoimage_new">
+                                      {{ block.settings.main_right_mobile_video | video_tag: class: 'Full_video_new', image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                    </div>
+                                  {% else %}  
+                                    {%- if block.settings.main_right_mobile_image != blank -%}
+                                      <div class="Index_review_gallery_list_innermobile_innerboxs_innerboths_videoimage_new">
+                                        {{
+                                          block.settings.main_right_mobile_image | 
+                                          image_url: width: img.width | 
+                                          image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                          fetchpriority: 'auto', 
+                                          class:'Full_image_new'
+                                        }}
+                                      </div>
+                                    {%- endif -%}
+                                  {%- endif -%}
+                                </div>
+                              </div>
+                            {%- endif -%}
+                          </div>
+                        </div>
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                </span>
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_link != blank or section.blocks.size > 0 -%}
+          <div class="Index_review_gallery_list_sides_new">
+            {%- if section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_link != blank or section.blocks.size > 0 -%}
+              <div class="Index_review_gallery_list_sides_mainleft_new" data-aos="fade-in">
+                <div class="Index_review_gallery_list_sides_innerleft_new">
+                  {%- if section.settings.main_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_link != blank -%}
+                    <div class="Index_review_gallery_list_sides_innerleft_1_new">
+                      <div class="Index_review_gallery_list_sides_innerleft_1_boths_new">
+                        {%- if section.settings.main_heading_text != blank -%}
+                          <div class="Common_title_new Index_review_gallery_list_sides_innerleft_1_boths_title_new">
+                            <h2>{{ section.settings.main_heading_text }}</h2>
+                          </div>
+                        {%- endif -%}
+                        {%- if section.settings.main_information_text != blank -%}
+                          <div class="Index_review_gallery_list_sides_innerleft_1_boths_infos_new desktop_only">
+                            <p>{{ section.settings.main_information_text }}</p>
+                          </div>
+                        {%- endif -%}
+                        {%- if section.settings.main_information_mobile_text != blank -%}
+                          <div class="Index_review_gallery_list_sides_innerleft_1_boths_infos_new mobile_only">
+                            <p>{{ section.settings.main_information_mobile_text }}</p>
+                          </div>
+                        {%- endif -%}
+                        {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                          <div class="Index_review_gallery_list_sides_innerleft_1_boths_button_new">
+                            <a href="{{ section.settings.main_button_link }}" class="button">
+                              {{ section.settings.main_button_text }}  
+                            </a>
+                          </div>
+                        {%- endif -%}
+                      </div>
+                    </div>
+                  {%- endif -%}
+                  {%- if section.blocks.size > 0 -%}
+                    <div class="Index_review_gallery_list_sides_innerleft_2_new">
+                      <div class="Index_review_gallery_list_sides_innerleft_2_loops_new">
+                        <div class="swiper Index_testimonials_slider">
+                          <div class="swiper-wrapper">
+                            {%- for block in section.blocks -%}
+                              {%- if block.type == 'testimonials' -%}
+                                {%- if block.settings.infos != blank and block.settings.title != blank -%}
+                                  <div class="swiper-slide Index_review_gallery_list_sides_innerleft_2_loops_mainboxs_new">
+                                    <div class="Index_review_gallery_list_sides_innerleft_2_loops_innerboxs_new">
+                                      <div class="Index_review_gallery_list_sides_innerleft_2_loops_innerboxs_icons_new">
+                                        <svg width="75" height="14" viewBox="0 0 75 14" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_2510_11270)"><path d="M7.37082 10.767C7.45026 10.719 7.54974 10.719 7.62918 10.767L11.3188 12.9938C11.5081 13.1081 11.7416 12.9384 11.6914 12.723L10.7123 8.52595C10.6912 8.43558 10.7219 8.34096 10.7921 8.2802L14.0522 5.45597C14.2193 5.31117 14.1299 5.0366 13.9096 5.01791L9.61722 4.65374C9.52482 4.64591 9.44436 4.58757 9.40817 4.5022L7.73018 0.543092C7.64403 0.339835 7.35597 0.339835 7.26982 0.543092L5.59183 4.5022C5.55564 4.58757 5.47518 4.64591 5.38278 4.65374L1.09041 5.01791C0.87005 5.0366 0.780699 5.31117 0.947848 5.45597L4.20795 8.2802C4.27809 8.34096 4.3088 8.43558 4.28772 8.52595L3.3086 12.723C3.25836 12.9384 3.49192 13.1081 3.68125 12.9938L7.37082 10.767Z" fill="#2D4256"/></g><g clip-path="url(#clip1_2510_11270)"><path d="M22.3708 10.767C22.4503 10.719 22.5497 10.719 22.6292 10.767L26.3188 12.9938C26.5081 13.1081 26.7416 12.9384 26.6914 12.723L25.7123 8.52595C25.6912 8.43558 25.7219 8.34096 25.7921 8.2802L29.0522 5.45597C29.2193 5.31117 29.1299 5.0366 28.9096 5.01791L24.6172 4.65374C24.5248 4.64591 24.4444 4.58757 24.4082 4.5022L22.7302 0.543092C22.644 0.339835 22.356 0.339835 22.2698 0.543092L20.5918 4.5022C20.5556 4.58757 20.4752 4.64591 20.3828 4.65374L16.0904 5.01791C15.8701 5.0366 15.7807 5.31117 15.9478 5.45597L19.2079 8.2802C19.2781 8.34096 19.3088 8.43558 19.2877 8.52595L18.3086 12.723C18.2584 12.9384 18.4919 13.1081 18.6812 12.9938L22.3708 10.767Z" fill="#2D4256"/></g><g clip-path="url(#clip2_2510_11270)"><path d="M37.3708 10.767C37.4503 10.719 37.5497 10.719 37.6292 10.767L41.3188 12.9938C41.5081 13.1081 41.7416 12.9384 41.6914 12.723L40.7123 8.52595C40.6912 8.43558 40.7219 8.34096 40.7921 8.2802L44.0522 5.45597C44.2193 5.31117 44.1299 5.0366 43.9096 5.01791L39.6172 4.65374C39.5248 4.64591 39.4444 4.58757 39.4082 4.5022L37.7302 0.543092C37.644 0.339835 37.356 0.339835 37.2698 0.543092L35.5918 4.5022C35.5556 4.58757 35.4752 4.64591 35.3828 4.65374L31.0904 5.01791C30.8701 5.0366 30.7807 5.31117 30.9478 5.45597L34.2079 8.2802C34.2781 8.34096 34.3088 8.43558 34.2877 8.52595L33.3086 12.723C33.2584 12.9384 33.4919 13.1081 33.6812 12.9938L37.3708 10.767Z" fill="#2D4256"/></g><g clip-path="url(#clip3_2510_11270)"><path d="M52.3708 10.767C52.4503 10.719 52.5497 10.719 52.6292 10.767L56.3188 12.9938C56.5081 13.1081 56.7416 12.9384 56.6914 12.723L55.7123 8.52595C55.6912 8.43558 55.7219 8.34096 55.7921 8.2802L59.0522 5.45597C59.2193 5.31117 59.1299 5.0366 58.9096 5.01791L54.6172 4.65374C54.5248 4.64591 54.4444 4.58757 54.4082 4.5022L52.7302 0.543092C52.644 0.339835 52.356 0.339835 52.2698 0.543092L50.5918 4.5022C50.5556 4.58757 50.4752 4.64591 50.3828 4.65374L46.0904 5.01791C45.8701 5.0366 45.7807 5.31117 45.9478 5.45597L49.2079 8.2802C49.2781 8.34096 49.3088 8.43558 49.2877 8.52595L48.3086 12.723C48.2584 12.9384 48.4919 13.1081 48.6812 12.9938L52.3708 10.767Z" fill="#2D4256"/></g><g clip-path="url(#clip4_2510_11270)"><path d="M67.3708 10.767C67.4503 10.719 67.5497 10.719 67.6292 10.767L71.3188 12.9938C71.5081 13.1081 71.7416 12.9384 71.6914 12.723L70.7123 8.52595C70.6912 8.43558 70.7219 8.34096 70.7921 8.2802L74.0522 5.45597C74.2193 5.31117 74.1299 5.0366 73.9096 5.01791L69.6172 4.65374C69.5248 4.64591 69.4444 4.58757 69.4082 4.5022L67.7302 0.543092C67.644 0.339835 67.356 0.339835 67.2698 0.543092L65.5918 4.5022C65.5556 4.58757 65.4752 4.64591 65.3828 4.65374L61.0904 5.01791C60.8701 5.0366 60.7807 5.31117 60.9478 5.45597L64.2079 8.2802C64.2781 8.34096 64.3088 8.43558 64.2877 8.52595L63.3086 12.723C63.2584 12.9384 63.4919 13.1081 63.6812 12.9938L67.3708 10.767Z" fill="#2D4256"/></g><defs><clipPath id="clip0_2510_11270"><rect width="14" height="14" fill="white" transform="translate(0.5)"/></clipPath><clipPath id="clip1_2510_11270"><rect width="14" height="14" fill="white" transform="translate(15.5)"/></clipPath><clipPath id="clip2_2510_11270"><rect width="14" height="14" fill="white" transform="translate(30.5)"/></clipPath><clipPath id="clip3_2510_11270"><rect width="14" height="14" fill="white" transform="translate(45.5)"/></clipPath><clipPath id="clip4_2510_11270"><rect width="14" height="14" fill="white" transform="translate(60.5)"/></clipPath></defs></svg>
+                                      </div>  
+                                      {%- if block.settings.infos != blank -%}
+                                        <div class="Index_review_gallery_list_sides_innerleft_2_loops_innerboxs_infos_new">
+                                          {{ block.settings.infos }}
+                                        </div>
+                                      {%- endif -%}
+                                      {%- if block.settings.title != blank -%}
+                                        <div class="Index_review_gallery_list_sides_innerleft_2_loops_innerboxs_author_new">
+                                          <h4>{{ block.settings.title }}</h4>
+                                        </div>
+                                      {%- endif -%}
+                                    </div>
+                                  </div>
+                                {%- endif -%}
+                              {%- endif -%}
+                            {%- endfor -%}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+            {%- if section.blocks.size > 0 -%}
+              <div class="Index_review_gallery_list_sides_mainright_new" data-aos="fade-up">
+                <div class="Index_review_gallery_list_sides_innerright_new">
+                  <div class="Index_review_gallery_list_sides_innerright_in_new">
+                    <div class="swiper Index_gallery_desktop_slider">
+                      <div class="swiper-wrapper">
+                        {%- for block in section.blocks -%}
+                          {%- if block.type == 'video_or_image' -%}
+                            {%- if block.settings.main_left_desktop_video != blank or block.settings.main_left_desktop_image != blank or block.settings.main_right_desktop_video != blank or block.settings.main_right_desktop_image != blank -%}
+                              <div class="swiper-slide Index_review_gallery_list_sides_innerright_mainboxs_new">
+                                <div class="Index_review_gallery_list_sides_innerright_innerboxs_new">
+                                  {%- if block.settings.main_left_desktop_video != blank or block.settings.main_left_desktop_image != blank -%}
+                                    <div class="Index_review_gallery_list_sides_innerright_innerboxs_mainboths_new">
+                                      <div class="Index_review_gallery_list_sides_innerright_innerboxs_innerboths_new">
+                                        {%- if block.settings.main_left_desktop_video != blank -%}
+                                          <div class="Index_review_gallery_list_sides_innerright_innerboxs_innerboths_videoimage_new">
+                                            {{ block.settings.main_left_desktop_video | video_tag: class: 'Full_video_new', image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                          </div>
+                                        {% else %}  
+                                          {%- if block.settings.main_left_desktop_image != blank -%}
+                                            <div class="Index_review_gallery_list_sides_innerright_innerboxs_innerboths_videoimage_new">
+                                              {{
+                                                block.settings.main_left_desktop_image | 
+                                                image_url: width: img.width | 
+                                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                fetchpriority: 'auto', 
+                                                class:'Full_image_new'
+                                              }}
+                                            </div>
+                                          {%- endif -%}
+                                        {%- endif -%}
+                                      </div>
+                                    </div>
+                                  {%- endif -%}
+                                  {%- if block.settings.main_right_desktop_video != blank or block.settings.main_right_desktop_image != blank -%}
+                                    <div class="Index_review_gallery_list_sides_innerright_innerboxs_mainboths_new">
+                                      <div class="Index_review_gallery_list_sides_innerright_innerboxs_innerboths_new">
+                                        {%- if block.settings.main_right_desktop_video != blank -%}
+                                          <div class="Index_review_gallery_list_sides_innerright_innerboxs_innerboths_videoimage_new">
+                                            {{ block.settings.main_right_desktop_video | video_tag: class: 'Full_video_new', image_size: 'master', controls: false, autoplay: true, loop: true }}
+                                          </div>
+                                        {% else %}  
+                                          {%- if block.settings.main_right_desktop_image != blank -%}
+                                            <div class="Index_review_gallery_list_sides_innerright_innerboxs_innerboths_videoimage_new">
+                                              {{
+                                                block.settings.main_right_desktop_image | 
+                                                image_url: width: img.width | 
+                                                image_tag: widths: '750, 900, 1080, 1296, 1512, 1728, 1944, 2048', 
+                                                fetchpriority: 'auto', 
+                                                class:'Full_image_new'
+                                              }}
+                                            </div>
+                                          {%- endif -%}
+                                        {%- endif -%}
+                                      </div>
+                                    </div>
+                                  {%- endif -%}
+                                </div>
+                              </div>
+                            {%- endif -%}
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}  
+
+{% schema %}
+  {
+    "name": "Index Review Gallery List",
+    "class": "Index_review_gallery_list_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#F6F3F2"
+      },
+      {
+        "type": "textarea",
+        "id": "main_heading_text",
+        "label": "Add Main Heading Text",
+        "default": "Real Homes<br>Real Makeovers"
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "<p>Check out our gallery of <span>customer transformations</span> to see our frames in action!</p>"
+      },
+      {
+        "type": "textarea",
+        "id": "main_information_mobile_text",
+        "label": "Add Main Information Mobile Text",
+        "default": "<p>Check out our gallery of customer <span>transformations</span> to see our frames in action!</p>"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "View The Gallery"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "testimonials",
+        "name": "Testimonials",
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "infos",
+            "label": "Add Main Details Text",
+            "default": "<p>“Lorem Ipsum is simply dummy text of the printing and typesetting industry.”</p>"
+          },
+          {
+            "type": "textarea",
+            "id": "title",
+            "label": "Add Main Heading Text",
+            "default": "Heading"
+          }
+        ]
+      },
+      {
+        "type": "video_or_image",
+        "name": "Video OR Image",
+        "settings": [
+          {
+            "type": "video",
+            "id": "main_left_desktop_video",
+            "label": "Add Main Left Desktop Video"
+          },
+          {
+            "type": "video",
+            "id": "main_left_mobile_video",
+            "label": "Add Main Left Mobile Video"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_left_desktop_image",
+            "label": "Add Main Left Desktop Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_left_mobile_image",
+            "label": "Add Main Left Mobile Image"
+          },
+          {
+            "type": "video",
+            "id": "main_right_desktop_video",
+            "label": "Add Main Right Desktop Video"
+          },
+          {
+            "type": "video",
+            "id": "main_right_mobile_video",
+            "label": "Add Main Right Mobile Video"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_right_desktop_image",
+            "label": "Add Main Right Desktop Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "main_right_mobile_image",
+            "label": "Add Main Right Mobile Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Index Review Gallery List",
+        "blocks": [
+          {
+            "type": "testimonials"
+          },
+          {
+            "type": "video_or_image"
+          },
+          {
+            "type": "video_or_image"
+          },
+          {
+            "type": "video_or_image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

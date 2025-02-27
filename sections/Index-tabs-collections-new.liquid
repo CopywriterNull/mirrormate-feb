@@ -1,0 +1,359 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+
+{% if section.settings.image_shape == 'blob' %}
+  {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
+
+{%- unless section.settings.quick_add == 'none' -%}
+  {{ 'quick-add.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- endunless -%}
+
+{%- if section.settings.quick_add == 'standard' -%}
+  <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- if section.settings.quick_add == 'bulk' -%}
+  <script src="{{ 'quick-add-bulk.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'quick-order-list.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{%- if section.settings.main_desktop_heading_text != blank or section.settings.main_mobile_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_link != blank or section.blocks.size > 0 -%}
+  <div class="Index_tabs_collections_main_new" style="background: {{ section.settings.main_background_color }};">
+    <div class="Index_tabs_collections_inner_new">
+      {%- if section.settings.main_desktop_heading_text != blank or section.settings.main_mobile_heading_text != blank or section.settings.main_information_text != blank or section.settings.main_button_link != blank -%}
+        <div class="Index_tabs_collections_mainsides_new" data-aos="fade-in">
+          <div class="page-width">
+            <div class="Index_tabs_collections_innersides_new">
+              {%- if section.settings.main_desktop_heading_text != blank or section.settings.main_mobile_heading_text != blank or section.settings.main_information_text != blank -%}
+                <div class="Index_tabs_collections_innersides_mainleft_new">
+                  <div class="Index_tabs_collections_innersides_innerleft_new">
+                    {%- if section.settings.main_desktop_heading_text != blank -%}
+                      <div class="Index_tabs_collections_innersides_innerleft_maindesktop_new">
+                        <div class="Common_title_new Index_tabs_collections_innersides_innerleft_innerdesktop_new">
+                          <h3>{{ section.settings.main_desktop_heading_text }}</h3>
+                        </div>  
+                      </div>
+                    {%- endif -%}
+                    {%- if section.settings.main_mobile_heading_text != blank -%}
+                      <div class="Index_tabs_collections_innersides_innerleft_mainmobile_new">
+                        <div class="Common_title_new Index_tabs_collections_innersides_innerleft_innermobile_new">
+                          <h2>{{ section.settings.main_mobile_heading_text }}</h2>
+                        </div>  
+                      </div>
+                    {%- endif -%}
+                    {%- if section.settings.main_information_text != blank -%}
+                      <div class="Index_tabs_collections_innersides_innerleft_maininfos_new">
+                        <div class="Index_tabs_collections_innersides_innerleft_innerinfos_new">
+                          {{ section.settings.main_information_text }}
+                        </div>  
+                      </div>
+                    {%- endif -%}
+                  </div>  
+                </div>
+              {%- endif -%}
+              {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+                <div class="Index_tabs_collections_innersides_mainright_new">
+                  <div class="Index_tabs_collections_innersides_innerright_new">
+                    <a href="{{ section.settings.main_button_link }}" class="button">
+                      {{ section.settings.main_button_text }}
+                    </a>
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+      {%- if section.blocks.size > 0 -%}
+        <div class="Index_tabs_collections_mainloops_new" data-aos="fade-in">
+          <div class="Index_tabs_collections_innerloops_new Tabs_common_main_new">
+            {%- if section.blocks.size > 0 -%}
+              <div class="Index_tabs_collections_innerloops_mainlist_new">
+                <div class="Index_tabs_collections_innerloops_innerlist_new">
+                  <div class="tab">
+                    <div class="swiper Index_collection_tabs_slider">
+                      <div class="swiper-wrapper">
+                        {%- for block in section.blocks -%}
+                          {%- if block.settings.main_collection_product != blank -%}
+                            <button class="swiper-slide tablinks Tabs_common_inner_new{% if forloop.first %} active{% endif %}" tab_id="tab_{{ block.id | replace: '-', '_' }}_{{ forloop.index0 }}">
+                              <div class="Index_tabs_collections_innerloops_innerlist_maintitle_new">
+                                <div class="Index_tabs_collections_innerloops_innerlist_innertitle_new">
+                                  {%- if block.settings.title != blank -%}
+                                    {{ block.settings.title }}
+                                  {%- else -%}
+                                    {{ block.settings.main_collection_product.title }}
+                                  {%- endif -%}
+                                </div>
+                              </div>
+                            </button>  
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+            {%- if section.blocks.size > 0 -%}
+              <div class="Index_tabs_collections_innerloops_mainboxs_new">
+                <div class="Index_tabs_collections_innerloops_innerboxs_new">
+                  {%- for block in section.blocks -%}
+                    {%- if block.settings.main_collection_product != blank -%}
+                      <div class="tabcontent tab_{{ block.id | replace: '-', '_' }}_{{ forloop.index0 }}_open" {% if forloop.first %} style="display:block;"{% endif %}>
+                        <div class="Index_tabs_collections_innerloops_innerboxs_mainitems_new">
+                          <div class="swiper Index_collection_slider">
+                            <div class="swiper-wrapper">
+                              {%- for product in block.settings.main_collection_product.products limit: block.settings.products_to_show -%}
+                                <div class="swiper-slide product_grid_item_new">
+                                  {% render 'card-product',
+                                    card_product: product,
+                                    media_aspect_ratio: block.settings.image_ratio,
+                                    image_shape: block.settings.image_shape,
+                                    show_secondary_image: block.settings.show_secondary_image,
+                                    show_vendor: block.settings.show_vendor,
+                                    show_rating: block.settings.show_rating,
+                                    section_id: block.id,
+                                    quick_add: block.settings.quick_add
+                                  %}
+                                </div>
+                              {%- endfor -%}
+                            </div>
+                            <div class="swiper-button-prev">
+                              <svg width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 18.5L1 9.89115L9 1.5" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </div>
+                            <div class="swiper-button-next">
+                              <svg width="10" height="20" viewBox="0 0 10 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 1.5L9 10.1089L1 18.5" stroke="#2D4256" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </div>
+                            <div class="swiper-scrollbar"></div>
+                          </div>
+                        </div>
+                      </div>
+                    {%- endif -%}  
+                  {%- endfor -%}
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+      {%- if section.settings.main_button_text != blank and section.settings.main_button_link != blank -%}
+        <div class="Index_tabs_collections_mainbutton_new" data-aos="fade-in">
+          <div class="Index_tabs_collections_innerbutton_new">
+            <a href="{{ section.settings.main_button_link }}" class="button">
+              {{ section.settings.main_button_text }}
+            </a>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}  
+
+{% schema %}
+  {
+    "name": "Index Tabs Collections",
+    "class": "Index_tabs_collections_new",
+    "settings": [
+      {
+        "type": "color",
+        "id": "main_background_color",
+        "label": "Add Main Background Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "textarea",
+        "id": "main_desktop_heading_text",
+        "label": "Add Main Desktop Heading Text",
+        "default": "Shop 65+ Styles"
+      },
+      {
+        "type": "textarea",
+        "id": "main_mobile_heading_text",
+        "label": "Add Main Mobile Heading Text",
+        "default": "Shop Bestsellers"
+      },
+      {
+        "type": "richtext",
+        "id": "main_information_text",
+        "label": "Add Main Information Text",
+        "default": "<p>Explore our most popular frame kits.</p>"
+      },
+      {
+        "type": "text",
+        "id": "main_button_text",
+        "label": "Add Main Button Text",
+        "default": "Shop All Frames"
+      },
+      {
+        "type": "url",
+        "id": "main_button_link",
+        "label": "Add Main Button Link",
+        "default": "/"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "information",
+        "name": "Information",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Add Main Tabs Heading Text",
+          },
+          {
+            "type": "collection",
+            "id": "main_collection_product",
+            "label": "Select Main Collection Product"
+          },
+          {
+            "type": "range",
+            "id": "products_to_show",
+            "min": 1,
+            "max": 100,
+            "step": 1,
+            "default": 12,
+            "label": "t:sections.featured-collection.settings.products_to_show.label"
+          },
+          {
+            "type": "select",
+            "id": "image_ratio",
+            "options": [
+              {
+                "value": "adapt",
+                "label": "t:sections.featured-collection.settings.image_ratio.options__1.label"
+              },
+              {
+                "value": "portrait",
+                "label": "t:sections.featured-collection.settings.image_ratio.options__2.label"
+              },
+              {
+                "value": "square",
+                "label": "t:sections.featured-collection.settings.image_ratio.options__3.label"
+              }
+            ],
+            "default": "adapt",
+            "label": "t:sections.featured-collection.settings.image_ratio.label"
+          },
+          {
+            "type": "select",
+            "id": "image_shape",
+            "options": [
+              {
+                "value": "default",
+                "label": "t:sections.all.image_shape.options__1.label"
+              },
+              {
+                "value": "arch",
+                "label": "t:sections.all.image_shape.options__2.label"
+              },
+              {
+                "value": "blob",
+                "label": "t:sections.all.image_shape.options__3.label"
+              },
+              {
+                "value": "chevronleft",
+                "label": "t:sections.all.image_shape.options__4.label"
+              },
+              {
+                "value": "chevronright",
+                "label": "t:sections.all.image_shape.options__5.label"
+              },
+              {
+                "value": "diamond",
+                "label": "t:sections.all.image_shape.options__6.label"
+              },
+              {
+                "value": "parallelogram",
+                "label": "t:sections.all.image_shape.options__7.label"
+              },
+              {
+                "value": "round",
+                "label": "t:sections.all.image_shape.options__8.label"
+              }
+            ],
+            "default": "default",
+            "label": "t:sections.all.image_shape.label",
+            "info": "t:sections.all.image_shape.info"
+          },
+          {
+            "type": "checkbox",
+            "id": "show_secondary_image",
+            "default": true,
+            "label": "t:sections.featured-collection.settings.show_secondary_image.label"
+          },
+          {
+            "type": "checkbox",
+            "id": "show_vendor",
+            "default": false,
+            "label": "t:sections.featured-collection.settings.show_vendor.label"
+          },
+          {
+            "type": "checkbox",
+            "id": "show_rating",
+            "default": false,
+            "label": "t:sections.featured-collection.settings.show_rating.label",
+            "info": "t:sections.featured-collection.settings.show_rating.info"
+          },
+          {
+            "type": "select",
+            "id": "quick_add",
+            "default": "none",
+            "label": "t:sections.main-collection-product-grid.settings.quick_add.label",
+            "info": "t:sections.main-collection-product-grid.settings.quick_add.info",
+            "options": [
+              {
+                "value": "none",
+                "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_1"
+              },
+              {
+                "value": "standard",
+                "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_2"
+              },
+              {
+                "value": "bulk",
+                "label": "t:sections.main-collection-product-grid.settings.quick_add.options.option_3"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Index Tabs Collections",
+        "blocks": [
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          },
+          {
+            "type": "information"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
